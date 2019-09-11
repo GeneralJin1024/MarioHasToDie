@@ -11,32 +11,17 @@ namespace Sprint0
     class GamePadController : IController
     {
         private GamePadState prevGamePadState;
-        private Sprint0 game;
         private Dictionary<Buttons, ICommand> buttonMap;
-        private ICommand buttonStart;
-        private ICommand buttonA;
-        private ICommand buttonB;
-        private ICommand buttonX;
-        private ICommand buttonY;
-        private ISprite marioStandingInPlaceSprite;
-        private ISprite marioRunningInPlaceSprite;
-        private ISprite marioDeadSprite;
-        private ISprite marioRunningSprite;
 
-        public GamePadController(Sprint0 game, ISprite marioSpriteSIP, ISprite marioSpriteRIP, ISprite marioSpriteDead, ISprite marioSpriteRunning)
+        public GamePadController(Sprint0 myGame, ISprite marioSpriteSIP, ISprite marioSpriteRIP, ISprite marioSpriteDead, ISprite marioSpriteRunning)
         {
-            this.game = game;
-            this.marioStandingInPlaceSprite = marioSpriteSIP;
-            this.marioRunningInPlaceSprite = marioSpriteRIP;
-            this.marioDeadSprite = marioSpriteDead;
-            this.marioRunningSprite = marioSpriteRunning;
             prevGamePadState = GamePad.GetState(PlayerIndex.One);
             buttonMap = new Dictionary<Buttons, ICommand>();
-            buttonMap.Add(Buttons.Start, buttonStart);
-            buttonMap.Add(Buttons.A, buttonA);
-            buttonMap.Add(Buttons.B, buttonB);
-            buttonMap.Add(Buttons.X, buttonX);
-            buttonMap.Add(Buttons.Y, buttonY);
+            buttonMap.Add(Buttons.Start, new QuitGameCommand(myGame));
+            buttonMap.Add(Buttons.A, new MarioStandingInPlaceCommand(marioSpriteSIP));
+            buttonMap.Add(Buttons.B, new MarioRunningInPlaceCommand(marioSpriteRIP));
+            buttonMap.Add(Buttons.X, new MarioDeadCommand(marioSpriteDead));
+            buttonMap.Add(Buttons.Y, new MarioRunningCommand(marioSpriteRunning));
         }
 
         public void UpdateInput()
@@ -48,36 +33,14 @@ namespace Sprint0
             {
                 if (curr != emptyInput) // Button Pressed
                 {
-                    foreach (KeyValuePair<Buttons, ICommand> button in buttonMap)
-                    {
+                     foreach (KeyValuePair<Buttons, ICommand> button in buttonMap)
+                     {
                         if (ButtonPressed(button.Key, curr))
                         {
-                            switch (button.Key)
-                            {
-                                case Buttons.Start:
-                                    this.buttonStart = new QuitGameCommand(this.game);
-                                    this.buttonStart.Execute();
-                                    break;
-                                case Buttons.A:
-                                    this.buttonA = new MarioStandingInPlaceCommand(this.marioStandingInPlaceSprite);
-                                    this.buttonA.Execute();
-                                    break;
-                                case Buttons.B:
-                                    this.buttonB = new MarioRunningInPlaceCommand(this.marioRunningInPlaceSprite);
-                                    this.buttonB.Execute();
-                                    break;
-                                case Buttons.X:
-                                    this.buttonX = new MarioDeadCommand(this.marioDeadSprite);
-                                    this.buttonX.Execute();
-                                    break;
-                                case Buttons.Y:
-                                    this.buttonY = new MarioRunningCommand(this.marioRunningSprite);
-                                    this.buttonY.Execute();
-                                    break;
-                            }
+                            button.Value.Execute();
                         }
-                    }
-                    prevGamePadState = curr;
+                     }
+                     prevGamePadState = curr;
                 }
             }
         }

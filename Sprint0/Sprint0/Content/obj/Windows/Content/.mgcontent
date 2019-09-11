@@ -4,10 +4,10 @@
   <Platform>Windows</Platform>
   <Config />
   <SourceFiles>
-    <File>E:/Jsy/CSE3902/Sprint0/Sprint0/Content/arial.spritefont</File>
-    <File>E:/Jsy/CSE3902/Sprint0/Sprint0/Content/MarioSprites/dead_mario.png</File>
-    <File>E:/Jsy/CSE3902/Sprint0/Sprint0/Content/MarioSprites/large_standing_mario.png</File>
-    <File>E:/Jsy/CSE3902/Sprint0/Sprint0/Content/MarioSprites/mario_sprite_sheet_animated.png</File>
+    <File>C:/Users/72957/Source/Repos/SmartMario/Sprint0/Sprint0/Content/arial.spritefont</File>
+    <File>C:/Users/72957/Source/Repos/SmartMario/Sprint0/Sprint0/Content/MarioSprites/dead_mario.png</File>
+    <File>C:/Users/72957/Source/Repos/SmartMario/Sprint0/Sprint0/Content/MarioSprites/large_standing_mario.png</File>
+    <File>C:/Users/72957/Source/Repos/SmartMario/Sprint0/Sprint0/Content/MarioSprites/mario_sprite_sheet_animated.png</File>
   </SourceFiles>
   <DestFiles>
     <File xsi:nil="true" />

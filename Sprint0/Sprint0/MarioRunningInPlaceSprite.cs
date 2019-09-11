@@ -23,19 +23,16 @@ namespace Sprint0
         private Point currentFrame { get; set; }
         private int animationFrame { get; set; }
 
-        static public void Init(SpriteBatch batch, Texture2D f)
-        {
-            spriteBatch = batch;
-            frame = f;
-            sheetSize = new Point(4, 1);
-            frameSize = new Point(frame.Width / sheetSize.X, frame.Height / sheetSize.Y);
-        }
-        public MarioRunningInPlaceSprite(Vector2 position)
+        public MarioRunningInPlaceSprite(Vector2 position, SpriteBatch batch, Texture2D f)
         {
             Visibility = false;
             this.spritePosition = new Vector2(0, 0);
             this.spritePosition.X = position.X;
             this.spritePosition.Y = position.Y;
+            spriteBatch = batch;
+            frame = f;
+            sheetSize = new Point(4, 1);
+            frameSize = new Point(frame.Width / sheetSize.X, frame.Height / sheetSize.Y);
             timeSinceLastFrame = 0;
             millisecondsPerFrame = 500;
             currentFrame = new Point(0, 0);

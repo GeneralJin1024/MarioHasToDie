@@ -14,15 +14,11 @@ namespace Sprint0
         private static Texture2D frame;
         private Vector2 spritePosition;
         private int moveDirectionY = -1;
-
-        static public void Init(SpriteBatch batch, Texture2D f)
+      
+        public MarioDeadSprite(Vector2 position, SpriteBatch batch, Texture2D f)
         {
             spriteBatch = batch;
             frame = f;
-        }
-      
-        public MarioDeadSprite(Vector2 position)
-        {
             Visibility = false;
             this.spritePosition = new Vector2(0, 0);
             this.spritePosition.X = position.X;

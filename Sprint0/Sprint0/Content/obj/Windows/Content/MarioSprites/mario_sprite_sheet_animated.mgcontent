@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>E:/Jsy/CSE3902/Sprint0/Sprint0/Content/MarioSprites/mario_sprite_sheet_animated.png</SourceFile>
+  <SourceFile>C:/Users/72957/Source/Repos/SmartMario/Sprint0/Sprint0/Content/MarioSprites/mario_sprite_sheet_animated.png</SourceFile>
   <SourceTime>2019-08-26T21:46:58.7051538-04:00</SourceTime>
-  <DestFile>E:/Jsy/CSE3902/Sprint0/Sprint0/Content/bin/Windows/Content/MarioSprites/mario_sprite_sheet_animated.xnb</DestFile>
-  <DestTime>2019-08-31T14:40:18.6171974-04:00</DestTime>
+  <DestFile>C:/Users/72957/Source/Repos/SmartMario/Sprint0/Sprint0/Content/bin/Windows/Content/MarioSprites/mario_sprite_sheet_animated.xnb</DestFile>
+  <DestTime>2019-09-11T13:48:38.1656158-04:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2018-12-08T11:35:54-05:00</ImporterTime>
   <Processor>TextureProcessor</Processor>

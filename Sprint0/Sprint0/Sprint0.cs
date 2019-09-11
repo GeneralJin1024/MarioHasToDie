@@ -51,24 +51,13 @@ namespace Sprint0
             #region Sprites
             spriteList = new ArrayList();
             marioStandingInPlaceSpritePosition = new Vector2(GraphicsDevice.Viewport.Width / 4, GraphicsDevice.Viewport.Height / 4);
-            marioStandingInPlaceSprite = new MarioStandingInPlaceSprite(marioStandingInPlaceSpritePosition);
             marioRunningInPlaceSpritePosition = new Vector2(GraphicsDevice.Viewport.Width / 4, 3 * GraphicsDevice.Viewport.Height / 4);
-            marioRunningInPlaceSprite = new MarioRunningInPlaceSprite(marioRunningInPlaceSpritePosition);
             marioDeadSpritePosition = new Vector2(3 * GraphicsDevice.Viewport.Width / 4, GraphicsDevice.Viewport.Height / 4);
-            marioDeadSprite = new MarioDeadSprite(marioDeadSpritePosition);
-            marioRunningSpritePosition = new Vector2(3 * GraphicsDevice.Viewport.Width / 4, 3 * GraphicsDevice.Viewport.Height / 4);
-            marioRunningSprite = new MarioRunningSprite(marioRunningSpritePosition);
-
-            spriteList.Add(marioStandingInPlaceSprite);
-            spriteList.Add(marioRunningInPlaceSprite);
-            spriteList.Add(marioDeadSprite);
-            spriteList.Add(marioRunningSprite);
+            marioRunningSpritePosition = new Vector2(3 * GraphicsDevice.Viewport.Width / 4, 3 * GraphicsDevice.Viewport.Height / 4);   
             #endregion
 
             #region Controllers
             controllerList = new ArrayList();
-            controllerList.Add(new KeyboardController(this, marioStandingInPlaceSprite, marioRunningInPlaceSprite, marioDeadSprite, marioRunningSprite));
-            controllerList.Add(new GamePadController(this, marioStandingInPlaceSprite, marioRunningInPlaceSprite, marioDeadSprite, marioRunningSprite));
             #endregion
 
             base.Initialize();
@@ -84,10 +73,19 @@ namespace Sprint0
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             #region Sprites
-            MarioStandingInPlaceSprite.Init(spriteBatch, this.Content.Load<Texture2D>("MarioSprites/large_standing_mario"));          
-            MarioRunningInPlaceSprite.Init(spriteBatch, this.Content.Load<Texture2D>("MarioSprites/mario_sprite_sheet_animated"));           
-            MarioDeadSprite.Init(spriteBatch, this.Content.Load<Texture2D>("MarioSprites/dead_mario"));
-            MarioRunningSprite.Init(spriteBatch, this.Content.Load<Texture2D>("MarioSprites/mario_sprite_sheet_animated"));
+            marioStandingInPlaceSprite = new MarioStandingInPlaceSprite(marioStandingInPlaceSpritePosition, spriteBatch, this.Content.Load<Texture2D>("MarioSprites/large_standing_mario"));
+            marioRunningInPlaceSprite = new MarioRunningInPlaceSprite(marioRunningInPlaceSpritePosition, spriteBatch, this.Content.Load<Texture2D>("MarioSprites/mario_sprite_sheet_animated"));
+            marioDeadSprite = new MarioDeadSprite(marioDeadSpritePosition, spriteBatch, this.Content.Load<Texture2D>("MarioSprites/dead_mario"));
+            marioRunningSprite = new MarioRunningSprite(marioRunningSpritePosition, spriteBatch, this.Content.Load<Texture2D>("MarioSprites/mario_sprite_sheet_animated"));
+            spriteList.Add(marioStandingInPlaceSprite);
+            spriteList.Add(marioRunningInPlaceSprite);
+            spriteList.Add(marioDeadSprite);
+            spriteList.Add(marioRunningSprite);
+            #endregion
+
+            #region Controller
+            controllerList.Add(new KeyboardController(this, marioStandingInPlaceSprite, marioRunningInPlaceSprite, marioDeadSprite, marioRunningSprite));
+            controllerList.Add(new GamePadController(this, marioStandingInPlaceSprite, marioRunningInPlaceSprite, marioDeadSprite, marioRunningSprite));
             #endregion
 
             #region Fonts
