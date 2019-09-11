@@ -10,6 +10,7 @@ namespace Sprint0
 {
 
     //Teammate : Zhenhao Lu
+    // teammate: Ziye Zhu
     /// <summary>
     /// This is the main type for your game.
     /// </summary>
