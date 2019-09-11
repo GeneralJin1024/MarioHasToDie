@@ -1,0 +1,5 @@
+Source File,Dest File,Processor Type,Content Type,Source File Size,Dest File Size,Build Seconds
+"E:/Jsy/CSE3902/Sprint0/Sprint0/Content/arial.spritefont","E:/Jsy/CSE3902/Sprint0/Sprint0/Content/bin/Windows/Content/arial.xnb","FontDescriptionProcessor","SpriteFontContent",2068,21521,1.217229
+"E:/Jsy/CSE3902/Sprint0/Sprint0/Content/MarioSprites/dead_mario.png","E:/Jsy/CSE3902/Sprint0/Sprint0/Content/bin/Windows/Content/MarioSprites/dead_mario.xnb","TextureProcessor","Texture2DContent",305,869,0.0747998
+"E:/Jsy/CSE3902/Sprint0/Sprint0/Content/MarioSprites/large_standing_mario.png","E:/Jsy/CSE3902/Sprint0/Sprint0/Content/bin/Windows/Content/MarioSprites/large_standing_mario.xnb","TextureProcessor","Texture2DContent",399,2133,0.0039878
+"E:/Jsy/CSE3902/Sprint0/Sprint0/Content/MarioSprites/mario_sprite_sheet_animated.png","E:/Jsy/CSE3902/Sprint0/Sprint0/Content/bin/Windows/Content/MarioSprites/mario_sprite_sheet_animated.xnb","TextureProcessor","Texture2DContent",3754,19117,0.0059829
