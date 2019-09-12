@@ -5,11 +5,21 @@
   <Config />
   <SourceFiles>
     <File>C:/Users/72957/Source/Repos/SmartMario/Sprint0/Sprint0/Content/arial.spritefont</File>
+    <File>C:/Users/72957/Source/Repos/SmartMario/Sprint0/Sprint0/Content/BlockSprites/mario-brick-blocks.png</File>
+    <File>C:/Users/72957/Source/Repos/SmartMario/Sprint0/Sprint0/Content/BlockSprites/mario-gravel-blocks.png</File>
+    <File>C:/Users/72957/Source/Repos/SmartMario/Sprint0/Sprint0/Content/BlockSprites/mario-hit-block.png</File>
+    <File>C:/Users/72957/Source/Repos/SmartMario/Sprint0/Sprint0/Content/BlockSprites/mario-question-blocks.png</File>
+    <File>C:/Users/72957/Source/Repos/SmartMario/Sprint0/Sprint0/Content/BlockSprites/mario-shiny-block.png</File>
     <File>C:/Users/72957/Source/Repos/SmartMario/Sprint0/Sprint0/Content/MarioSprites/dead_mario.png</File>
     <File>C:/Users/72957/Source/Repos/SmartMario/Sprint0/Sprint0/Content/MarioSprites/large_standing_mario.png</File>
     <File>C:/Users/72957/Source/Repos/SmartMario/Sprint0/Sprint0/Content/MarioSprites/mario_sprite_sheet_animated.png</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />

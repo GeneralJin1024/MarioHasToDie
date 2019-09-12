@@ -51,3 +51,8 @@ C:\Users\72957\Source\Repos\SmartMario\Sprint0\Sprint0\bin\Windows\x86\Debug\Sha
 C:\Users\72957\Source\Repos\SmartMario\Sprint0\Sprint0\bin\Windows\x86\Debug\SharpDX.Direct2D1.xml
 C:\Users\72957\Source\Repos\SmartMario\Sprint0\Sprint0\bin\Windows\x86\Debug\SharpDX.XInput.xml
 C:\Users\72957\Source\Repos\SmartMario\Sprint0\Sprint0\obj\x86\Debug\Sprint0.csproj.CopyComplete
+C:\Users\72957\Source\Repos\SmartMario\Sprint0\Sprint0\bin\Windows\x86\Debug\Content\BlockSprites\mario-brick-blocks.xnb
+C:\Users\72957\Source\Repos\SmartMario\Sprint0\Sprint0\bin\Windows\x86\Debug\Content\BlockSprites\mario-gravel-blocks.xnb
+C:\Users\72957\Source\Repos\SmartMario\Sprint0\Sprint0\bin\Windows\x86\Debug\Content\BlockSprites\mario-hit-block.xnb
+C:\Users\72957\Source\Repos\SmartMario\Sprint0\Sprint0\bin\Windows\x86\Debug\Content\BlockSprites\mario-question-blocks.xnb
+C:\Users\72957\Source\Repos\SmartMario\Sprint0\Sprint0\bin\Windows\x86\Debug\Content\BlockSprites\mario-shiny-block.xnb
