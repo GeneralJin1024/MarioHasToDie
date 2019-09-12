@@ -20,7 +20,7 @@ namespace Sprint0
         SpriteBatch spriteBatch;
 
         private String Zhenhao = "HelloWorld";
-
+        private String Jian  = "WWE";
         private ArrayList controllerList;
         private ArrayList spriteList;
         #region Sprite
