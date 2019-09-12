@@ -8,6 +8,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace Sprint0
 {
+    // new teammate1
 
     //Teammate : Zhenhao Lu
     // teammate: Ziye Zhu
@@ -20,9 +21,7 @@ namespace Sprint0
         SpriteBatch spriteBatch;
 
         private String Zhenhao = "HelloWorld";
-
-        private String Jian = "Hello World";
-
+        private String Jian  = "WWE";
         private ArrayList controllerList;
         private ArrayList spriteList;
         #region Sprite
