@@ -19,6 +19,8 @@ namespace Sprint0
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
+        private String Zhenhao = "HelloWorld";
+
         private ArrayList controllerList;
         private ArrayList spriteList;
         #region Sprite
