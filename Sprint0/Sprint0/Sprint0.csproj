@@ -42,6 +42,8 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="GamePadController.cs" />
+    <Compile Include="IBlock.cs" />
+    <Compile Include="IItem.cs" />
     <Compile Include="MarioDeadSprite.cs" />
     <Compile Include="MarioRunningCommand.cs" />
     <Compile Include="MarioDeadCommand.cs" />
