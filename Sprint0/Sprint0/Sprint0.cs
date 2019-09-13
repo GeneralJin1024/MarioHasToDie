@@ -8,8 +8,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace Sprint0
 {
-    // new teammate1
-
+   //Teammate: Runmin Zhou
     //Teammate : Zhenhao Lu
     // teammate: Ziye Zhu
     /// <summary>
