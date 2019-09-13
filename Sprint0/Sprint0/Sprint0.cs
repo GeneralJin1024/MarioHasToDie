@@ -5,6 +5,7 @@ using System.ComponentModel;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Sprint0.BlockSprites;
 
 namespace Sprint0
 {
@@ -35,7 +36,8 @@ namespace Sprint0
         private Vector2 marioDeadSpritePosition;
         #endregion
 
-        private ISprite blockTest;
+        private ISprite qBlockTest;
+        private ISprite hitBlockTest;
 
         #region Fonts
         public Color fontColor { get; set; } = Color.DarkBlue;
@@ -90,8 +92,8 @@ namespace Sprint0
             spriteList.Add(marioRunningSprite);
             #endregion
 
-            blockTest = new QuestionBlockSprite(new Vector2(GraphicsDevice.Viewport.Width / 2, GraphicsDevice.Viewport.Height / 2), spriteBatch, this.Content.Load<Texture2D>("BlockSprites/mario-question-blocks"));
-
+            qBlockTest = new QuestionBlockSprite(new Vector2(GraphicsDevice.Viewport.Width / 2, GraphicsDevice.Viewport.Height / 2), spriteBatch, this.Content.Load<Texture2D>("BlockSprites/mario-question-blocks"));
+            hitBlockTest = new UsedBlockSprite(new Vector2(GraphicsDevice.Viewport.Width / 4, GraphicsDevice.Viewport.Height / 4), spriteBatch, this.Content.Load<Texture2D>("BlockSprites/mario-shiny-block"));
             #region Controller
             controllerList.Add(new KeyboardController(this, marioStandingInPlaceSprite, marioRunningInPlaceSprite, marioDeadSprite, marioRunningSprite));
             controllerList.Add(new GamePadController(this, marioStandingInPlaceSprite, marioRunningInPlaceSprite, marioDeadSprite, marioRunningSprite));
@@ -129,7 +131,7 @@ namespace Sprint0
                     sprite.Update(this.GraphicsDevice, gameTime);
             }
 
-            blockTest.Update(this.GraphicsDevice, gameTime);
+            qBlockTest.Update(this.GraphicsDevice, gameTime);
             base.Update(gameTime);
         }
 
@@ -153,8 +155,8 @@ namespace Sprint0
             DrawFonts(spriteBatch);
             #endregion
 
-            blockTest.Draw();
-            
+            qBlockTest.Draw();
+            hitBlockTest.Draw();
             spriteBatch.End();
 
             base.Draw(gameTime);

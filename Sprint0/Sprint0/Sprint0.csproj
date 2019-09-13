@@ -41,6 +41,7 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="BlockSprites\UsedBlockSprite.cs" />
     <Compile Include="GamePadController.cs" />
     <Compile Include="IBlock.cs" />
     <Compile Include="IItem.cs" />
