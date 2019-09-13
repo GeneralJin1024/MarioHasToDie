@@ -35,6 +35,8 @@ namespace Sprint0
         private Vector2 marioDeadSpritePosition;
         #endregion
 
+        private ISprite blockTest;
+
         #region Fonts
         public Color fontColor { get; set; } = Color.DarkBlue;
         private SpriteFont instructionFont;
@@ -88,6 +90,8 @@ namespace Sprint0
             spriteList.Add(marioRunningSprite);
             #endregion
 
+            blockTest = new QuestionBlockSprite(new Vector2(GraphicsDevice.Viewport.Width / 2, GraphicsDevice.Viewport.Height / 2), spriteBatch, this.Content.Load<Texture2D>("BlockSprites/mario-question-blocks"));
+
             #region Controller
             controllerList.Add(new KeyboardController(this, marioStandingInPlaceSprite, marioRunningInPlaceSprite, marioDeadSprite, marioRunningSprite));
             controllerList.Add(new GamePadController(this, marioStandingInPlaceSprite, marioRunningInPlaceSprite, marioDeadSprite, marioRunningSprite));
@@ -124,6 +128,8 @@ namespace Sprint0
                 if (sprite.Visibility)
                     sprite.Update(this.GraphicsDevice, gameTime);
             }
+
+            blockTest.Update(this.GraphicsDevice, gameTime);
             base.Update(gameTime);
         }
 
@@ -147,6 +153,8 @@ namespace Sprint0
             DrawFonts(spriteBatch);
             #endregion
 
+            blockTest.Draw();
+            
             spriteBatch.End();
 
             base.Draw(gameTime);

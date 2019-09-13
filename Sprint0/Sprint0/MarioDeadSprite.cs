@@ -10,8 +10,8 @@ namespace Sprint0
 {
     class MarioDeadSprite : ISprite
     {
-        private static SpriteBatch spriteBatch;
-        private static Texture2D frame;
+        private SpriteBatch spriteBatch;
+        private Texture2D frame;
         private Vector2 spritePosition;
         private int moveDirectionY = -1;
       

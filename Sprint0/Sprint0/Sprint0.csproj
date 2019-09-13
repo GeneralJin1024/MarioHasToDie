@@ -49,6 +49,7 @@
     <Compile Include="MarioDeadCommand.cs" />
     <Compile Include="MarioRunningInPlaceCommand.cs" />
     <Compile Include="MarioStandingInPlaceCommand.cs" />
+    <Compile Include="BlockSprites\QuestionBlockSprite.cs" />
     <Compile Include="QuitGameCommand.cs" />
     <Compile Include="MarioRunningInPlaceSprite.cs" />
     <Compile Include="ICommand.cs" />
