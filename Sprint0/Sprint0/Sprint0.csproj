@@ -42,9 +42,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="GamePadController.cs" />
-    <Compile Include="MarioDeadSprite.cs" />
+    <Compile Include="MarioClasses\ActionSprite.cs" />
+    <Compile Include="MarioClasses\Mario.cs" />
     <Compile Include="MarioRunningCommand.cs" />
-    <Compile Include="MarioDeadCommand.cs" />
     <Compile Include="MarioRunningInPlaceCommand.cs" />
     <Compile Include="MarioStandingInPlaceCommand.cs" />
     <Compile Include="QuitGameCommand.cs" />
@@ -73,9 +73,7 @@
     <MonoGameContentReference Include="Content\Content.mgcb" />
     <None Include="app.manifest" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="MarioClasses\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Content.Builder.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
