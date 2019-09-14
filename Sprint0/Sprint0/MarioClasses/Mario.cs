@@ -12,20 +12,33 @@ namespace Sprint0.MarioClasses
     {
         public Texture2D SpriteSheets { get; set; }//useless variable
 
+        #region Textures
         //{Stand, Jump, Walk, Crouch}
         private Texture2D[] StandardMario;
         private Texture2D[] SuperMario;
         private Texture2D[] FireMario;
         private Texture2D DiedSheet;
+        #endregion Textures
 
+        #region ActionSprites
         private ISprite IdleSprite;
         private ISprite JumpSprite;
         private ISprite CrouchSprite;
         private ISprite WalkingSprite;
         private ISprite DiedSprite;
         private ISprite currentMarioAction;
+        #endregion ActionSprites
 
-        private bool IsLeft;
+        #region Action States
+        private ActionState IdleState;
+        private ActionState JumpState;
+        private ActionState WalkState;
+        private ActionState RunningJumpState;
+        private ActionState CrouchState;
+        private ActionState Action;
+        #endregion Action States
+
+        public bool IsLeft { get; set; }
 
         private Vector2 Location;
 
@@ -35,8 +48,8 @@ namespace Sprint0.MarioClasses
             SuperMario = superSheet;
             FireMario = fireSheet;
             SetActionSprites();
+            setActionStates();
             DiedSprite = new ActionSprite(diedSheet, new Point(1, 1));
-            currentMarioAction = IdleSprite;
             IsLeft = false;
             Location = new Vector2(400, 300);
         }
@@ -53,26 +66,38 @@ namespace Sprint0.MarioClasses
         #endregion ISprite Methods
 
         #region Action Command Receiver Method
-        public void moveRight()
-        {
+        public void moveRight() { Action.Right(this); }
 
-        }
+        public void moveLeft() { Action.Left(this); }
 
-        public void moveLeft()
-        {
+        public void moveUp() { Action.Up(this); }
 
-        }
-
-        public void moveUp()
-        {
-
-        }
-
-        public void moveDown()
-        {
-
-        }
+        public void moveDown() { Action.Down(this); }
         #endregion Action Command Receiver Method
+
+        #region Action Change
+        public void ChangeToIdle()
+        {
+
+        }
+
+        public void ChangeToJump()
+        {
+
+        }
+
+        public void ChangeToWalk()
+        {
+
+        }
+
+        public void ChangeToCrouch()
+        {
+
+        }
+
+        public void ChangeToRunningJump() { }
+        #endregion Action Change
 
         private void SetActionSprites()
         {
@@ -80,6 +105,17 @@ namespace Sprint0.MarioClasses
             JumpSprite = new ActionSprite(StandardMario[1], new Point(1, 1));
             WalkingSprite = new ActionSprite(StandardMario[2], new Point(1, 3));
             CrouchSprite = new ActionSprite(StandardMario[3], new Point(1, 1));
+            currentMarioAction = IdleSprite;
+        }
+
+        private void setActionStates()
+        {
+            IdleState = new IdleState();
+            JumpState = new JumpState();
+            WalkState = new WalkState();
+            RunningJumpState = new RunningJumpState();
+            CrouchState = new CrouchState();
+            Action = IdleState;
         }
     }
 }

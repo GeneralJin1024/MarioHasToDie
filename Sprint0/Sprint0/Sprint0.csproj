@@ -43,6 +43,8 @@
   <ItemGroup>
     <Compile Include="GamePadController.cs" />
     <Compile Include="MarioClasses\ActionSprite.cs" />
+    <Compile Include="MarioClasses\ActionState.cs" />
+    <Compile Include="MarioClasses\MarioAction.cs" />
     <Compile Include="MarioClasses\Mario.cs" />
     <Compile Include="MarioRunningCommand.cs" />
     <Compile Include="MarioRunningInPlaceCommand.cs" />
