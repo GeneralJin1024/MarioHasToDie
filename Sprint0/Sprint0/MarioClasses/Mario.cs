@@ -38,22 +38,36 @@ namespace Sprint0.MarioClasses
         private ActionState Action;
         #endregion Action States
 
+        #region PowerState
+        PowerState Standard;
+        PowerState Super;
+        PowerState Fire;
+        PowerState Died;
+        PowerState Power;
+        #endregion PowerState
+
         public bool IsLeft { get; set; }
         public bool IsSuper { get; set; }
+        private bool IsDied;
+        private bool IsCrouch;
 
         private Vector2 Location;
 
-        public Mario(Texture2D[] standardSheets, Texture2D[] superSheet, Texture2D[] fireSheet, Texture2D diedSheet)
+        public Mario(Texture2D[] standardSheets, Texture2D[] superSheet, 
+            Texture2D[] fireSheet, Texture2D diedSheet, Vector2 location)
         {
             StandardMario = standardSheets;
             SuperMario = superSheet;
             FireMario = fireSheet;
             SetActionSprites();
             SetActionStates();
+            SetPowerStates();
             DiedSprite = new ActionSprite(diedSheet, new Point(1, 1));
             IsLeft = false;
             IsSuper = false;
-            Location = new Vector2(400, 300);
+            IsCrouch = false;
+            IsDied = false;
+            Location = location;
         }
         #region ISprite Methods
         public void Update(GameTime gameTime)
@@ -68,13 +82,25 @@ namespace Sprint0.MarioClasses
         #endregion ISprite Methods
 
         #region Action Command Receiver Method
-        public void moveRight() { Action.Right(this); }
+        public void moveRight() {
+            if(!IsDied)
+                Action.Right(this);
+        }
 
-        public void moveLeft() { Action.Left(this); }
+        public void moveLeft() {
+            if(!IsDied)
+                Action.Left(this);
+        }
 
-        public void moveUp() { Action.Up(this); }
+        public void moveUp() {
+            if(!IsDied)
+                Action.Up(this);
+        }
 
-        public void moveDown() { Action.Down(this); }
+        public void moveDown() {
+            if(!IsDied)
+                Action.Down(this);
+        }
         #endregion Action Command Receiver Method
 
         #region Action Change
@@ -94,12 +120,20 @@ namespace Sprint0.MarioClasses
         {
             Action = WalkState;
             currentMarioAction = WalkingSprite;
+            if (IsSuper && IsCrouch)
+                // The difference of height between standing and crouch.
+                Location.Y -= 10;
+            IsCrouch = false;
         }
 
         public void ChangeToCrouch()
         {
             Action = CrouchState;
             currentMarioAction = CrouchSprite;
+            if (IsSuper)
+                //The difference of height between standing and crouch.
+                Location.Y += 10;
+            IsCrouch = true;
         }
 
         public void ChangeToRunningJump()
@@ -140,6 +174,15 @@ namespace Sprint0.MarioClasses
             RunningJumpState = new RunningJumpState();
             CrouchState = new CrouchState();
             Action = IdleState;
+        }
+
+        private void SetPowerStates()
+        {
+            Standard = new StandardState();
+            Super = new SuperState();
+            Fire = new FireState();
+            Died = new DiedState();
+            Power = Standard;
         }
     }
 }
