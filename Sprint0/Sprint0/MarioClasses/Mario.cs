@@ -52,6 +52,28 @@ namespace Sprint0.MarioClasses
         }
         #endregion ISprite Methods
 
+        #region Action Command Receiver Method
+        public void moveRight()
+        {
+
+        }
+
+        public void moveLeft()
+        {
+
+        }
+
+        public void moveUp()
+        {
+
+        }
+
+        public void moveDown()
+        {
+
+        }
+        #endregion Action Command Receiver Method
+
         private void SetActionSprites()
         {
             IdleSprite = new ActionSprite(StandardMario[0], new Point(1, 1));
