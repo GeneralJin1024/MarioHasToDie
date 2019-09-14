@@ -49,7 +49,7 @@ namespace Sprint0.MarioClasses
             SuperMario = superSheet;
             FireMario = fireSheet;
             SetActionSprites();
-            setActionStates();
+            SetActionStates();
             DiedSprite = new ActionSprite(diedSheet, new Point(1, 1));
             IsLeft = false;
             IsSuper = false;
@@ -80,26 +80,48 @@ namespace Sprint0.MarioClasses
         #region Action Change
         public void ChangeToIdle()
         {
-
+            Action = IdleState;
+            currentMarioAction = IdleSprite;
         }
 
         public void ChangeToJump()
         {
-
+            Action = JumpState;
+            currentMarioAction = JumpSprite;
         }
 
         public void ChangeToWalk()
         {
-
+            Action = WalkState;
+            currentMarioAction = WalkingSprite;
         }
 
         public void ChangeToCrouch()
         {
-
+            Action = CrouchState;
+            currentMarioAction = CrouchSprite;
         }
 
-        public void ChangeToRunningJump() { }
+        public void ChangeToRunningJump()
+        {
+            Action = RunningJumpState;
+            currentMarioAction = JumpSprite;
+        }
         #endregion Action Change
+
+        #region Power Command Receiver Method
+        public void MoveUpdate() { }
+
+        public void MoveDestroy() { }
+        #endregion Power Command Receiver Method
+
+        #region Power Change
+        public void ChangeToSuper() { }
+        public void ChangeToFire() { }
+        public void ChangeToStandard() { }
+        public void ChangeToDied() { }
+        #endregion Power Change
+
 
         private void SetActionSprites()
         {
@@ -110,7 +132,7 @@ namespace Sprint0.MarioClasses
             currentMarioAction = IdleSprite;
         }
 
-        private void setActionStates()
+        private void SetActionStates()
         {
             IdleState = new IdleState();
             JumpState = new JumpState();
