@@ -50,12 +50,10 @@
     <Compile Include="MarioRunningInPlaceCommand.cs" />
     <Compile Include="MarioStandingInPlaceCommand.cs" />
     <Compile Include="QuitGameCommand.cs" />
-    <Compile Include="MarioRunningInPlaceSprite.cs" />
     <Compile Include="ICommand.cs" />
     <Compile Include="ISprite.cs" />
     <Compile Include="KeyboardController.cs" />
     <Compile Include="IController.cs" />
-    <Compile Include="MarioRunningSprite.cs" />
     <Compile Include="Sprint0.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
