@@ -39,6 +39,7 @@ namespace Sprint0.MarioClasses
         #endregion Action States
 
         public bool IsLeft { get; set; }
+        public bool IsSuper { get; set; }
 
         private Vector2 Location;
 
@@ -51,6 +52,7 @@ namespace Sprint0.MarioClasses
             setActionStates();
             DiedSprite = new ActionSprite(diedSheet, new Point(1, 1));
             IsLeft = false;
+            IsSuper = false;
             Location = new Vector2(400, 300);
         }
         #region ISprite Methods
