@@ -48,9 +48,6 @@
     <Compile Include="MarioClasses\Mario.cs" />
     <Compile Include="MarioClasses\MarioPower.cs" />
     <Compile Include="MarioClasses\PowerState.cs" />
-    <Compile Include="MarioRunningCommand.cs" />
-    <Compile Include="MarioRunningInPlaceCommand.cs" />
-    <Compile Include="MarioStandingInPlaceCommand.cs" />
     <Compile Include="QuitGameCommand.cs" />
     <Compile Include="ICommand.cs" />
     <Compile Include="ISprite.cs" />
@@ -59,7 +56,6 @@
     <Compile Include="Sprint0.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="MarioStandingInPlaceSprite.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MonoGame.Framework">
