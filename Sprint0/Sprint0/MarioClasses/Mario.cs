@@ -12,6 +12,22 @@ namespace Sprint0.MarioClasses
     {
         public Texture2D SpriteSheets { get; set; }//useless variable
 
+        public enum ActionType {
+            [Description ("Crouch")]
+            Crouch,
+            [Description("Other")]
+            Other
+        }
+
+        public enum PowerType {
+            [Description("Standard")]
+            Standard,
+            [Description("Super")]
+            Super,
+            [Description("Died")]
+            Died
+        }
+
         #region Textures
         //{Stand, Jump, Walk, Crouch}
         private Texture2D[] StandardMario;
@@ -19,6 +35,9 @@ namespace Sprint0.MarioClasses
         private Texture2D[] FireMario;
         private Texture2D DiedSheet;
         #endregion Textures
+
+        private ActionType actionType;
+        private PowerType powerType;
 
         #region ActionSprites
         private ISprite IdleSprite;
@@ -59,14 +78,13 @@ namespace Sprint0.MarioClasses
             StandardMario = standardSheets;
             SuperMario = superSheet;
             FireMario = fireSheet;
+            DiedSprite = new AnimatedSprite(diedSheet, new Point(1, 1));
             SetActionSprites();
             SetActionStates();
             SetPowerStates();
-            DiedSprite = new AnimatedPlayerSprite(diedSheet, new Point(1, 1));
             IsLeft = false;
-            IsSuper = false;
-            IsCrouch = false;
-            IsDied = false;
+            actionType = ActionType.Other;
+            powerType = PowerType.Standard;
             Location = location;
         }
         #region ISprite Methods
