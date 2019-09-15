@@ -24,20 +24,10 @@ namespace Sprint0
         private Factory factory;
         private Mario Mario;
 
-        private String Zhenhao = "HelloWorld";
         private String Jian  = "WWE";
         private ArrayList controllerList;
         private ArrayList spriteList;
         #region Sprite
-        private ISprite marioStandingInPlaceSprite;
-        private ISprite marioRunningInPlaceSprite;
-        private ISprite marioDeadSprite;
-        private ISprite marioRunningSprite;
-
-        private Vector2 marioStandingInPlaceSpritePosition;
-        private Vector2 marioRunningInPlaceSpritePosition;
-        private Vector2 marioRunningSpritePosition;
-        private Vector2 marioDeadSpritePosition;
         #endregion
 
         private ISprite qBlockTest;
@@ -65,10 +55,6 @@ namespace Sprint0
 
             #region Sprites
             spriteList = new ArrayList();
-            marioStandingInPlaceSpritePosition = new Vector2(GraphicsDevice.Viewport.Width / 4, GraphicsDevice.Viewport.Height / 4);
-            marioRunningInPlaceSpritePosition = new Vector2(GraphicsDevice.Viewport.Width / 4, 3 * GraphicsDevice.Viewport.Height / 4);
-            marioDeadSpritePosition = new Vector2(3 * GraphicsDevice.Viewport.Width / 4, GraphicsDevice.Viewport.Height / 4);
-            marioRunningSpritePosition = new Vector2(3 * GraphicsDevice.Viewport.Width / 4, 3 * GraphicsDevice.Viewport.Height / 4);   
             #endregion
 
             #region Controllers
