@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
+using System.ComponentModel;
 
 namespace Sprint0.MarioClasses
 {
@@ -66,9 +67,6 @@ namespace Sprint0.MarioClasses
         #endregion PowerState
 
         public bool IsLeft { get; set; }
-        public bool IsSuper { get; set; }
-        private bool IsDied;
-        private bool IsCrouch;
 
         private Vector2 Location;
 
@@ -78,7 +76,7 @@ namespace Sprint0.MarioClasses
             StandardMario = standardSheets;
             SuperMario = superSheet;
             FireMario = fireSheet;
-            DiedSprite = new AnimatedSprite(diedSheet, new Point(1, 1));
+            DiedSprite = new AnimatedPlayerSprite(diedSheet, new Point(1, 1));
             SetActionSprites();
             SetActionStates();
             SetPowerStates();
@@ -106,22 +104,22 @@ namespace Sprint0.MarioClasses
 
         #region Action Command Receiver Method
         public void MoveRight() {
-            if(!IsDied)
+            if (powerType != PowerType.Died)
                 Action.Right(this);
         }
 
         public void MoveLeft() {
-            if(!IsDied)
+            if (powerType != PowerType.Died)
                 Action.Left(this);
         }
 
         public void MoveUp() {
-            if(!IsDied)
+            if (powerType != PowerType.Died)
                 Action.Up(this);
         }
 
         public void MoveDown() {
-            if(!IsDied)
+            if (powerType != PowerType.Died)
                 Action.Down(this);
         }
         #endregion Action Command Receiver Method
@@ -131,6 +129,10 @@ namespace Sprint0.MarioClasses
         {
             Action = IdleState;
             currentMarioAction = IdleSprite;
+            if (powerType == PowerType.Super && actionType == ActionType.Crouch)
+                // The difference of height between standing and crouch.
+                Location.Y -= 10;
+            actionType = ActionType.Other;
         }
 
         public void ChangeToJump()
@@ -143,20 +145,16 @@ namespace Sprint0.MarioClasses
         {
             Action = WalkState;
             currentMarioAction = WalkingSprite;
-            if (IsSuper && IsCrouch)
-                // The difference of height between standing and crouch.
-                Location.Y -= 10;
-            IsCrouch = false;
         }
 
         public void ChangeToCrouch()
         {
             Action = CrouchState;
             currentMarioAction = CrouchSprite;
-            if (IsSuper)
+            if (powerType == PowerType.Super)
                 //The difference of height between standing and crouch.
                 Location.Y += 10;
-            IsCrouch = true;
+            actionType = ActionType.Crouch;
         }
 
         public void ChangeToRunningJump()
