@@ -41,10 +41,14 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="AnimatedSprite.cs" />
-    <Compile Include="BlockSprites\PlateformBlockSprite.cs" />
-    <Compile Include="BlockSprites\QuestionBlockSprite.cs" />
-    <Compile Include="BlockSprites\UsedBlockSprite.cs" />
+    <Compile Include="AnimatedPlayerSprite.cs" />
+    <Compile Include="BlockClasses\AbstractBrickSprite.cs" />
+    <Compile Include="BlockClasses\Bricks.cs" />
+    <Compile Include="BlockClasses\BrickBlockSprite.cs" />
+    <Compile Include="BlockClasses\HiddenBlockSprite.cs" />
+    <Compile Include="BlockClasses\NonAnimatedOrMovingBlockSprite.cs" />
+    <Compile Include="BlockClasses\QuestionBlockSprite.cs" />
+    <Compile Include="BlockClasses\UsedBlockSprite.cs" />
     <Compile Include="GamePadController.cs" />
     <Compile Include="MarioClasses\ActionState.cs" />
     <Compile Include="MarioClasses\MarioAction.cs" />

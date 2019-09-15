@@ -25,15 +25,7 @@ namespace Sprint0
         private ArrayList controllerList;
         private ArrayList spriteList;
         #region Sprite
-        private ISprite marioStandingInPlaceSprite;
-        private ISprite marioRunningInPlaceSprite;
-        private ISprite marioDeadSprite;
-        private ISprite marioRunningSprite;
 
-        private Vector2 marioStandingInPlaceSpritePosition;
-        private Vector2 marioRunningInPlaceSpritePosition;
-        private Vector2 marioRunningSpritePosition;
-        private Vector2 marioDeadSpritePosition;
         #endregion
 
         private ISprite qBlockTest;
@@ -59,10 +51,7 @@ namespace Sprint0
         {
             #region Sprites
             spriteList = new ArrayList();
-            marioStandingInPlaceSpritePosition = new Vector2(GraphicsDevice.Viewport.Width / 4, GraphicsDevice.Viewport.Height / 4);
-            marioRunningInPlaceSpritePosition = new Vector2(GraphicsDevice.Viewport.Width / 4, 3 * GraphicsDevice.Viewport.Height / 4);
-            marioDeadSpritePosition = new Vector2(3 * GraphicsDevice.Viewport.Width / 4, GraphicsDevice.Viewport.Height / 4);
-            marioRunningSpritePosition = new Vector2(3 * GraphicsDevice.Viewport.Width / 4, 3 * GraphicsDevice.Viewport.Height / 4);   
+           
             #endregion
 
             #region Controllers
@@ -82,21 +71,13 @@ namespace Sprint0
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             #region Sprites
-            marioStandingInPlaceSprite = new MarioStandingInPlaceSprite(marioStandingInPlaceSpritePosition, spriteBatch, this.Content.Load<Texture2D>("MarioSprites/large_standing_mario"));
-            marioRunningInPlaceSprite = new MarioRunningInPlaceSprite(marioRunningInPlaceSpritePosition, spriteBatch, this.Content.Load<Texture2D>("MarioSprites/mario_sprite_sheet_animated"));
-            marioDeadSprite = new MarioDeadSprite(marioDeadSpritePosition, spriteBatch, this.Content.Load<Texture2D>("MarioSprites/dead_mario"));
-            marioRunningSprite = new MarioRunningSprite(marioRunningSpritePosition, spriteBatch, this.Content.Load<Texture2D>("MarioSprites/mario_sprite_sheet_animated"));
-            spriteList.Add(marioStandingInPlaceSprite);
-            spriteList.Add(marioRunningInPlaceSprite);
-            spriteList.Add(marioDeadSprite);
-            spriteList.Add(marioRunningSprite);
+            
             #endregion
 
             qBlockTest = new QuestionBlockSprite(new Vector2(GraphicsDevice.Viewport.Width / 2, GraphicsDevice.Viewport.Height / 2), spriteBatch, this.Content.Load<Texture2D>("BlockSprites/mario-question-blocks"));
             hitBlockTest = new UsedBlockSprite(new Vector2(GraphicsDevice.Viewport.Width / 4, GraphicsDevice.Viewport.Height / 4), spriteBatch, this.Content.Load<Texture2D>("BlockSprites/mario-shiny-block"));
             #region Controller
-            controllerList.Add(new KeyboardController(this, marioStandingInPlaceSprite, marioRunningInPlaceSprite, marioDeadSprite, marioRunningSprite));
-            controllerList.Add(new GamePadController(this, marioStandingInPlaceSprite, marioRunningInPlaceSprite, marioDeadSprite, marioRunningSprite));
+           
             #endregion
 
             #region Fonts
@@ -127,11 +108,10 @@ namespace Sprint0
             }
             foreach(ISprite sprite in spriteList)
             {
-                if (sprite.Visibility)
-                    sprite.Update(this.GraphicsDevice, gameTime);
+               
             }
 
-            qBlockTest.Update(this.GraphicsDevice, gameTime);
+            qBlockTest.Update(gameTime);
             base.Update(gameTime);
         }
 
@@ -147,8 +127,7 @@ namespace Sprint0
 
             foreach (ISprite sprite in spriteList)
             {
-                if (sprite.Visibility)
-                    sprite.Draw();
+               
             }
 
             #region Fonts

@@ -16,5 +16,6 @@ namespace Sprint0
 
         void Draw(SpriteBatch spriteBatch, Vector2 location, bool isLeft);
 
+        Vector2 GetHeightAndWidth();   //x = Height, y = Width
     }
 }

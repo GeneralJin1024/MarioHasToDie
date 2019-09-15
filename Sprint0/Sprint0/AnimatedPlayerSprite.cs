@@ -8,7 +8,7 @@ using Microsoft.Xna.Framework;
 
 namespace Sprint0
 {
-    class AnimatedSprite : ISprite
+    class AnimatedPlayerSprite : ISprite
     {
         public Texture2D SpriteSheets { get; set; }
         private Point RowsAndColumns;
@@ -16,7 +16,7 @@ namespace Sprint0
         private int TimeSinceLastFrame;
         private int MillisecondsPerFrame;
 
-        public AnimatedSprite(Texture2D spriteSheet, Point rowAndColumn)
+        public AnimatedPlayerSprite(Texture2D spriteSheet, Point rowAndColumn)
         {
             SpriteSheets = spriteSheet;
             RowsAndColumns = rowAndColumn;
@@ -60,6 +60,11 @@ namespace Sprint0
                 spriteBatch.Draw(SpriteSheets, destinationRectangle, sourceRectangle,
                     Color.White);
             }
+        }
+
+        public Vector2 GetHeightAndWidth()
+        {
+            return new Vector2((float)SpriteSheets.Height / RowsAndColumns.X, (float)SpriteSheets.Width / RowsAndColumns.Y);
         }
     }
 }
