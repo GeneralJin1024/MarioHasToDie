@@ -6,6 +6,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Sprint0.BlockSprites;
+using Sprint0.MarioClasses;
 
 namespace Sprint0
 {
@@ -20,12 +21,23 @@ namespace Sprint0
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
+        private Factory factory;
+        private Mario Mario;
+
         private String Zhenhao = "HelloWorld";
         private String Jian  = "WWE";
         private ArrayList controllerList;
         private ArrayList spriteList;
         #region Sprite
+        private ISprite marioStandingInPlaceSprite;
+        private ISprite marioRunningInPlaceSprite;
+        private ISprite marioDeadSprite;
+        private ISprite marioRunningSprite;
 
+        private Vector2 marioStandingInPlaceSpritePosition;
+        private Vector2 marioRunningInPlaceSpritePosition;
+        private Vector2 marioRunningSpritePosition;
+        private Vector2 marioDeadSpritePosition;
         #endregion
 
         private ISprite qBlockTest;
@@ -49,9 +61,14 @@ namespace Sprint0
         /// </summary>
         protected override void Initialize()
         {
+            factory = new Factory();
+
             #region Sprites
             spriteList = new ArrayList();
-           
+            marioStandingInPlaceSpritePosition = new Vector2(GraphicsDevice.Viewport.Width / 4, GraphicsDevice.Viewport.Height / 4);
+            marioRunningInPlaceSpritePosition = new Vector2(GraphicsDevice.Viewport.Width / 4, 3 * GraphicsDevice.Viewport.Height / 4);
+            marioDeadSpritePosition = new Vector2(3 * GraphicsDevice.Viewport.Width / 4, GraphicsDevice.Viewport.Height / 4);
+            marioRunningSpritePosition = new Vector2(3 * GraphicsDevice.Viewport.Width / 4, 3 * GraphicsDevice.Viewport.Height / 4);   
             #endregion
 
             #region Controllers
@@ -71,13 +88,15 @@ namespace Sprint0
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             #region Sprites
-            
+            LoadMarioTexture();
+            spriteList.Add(Mario);
             #endregion
 
             qBlockTest = new QuestionBlockSprite(new Vector2(GraphicsDevice.Viewport.Width / 2, GraphicsDevice.Viewport.Height / 2), spriteBatch, this.Content.Load<Texture2D>("BlockSprites/mario-question-blocks"));
             hitBlockTest = new UsedBlockSprite(new Vector2(GraphicsDevice.Viewport.Width / 4, GraphicsDevice.Viewport.Height / 4), spriteBatch, this.Content.Load<Texture2D>("BlockSprites/mario-shiny-block"));
             #region Controller
-           
+            controllerList.Add(new KeyboardController(this, marioStandingInPlaceSprite, marioRunningInPlaceSprite, marioDeadSprite, marioRunningSprite));
+            controllerList.Add(new GamePadController(this, marioStandingInPlaceSprite, marioRunningInPlaceSprite, marioDeadSprite, marioRunningSprite));
             #endregion
 
             #region Fonts
@@ -108,10 +127,10 @@ namespace Sprint0
             }
             foreach(ISprite sprite in spriteList)
             {
-               
+                sprite.Update(gameTime);
             }
 
-            qBlockTest.Update(gameTime);
+            qBlockTest.Update(this.GraphicsDevice, gameTime);
             base.Update(gameTime);
         }
 
@@ -127,7 +146,7 @@ namespace Sprint0
 
             foreach (ISprite sprite in spriteList)
             {
-               
+                sprite.Draw(spriteBatch, new Vector2(0, 0), true);
             }
 
             #region Fonts
@@ -161,5 +180,25 @@ namespace Sprint0
             #endregion
         }
 
+        private void LoadMarioTexture()
+        {
+            //13*16
+            Texture2D[] StandardSheets = new Texture2D[4] {Content.Load<Texture2D>("MarioSprite/smallMarioRightStand"),
+                Content.Load<Texture2D>("MarioSprite/smallMarioRightJump"),
+                Content.Load<Texture2D>("MarioSprite/smallMarioRightMove"),
+                Content.Load<Texture2D>("MarioSprite/smallMarioRightStand")};
+            //16*32
+            Texture2D[] SuperSheets = new Texture2D[4] {Content.Load<Texture2D>("SuperMario/superMarioRightStand"),
+                Content.Load<Texture2D>("SuperMario/superMarioJumpRight"),
+                Content.Load<Texture2D>("SuperMario/superMarioMoveRight"),
+                Content.Load<Texture2D>("SuperMario/superMarioRightCrouch")};
+            //16*32   16*22
+            Texture2D[] FireSheets = new Texture2D[4] {Content.Load<Texture2D>("FireMario/fireMarioRightStand"),
+                Content.Load<Texture2D>("FireMario/fireMarioJumpRight"),
+                Content.Load<Texture2D>("FireMario/fireMarioRightMove"),
+                Content.Load<Texture2D>("FireMario/fireMarioRightCrouch")};
+            Mario = factory.getMario(StandardSheets, SuperSheets, FireSheets,
+                Content.Load<Texture2D>("DiedMario/deadMario"), new Vector2(400, 300));
+        }
     }
 }
