@@ -45,6 +45,7 @@
     <Compile Include="BlockSprites\PlateformBlockSprite.cs" />
     <Compile Include="BlockSprites\QuestionBlockSprite.cs" />
     <Compile Include="BlockSprites\UsedBlockSprite.cs" />
+    <Compile Include="Factory.cs" />
     <Compile Include="GamePadController.cs" />
     <Compile Include="MarioClasses\ActionState.cs" />
     <Compile Include="MarioClasses\MarioAction.cs" />
