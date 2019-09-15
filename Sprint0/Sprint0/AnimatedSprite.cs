@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
 
-namespace Sprint0.MarioClasses
+namespace Sprint0
 {
-    class ActionSprite : ISprite
+    class AnimatedSprite : ISprite
     {
         public Texture2D SpriteSheets { get; set; }
         private Point RowsAndColumns;
@@ -16,7 +16,7 @@ namespace Sprint0.MarioClasses
         private int TimeSinceLastFrame;
         private int MillisecondsPerFrame;
 
-        public ActionSprite(Texture2D spriteSheet, Point rowAndColumn)
+        public AnimatedSprite(Texture2D spriteSheet, Point rowAndColumn)
         {
             SpriteSheets = spriteSheet;
             RowsAndColumns = rowAndColumn;

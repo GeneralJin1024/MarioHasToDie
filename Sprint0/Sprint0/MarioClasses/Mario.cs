@@ -62,7 +62,7 @@ namespace Sprint0.MarioClasses
             SetActionSprites();
             SetActionStates();
             SetPowerStates();
-            DiedSprite = new ActionSprite(diedSheet, new Point(1, 1));
+            DiedSprite = new AnimatedSprite(diedSheet, new Point(1, 1));
             IsLeft = false;
             IsSuper = false;
             IsCrouch = false;
@@ -82,22 +82,22 @@ namespace Sprint0.MarioClasses
         #endregion ISprite Methods
 
         #region Action Command Receiver Method
-        public void moveRight() {
+        public void MoveRight() {
             if(!IsDied)
                 Action.Right(this);
         }
 
-        public void moveLeft() {
+        public void MoveLeft() {
             if(!IsDied)
                 Action.Left(this);
         }
 
-        public void moveUp() {
+        public void MoveUp() {
             if(!IsDied)
                 Action.Up(this);
         }
 
-        public void moveDown() {
+        public void MoveDown() {
             if(!IsDied)
                 Action.Down(this);
         }
@@ -159,10 +159,10 @@ namespace Sprint0.MarioClasses
 
         private void SetActionSprites()
         {
-            IdleSprite = new ActionSprite(StandardMario[0], new Point(1, 1));
-            JumpSprite = new ActionSprite(StandardMario[1], new Point(1, 1));
-            WalkingSprite = new ActionSprite(StandardMario[2], new Point(1, 3));
-            CrouchSprite = new ActionSprite(StandardMario[3], new Point(1, 1));
+            IdleSprite = new AnimatedSprite(StandardMario[0], new Point(1, 1));
+            JumpSprite = new AnimatedSprite(StandardMario[1], new Point(1, 1));
+            WalkingSprite = new AnimatedSprite(StandardMario[2], new Point(1, 3));
+            CrouchSprite = new AnimatedSprite(StandardMario[3], new Point(1, 1));
             currentMarioAction = IdleSprite;
         }
 
