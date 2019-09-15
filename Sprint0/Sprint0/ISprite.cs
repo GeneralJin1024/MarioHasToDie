@@ -10,13 +10,11 @@ namespace Sprint0
 {
     interface ISprite
     {
-        bool Visibility { get; set; }
-        
-        void Draw();
+        Texture2D SpriteSheets { get; set; }
 
-        void Update(GraphicsDevice graphicsDevice, GameTime gameTime);
+        void Update(GameTime gameTime);
 
-        void SwitchVisibility();
+        void Draw(SpriteBatch spriteBatch, Vector2 location, bool isLeft);
 
     }
 }

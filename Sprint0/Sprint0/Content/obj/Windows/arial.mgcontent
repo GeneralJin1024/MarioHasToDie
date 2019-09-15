@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>C:/Users/72957/source/repos/SmartMario/Sprint0/Sprint0/Content/arial.spritefont</SourceFile>
-  <SourceTime>2016-04-12T13:29:29.8242781-04:00</SourceTime>
-  <DestFile>C:/Users/72957/source/repos/SmartMario/Sprint0/Sprint0/Content/bin/Windows/arial.xnb</DestFile>
-  <DestTime>2019-09-11T20:54:51.2338589-04:00</DestTime>
+  <SourceFile>C:/Users/13667/source/repos/SmartMario/Sprint0/Sprint0/Content/arial.spritefont</SourceFile>
+  <SourceTime>2019-09-12T19:37:23.4500076-04:00</SourceTime>
+  <DestFile>C:/Users/13667/source/repos/SmartMario/Sprint0/Sprint0/Content/bin/Windows/arial.xnb</DestFile>
+  <DestTime>2019-09-14T19:14:45.0088174-04:00</DestTime>
   <Importer>FontDescriptionImporter</Importer>
   <ImporterTime>2018-12-08T11:35:54-05:00</ImporterTime>
   <Processor>FontDescriptionProcessor</Processor>
