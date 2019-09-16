@@ -8,7 +8,6 @@ namespace Sprint0.MarioClasses
 {
     interface PowerState
     {
-        void Update(Mario mario);
         void Destroy(Mario mario);
     }
 }
