@@ -103,8 +103,7 @@ namespace Sprint0
             #endregion
 
             #region Controller
-            controllerList.Add(new KeyboardController(this, marioStandingInPlaceSprite, marioRunningInPlaceSprite, marioDeadSprite, marioRunningSprite));
-            controllerList.Add(new GamePadController(this, marioStandingInPlaceSprite, marioRunningInPlaceSprite, marioDeadSprite, marioRunningSprite));
+
             #endregion
 
             #region Fonts
