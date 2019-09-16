@@ -42,11 +42,11 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="AnimatedPlayerSprite.cs" />
-    <Compile Include="BlockClasses\AbstractBrickSprite.cs" />
+    <Compile Include="BlockClasses\Blocks.cs" />
     <Compile Include="BlockClasses\Bricks.cs" />
     <Compile Include="BlockClasses\BrickBlockSprite.cs" />
+    <Compile Include="BlockClasses\FloorAndStairBlocks.cs" />
     <Compile Include="BlockClasses\HiddenBlockSprite.cs" />
-    <Compile Include="BlockClasses\NonAnimatedOrMovingBlockSprite.cs" />
     <Compile Include="BlockClasses\QuestionBlockSprite.cs" />
     <Compile Include="BlockClasses\UsedBlockSprite.cs" />
     <Compile Include="Factory.cs" />

@@ -5,7 +5,7 @@ using System.ComponentModel;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using Sprint0.BlockSprites;
+using Sprint0.BlockClasses;
 using Sprint0.MarioClasses;
 
 namespace Sprint0
@@ -47,6 +47,23 @@ namespace Sprint0
         public Color fontColor { get; set; } = Color.DarkBlue;
         private SpriteFont instructionFont;
         #endregion
+
+        static private Sprint0 _game;
+        static private Texture2D[] blockSheets;
+        public static Sprint0 Game
+        {
+            get
+            {
+                return _game;
+            }
+        }
+        public static Texture2D[] BlockTextures
+        {
+            get
+            {
+                return blockSheets;
+            }
+        }
         public Sprint0()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -61,6 +78,7 @@ namespace Sprint0
         /// </summary>
         protected override void Initialize()
         {
+            _game = this;
             factory = new Factory();
 
             #region Sprites
@@ -86,14 +104,17 @@ namespace Sprint0
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
-
+            blockSheets = new Texture2D[5] {Content.Load<Texture2D>("BlockSprites/mairo-brick-blocks"),
+            Content.Load<Texture2D>("BlockSprites/mairo-gravel-blocks"),
+            Content.Load<Texture2D>("BlockSprites/mairo-hit-blocks"),
+            Content.Load<Texture2D>("BlockSprites/mairo-question-blocks"),
+            Content.Load<Texture2D>("BlockSprites/mairo-shiny-blocks")};
+            
             #region Sprites
             LoadMarioTexture();
             spriteList.Add(Mario);
             #endregion
 
-            qBlockTest = new QuestionBlockSprite(new Vector2(GraphicsDevice.Viewport.Width / 2, GraphicsDevice.Viewport.Height / 2), spriteBatch, this.Content.Load<Texture2D>("BlockSprites/mario-question-blocks"));
-            hitBlockTest = new UsedBlockSprite(new Vector2(GraphicsDevice.Viewport.Width / 4, GraphicsDevice.Viewport.Height / 4), spriteBatch, this.Content.Load<Texture2D>("BlockSprites/mario-shiny-block"));
             #region Controller
             controllerList.Add(new KeyboardController(this, marioStandingInPlaceSprite, marioRunningInPlaceSprite, marioDeadSprite, marioRunningSprite));
             controllerList.Add(new GamePadController(this, marioStandingInPlaceSprite, marioRunningInPlaceSprite, marioDeadSprite, marioRunningSprite));
@@ -130,7 +151,6 @@ namespace Sprint0
                 sprite.Update(gameTime);
             }
 
-            qBlockTest.Update(this.GraphicsDevice, gameTime);
             base.Update(gameTime);
         }
 
@@ -153,8 +173,6 @@ namespace Sprint0
             DrawFonts(spriteBatch);
             #endregion
 
-            qBlockTest.Draw();
-            hitBlockTest.Draw();
             spriteBatch.End();
 
             base.Draw(gameTime);
