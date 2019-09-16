@@ -97,6 +97,7 @@ namespace Sprint0
             Content.Load<Texture2D>("BlockSprites/mairo-shiny-blocks")};
             
             #region Sprites
+            // The two lines below are new. Do not delete.
             LoadMarioTexture();
             spriteList.Add(Mario);
             #endregion
