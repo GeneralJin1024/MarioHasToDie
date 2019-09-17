@@ -2,8 +2,12 @@
   "ExpandedNodes": [
     "",
     "\\Sprint0",
-    "\\Sprint0\\Sprint0"
+    "\\Sprint0\\Sprint0",
+    "\\Sprint0\\Sprint0\\Content",
+    "\\Sprint0\\Sprint0\\MarioClasses",
+    "\\Sprint0\\Sprint0\\sprites",
+    "\\Sprint0\\Sprint0\\sprites\\EnemySprite"
   ],
-  "SelectedNode": "\\Sprint0\\Sprint0.sln",
+  "SelectedNode": "\\Sprint0\\Sprint0\\sprites\\EnemySprite\\CoinSprite.cs",
   "PreviewInSolutionExplorer": false
 }
