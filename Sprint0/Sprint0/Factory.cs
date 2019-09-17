@@ -21,5 +21,21 @@ namespace Sprint0
         {
             return new CoinSprite(texture);
         }
+        public FlowerSprite getFlower(Texture2D texture)
+        {
+            return new FlowerSprite(texture);
+        }
+        public GreenMushroomSprite getGreenMushroom(Texture2D texture)
+        {
+            return new GreenMushroomSprite(texture);
+        }
+        public RedMushroomSprite getRedMushroom(Texture2D texture)
+        {
+            return new RedMushroomSprite(texture);
+        }
+        public StarSprite getStar(Texture2D texture)
+        {
+            return new StarSprite(texture);
+        }
     }
 }

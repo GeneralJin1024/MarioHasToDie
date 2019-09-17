@@ -243,11 +243,15 @@ namespace Sprint0
                 private void LoadItemTexture()
         {
             Texture2D coinSheet = Content.Load<Texture2D>("ItemSprite/coin");
-            Texture2D flowerSheet = Content.Load<Texture2D>("ItemSprite/coin");
-            Texture2D greenMushroomSheet = Content.Load<Texture2D>("ItemSprite/coin");
-            Texture2D redMushroomSheet = Content.Load<Texture2D>("ItemSprite/coin");
-            Texture2D StarSheet = Content.Load<Texture2D>("ItemSprite/coin");
+            Texture2D flowerSheet = Content.Load<Texture2D>("ItemSprite/flower");
+            Texture2D greenMushroomSheet = Content.Load<Texture2D>("ItemSprite/greenMushroom");
+            Texture2D redMushroomSheet = Content.Load<Texture2D>("ItemSprite/redMushroom");
+            Texture2D starSheet = Content.Load<Texture2D>("ItemSprite/star");
             spriteList.Add(factory.getCoin(coinSheet));
+            spriteList.Add(factory.getFlower(flowerSheet));
+            spriteList.Add(factory.getGreenMushroom(greenMushroomSheet));
+            spriteList.Add(factory.getRedMushroom(redMushroomSheet));
+            spriteList.Add(factory.getStar(starSheet));
         }
                         private void LoadEnemyTexture()
         {
