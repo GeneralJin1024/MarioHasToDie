@@ -241,9 +241,19 @@ namespace Sprint0
                 Content.Load<Texture2D>("BlockSprites/mario-shiny-block")};
             _blockSheets = blockSheets;
         }
-                private void LoadBlockTexture()
+                private void LoadItemTexture()
         {
-            Texture2D coinItem = Content.Load<Texture2D>("BlockSprites/mario-brick-blocks");
+            Texture2D coinSheet = Content.Load<Texture2D>("ItemSprite/coin");
+            Texture2D flowerSheet = Content.Load<Texture2D>("ItemSprite/coin");
+            Texture2D greenMushroomSheet = Content.Load<Texture2D>("ItemSprite/coin");
+            Texture2D redMushroomSheet = Content.Load<Texture2D>("ItemSprite/coin");
+            Texture2D StarSheet = Content.Load<Texture2D>("ItemSprite/coin");
+        }
+                        private void LoadEnemyTexture()
+        {
+            Texture2D goombaSheet = Content.Load<Texture2D>("EnemySprite/goomba");
+            Texture2D greenKoopaSheet = Content.Load<Texture2D>("EnemySprite/greenkoopa");
+            Texture2D redKoopaSheet = Content.Load<Texture2D>("EnemySprite/redkoopa");
         }
     }
 }
