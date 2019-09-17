@@ -41,7 +41,7 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="AnimatedPlayerSprite.cs" />
+    <Compile Include="Sprites\AnimatedSprite.cs" />
     <Compile Include="BlockClasses\BlockCommands.cs" />
     <Compile Include="BlockClasses\Blocks.cs" />
     <Compile Include="BlockClasses\Bricks.cs" />
@@ -66,11 +66,24 @@
     <Compile Include="Sprint0.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Sprites\BackgroundSprites\SmallHillSprite.cs" />
+    <Compile Include="Sprites\BackgroundSprites\SmallCloudSprite.cs" />
+    <Compile Include="Sprites\BackgroundSprites\BigHillSprite.cs" />
+    <Compile Include="Sprites\BackgroundSprites\BigCloudSprite.cs" />
+    <Compile Include="Sprites\EnemySprites\RedkoopaSprite.cs" />
+    <Compile Include="Sprites\EnemySprites\GreenkoopaSprite.cs" />
+    <Compile Include="Sprites\EnemySprites\GoombaSprite.cs" />
+    <Compile Include="Sprites\ItemSprites\RedMushroomSprite.cs" />
+    <Compile Include="Sprites\ItemSprites\GreenMushroomSprite.cs" />
+    <Compile Include="Sprites\ItemSprites\StarSprite.cs" />
+    <Compile Include="Sprites\ItemSprites\FlowerSprite.cs" />
+    <Compile Include="Sprites\ItemSprites\CoinSprite.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MonoGame.Framework">
       <HintPath>$(MonoGameInstallDirectory)\MonoGame\v3.0\Assemblies\Windows\MonoGame.Framework.dll</HintPath>
     </Reference>
+    <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.Xml" />
   </ItemGroup>
@@ -93,16 +106,32 @@
     <Content Include="bin\Windows\x86\Debug\SharpDX.xml" />
     <Content Include="bin\Windows\x86\Debug\Sprint0.exe" />
     <Content Include="bin\Windows\x86\Debug\Sprint0.pdb" />
+    <Content Include="Content\BackgroundSprite\bigBush.png" />
+    <Content Include="Content\BackgroundSprite\bigCloud.png" />
+    <Content Include="Content\BackgroundSprite\bigHill.png" />
+    <Content Include="Content\BackgroundSprite\mediumBush.png" />
+    <Content Include="Content\BackgroundSprite\mediumCloud.png" />
+    <Content Include="Content\BackgroundSprite\smallBush.png" />
+    <Content Include="Content\BackgroundSprite\smallCloud.png" />
+    <Content Include="Content\BackgroundSprite\smallHill.png" />
     <Content Include="Content\BlockSprites\mario-brick-blocks.png" />
     <Content Include="Content\BlockSprites\mario-gravel-blocks.png" />
     <Content Include="Content\BlockSprites\mario-hit-block.png" />
     <Content Include="Content\BlockSprites\mario-question-blocks.png" />
     <Content Include="Content\BlockSprites\mario-shiny-block.png" />
     <Content Include="Content\DiedMario\deadMario.png" />
+    <Content Include="Content\EnemySprite\goomba.png" />
+    <Content Include="Content\EnemySprite\greenkoopa.png" />
+    <Content Include="Content\EnemySprite\redkoopa.png" />
     <Content Include="Content\FireMario\fireMarioJumpRight.png" />
     <Content Include="Content\FireMario\fireMarioRightCrouch.png" />
     <Content Include="Content\FireMario\fireMarioRightMove.png" />
     <Content Include="Content\FireMario\fireMarioRightStand.png" />
+    <Content Include="Content\ItemSprite\coin.png" />
+    <Content Include="Content\ItemSprite\flower.png" />
+    <Content Include="Content\ItemSprite\greenMushroom.png" />
+    <Content Include="Content\ItemSprite\redMushroom.png" />
+    <Content Include="Content\ItemSprite\star.png" />
     <Content Include="Content\MarioSprites\smallMarioRightJump.png" />
     <Content Include="Content\MarioSprites\smallMarioRightMove.png" />
     <Content Include="Content\MarioSprites\smallMarioRightStand.png" />

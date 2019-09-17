@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>C:/Users/13667/source/repos/SmartMario/Sprint0/Sprint0/Content/MarioSprites/smallMarioRightMove.png</SourceFile>
-  <SourceTime>2019-09-15T16:23:22.4330205-04:00</SourceTime>
-  <DestFile>C:/Users/13667/source/repos/SmartMario/Sprint0/Sprint0/Content/bin/Windows/MarioSprites/smallMarioRightMove.xnb</DestFile>
-  <DestTime>2019-09-17T09:01:06.680246-04:00</DestTime>
+  <SourceFile>C:/Users/runmi/source/repos/SmartMario2/Sprint0/Sprint0/Content/MarioSprites/smallMarioRightMove.png</SourceFile>
+  <SourceTime>2019-09-17T14:16:24.0636304-04:00</SourceTime>
+  <DestFile>C:/Users/runmi/source/repos/SmartMario2/Sprint0/Sprint0/Content/bin/Windows/MarioSprites/smallMarioRightMove.xnb</DestFile>
+  <DestTime>2019-09-17T15:54:35.7865782-04:00</DestTime>
   <Importer>TextureImporter</Importer>
-  <ImporterTime>2018-12-08T11:35:54-05:00</ImporterTime>
+  <ImporterTime>2019-08-21T08:16:16-04:00</ImporterTime>
   <Processor>TextureProcessor</Processor>
-  <ProcessorTime>2018-12-08T11:35:54-05:00</ProcessorTime>
+  <ProcessorTime>2019-08-21T08:16:16-04:00</ProcessorTime>
   <Parameters>
     <Key>ColorKeyColor</Key>
     <Value>255,0,255,255</Value>
