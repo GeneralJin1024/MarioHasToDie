@@ -16,5 +16,9 @@ namespace Sprint0
         {
             return new Mario(standardSheets, superSheet, fireSheet, diedSheet, location);
         }
+                public CoinSprite getCoin(Texture2D texture)
+        {
+            return new CoinSprite(texture);
+        }
     }
 }

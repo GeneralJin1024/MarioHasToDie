@@ -114,12 +114,13 @@ namespace Sprint0
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
+            LoadItemTexture();
+            LoadEnymyTexture();
             LoadBlockTexture();
             //load mario texture and construct mario. Then add mario into sprite list.
             LoadMarioTexture();
             spriteList.Add(Mario);
-
-            
+            spriteList.Add(factory.getCoin);
 
             #region Controller
 
