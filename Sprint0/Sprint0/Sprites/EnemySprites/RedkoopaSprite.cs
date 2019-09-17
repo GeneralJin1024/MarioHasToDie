@@ -12,12 +12,14 @@ namespace sprint0.Enemy
 {
     class RedkoopaSprite : AnimatedSprite
     {
+        private Vector2 location;
         public RedkoopaSprite(Texture2D texture) : base(texture, new Point(1, 2))
         {
+            location = new Vector2(600, 150);
         }
         public override void Draw(SpriteBatch spriteBatch, Vector2 Location, bool isLeft)
         {
-            base.Draw(spriteBatch, new Vector2(600, 150), isLeft);
+            base.Draw(spriteBatch, location, isLeft);
         }
     }
 }

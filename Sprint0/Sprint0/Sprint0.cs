@@ -115,6 +115,7 @@ namespace Sprint0
             spriteBatch = new SpriteBatch(GraphicsDevice);
             LoadItemTexture();
             LoadEnemyTexture();
+            LoadBackgroundTexture();
             LoadBlockTexture();
             //load mario texture and construct mario. Then add mario into sprite list.
             LoadMarioTexture();
@@ -266,9 +267,12 @@ namespace Sprint0
         {
             Texture2D bigCloudSheet = Content.Load<Texture2D>("BackgroundSprite/bigCloud");
             Texture2D smallCloudSheet = Content.Load<Texture2D>("BackgroundSprite/smallCloud");
-            Texture2D bigHillKoopaSheet = Content.Load<Texture2D>("BackgroundSprite/bigHill");
-            Texture2D SmallHillKoopaSheet = Content.Load<Texture2D>("BackgroundSprite/smallHill");
+            Texture2D bigHillSheet = Content.Load<Texture2D>("BackgroundSprite/bigHill");
+            Texture2D smallHillSheet = Content.Load<Texture2D>("BackgroundSprite/smallHill");
             spriteList.Add(factory.getBigCloud(bigCloudSheet));
+            spriteList.Add(factory.getSmallCloud(smallCloudSheet));
+            spriteList.Add(factory.getBigHill(bigHillSheet));
+            spriteList.Add(factory.getBigHill(smallHillSheet));
         }
     }
 }

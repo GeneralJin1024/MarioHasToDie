@@ -12,12 +12,14 @@ namespace sprint0.Enemy
 {
     class GoombaSprite : AnimatedSprite
     {
+        private Vector2 location;
         public GoombaSprite(Texture2D texture) : base(texture, new Point(1, 2))
         {
+            location = new Vector2(600, 100);
         }
         public override void Draw(SpriteBatch spriteBatch, Vector2 Location, bool isLeft)
         {
-            base.Draw(spriteBatch, new Vector2(600,100), isLeft);
+            base.Draw(spriteBatch, location, isLeft);
         }
     }
 }
