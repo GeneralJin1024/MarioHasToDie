@@ -10,14 +10,15 @@ using Sprint0;
 
 namespace sprint0.Background
 {
-    class BigCloudSprite : AnimatedSprite
+    class SmallCloudSprite : AnimatedSprite
     {
-        public BigCloudSprite(Texture2D texture) : base(texture, new Point(1, 1))
+        public SmallCloudSprite(Texture2D texture) : base(texture, new Point(1, 1))
         {
         }
         public override void Draw(SpriteBatch spriteBatch, Vector2 Location, bool isLeft)
         {
-            base.Draw(spriteBatch, new Vector2(400,200), isLeft);
+            base.Draw(spriteBatch, new Vector2(50,200), isLeft);
+            base.Draw(spriteBatch, new Vector2(30, 400), isLeft);
         }
     }
 }

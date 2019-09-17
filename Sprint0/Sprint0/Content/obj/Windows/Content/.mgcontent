@@ -5,6 +5,14 @@
   <Config />
   <SourceFiles>
     <File>C:/Users/runmi/Source/Repos/SmartMario2/Sprint0/Sprint0/Content/arial.spritefont</File>
+    <File>C:/Users/runmi/Source/Repos/SmartMario2/Sprint0/Sprint0/Content/BackgroundSprite/bigBush.png</File>
+    <File>C:/Users/runmi/Source/Repos/SmartMario2/Sprint0/Sprint0/Content/BackgroundSprite/bigCloud.png</File>
+    <File>C:/Users/runmi/Source/Repos/SmartMario2/Sprint0/Sprint0/Content/BackgroundSprite/bigHill.png</File>
+    <File>C:/Users/runmi/Source/Repos/SmartMario2/Sprint0/Sprint0/Content/BackgroundSprite/mediumBush.png</File>
+    <File>C:/Users/runmi/Source/Repos/SmartMario2/Sprint0/Sprint0/Content/BackgroundSprite/mediumCloud.png</File>
+    <File>C:/Users/runmi/Source/Repos/SmartMario2/Sprint0/Sprint0/Content/BackgroundSprite/smallBush.png</File>
+    <File>C:/Users/runmi/Source/Repos/SmartMario2/Sprint0/Sprint0/Content/BackgroundSprite/smallCloud.png</File>
+    <File>C:/Users/runmi/Source/Repos/SmartMario2/Sprint0/Sprint0/Content/BackgroundSprite/smallHill.png</File>
     <File>C:/Users/runmi/Source/Repos/SmartMario2/Sprint0/Sprint0/Content/BlockSprites/mario-brick-blocks.png</File>
     <File>C:/Users/runmi/Source/Repos/SmartMario2/Sprint0/Sprint0/Content/BlockSprites/mario-gravel-blocks.png</File>
     <File>C:/Users/runmi/Source/Repos/SmartMario2/Sprint0/Sprint0/Content/BlockSprites/mario-hit-block.png</File>
@@ -32,6 +40,14 @@
     <File>C:/Users/runmi/Source/Repos/SmartMario2/Sprint0/Sprint0/Content/SuperMario/superMarioRightStand.png</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />

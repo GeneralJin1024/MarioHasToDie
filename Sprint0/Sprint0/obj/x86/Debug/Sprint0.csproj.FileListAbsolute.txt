@@ -152,3 +152,11 @@ C:\Users\runmi\Source\Repos\SmartMario2\Sprint0\Sprint0\obj\x86\Debug\Sprint0.cs
 C:\Users\runmi\Source\Repos\SmartMario2\Sprint0\Sprint0\obj\x86\Debug\Sprint0.csproj.CopyComplete
 C:\Users\runmi\Source\Repos\SmartMario2\Sprint0\Sprint0\obj\x86\Debug\Sprint0.exe
 C:\Users\runmi\Source\Repos\SmartMario2\Sprint0\Sprint0\obj\x86\Debug\Sprint0.pdb
+C:\Users\runmi\Source\Repos\SmartMario2\Sprint0\Sprint0\bin\Windows\x86\Debug\Content\BackgroundSprite\bigBush.xnb
+C:\Users\runmi\Source\Repos\SmartMario2\Sprint0\Sprint0\bin\Windows\x86\Debug\Content\BackgroundSprite\bigCloud.xnb
+C:\Users\runmi\Source\Repos\SmartMario2\Sprint0\Sprint0\bin\Windows\x86\Debug\Content\BackgroundSprite\bigHill.xnb
+C:\Users\runmi\Source\Repos\SmartMario2\Sprint0\Sprint0\bin\Windows\x86\Debug\Content\BackgroundSprite\mediumBush.xnb
+C:\Users\runmi\Source\Repos\SmartMario2\Sprint0\Sprint0\bin\Windows\x86\Debug\Content\BackgroundSprite\mediumCloud.xnb
+C:\Users\runmi\Source\Repos\SmartMario2\Sprint0\Sprint0\bin\Windows\x86\Debug\Content\BackgroundSprite\smallBush.xnb
+C:\Users\runmi\Source\Repos\SmartMario2\Sprint0\Sprint0\bin\Windows\x86\Debug\Content\BackgroundSprite\smallCloud.xnb
+C:\Users\runmi\Source\Repos\SmartMario2\Sprint0\Sprint0\bin\Windows\x86\Debug\Content\BackgroundSprite\smallHill.xnb

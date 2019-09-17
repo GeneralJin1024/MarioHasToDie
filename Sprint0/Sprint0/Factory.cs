@@ -8,6 +8,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
 using sprint0.Item;
 using sprint0.Enemy;
+using sprint0.Background;
 
 namespace Sprint0
 {
@@ -49,6 +50,22 @@ namespace Sprint0
         public RedkoopaSprite getRedkoopa(Texture2D texture)
         {
             return new RedkoopaSprite(texture);
+        }
+        public BigHillSprite getBigHill(Texture2D texture)
+        {
+            return new BigHillSprite(texture);
+        }
+        public SmallHillSprite getSmallHill(Texture2D texture)
+        {
+            return new SmallHillSprite(texture);
+        }
+        public BigCloudSprite getBigCloud(Texture2D texture)
+        {
+            return new BigCloudSprite(texture);
+        }
+        public SmallCloudSprite getSmallCloud(Texture2D texture)
+        {
+            return new SmallCloudSprite(texture);
         }
     }
 }

@@ -264,13 +264,11 @@ namespace Sprint0
         }
         private void LoadBackgroundTexture()
         {
-            Texture2D goombaSheet = Content.Load<Texture2D>("EnemySprite/goomba");
-            Texture2D greenKoopaSheet = Content.Load<Texture2D>("EnemySprite/greenkoopa");
-            Texture2D redKoopaSheet = Content.Load<Texture2D>("EnemySprite/redkoopa");
-            spriteList.Add(factory.getGoomba(goombaSheet));
-            spriteList.Add(factory.getGreenkoopa(greenKoopaSheet));
-            spriteList.Add(factory.getRedkoopa(redKoopaSheet));
-
+            Texture2D bigCloudSheet = Content.Load<Texture2D>("BackgroundSprite/bigCloud");
+            Texture2D smallCloudSheet = Content.Load<Texture2D>("BackgroundSprite/smallCloud");
+            Texture2D bigHillKoopaSheet = Content.Load<Texture2D>("BackgroundSprite/bigHill");
+            Texture2D SmallHillKoopaSheet = Content.Load<Texture2D>("BackgroundSprite/smallHill");
+            spriteList.Add(factory.getBigCloud(bigCloudSheet));
         }
     }
 }

@@ -66,6 +66,9 @@
     <Compile Include="Sprint0.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Sprites\BackgroundSprites\SmallHillSprite.cs" />
+    <Compile Include="Sprites\BackgroundSprites\SmallCloudSprite.cs" />
+    <Compile Include="Sprites\BackgroundSprites\BigHillSprite.cs" />
     <Compile Include="Sprites\BackgroundSprites\BigCloudSprite.cs" />
     <Compile Include="Sprites\EnemySprites\RedkoopaSprite.cs" />
     <Compile Include="Sprites\EnemySprites\GreenkoopaSprite.cs" />
@@ -102,6 +105,14 @@
     <Content Include="bin\Windows\x86\Debug\SharpDX.xml" />
     <Content Include="bin\Windows\x86\Debug\Sprint0.exe" />
     <Content Include="bin\Windows\x86\Debug\Sprint0.pdb" />
+    <Content Include="Content\BackgroundSprite\bigBush.png" />
+    <Content Include="Content\BackgroundSprite\bigCloud.png" />
+    <Content Include="Content\BackgroundSprite\bigHill.png" />
+    <Content Include="Content\BackgroundSprite\mediumBush.png" />
+    <Content Include="Content\BackgroundSprite\mediumCloud.png" />
+    <Content Include="Content\BackgroundSprite\smallBush.png" />
+    <Content Include="Content\BackgroundSprite\smallCloud.png" />
+    <Content Include="Content\BackgroundSprite\smallHill.png" />
     <Content Include="Content\BlockSprites\mario-brick-blocks.png" />
     <Content Include="Content\BlockSprites\mario-gravel-blocks.png" />
     <Content Include="Content\BlockSprites\mario-hit-block.png" />
