@@ -18,7 +18,15 @@ namespace Sprint0.BlockClasses
         }
         public void Execute()
         {
-            if (this.mario.IsSuper())
+            if (mario == null)
+            {
+                //if (!this.brick.IsBumping) { this.brick.Bumping(); }
+                if (this.brick.bState != BrickState.destroyed)
+                {
+                    this.brick.ChangeToDestroyed();
+                }
+            } // only for test
+            else if (this.mario.IsSuper())
             {
                 this.brick.ChangeToDestroyed();
             }

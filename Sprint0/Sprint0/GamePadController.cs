@@ -20,7 +20,7 @@ namespace Sprint0
             buttonMap.Add(Buttons.Start, new QuitGameCommand(myGame));
         }
 
-        public void UpdateInput()
+        public void Update()
         {
             GamePadState curr = GamePad.GetState(PlayerIndex.One);
             GamePadState emptyInput = new GamePadState();

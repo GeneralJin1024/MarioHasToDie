@@ -41,6 +41,7 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="ICommand.cs" />
     <Compile Include="Sprites\AnimatedSprite.cs" />
     <Compile Include="BlockClasses\BlockCommands.cs" />
     <Compile Include="BlockClasses\Blocks.cs" />
@@ -53,13 +54,12 @@
     <Compile Include="Factory.cs" />
     <Compile Include="GamePadController.cs" />
     <Compile Include="MarioClasses\ActionState.cs" />
-    <Compile Include="MarioClasses\MarioAction.cs" />
     <Compile Include="MarioClasses\Mario.cs" />
+    <Compile Include="MarioClasses\MarioAction.cs" />
     <Compile Include="MarioClasses\MarioPower.cs" />
     <Compile Include="MarioClasses\PowerState.cs" />
     <Compile Include="Menu.cs" />
     <Compile Include="QuitGameCommand.cs" />
-    <Compile Include="ICommand.cs" />
     <Compile Include="ISprite.cs" />
     <Compile Include="KeyboardController.cs" />
     <Compile Include="IController.cs" />
