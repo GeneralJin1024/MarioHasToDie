@@ -129,7 +129,7 @@ namespace Sprint0
             instructionFont = Content.Load<SpriteFont>("arial");
             #endregion
 
-            GameMenu.LoadContent(instructionFont, Content.Load<Texture2D>("MarioSprites/smallMarioRightStand"));
+            GameMenu.LoadContent(instructionFont);
             // TODO: use this.Content to load your game content here
         }
 

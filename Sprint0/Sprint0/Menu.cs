@@ -27,10 +27,11 @@ namespace Sprint0
         }
 
 
-        public void LoadContent(SpriteFont font, Texture2D chooseSheet)
+        public void LoadContent(SpriteFont font)
         {
             Font = font;
-            chooseSprite = new AnimatedPlayerSprite(chooseSheet, new Point(1, 1));
+            chooseSprite = new AnimatedPlayerSprite(
+                Game.Content.Load<Texture2D>("MarioSprites/smallMarioRightStand"), new Point(1, 1));
         }
 
         public void Update(GameTime gameTime)
