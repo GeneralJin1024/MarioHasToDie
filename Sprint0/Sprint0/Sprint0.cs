@@ -42,6 +42,9 @@ namespace Sprint0
         private SpriteFont instructionFont;
         #endregion
 
+        private Menu GameMenu;
+        public bool MenuMode { get; set; }
+
         static private Sprint0 _game;
         static private Texture2D[] _blockSheets;
         public static Sprint0 Game
@@ -98,6 +101,8 @@ namespace Sprint0
             controllerList = new ArrayList();
             #endregion
 
+            GameMenu = new Menu(this);
+            MenuMode = true;
             base.Initialize();
         }
 
@@ -110,12 +115,11 @@ namespace Sprint0
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
             LoadBlockTexture();
-            
-            #region Sprites
-            // The two lines below are new. Do not delete.
+            //load mario texture and construct mario. Then add mario into sprite list.
             LoadMarioTexture();
             spriteList.Add(Mario);
-            #endregion
+
+            
 
             #region Controller
 
@@ -124,6 +128,8 @@ namespace Sprint0
             #region Fonts
             instructionFont = Content.Load<SpriteFont>("arial");
             #endregion
+
+            GameMenu.LoadContent(instructionFont, Content.Load<Texture2D>("MarioSprites/smallMarioRightStand"));
             // TODO: use this.Content to load your game content here
         }
 
@@ -143,11 +149,17 @@ namespace Sprint0
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
-            foreach(ISprite sprite in spriteList)
+            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
+                Exit();
+            if (MenuMode)
+                GameMenu.Update(gameTime);
+            else
             {
-                sprite.Update(gameTime);
+                //Controller.UpdateInput(...);
+                foreach (ISprite sprite in spriteList)
+                    sprite.Update(gameTime);
             }
-            
+
             base.Update(gameTime);
         }
 
@@ -157,14 +169,18 @@ namespace Sprint0
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
+            if (MenuMode)
+                GraphicsDevice.Clear(Color.Black);
+            else
+                GraphicsDevice.Clear(Color.CornflowerBlue);
 
             spriteBatch.Begin(blendState: BlendState.AlphaBlend);
 
-            foreach (ISprite sprite in spriteList)
-            {
-                sprite.Draw(spriteBatch, sprite.Position, true);
-            }
+            if (MenuMode)
+                GameMenu.Draw(spriteBatch);
+            else
+                foreach (ISprite sprite in spriteList)
+                    sprite.Draw(spriteBatch, sprite.Position, true);
 
             #region Fonts
             //DrawFonts(spriteBatch);

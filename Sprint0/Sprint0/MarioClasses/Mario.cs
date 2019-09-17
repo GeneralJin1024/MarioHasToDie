@@ -34,7 +34,6 @@ namespace Sprint0.MarioClasses
         private Texture2D[] StandardMario;
         private Texture2D[] SuperMario;
         private Texture2D[] FireMario;
-        private Texture2D DiedSheet;
         #endregion Textures
 
         private ActionType actionType;

@@ -57,6 +57,7 @@
     <Compile Include="MarioClasses\Mario.cs" />
     <Compile Include="MarioClasses\MarioPower.cs" />
     <Compile Include="MarioClasses\PowerState.cs" />
+    <Compile Include="Menu.cs" />
     <Compile Include="QuitGameCommand.cs" />
     <Compile Include="ICommand.cs" />
     <Compile Include="ISprite.cs" />
