@@ -8,16 +8,19 @@ using System.Text;
 
 namespace Sprint0.Sprites
 {
-    class EnemySprite : AnimatedSprite
+    namespace Sprint0.Sprites
     {
-        private Vector2 Location;
-        public EnemySprite(Texture2D texture, Vector2 location, Point sheetSize) : base(texture, sheetSize)
+        class EnemySprite : AnimatedSprite
         {
-            Location = location;
-        }
-        public override void Draw(SpriteBatch spriteBatch, Vector2 location, bool isLeft)
-        {
-            base.Draw(spriteBatch, Location, isLeft);
+            private Vector2 Location;
+            public EnemySprite(Texture2D texture, Vector2 location, Point sheetSize) : base(texture, sheetSize)
+            {
+                Location = location;
+            }
+            public override void Draw(SpriteBatch spriteBatch, Vector2 location, bool isLeft)
+            {
+                base.Draw(spriteBatch, Location, isLeft);
+            }
         }
     }
 }

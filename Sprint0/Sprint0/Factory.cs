@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 using Sprint0.MarioClasses;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
-using sprint0.Item;
-using sprint0.Enemy;
 using sprint0.Background;
+using Sprint0.Sprites;
+using Sprint0.Sprites.Sprint0.Sprites;
 
 namespace Sprint0
 {
@@ -19,37 +19,37 @@ namespace Sprint0
         {
             return new Mario(standardSheets, superSheet, fireSheet, diedSheet, location);
         }
-                public CoinSprite getCoin(Texture2D texture)
+        public ItemSprite getCoin(Texture2D texture)
         {
-            return new CoinSprite(texture);
+            return new ItemSprite(texture, new Vector2(100, 100), new Point(1, 4));
         }
-        public FlowerSprite getFlower(Texture2D texture)
+        public ItemSprite getFlower(Texture2D texture)
         {
-            return new FlowerSprite(texture);
+            return new ItemSprite(texture, new Vector2(200, 100), new Point(1, 8));
         }
-        public GreenMushroomSprite getGreenMushroom(Texture2D texture)
+        public ItemSprite getGreenMushroom(Texture2D texture)
         {
-            return new GreenMushroomSprite(texture);
+            return new ItemSprite(texture, new Vector2(300, 100), new Point(1, 1));
         }
-        public RedMushroomSprite getRedMushroom(Texture2D texture)
+        public ItemSprite getRedMushroom(Texture2D texture)
         {
-            return new RedMushroomSprite(texture);
+            return new ItemSprite(texture, new Vector2(400, 100), new Point(1, 1));
         }
-        public StarSprite getStar(Texture2D texture)
+        public ItemSprite getStar(Texture2D texture)
         {
-            return new StarSprite(texture);
+            return new ItemSprite(texture, new Vector2(500, 100), new Point(1, 4));
         }
-        public GoombaSprite getGoomba(Texture2D texture)
+        public EnemySprite getGoomba(Texture2D texture)
         {
-            return new GoombaSprite(texture);
+            return new EnemySprite(texture, new Vector2(600, 100), new Point(1, 2));
         }
-        public GreenkoopaSprite getGreenkoopa(Texture2D texture)
+        public EnemySprite getRedKoopa(Texture2D texture)
         {
-            return new GreenkoopaSprite(texture);
+            return new EnemySprite(texture, new Vector2(100, 150), new Point(1, 2));
         }
-        public RedkoopaSprite getRedkoopa(Texture2D texture)
+        public EnemySprite getGreenKoopa(Texture2D texture)
         {
-            return new RedkoopaSprite(texture);
+            return new EnemySprite(texture, new Vector2(600, 150), new Point(1, 2));
         }
         public BigHillSprite getBigHill(Texture2D texture)
         {
@@ -67,5 +67,6 @@ namespace Sprint0
         {
             return new SmallCloudSprite(texture);
         }
+
     }
 }

@@ -118,8 +118,8 @@ namespace Sprint0
             //load mario texture and construct mario. Then add mario into sprite list.
             LoadMarioTexture();
             //spriteList.Add(Mario);
+            LoadEnemyItemTexture();
 
-            
 
             #region Controller
 
@@ -242,6 +242,27 @@ namespace Sprint0
                 Content.Load<Texture2D>("BlockSprites/mario-question-blocks"),
                 Content.Load<Texture2D>("BlockSprites/mario-shiny-block")};
             _blockSheets = blockSheets;
+        }
+        private void LoadEnemyItemTexture()
+        {
+
+            Texture2D goomba =Content.Load<Texture2D>("EnemySprite/goomba");
+            Texture2D greenkoopa = Content.Load<Texture2D>("EnemySprite/greenkoopa");
+            Texture2D redkoopa = Content.Load<Texture2D>("EnemySprite/redkoopa");
+            Texture2D coin = Content.Load<Texture2D>("ItemSprite/coin");
+            Texture2D flower = Content.Load<Texture2D>("ItemSprite/flower");
+            Texture2D greenMushroom = Content.Load<Texture2D>("ItemSprite/greenMushroom");
+            Texture2D redMushroom = Content.Load<Texture2D>("ItemSprite/redMushroom");
+            Texture2D star = Content.Load<Texture2D>("ItemSprite/star");
+            spriteList.Add(factory.getCoin(coin));
+            spriteList.Add(factory.getFlower(flower));
+            spriteList.Add(factory.getGreenMushroom(greenMushroom));
+            spriteList.Add(factory.getRedMushroom(redMushroom));
+            spriteList.Add(factory.getStar(star));
+            spriteList.Add(factory.getGreenKoopa(greenkoopa));
+            spriteList.Add(factory.getRedKoopa(redkoopa));
+            spriteList.Add(factory.getGoomba(goomba));
+
         }
     }
 }

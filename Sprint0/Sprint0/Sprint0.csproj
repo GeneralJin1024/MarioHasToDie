@@ -70,15 +70,7 @@
     <Compile Include="Sprites\BackgroundSprites\SmallCloudSprite.cs" />
     <Compile Include="Sprites\BackgroundSprites\BigHillSprite.cs" />
     <Compile Include="Sprites\BackgroundSprites\BigCloudSprite.cs" />
-    <Compile Include="Sprites\EnemySprites\RedkoopaSprite.cs" />
-    <Compile Include="Sprites\EnemySprites\GreenkoopaSprite.cs" />
-    <Compile Include="Sprites\EnemySprites\GoombaSprite.cs" />
     <Compile Include="Sprites\EnemySprite.cs" />
-    <Compile Include="Sprites\ItemSprites\RedMushroomSprite.cs" />
-    <Compile Include="Sprites\ItemSprites\GreenMushroomSprite.cs" />
-    <Compile Include="Sprites\ItemSprites\StarSprite.cs" />
-    <Compile Include="Sprites\ItemSprites\FlowerSprite.cs" />
-    <Compile Include="Sprites\ItemSprites\CoinSprite.cs" />
     <Compile Include="Sprites\ItemSprite.cs" />
   </ItemGroup>
   <ItemGroup>
