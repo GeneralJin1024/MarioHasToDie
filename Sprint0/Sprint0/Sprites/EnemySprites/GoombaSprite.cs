@@ -10,7 +10,7 @@ using Sprint0;
 
 namespace sprint0.Enemy
 {
-    class GoombaSprite : AnimatedPlayerSprite
+    class GoombaSprite : AnimatedSprite
     {
         public GoombaSprite(Texture2D texture) : base(texture, new Point(1, 2))
         {

@@ -10,9 +10,9 @@ using Sprint0;
 
 namespace sprint0.Enemy
 {
-    class BackgroundSprite : AnimatedPlayerSprite
+    class CloudSprite : AnimatedSprite
     {
-        public BackgroundSprite(Texture2D texture) : base(texture, new Point(1, 2))
+        public CloudSprite(Texture2D texture) : base(texture, new Point(1, 1))
         {
         }
         public override void Draw(SpriteBatch spriteBatch, Vector2 Location, bool isLeft)

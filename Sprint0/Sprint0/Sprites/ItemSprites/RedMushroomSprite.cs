@@ -10,7 +10,7 @@ using Sprint0;
 
 namespace sprint0.Item
 {
-    class RedMushroomSprite : AnimatedPlayerSprite
+    class RedMushroomSprite : AnimatedSprite
     {
         public RedMushroomSprite(Texture2D texture) : base(texture, new Point(1, 1))
         {

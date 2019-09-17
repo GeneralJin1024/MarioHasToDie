@@ -83,7 +83,7 @@ namespace Sprint0.MarioClasses
             StandardMario = standardSheets;
             SuperMario = superSheet;
             FireMario = fireSheet;
-            DiedSprite = new AnimatedPlayerSprite(diedSheet, new Point(1, 1));
+            DiedSprite = new AnimatedSprite(diedSheet, new Point(1, 1));
             SetActionSprites();
             SetActionStates();
             SetPowerStates();
@@ -249,10 +249,10 @@ namespace Sprint0.MarioClasses
 
         private void SetActionSprites()
         {
-            IdleSprite = new AnimatedPlayerSprite(StandardMario[0], new Point(1, 1));
-            JumpSprite = new AnimatedPlayerSprite(StandardMario[1], new Point(1, 1));
-            WalkingSprite = new AnimatedPlayerSprite(StandardMario[2], new Point(1, 3));
-            CrouchSprite = new AnimatedPlayerSprite(StandardMario[3], new Point(1, 1));
+            IdleSprite = new AnimatedSprite(StandardMario[0], new Point(1, 1));
+            JumpSprite = new AnimatedSprite(StandardMario[1], new Point(1, 1));
+            WalkingSprite = new AnimatedSprite(StandardMario[2], new Point(1, 3));
+            CrouchSprite = new AnimatedSprite(StandardMario[3], new Point(1, 1));
             currentMarioAction = IdleSprite;
         }
 

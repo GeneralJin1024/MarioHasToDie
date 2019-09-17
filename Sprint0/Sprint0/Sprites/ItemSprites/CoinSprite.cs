@@ -10,7 +10,7 @@ using Sprint0;
 
 namespace sprint0.Item
 {
-    class CoinSprite : AnimatedPlayerSprite
+    class CoinSprite : AnimatedSprite
     {
         public CoinSprite(Texture2D texture) : base(texture, new Point(1, 4))
         {

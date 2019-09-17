@@ -10,7 +10,7 @@ using Sprint0;
 
 namespace sprint0.Enemy
 {
-    class RedkoopaSprite : AnimatedPlayerSprite
+    class RedkoopaSprite : AnimatedSprite
     {
         public RedkoopaSprite(Texture2D texture) : base(texture, new Point(1, 2))
         {

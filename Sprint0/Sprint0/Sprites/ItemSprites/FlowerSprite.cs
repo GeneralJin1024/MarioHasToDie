@@ -10,7 +10,7 @@ using Sprint0;
 
 namespace sprint0.Item
 {
-    class FlowerSprite : AnimatedPlayerSprite
+    class FlowerSprite : AnimatedSprite
     {
         public FlowerSprite(Texture2D texture) : base(texture, new Point(1, 8))
         {

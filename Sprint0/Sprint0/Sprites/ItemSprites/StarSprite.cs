@@ -10,7 +10,7 @@ using Sprint0;
 
 namespace sprint0.Item
 {
-    class StarSprite : AnimatedPlayerSprite
+    class StarSprite : AnimatedSprite
     {
         public StarSprite(Texture2D texture) : base(texture, new Point(1, 4))
         {

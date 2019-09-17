@@ -30,7 +30,7 @@ namespace Sprint0
         public void LoadContent(SpriteFont font)
         {
             Font = font;
-            chooseSprite = new AnimatedPlayerSprite(
+            chooseSprite = new AnimatedSprite(
                 Game.Content.Load<Texture2D>("MarioSprites/smallMarioRightStand"), new Point(1, 1));
         }
 
