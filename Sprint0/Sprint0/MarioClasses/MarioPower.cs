@@ -17,7 +17,7 @@ namespace Sprint0.MarioClasses
 
         public void Destroy(Mario mario) { mario.ChangeToDied(); }
 
-        public void PowerUpToFireMario（Mario mario)   { }
+      //  public void PowerUpToFireMario（Mario mario)   { }
 
         public  void PowerUpToSuperMario(Mario mario) { mario.ChangeToSuper();}
     }
