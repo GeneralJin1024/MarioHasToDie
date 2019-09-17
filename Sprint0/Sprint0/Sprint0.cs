@@ -262,5 +262,15 @@ namespace Sprint0
             spriteList.Add(factory.getGreenkoopa(greenKoopaSheet));
             spriteList.Add(factory.getRedkoopa(redKoopaSheet));
         }
+        private void LoadBackgroundTexture()
+        {
+            Texture2D goombaSheet = Content.Load<Texture2D>("EnemySprite/goomba");
+            Texture2D greenKoopaSheet = Content.Load<Texture2D>("EnemySprite/greenkoopa");
+            Texture2D redKoopaSheet = Content.Load<Texture2D>("EnemySprite/redkoopa");
+            spriteList.Add(factory.getGoomba(goombaSheet));
+            spriteList.Add(factory.getGreenkoopa(greenKoopaSheet));
+            spriteList.Add(factory.getRedkoopa(redKoopaSheet));
+
+        }
     }
 }

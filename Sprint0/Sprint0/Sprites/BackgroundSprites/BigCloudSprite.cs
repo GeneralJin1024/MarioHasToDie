@@ -17,7 +17,8 @@ namespace sprint0.Enemy
         }
         public override void Draw(SpriteBatch spriteBatch, Vector2 Location, bool isLeft)
         {
-            base.Draw(spriteBatch, new Vector2(600,100), isLeft);
+            base.Draw(spriteBatch, new Vector2(50,200), isLeft);
+            base.Draw(spriteBatch, new Vector2(30, 400), isLeft);
         }
     }
 }
