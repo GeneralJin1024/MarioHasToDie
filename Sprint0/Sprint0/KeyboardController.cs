@@ -7,6 +7,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Sprint0.BlockClasses;
+using Sprint0.MarioClasses;
 
 namespace Sprint0
 {
@@ -16,11 +18,12 @@ namespace Sprint0
         //private enum PossibleCommands { StandingNoAnim, StandingAnim, MovingNoAnim, MovingAnim, Quit};
         private Dictionary<Keys, ICommand> keyMap;
 
-        public KeyboardController(Sprint0 myGame, ISprite marioSpriteSIP, ISprite marioSpriteRIP, ISprite marioSpriteDead, ISprite marioSpriteRunning)
+        public KeyboardController(Sprint0 myGame, Bricks brick1)
         {
             prevKeyboardState = Keyboard.GetState();
             keyMap = new Dictionary<Keys, ICommand>();
             keyMap.Add(Keys.Q, new QuitGameCommand(myGame));
+            keyMap.Add(Keys.A, new BBrickChangeState(brick1, null));
         }
 
         public void UpdateInput()

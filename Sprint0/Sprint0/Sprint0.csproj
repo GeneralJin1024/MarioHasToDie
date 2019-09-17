@@ -53,8 +53,8 @@
     <Compile Include="Factory.cs" />
     <Compile Include="GamePadController.cs" />
     <Compile Include="MarioClasses\ActionState.cs" />
-    <Compile Include="MarioClasses\MarioAction.cs" />
     <Compile Include="MarioClasses\Mario.cs" />
+    <Compile Include="MarioClasses\MarioAction.cs" />
     <Compile Include="MarioClasses\MarioPower.cs" />
     <Compile Include="MarioClasses\PowerState.cs" />
     <Compile Include="Menu.cs" />

@@ -23,6 +23,8 @@ namespace Sprint0.BlockClasses
         private int MinY, MaxY;
         private float[] destroyedBrickPosX;
         private float[] destroyedBrickPosY;
+        private Point positionOffset = new Point(0, 1);
+        private Vector2 spriteSpeed = new Vector2(50.0f, 100.0f);
         public Bricks(Texture2D sheet, Vector2 pos, Point rowAndColumn, int totalFrame, BrickState state, List<ISprite> itemList) 
             : base(sheet, pos, rowAndColumn,totalFrame)
         {
@@ -64,7 +66,7 @@ namespace Sprint0.BlockClasses
         public void ChangeToUsed()
         {
             bState = BrickState.used;
-            SpriteSheets = Sprint0.BlockTextures[3];
+            SpriteSheets = Sprint0.BlockTextures[2];
         }
         public void ChangeToDestroyed()
         {
@@ -77,8 +79,8 @@ namespace Sprint0.BlockClasses
             isBumping = true;
             if (bState == BrickState.bitem)
                 ShowItem();
-            MinY = (int)bPosition.Y;
-            MaxY = (int)bPosition.Y + frameSize.Y;
+            MinY = (int)bPosition.Y - frameSize.Y;
+            MaxY = (int)bPosition.Y;
         }
         public override void Update(GameTime gameTime)
         {
@@ -101,19 +103,18 @@ namespace Sprint0.BlockClasses
                 base.Update(gameTime);
             }
             else
-            {
-                Point positionOffset = new Point(0, 1);
-                Vector2 spriteSpeed = new Vector2(50.0f, 50.0f);
-                bPosition.Y += positionOffset.Y != 0 ? spriteSpeed.Y * (float)gameTime.ElapsedGameTime.TotalSeconds : 0;
-                if (bPosition.Y > MaxY)
+            {                
+                bPosition.Y -= positionOffset.Y != 0 ? spriteSpeed.Y * (float)gameTime.ElapsedGameTime.TotalSeconds : 0;
+                if (bPosition.Y < MinY)
                 {
                     spriteSpeed.Y *= -1;
-                    bPosition.Y = MaxY;
+                    bPosition.Y = MinY;
                 }
-                else if (bPosition.Y < MinY)
+                if (bPosition.Y > MaxY)
                 {
                     isBumping = false;
-                    bPosition.Y = MinY;
+                    spriteSpeed.Y *= -1;
+                    bPosition.Y = MaxY;
                 }
             }
         }

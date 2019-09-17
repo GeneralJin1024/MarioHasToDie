@@ -30,12 +30,13 @@ namespace Sprint0
         #region Sprite
         #endregion
 
-        private Blocks qBlockTest;
-        private Blocks hitBlockTest;
-        private Blocks hiddenBlockTest;
+        private Bricks qBlockTest;
+        private Bricks hitBlockTest;
+        private Bricks hiddenBlockTest;
         private Blocks floorBlockTest;
         private Blocks stairBlockTest;
-        private Blocks brickBlockTest;
+        private Bricks brickBlockTest;
+
         #region Fonts
         public Color fontColor { get; set; } = Color.DarkBlue;
         private SpriteFont instructionFont;
@@ -97,7 +98,7 @@ namespace Sprint0
             #endregion
 
             #region Controllers
-            controllerList = new ArrayList();
+            controllerList = new ArrayList() { new KeyboardController(this, brickBlockTest) };
             #endregion
 
             GameMenu = new Menu(this);
@@ -113,13 +114,12 @@ namespace Sprint0
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            LoadItemTexture();
-            LoadEnemyTexture();
-            LoadBackgroundTexture();
             LoadBlockTexture();
             //load mario texture and construct mario. Then add mario into sprite list.
             LoadMarioTexture();
-            spriteList.Add(Mario);
+            //spriteList.Add(Mario);
+
+            
 
             #region Controller
 
@@ -156,6 +156,8 @@ namespace Sprint0
             else
             {
                 //Controller.UpdateInput(...);
+                foreach (IController controller in controllerList)
+                    controller.UpdateInput();
                 foreach (ISprite sprite in spriteList)
                     sprite.Update(gameTime);
             }
@@ -240,39 +242,6 @@ namespace Sprint0
                 Content.Load<Texture2D>("BlockSprites/mario-question-blocks"),
                 Content.Load<Texture2D>("BlockSprites/mario-shiny-block")};
             _blockSheets = blockSheets;
-        }
-                private void LoadItemTexture()
-        {
-            Texture2D coinSheet = Content.Load<Texture2D>("ItemSprite/coin");
-            Texture2D flowerSheet = Content.Load<Texture2D>("ItemSprite/flower");
-            Texture2D greenMushroomSheet = Content.Load<Texture2D>("ItemSprite/greenMushroom");
-            Texture2D redMushroomSheet = Content.Load<Texture2D>("ItemSprite/redMushroom");
-            Texture2D starSheet = Content.Load<Texture2D>("ItemSprite/star");
-            spriteList.Add(factory.getCoin(coinSheet));
-            spriteList.Add(factory.getFlower(flowerSheet));
-            spriteList.Add(factory.getGreenMushroom(greenMushroomSheet));
-            spriteList.Add(factory.getRedMushroom(redMushroomSheet));
-            spriteList.Add(factory.getStar(starSheet));
-        }
-                        private void LoadEnemyTexture()
-        {
-            Texture2D goombaSheet = Content.Load<Texture2D>("EnemySprite/goomba");
-            Texture2D greenKoopaSheet = Content.Load<Texture2D>("EnemySprite/greenkoopa");
-            Texture2D redKoopaSheet = Content.Load<Texture2D>("EnemySprite/redkoopa");
-            spriteList.Add(factory.getGoomba(goombaSheet));
-            spriteList.Add(factory.getGreenkoopa(greenKoopaSheet));
-            spriteList.Add(factory.getRedkoopa(redKoopaSheet));
-        }
-        private void LoadBackgroundTexture()
-        {
-            Texture2D bigCloudSheet = Content.Load<Texture2D>("BackgroundSprite/bigCloud");
-            Texture2D smallCloudSheet = Content.Load<Texture2D>("BackgroundSprite/smallCloud");
-            Texture2D bigHillSheet = Content.Load<Texture2D>("BackgroundSprite/bigHill");
-            Texture2D smallHillSheet = Content.Load<Texture2D>("BackgroundSprite/smallHill");
-            spriteList.Add(factory.getBigCloud(bigCloudSheet));
-            spriteList.Add(factory.getSmallCloud(smallCloudSheet));
-            spriteList.Add(factory.getBigHill(bigHillSheet));
-            spriteList.Add(factory.getBigHill(smallHillSheet));
         }
     }
 }
