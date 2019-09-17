@@ -17,14 +17,22 @@ namespace Sprint0.BlockClasses
     class Bricks : Blocks
     {
         public BrickState bState;
+        public bool IsBumping
+        {
+            get
+            {
+                return isBumping;
+            }
+        }
         public bool containItems;
         private List<ISprite> items;
         private bool isBumping;
         private int MinY, MaxY;
         private float[] destroyedBrickPosX;
         private float[] destroyedBrickPosY;
-        private Point positionOffset = new Point(0, 1);
-        private Vector2 spriteSpeed = new Vector2(50.0f, 100.0f);
+        private Point positionOffset = new Point(1, 5);
+        private Vector2 spriteSpeed = new Vector2(50.0f, 200.0f);
+        private Vector2 dPos;
         public Bricks(Texture2D sheet, Vector2 pos, Point rowAndColumn, int totalFrame, BrickState state, List<ISprite> itemList) 
             : base(sheet, pos, rowAndColumn,totalFrame)
         {
@@ -86,14 +94,11 @@ namespace Sprint0.BlockClasses
         {
             if (bState == BrickState.destroyed)
             {
-                Vector2 dPos = new Vector2(0, 0);
-                Point positionOffset = new Point(1, 5);
-                Vector2 spriteSpeed = new Vector2(10.0f, 50.0f);
                 dPos.X += positionOffset.X != 0 ? spriteSpeed.X * (float)gameTime.ElapsedGameTime.TotalSeconds : 0;
                 dPos.Y += positionOffset.Y != 0 ? spriteSpeed.Y * (float)gameTime.ElapsedGameTime.TotalSeconds : 0;
 
-                destroyedBrickPosX[0] = bPosition.X - dPos.X; destroyedBrickPosX[1] = bPosition.X - dPos.X;
-                destroyedBrickPosX[2] = bPosition.X + dPos.X; destroyedBrickPosX[3] = bPosition.X + dPos.X;
+                destroyedBrickPosX[0] = bPosition.X - dPos.X; destroyedBrickPosX[1] = bPosition.X - 2*dPos.X;
+                destroyedBrickPosX[2] = bPosition.X + dPos.X; destroyedBrickPosX[3] = bPosition.X + 2*dPos.X;
 
                 for (int i = 0; i < 4; i++)
                     destroyedBrickPosY[i] = bPosition.Y + dPos.Y;
