@@ -172,71 +172,32 @@ namespace Sprint0.MarioClasses
         #endregion Action Change
 
         #region Power Command Receiver Method
-        public void MoveStandard() { //ChangeToStandard();
+        public void MoveStandard() { 
         }
-        public void MoveSuper() { //ChangeToSuper();
+        public void MoveSuper() { 
             }
-        public void MoveFire() { //ChangeToFire();
+        public void MoveFire() { 
         }
-        public void MoveDestroy() { //Power.Destroy(this);
+        public void MoveDestroy() { 
         }
         #endregion Power Command Receiver Method
 
         #region Power Change
         public void ChangeToSuper()
         {
-            //Power = Super;
-            //IdleSprite.SpriteSheets = SuperMario[0];
-            //JumpSprite.SpriteSheets = SuperMario[1];
-            //WalkingSprite.SpriteSheets = SuperMario[2];
-            //CrouchSprite.SpriteSheets = SuperMario[3];
-            //if (powerType == PowerType.Died)
-            //    currentMarioAction = IdleSprite;
-            //if (powerType != PowerType.Super)
-            //{
-            //    Location.Y -= 16;
-            //    powerType = PowerType.Super;
-            //}
+            
         }
         public void ChangeToStandard()
         {
-            //if (actionType == ActionType.Crouch)
-            //    ChangeToIdle();
-            //Power = Standard;
-            //IdleSprite.SpriteSheets = StandardMario[0];
-            //JumpSprite.SpriteSheets = StandardMario[1];
-            //WalkingSprite.SpriteSheets = StandardMario[2];
-            //CrouchSprite.SpriteSheets = StandardMario[3];
-            //if (powerType == PowerType.Died)
-            //    currentMarioAction = IdleSprite;
-            //else if (powerType == PowerType.Super)
-            //{
-            //    Location.Y += 16;
-            //}
-            //powerType = PowerType.Standard;
+            
         }
         public void ChangeToFire()
         {
-            //Power = Fire;
-            //IdleSprite.SpriteSheets = FireMario[0];
-            //JumpSprite.SpriteSheets = FireMario[1];
-            //WalkingSprite.SpriteSheets = FireMario[2];
-            //CrouchSprite.SpriteSheets = FireMario[3];
-            //if (powerType == PowerType.Died)
-            //    currentMarioAction = IdleSprite;
-            //if (powerType != PowerType.Super)
-            //{
-            //    Location.Y -= 16;
-            //    powerType = PowerType.Super;
-            //}
+            
         }
         public void ChangeToDied()
         {
-            //Power = Died;
-            //currentMarioAction = DiedSprite;
-            //if (powerType == PowerType.Super)
-            //    Location.Y += 16;
-            //powerType = PowerType.Died;
+            
         }
         #endregion Power Change
 
