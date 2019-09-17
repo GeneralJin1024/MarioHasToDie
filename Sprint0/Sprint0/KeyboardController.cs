@@ -26,7 +26,7 @@ namespace Sprint0
             keyMap.Add(Keys.A, new BBrickChangeState(brick1, null));
         }
 
-        public void UpdateInput()
+        public void Update()
         {
             KeyboardState curr = Keyboard.GetState();
 

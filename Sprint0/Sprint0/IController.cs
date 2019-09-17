@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace Sprint0
 {
-    interface IController
+    public interface IController
     {
-        void UpdateInput();
+        void Update();
 
     }
 }
