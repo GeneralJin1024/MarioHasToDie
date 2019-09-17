@@ -172,11 +172,12 @@ namespace Sprint0.MarioClasses
         #endregion Action Change
 
         #region Power Command Receiver Method
+        // try update
         public void MoveStandard() { 
         }
         public void MoveSuper() { 
             }
-        public void MoveFire() { 
+        public void MoveFire() {
         }
         public void MoveDestroy() { 
         }
