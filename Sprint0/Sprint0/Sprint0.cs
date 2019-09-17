@@ -243,7 +243,7 @@ namespace Sprint0
         }
                 private void LoadBlockTexture()
         {
-            Texture2D[] blockSheets = new Texture2D[5] {Content.Load<Texture2D>("BlockSprites/mario-brick-blocks"),
+            Texture2D coinItem = new Texture2D[5] {Content.Load<Texture2D>("BlockSprites/mario-brick-blocks"),
                 Content.Load<Texture2D>("BlockSprites/mario-gravel-blocks"),
                 Content.Load<Texture2D>("BlockSprites/mario-hit-block"),
                 Content.Load<Texture2D>("BlockSprites/mario-question-blocks"),
