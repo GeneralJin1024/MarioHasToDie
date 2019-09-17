@@ -6,11 +6,18 @@ using System.Threading.Tasks;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
 using System.ComponentModel;
+using Sprint0;
 
-public class CoinSprite: AnimatedPlayerSprite
+namespace sprint0.Item
 {
-    public CoinSprite(Texture2D texture) : base(texture, new Point(1, 4))
+    class CoinSprite : AnimatedPlayerSprite
     {
+        public CoinSprite(Texture2D texture) : base(texture, new Point(1, 4))
+        {
+        }
+        public override void Draw(SpriteBatch spriteBatch, Vector2 Location, bool isLeft)
+        {
+            base.Draw(spriteBatch, new Vector2(200, 200), isLeft);
+        }
     }
-
 }

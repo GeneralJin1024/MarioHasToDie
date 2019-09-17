@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Sprint0.MarioClasses;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
+using sprint0.Item;
 
 namespace Sprint0
 {

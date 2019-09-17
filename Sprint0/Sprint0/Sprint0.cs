@@ -36,7 +36,6 @@ namespace Sprint0
         private Blocks floorBlockTest;
         private Blocks stairBlockTest;
         private Blocks brickBlockTest;
-
         #region Fonts
         public Color fontColor { get; set; } = Color.DarkBlue;
         private SpriteFont instructionFont;
@@ -115,12 +114,11 @@ namespace Sprint0
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
             LoadItemTexture();
-            LoadEnymyTexture();
+            LoadEnemyTexture();
             LoadBlockTexture();
             //load mario texture and construct mario. Then add mario into sprite list.
             LoadMarioTexture();
             spriteList.Add(Mario);
-            spriteList.Add(factory.getCoin);
 
             #region Controller
 
@@ -249,6 +247,7 @@ namespace Sprint0
             Texture2D greenMushroomSheet = Content.Load<Texture2D>("ItemSprite/coin");
             Texture2D redMushroomSheet = Content.Load<Texture2D>("ItemSprite/coin");
             Texture2D StarSheet = Content.Load<Texture2D>("ItemSprite/coin");
+            spriteList.Add(factory.getCoin(coinSheet));
         }
                         private void LoadEnemyTexture()
         {

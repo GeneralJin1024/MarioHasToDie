@@ -49,7 +49,7 @@ namespace Sprint0
             }
         }
 
-        public void Draw(SpriteBatch spriteBatch, Vector2 Location, bool isLeft)
+        public virtual void Draw(SpriteBatch spriteBatch, Vector2 Location, bool isLeft)
         {
             float frameWidth = (float)SpriteSheets.Width / RowsAndColumns.Y;
             float frameHeight = (float)SpriteSheets.Height / RowsAndColumns.X;
