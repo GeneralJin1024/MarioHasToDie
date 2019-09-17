@@ -18,10 +18,6 @@ namespace Sprint0
             prevGamePadState = GamePad.GetState(PlayerIndex.One);
             buttonMap = new Dictionary<Buttons, ICommand>();
             buttonMap.Add(Buttons.Start, new QuitGameCommand(myGame));
-            buttonMap.Add(Buttons.A, new MarioStandingInPlaceCommand(marioSpriteSIP));
-            buttonMap.Add(Buttons.B, new MarioRunningInPlaceCommand(marioSpriteRIP));
-            buttonMap.Add(Buttons.X, new MarioDeadCommand(marioSpriteDead));
-            buttonMap.Add(Buttons.Y, new MarioRunningCommand(marioSpriteRunning));
         }
 
         public void UpdateInput()

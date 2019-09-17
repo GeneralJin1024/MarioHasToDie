@@ -12,8 +12,14 @@ namespace Sprint0.BlockClasses
     public class Blocks : ISprite
     {
         public Texture2D SpriteSheets { get; set; }
-        
-        protected bool isHidden;
+        public Vector2 Position
+        {
+            get
+            {
+                return bPosition;
+            }
+        }        
+        //protected bool isHidden;
         protected Vector2 bPosition;
 
         private int totalFrame;
@@ -26,13 +32,12 @@ namespace Sprint0.BlockClasses
         private Point currentFrame { get; set; }
         private int animationFrame { get; set; }
 
-        public Blocks(Texture2D sheet, Vector2 pos, Point rowAndCol, int totFrame, bool isHidden)
+        public Blocks(Texture2D sheet, Vector2 pos, Point rowAndCol, int totFrame)
         {
             SpriteSheets = sheet;
             sheetSize = rowAndCol;
             totalFrame = totFrame;
             frameSize = new Point(SpriteSheets.Width / sheetSize.X, SpriteSheets.Height / sheetSize.Y);
-            this.isHidden = isHidden;
             this.timeSinceLastFrame = 0;
             this.millisecondsPerFrame = 500;
             this.currentFrame = new Point(0, 0);
@@ -42,11 +47,9 @@ namespace Sprint0.BlockClasses
         }
         public virtual void Draw(SpriteBatch spriteBatch, Vector2 location, bool isLeft)
         {
-            if (!isHidden)
-            {
-                spriteBatch.Draw(SpriteSheets, this.bPosition, new Rectangle(frameOrigin.X + currentFrame.X * frameSize.X, frameOrigin.Y + currentFrame.Y * frameSize.Y, frameSize.X, frameSize.Y), Color.White);
-            }
-            
+
+            spriteBatch.Draw(SpriteSheets, location, new Rectangle(frameOrigin.X + currentFrame.X * frameSize.X, frameOrigin.Y + currentFrame.Y * frameSize.Y, frameSize.X, frameSize.Y), Color.White);
+           
         }
 
         public Vector2 GetHeightAndWidth()

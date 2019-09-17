@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <SourceFile>C:/Users/72957/Source/Repos/SmartMario/Sprint0/Sprint0/Content/BlockSprites/mario-question-blocks.png</SourceFile>
-  <SourceTime>2019-09-12T21:52:08.7963413-04:00</SourceTime>
+  <SourceTime>2019-09-15T11:43:42.1114529-04:00</SourceTime>
   <DestFile>C:/Users/72957/Source/Repos/SmartMario/Sprint0/Sprint0/Content/bin/Windows/Content/BlockSprites/mario-question-blocks.xnb</DestFile>
-  <DestTime>2019-09-12T22:52:30.1728808-04:00</DestTime>
+  <DestTime>2019-09-16T23:19:00.0976629-04:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2018-12-08T11:35:54-05:00</ImporterTime>
   <Processor>TextureProcessor</Processor>

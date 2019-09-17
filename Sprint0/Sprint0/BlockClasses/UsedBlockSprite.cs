@@ -10,7 +10,7 @@ namespace Sprint0.BlockClasses
 {
     class UsedBlockSprite : Bricks
     {
-        public UsedBlockSprite(Sprint0 game, Vector2 pos) : base(game.Content.Load<Texture2D>("BlockSprites/mario-hit-blocks"), pos, new Point(4, 1), 1, BrickState.bempty, false)
+        public UsedBlockSprite(Sprint0 game, Vector2 pos) : base(game.Content.Load<Texture2D>("BlockSprites/mario-hit-block"), pos, new Point(4, 1), 1, BrickState.used, new List<ISprite>())
         {
         }
 

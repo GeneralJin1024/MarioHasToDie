@@ -11,11 +11,20 @@ namespace Sprint0
     class AnimatedPlayerSprite : ISprite
     {
         public Texture2D SpriteSheets { get; set; }
+
+        public Vector2 Position
+        {
+            get
+            {
+                return this.location;
+            }
+        }
+
         private Point RowsAndColumns;
         private int ActionFrame;
         private int TimeSinceLastFrame;
         private int MillisecondsPerFrame;
-
+        private Vector2 location;
         public AnimatedPlayerSprite(Texture2D spriteSheet, Point rowAndColumn)
         {
             SpriteSheets = spriteSheet;
@@ -50,6 +59,7 @@ namespace Sprint0
             Rectangle destinationRectangle = new Rectangle((int)Location.X,
                 (int)Location.Y, (int)frameWidth, (int)frameHeight);
 
+            this.location = new Vector2(destinationRectangle.X, destinationRectangle.Y);
             if (isLeft)
             {
                 spriteBatch.Draw(SpriteSheets, destinationRectangle, sourceRectangle,

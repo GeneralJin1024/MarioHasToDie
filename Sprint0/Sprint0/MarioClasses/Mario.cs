@@ -68,6 +68,14 @@ namespace Sprint0.MarioClasses
 
         public bool IsLeft { get; set; }
 
+        public Vector2 Position
+        {
+            get
+            {
+                return Location;
+            }
+        }
+
         private Vector2 Location;
 
         public Mario(Texture2D[] standardSheets, Texture2D[] superSheet, 

@@ -42,6 +42,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="AnimatedPlayerSprite.cs" />
+    <Compile Include="BlockClasses\BlockCommands.cs" />
     <Compile Include="BlockClasses\Blocks.cs" />
     <Compile Include="BlockClasses\Bricks.cs" />
     <Compile Include="BlockClasses\BrickBlockSprite.cs" />

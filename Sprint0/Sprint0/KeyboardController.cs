@@ -21,10 +21,6 @@ namespace Sprint0
             prevKeyboardState = Keyboard.GetState();
             keyMap = new Dictionary<Keys, ICommand>();
             keyMap.Add(Keys.Q, new QuitGameCommand(myGame));
-            keyMap.Add(Keys.W, new MarioStandingInPlaceCommand(marioSpriteSIP));
-            keyMap.Add(Keys.E, new MarioRunningInPlaceCommand(marioSpriteRIP));
-            keyMap.Add(Keys.R, new MarioDeadCommand(marioSpriteDead));
-            keyMap.Add(Keys.T, new MarioRunningCommand(marioSpriteRunning));
         }
 
         public void UpdateInput()

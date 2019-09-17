@@ -10,17 +10,8 @@ namespace Sprint0.BlockClasses
 {
     class BrickBlockSprite : Bricks
     {
-        private bool isHit;
-        private int ratio;
-        public BrickBlockSprite(Vector2 pos) : base(Sprint0.BlockTextures[0], pos, new Point(4, 1), 1, BrickState.bcoin, false)
+        public BrickBlockSprite(Sprint0 game, Vector2 pos, List<ISprite> items, BrickState state) : base(game.Content.Load<Texture2D>("BlockSprites/mario-brick-blocks"), pos, new Point(4, 1), 1, state, items)
         {
-            this.isHit = false;
-            this.ratio = 1;
-        }
-
-        public void Bumping()
-        {
-
         }
 
     }
