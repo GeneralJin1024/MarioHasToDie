@@ -9,6 +9,8 @@ namespace Sprint0.MarioClasses
     class StandardState : PowerState
     {
         public void Destroy(Mario mario) { mario.ChangeToDied(); }
+
+        public void PowerUpToFireMario（Mario mario)   { }
     }
     class SuperState : PowerState
     {
