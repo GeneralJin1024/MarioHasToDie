@@ -30,12 +30,12 @@ namespace Sprint0
         #region Sprite
         #endregion
 
-        private Blocks qBlockTest;
-        private Blocks hitBlockTest;
-        private Blocks hiddenBlockTest;
+        private Bricks qBlockTest;
+        private Bricks hitBlockTest;
+        private Bricks hiddenBlockTest;
         private Blocks floorBlockTest;
         private Blocks stairBlockTest;
-        private Blocks brickBlockTest;
+        private Bricks brickBlockTest;
 
         #region Fonts
         public Color fontColor { get; set; } = Color.DarkBlue;
@@ -98,7 +98,7 @@ namespace Sprint0
             #endregion
 
             #region Controllers
-            controllerList = new ArrayList();
+            controllerList = new ArrayList() { new KeyboardController(this, brickBlockTest) };
             #endregion
 
             GameMenu = new Menu(this);
@@ -117,7 +117,7 @@ namespace Sprint0
             LoadBlockTexture();
             //load mario texture and construct mario. Then add mario into sprite list.
             LoadMarioTexture();
-            spriteList.Add(Mario);
+            //spriteList.Add(Mario);
 
             
 
@@ -156,6 +156,8 @@ namespace Sprint0
             else
             {
                 //Controller.UpdateInput(...);
+                foreach (IController controller in controllerList)
+                    controller.UpdateInput();
                 foreach (ISprite sprite in spriteList)
                     sprite.Update(gameTime);
             }

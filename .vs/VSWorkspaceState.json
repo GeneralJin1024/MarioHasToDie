@@ -2,8 +2,10 @@
   "ExpandedNodes": [
     "",
     "\\Sprint0",
-    "\\Sprint0\\Sprint0"
+    "\\Sprint0\\Sprint0",
+    "\\Sprint0\\Sprint0\\BlockClasses",
+    "\\Sprint0\\Sprint0\\MarioClasses"
   ],
-  "SelectedNode": "\\Sprint0\\Sprint0.sln",
+  "SelectedNode": "\\Sprint0\\Sprint0\\BlockClasses\\Blocks.cs",
   "PreviewInSolutionExplorer": false
 }
