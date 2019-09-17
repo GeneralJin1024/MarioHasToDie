@@ -41,7 +41,7 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="AnimatedPlayerSprite.cs" />
+    <Compile Include="Sprites\AnimatedPlayerSprite.cs" />
     <Compile Include="BlockClasses\BlockCommands.cs" />
     <Compile Include="BlockClasses\Blocks.cs" />
     <Compile Include="BlockClasses\Bricks.cs" />
@@ -66,6 +66,7 @@
     <Compile Include="Sprint0.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Sprites\BackGroundSprite.cs" />
     <Compile Include="Sprites\EnemySprites\RedkoopaSprite.cs" />
     <Compile Include="Sprites\EnemySprites\GreenkoopaSprite.cs" />
     <Compile Include="Sprites\EnemySprites\GoombaSprite.cs" />
