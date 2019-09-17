@@ -7,6 +7,7 @@ using Sprint0.MarioClasses;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
 using sprint0.Item;
+using sprint0.Enemy;
 
 namespace Sprint0
 {
@@ -36,6 +37,18 @@ namespace Sprint0
         public StarSprite getStar(Texture2D texture)
         {
             return new StarSprite(texture);
+        }
+        public GoombaSprite getGoomba(Texture2D texture)
+        {
+            return new GoombaSprite(texture);
+        }
+        public GreenkoopaSprite getGreenkoopa(Texture2D texture)
+        {
+            return new GreenkoopaSprite(texture);
+        }
+        public RedkoopaSprite getRedkoopa(Texture2D texture)
+        {
+            return new RedkoopaSprite(texture);
         }
     }
 }

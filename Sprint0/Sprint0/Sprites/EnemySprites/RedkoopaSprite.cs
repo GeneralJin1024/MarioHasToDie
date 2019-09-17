@@ -8,16 +8,16 @@ using Microsoft.Xna.Framework;
 using System.ComponentModel;
 using Sprint0;
 
-namespace sprint0.Item
+namespace sprint0.Enemy
 {
-    class CoinSprite : AnimatedPlayerSprite
+    class RedkoopaSprite : AnimatedPlayerSprite
     {
-        public CoinSprite(Texture2D texture) : base(texture, new Point(1, 4))
+        public RedkoopaSprite(Texture2D texture) : base(texture, new Point(1, 2))
         {
         }
         public override void Draw(SpriteBatch spriteBatch, Vector2 Location, bool isLeft)
         {
-            base.Draw(spriteBatch, new Vector2(100, 100), isLeft);
+            base.Draw(spriteBatch, new Vector2(600, 150), isLeft);
         }
     }
 }
