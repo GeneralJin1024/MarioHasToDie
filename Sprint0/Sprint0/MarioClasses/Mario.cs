@@ -77,9 +77,17 @@ namespace Sprint0.MarioClasses
             SuperMario = superSheet;
             FireMario = fireSheet;
             DiedSprite = new AnimatedSprite(diedSheet, new Point(1, 1));
-            SetActionSprites();
-            SetActionStates();
-            SetPowerStates();
+            ActionSprites = new ISprite[4] { new AnimatedSprite(StandardMario[0], new Point(1, 1)),
+                new AnimatedSprite(StandardMario[1], new Point(1, 1)),
+                new AnimatedSprite(StandardMario[2], new Point(1, 3)),
+                new AnimatedSprite(StandardMario[3], new Point(1, 1))};
+            ActionStates = new ActionState[5] { new IdleState(), new JumpState(), new WalkState(),
+                new RunningJumpState(), new CrouchState() };
+            PowerStates = new PowerState[4] { new StandardState(), new SuperState(), new FireState(),
+                new DiedState() };
+            currentMarioAction = ActionSprites[0];
+            CurrentAction = ActionStates[0];
+            CurrentPower = PowerStates[0];
             IsLeft = false;
             actionType = ActionType.Other;
             powerType = PowerType.Standard;
@@ -243,28 +251,5 @@ namespace Sprint0.MarioClasses
         {
             return (powerType == PowerType.Super);
         }
-
-
-        private void SetActionSprites()
-        {
-            ActionSprites = new ISprite[4] { new AnimatedSprite(StandardMario[0], new Point(1, 1)),
-                new AnimatedSprite(StandardMario[1], new Point(1, 1)),
-                new AnimatedSprite(StandardMario[2], new Point(1, 3)),
-                new AnimatedSprite(StandardMario[3], new Point(1, 1))};
-            currentMarioAction = ActionSprites[0];
-        }
-
-        private void SetActionStates()
-        {
-            ActionStates = new ActionState[5] { new IdleState(), new JumpState(), new WalkState(), new RunningJumpState(), new CrouchState() };
-            CurrentAction = ActionStates[0];
-        }
-
-        private void SetPowerStates()
-        {
-            PowerStates = new PowerState[4] {new StandardState(), new SuperState(), new FireState(), new DiedState() };
-            CurrentPower = PowerStates[0];
-        }
-
     }
 }
