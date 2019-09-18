@@ -40,13 +40,9 @@ namespace Sprint0.MarioClasses
         private PowerType powerType;
 
         #region ActionSprites
-        private ISprite IdleSprite;
-        private ISprite JumpSprite;
-        private ISprite CrouchSprite;
-        private ISprite WalkingSprite;
         private ISprite DiedSprite;
         private ISprite currentMarioAction;
-        //{Idle, Jump, Crouch, Walking}
+        //{Idle, Jump, Walking, Crouch}
         private ISprite[] ActionSprites;
         #endregion ActionSprites
 
@@ -199,10 +195,10 @@ namespace Sprint0.MarioClasses
             if(actionType == ActionType.Crouch)  
                 ChangeToIdle();
             CurrentPower = PowerStates[0];
-            IdleSprite.SpriteSheets = StandardMario[0];
-            JumpSprite.SpriteSheets = StandardMario[1];
-            WalkingSprite.SpriteSheets = StandardMario[2];
-            CrouchSprite.SpriteSheets = StandardMario[3];
+            ActionSprites[0].SpriteSheets = StandardMario[0];
+            ActionSprites[1].SpriteSheets = StandardMario[1];
+            ActionSprites[2].SpriteSheets = StandardMario[2];
+            ActionSprites[3].SpriteSheets = StandardMario[3];
             
             if(powerType == PowerType.Died)
 
@@ -218,10 +214,10 @@ namespace Sprint0.MarioClasses
         public void ChangeToFire()
         {
             CurrentPower = PowerStates[2];
-            IdleSprite.SpriteSheets = FireMario[0];
-            JumpSprite.SpriteSheets = FireMario[1];
-            WalkingSprite.SpriteSheets = FireMario[2];
-            CrouchSprite.SpriteSheets = FireMario[3];
+            ActionSprites[0].SpriteSheets = FireMario[0];
+            ActionSprites[1].SpriteSheets = FireMario[1];
+            ActionSprites[2].SpriteSheets = FireMario[2];
+            ActionSprites[3].SpriteSheets = FireMario[3];
 
             if(powerType ==PowerType.Died)
                 currentMarioAction = ActionSprites[0];
@@ -255,10 +251,6 @@ namespace Sprint0.MarioClasses
                 new AnimatedSprite(StandardMario[1], new Point(1, 1)),
                 new AnimatedSprite(StandardMario[2], new Point(1, 3)),
                 new AnimatedSprite(StandardMario[3], new Point(1, 1))};
-            IdleSprite = new AnimatedSprite(StandardMario[0], new Point(1, 1));
-            JumpSprite = new AnimatedSprite(StandardMario[1], new Point(1, 1));
-            WalkingSprite = new AnimatedSprite(StandardMario[2], new Point(1, 3));
-            CrouchSprite = new AnimatedSprite(StandardMario[3], new Point(1, 1));
             currentMarioAction = ActionSprites[0];
         }
 
