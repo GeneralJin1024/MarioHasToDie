@@ -117,7 +117,7 @@ namespace Sprint0
             LoadBlockTexture();
             //load mario texture and construct mario. Then add mario into sprite list.
             LoadMarioTexture();
-            //spriteList.Add(Mario);
+            spriteList.Add(Mario);
             LoadEnemyItemTexture();
             LoadBackgroundTexture();
 
