@@ -37,7 +37,7 @@ namespace Sprint0
             {
                 if (keyPressed(key.Key, curr))
                 {
-                    key.Value.currentbState.Handle();
+                    key.Value.currentbState.Handle(key.Value);
                 }
             }
             prevKeyboardState = curr;
