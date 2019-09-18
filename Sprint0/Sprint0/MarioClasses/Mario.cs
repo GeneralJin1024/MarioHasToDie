@@ -193,10 +193,10 @@ namespace Sprint0.MarioClasses
             CrouchSprite.SpriteSheets = SuperMario[3];
 
             if(powerType  != PowerType.Super)
-                {
-                location.Y -=16;
+            {
+                Location.Y -=16;
                 powerType = PowerType.Super;
-                }
+            }
 
         }
         public void ChangeToStandard()
@@ -214,9 +214,9 @@ namespace Sprint0.MarioClasses
                 currentMarioAction = IdleSprite;
 
             else if (powerType ==PowerType.Super)
-                {
+            {
                 Location.Y +=16;
-                }
+            }
             powerType = PowerType.Standard;
 
         }
@@ -231,10 +231,10 @@ namespace Sprint0.MarioClasses
             if(powerType ==PowerType.Died)
                 currentMarioAction = IdleSprite;
             if(powerType != PowerType.Super)
-                {
+            {
                 Location.Y -=16;
                 powerType = PowerType.Super;
-                 }
+            }
 
         }
         public void ChangeToDied()
