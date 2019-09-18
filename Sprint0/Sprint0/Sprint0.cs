@@ -7,6 +7,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Sprint0.BlockClasses;
 using Sprint0.MarioClasses;
+using Sprint0.Sprites;
 
 namespace Sprint0
 {
@@ -79,15 +80,14 @@ namespace Sprint0
             factory = new Factory();
 
             #region TestBlockSprites
-            List<ISprite> items = new List<ISprite>();
             float x = GraphicsDevice.Viewport.Width / 7;
             float y = GraphicsDevice.Viewport.Height / 2;
-            qBlockTest = new QuestionBlockSprite(this, new Vector2(x, y), items);
+            qBlockTest = new QuestionBlockSprite(this, new Vector2(x, y), new List<ItemSprite>() { factory.getRedMushroom(Content.Load<Texture2D>("ItemSprite/redMushroom")) });
             hitBlockTest = new UsedBlockSprite(this, new Vector2(2 * x, y));
-            hiddenBlockTest = new HiddenBlockSprite(this, new Vector2(3 * x, y), items);
-            floorBlockTest = new FloorBlock(this, new Vector2(4 * x, y));
-            stairBlockTest = new StairBlock(this, new Vector2(5 * x, y));
-            brickBlockTest = new BrickBlockSprite(this, new Vector2(6 * x, y), items, BrickState.bempty);
+            hiddenBlockTest = new HiddenBlockSprite(this, new Vector2(3 * x, y), new List<ItemSprite>());
+            floorBlockTest = new FloorBlockSprite(this, new Vector2(4 * x, y));
+            stairBlockTest = new StairBlockSprite(this, new Vector2(5 * x, y));
+            brickBlockTest = new BrickBlockSprite(this, new Vector2(6 * x, y), new List<ItemSprite>() { factory.getCoin(Content.Load<Texture2D>("ItemSprite/coin")), factory.getCoin(Content.Load<Texture2D>("ItemSprite/coin")) });
             spriteList = new ArrayList();
             spriteList.Add(qBlockTest);
             spriteList.Add(hitBlockTest);
@@ -98,7 +98,7 @@ namespace Sprint0
             #endregion
 
             #region Controllers
-            controllerList = new ArrayList() { new KeyboardController(this, brickBlockTest) };
+            controllerList = new ArrayList() { new KeyboardController(this, brickBlockTest, hiddenBlockTest, qBlockTest) };
             #endregion
 
             GameMenu = new Menu(this);

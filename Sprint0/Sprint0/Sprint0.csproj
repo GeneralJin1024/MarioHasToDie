@@ -41,9 +41,10 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="BlockClasses\IBrickStates.cs" />
+    <Compile Include="BlockClasses\BrickStates.cs" />
     <Compile Include="ICommand.cs" />
     <Compile Include="Sprites\AnimatedSprite.cs" />
-    <Compile Include="BlockClasses\BlockCommands.cs" />
     <Compile Include="BlockClasses\Blocks.cs" />
     <Compile Include="BlockClasses\Bricks.cs" />
     <Compile Include="BlockClasses\BrickBlockSprite.cs" />
