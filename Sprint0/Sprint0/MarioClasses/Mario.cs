@@ -62,7 +62,8 @@ namespace Sprint0.MarioClasses
         PowerState Super;
         PowerState Fire;
         PowerState Died;
-        PowerState Power;
+        private PowerState CurrentPower;
+        private PowerState[] PowerStates;
         #endregion PowerState
 
         public bool IsLeft { get; set; }
@@ -179,14 +180,14 @@ namespace Sprint0.MarioClasses
             }
         public void MoveFire() { ChangeToFire();
         }
-        public void MoveDestroy() { Power.Destroy(this);
+        public void MoveDestroy() { CurrentPower.Destroy(this);
         }
         #endregion Power Command Receiver Method
 
         #region Power Change
         public void ChangeToSuper()
         {
-            Power = Super;
+            CurrentPower = Super;
             IdleSprite.SpriteSheets = SuperMario[0];
             JumpSprite.SpriteSheets = SuperMario[1];
             WalkingSprite.SpriteSheets = SuperMario[2];
@@ -203,8 +204,8 @@ namespace Sprint0.MarioClasses
         {
             if(actionType == ActionType.Crouch)  
                 ChangeToIdle();
-            Power = Standard;
-             IdleSprite.SpriteSheets = StandardMario[0];
+            CurrentPower = Standard;
+            IdleSprite.SpriteSheets = StandardMario[0];
             JumpSprite.SpriteSheets = StandardMario[1];
             WalkingSprite.SpriteSheets = StandardMario[2];
             CrouchSprite.SpriteSheets = StandardMario[3];
@@ -222,8 +223,8 @@ namespace Sprint0.MarioClasses
         }
         public void ChangeToFire()
         {
-            Power =Fire;
-             IdleSprite.SpriteSheets = FireMario[0];
+            CurrentPower =Fire;
+            IdleSprite.SpriteSheets = FireMario[0];
             JumpSprite.SpriteSheets = FireMario[1];
             WalkingSprite.SpriteSheets = FireMario[2];
             CrouchSprite.SpriteSheets = FireMario[3];
@@ -239,7 +240,7 @@ namespace Sprint0.MarioClasses
         }
         public void ChangeToDied()
         {
-            Power = Died;
+            CurrentPower = Died;
             currentMarioAction = DiedSprite;
             if(powerType == PowerType.Super)
                 Location.Y +=16;
@@ -275,11 +276,12 @@ namespace Sprint0.MarioClasses
 
         private void SetPowerStates()
         {
+            PowerStates = new PowerState[4] {new StandardState(), new SuperState(), new FireState(), new DiedState() };
             Standard = new StandardState();
             Super = new SuperState();
             Fire = new FireState();
             Died = new DiedState();
-            Power = Standard;
+            CurrentPower = PowerStates[0];
         }
 
     }
