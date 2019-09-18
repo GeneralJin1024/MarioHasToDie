@@ -34,7 +34,7 @@ namespace Sprint0
             MillisecondsPerFrame = 200;
         }
 
-        public void Update(GameTime gameTime)
+        public virtual void Update(GameTime gameTime)
         {
             TimeSinceLastFrame += gameTime.ElapsedGameTime.Milliseconds;
             if (TimeSinceLastFrame > MillisecondsPerFrame)

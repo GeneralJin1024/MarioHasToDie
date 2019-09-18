@@ -119,7 +119,7 @@ namespace Sprint0
             LoadMarioTexture();
             //spriteList.Add(Mario);
             LoadEnemyItemTexture();
-
+            LoadBackgroundTexture();
 
             #region Controller
 
