@@ -13,14 +13,16 @@ namespace Sprint0.MarioClasses
     {
         public Texture2D SpriteSheets { get; set; }//useless variable
 
-        public enum ActionType {
-            [Description ("Crouch")]
+        public enum ActionType
+        {
+            [Description("Crouch")]
             Crouch,
             [Description("Other")]
             Other
         }
 
-        public enum PowerType {
+        public enum PowerType
+        {
             [Description("Standard")]
             Standard,
             [Description("Super")]
@@ -31,30 +33,26 @@ namespace Sprint0.MarioClasses
 
         #region Textures
         //{Stand, Jump, Walk, Crouch}
-        private readonly Texture2D[] StandardMario;
-        private readonly Texture2D[] SuperMario;
-        private readonly Texture2D[] FireMario;
+        private readonly Texture2D[][] MarioSpriteSheets;
         #endregion Textures
 
-
         #region ActionSprites
-        private ISprite DiedSprite;
-        private ISprite currentMarioAction;
         //{Idle, Jump, Walking, Crouch}
         private readonly ISprite[] ActionSprites;
         #endregion ActionSprites
 
         #region Action States
-        private ActionState CurrentAction;
         //{Idle, Jump, Walk, RunningJump, Crouch}
         private readonly ActionState[] ActionStates;
         #endregion Action States
 
         #region PowerState
-        private PowerState CurrentPower;
         //{Standard, Super, Fire, Died}
         private readonly PowerState[] PowerStates;
         #endregion PowerState
+
+        //{ActionSprite, ActionState, PowerState}
+        public int[] CurrentActionAndState { get; set; }
 
         public bool IsLeft { get; set; }
 
@@ -68,174 +66,175 @@ namespace Sprint0.MarioClasses
 
         private Vector2 Location;
 
-        public Mario(Texture2D[] standardSheets, Texture2D[] superSheet, 
-            Texture2D[] fireSheet, Texture2D diedSheet, Vector2 location)
+        public Mario(Texture2D[] standardSheets, Texture2D[] superSheet,
+            Texture2D[] fireSheet, Vector2 location)
         {
-            StandardMario = standardSheets;
-            SuperMario = superSheet;
-            FireMario = fireSheet;
-            DiedSprite = new AnimatedSprite(diedSheet, new Point(1, 1));
-            ActionSprites = new ISprite[4] { new AnimatedSprite(StandardMario[0], new Point(1, 1)),
-                new AnimatedSprite(StandardMario[1], new Point(1, 1)),
-                new AnimatedSprite(StandardMario[2], new Point(1, 3)),
-                new AnimatedSprite(StandardMario[3], new Point(1, 1))};
+            MarioSpriteSheets = new Texture2D[3][] { standardSheets, superSheet, fireSheet };
+            ActionSprites = new ISprite[5] { new AnimatedSprite(MarioSpriteSheets[0][0], new Point(1, 1)),
+                new AnimatedSprite(MarioSpriteSheets[0][1], new Point(1, 1)),
+                new AnimatedSprite(MarioSpriteSheets[0][2], new Point(1, 3)),
+                new AnimatedSprite(MarioSpriteSheets[0][3], new Point(1, 1)),
+                new AnimatedSprite(MarioSpriteSheets[0][4], new Point(1, 1))};
             ActionStates = new ActionState[5] { new IdleState(), new JumpState(), new WalkState(),
-                new RunningJumpState(), new CrouchState() };
+                new CrouchState(), new RunningJumpState() };
             PowerStates = new PowerState[4] { new StandardState(), new SuperState(), new FireState(),
                 new DiedState() };
-            currentMarioAction = ActionSprites[0];
-            CurrentAction = ActionStates[0];
-            CurrentPower = PowerStates[0];
+            CurrentActionAndState = new int[3] { 0, 0, 0 };
             IsLeft = false;
             Location = location;
         }
         #region ISprite Methods
         public void Update(GameTime gameTime)
         {
-            currentMarioAction.Update(gameTime);
+            ActionSprites[CurrentActionAndState[0]].Update(gameTime);
         }
 
         public void Draw(SpriteBatch spriteBatch, Vector2 location, bool isLeft)
         {
-            currentMarioAction.Draw(spriteBatch, Location, IsLeft);
+            ActionSprites[CurrentActionAndState[0]].Draw(spriteBatch, Location, IsLeft);
         }
 
         public Vector2 GetHeightAndWidth()
         {
-            return currentMarioAction.GetHeightAndWidth();
+            return ActionSprites[CurrentActionAndState[0]].GetHeightAndWidth();
         }
         #endregion ISprite Methods
 
         #region Action Command Receiver Method
-        public void MoveRight() {
-            if (CurrentPower.Type != PowerType.Died)
-                CurrentAction.Right(this);
+        public void MoveRight()
+        {
+            if (PowerStates[CurrentActionAndState[2]].Type != PowerType.Died)
+                ActionStates[CurrentActionAndState[1]].Right(this);
         }
 
-        public void MoveLeft() {
-            if (CurrentPower.Type != PowerType.Died)
-                CurrentAction.Left(this);
+        public void MoveLeft()
+        {
+            if (PowerStates[CurrentActionAndState[2]].Type != PowerType.Died)
+                ActionStates[CurrentActionAndState[1]].Left(this);
         }
 
-        public void MoveUp() {
-            if (CurrentPower.Type != PowerType.Died)
-                CurrentAction.Up(this);
+        public void MoveUp()
+        {
+            if (PowerStates[CurrentActionAndState[2]].Type != PowerType.Died)
+                ActionStates[CurrentActionAndState[1]].Up(this);
         }
 
-        public void MoveDown() {
-            if (CurrentPower.Type != PowerType.Died)
-                CurrentAction.Down(this);
+        public void MoveDown()
+        {
+            if (PowerStates[CurrentActionAndState[2]].Type != PowerType.Died)
+                //CurrentAction.Down(this);
+                ActionStates[CurrentActionAndState[1]].Down(this);
         }
         #endregion Action Command Receiver Method
 
         #region Action Change
         public void ChangeToIdle()
         {
-            currentMarioAction = ActionSprites[0];
-            if (CurrentPower.Type == PowerType.Super && CurrentAction.Type == ActionType.Crouch)
+            if (PowerStates[CurrentActionAndState[2]].Type == PowerType.Super &&
+                ActionStates[CurrentActionAndState[1]].Type == ActionType.Crouch)
                 // The difference of height between standing and crouch.
                 Location.Y -= 10;
-            CurrentAction = ActionStates[0];
+            ChangeActionStateAndSprite(0);
         }
 
         public void ChangeToJump()
         {
-            CurrentAction = ActionStates[1];
-            currentMarioAction = ActionSprites[1];
+            ChangeActionStateAndSprite(1);
         }
 
         public void ChangeToWalk()
         {
-            CurrentAction = ActionStates[2];
-            currentMarioAction = ActionSprites[2];
+            ChangeActionStateAndSprite(2);
         }
 
         public void ChangeToCrouch()
         {
-            currentMarioAction = ActionSprites[3];
-            if (CurrentPower.Type == PowerType.Super)
-                //The difference of height between standing and crouch.
-                Location.Y += 10;
-            CurrentAction = ActionStates[4];
+            if (PowerStates[CurrentActionAndState[2]].Type == PowerType.Super)
+            {
+                if (PowerStates[CurrentActionAndState[2]].Type == PowerType.Super)
+                    //The difference of height between standing and crouch.
+                    Location.Y += 10;
+                ChangeActionStateAndSprite(3);
+            }
         }
 
         public void ChangeToRunningJump()
         {
-            CurrentAction = ActionStates[3];
-            currentMarioAction = ActionSprites[1];
+            ChangeActionStateAndSprite(4);
         }
         #endregion Action Change
 
         #region Power Command Receiver Method
         // try update
-        public void MoveStandard() { ChangeToStandard();}
-        public void MoveSuper() { ChangeToSuper();}
-        public void MoveFire() { ChangeToFire();}
-        public void MoveDestroy() { CurrentPower.Destroy(this);}
+        public void MoveStandard() { ChangeToStandard(); }
+        public void MoveSuper() { ChangeToSuper(); }
+        public void MoveFire() { ChangeToFire(); }
+        public void MoveDestroy() { PowerStates[CurrentActionAndState[2]].Destroy(this); }
         #endregion Power Command Receiver Method
 
         #region Power Change
         public void ChangeToSuper()
         {
-            ActionSprites[0].SpriteSheets = SuperMario[0];
-            ActionSprites[1].SpriteSheets = SuperMario[1];
-            ActionSprites[2].SpriteSheets = SuperMario[2];
-            ActionSprites[3].SpriteSheets = SuperMario[3];
-
-            if (CurrentPower.Type == PowerType.Died)
-                currentMarioAction = ActionSprites[0];
-            if (CurrentPower.Type != PowerType.Super)
+            ChangeTexture(MarioSpriteSheets[1]);
+            PowerStates[CurrentActionAndState[2]].Leave(this);
+            if (PowerStates[CurrentActionAndState[2]].Type != PowerType.Super)
             {
-                Location.Y -=16;
+                Location.Y -= 16;
             }
-            CurrentPower = PowerStates[1];
+            CurrentActionAndState[2] = 1;
         }
         public void ChangeToStandard()
         {
-            if(CurrentAction.Type == ActionType.Crouch)  
+            if (ActionStates[CurrentActionAndState[1]].Type == ActionType.Crouch)
                 ChangeToIdle();
-            
-            ActionSprites[0].SpriteSheets = StandardMario[0];
-            ActionSprites[1].SpriteSheets = StandardMario[1];
-            ActionSprites[2].SpriteSheets = StandardMario[2];
-            ActionSprites[3].SpriteSheets = StandardMario[3];
-            
-            if(CurrentPower.Type == PowerType.Died)
-                currentMarioAction = ActionSprites[0];
-            else if (CurrentPower.Type == PowerType.Super)
+
+            ChangeTexture(MarioSpriteSheets[0]);
+            PowerStates[CurrentActionAndState[2]].Leave(this);
+            if (PowerStates[CurrentActionAndState[2]].Type == PowerType.Super)
             {
-                Location.Y +=16;
+                Location.Y += 16;
             }
-            CurrentPower = PowerStates[0];
+            CurrentActionAndState[2] = 0;
         }
         public void ChangeToFire()
         {
-            ActionSprites[0].SpriteSheets = FireMario[0];
-            ActionSprites[1].SpriteSheets = FireMario[1];
-            ActionSprites[2].SpriteSheets = FireMario[2];
-            ActionSprites[3].SpriteSheets = FireMario[3];
-
-            if(CurrentPower.Type == PowerType.Died)
-                currentMarioAction = ActionSprites[0];
-            if(CurrentPower.Type != PowerType.Super)
+            ChangeTexture(MarioSpriteSheets[2]);
+            PowerStates[CurrentActionAndState[2]].Leave(this);
+            if (PowerStates[CurrentActionAndState[2]].Type != PowerType.Super)
             {
-                Location.Y -=16;
+                Location.Y -= 16;
             }
-            CurrentPower = PowerStates[2];
+            CurrentActionAndState[2] = 2;
         }
         public void ChangeToDied()
         {
-            currentMarioAction = DiedSprite;
-            if(CurrentPower.Type == PowerType.Super)
-                Location.Y +=16;
-            CurrentPower = PowerStates[3];
+            CurrentActionAndState[0] = 4;
+            //if (PowerStates[CurrentActionAndState[2]].Type == PowerType.Super)
+            //    Location.Y += 16;
+            CurrentActionAndState[2] = 3;
         }
         #endregion Power Change
 
         // give Block to justify
-       public bool IsSuper()
+        public bool IsSuper()
         {
-            return (CurrentPower.Type == PowerType.Super);
+            return PowerStates[CurrentActionAndState[2]].Type == PowerType.Super;
         }
+
+        private void ChangeTexture(Texture2D[] newTexture)
+        {
+            for (int i = 0; i < 4; i++)
+                ActionSprites[i].SpriteSheets = newTexture[i];
+        }
+
+        private void ChangeActionStateAndSprite(int changeNumber)
+        {
+            if (changeNumber == 4)
+                CurrentActionAndState[0] = 1;
+            else
+                CurrentActionAndState[0] = changeNumber;
+            CurrentActionAndState[1] = changeNumber;
+        }
+
     }
 }

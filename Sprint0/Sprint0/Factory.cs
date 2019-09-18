@@ -50,9 +50,9 @@ namespace Sprint0
         }
         */
         public Mario getMario(Texture2D[] standardSheets, Texture2D[] superSheet,
-            Texture2D[] fireSheet, Texture2D diedSheet, Vector2 location)
+            Texture2D[] fireSheet, Vector2 location)
         {
-            return new Mario(standardSheets, superSheet, fireSheet, diedSheet, location);
+            return new Mario(standardSheets, superSheet, fireSheet, location);
         }
         public ItemSprite getCoin(Texture2D texture)
         {
