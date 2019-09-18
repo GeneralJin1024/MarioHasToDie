@@ -11,76 +11,24 @@ namespace Sprint0.MarioClasses
     {
         public void Destroy(Mario mario) { mario.ChangeToDied(); }
 
-        void PowerState.PowerUpToFireMario(Mario mario)
-        {
-            mario.ChangeToFire();
-        }
-
-        public void PowerUpToSuperMario(Mario mario)
-        {
-            mario.ChangeToSuper();
-        }
-
-        public void PowerDownToStandard(Mario mario)
-        {
-            mario.ChangeToStandard();
-        }
+       
     }
     class SuperState : PowerState
     {
         public void Destroy(Mario mario) { mario.ChangeToStandard(); }
 
-        public void PowerDownToStandard(Mario mario)
-        {
-            mario.ChangeToStandard();
-        }
-
-        public void PowerUpToFireMario(Mario mario)
-        {
-            mario.ChangeToFire();
-        }
-
-        public void PowerUpToSuperMario(Mario mario)
-        {
-            mario.ChangeToSuper();
-        }
+      
     }
     class FireState : PowerState
     {
         public void Destroy(Mario mario) { mario.ChangeToSuper(); }
 
-        public void PowerDownToStandard(Mario mario)
-        {
-            mario.ChangeToStandard();
-        }
-
-        public void PowerUpToFireMario(Mario mario)
-        {
-            mario.ChangeToFire();
-        }
-
-        public void PowerUpToSuperMario(Mario mario)
-        {
-            mario.ChangeToSuper();
-        }
+       
     }
     class DiedState : PowerState
     {
         public void Destroy(Mario mario) { }
 
-        public void PowerDownToStandard(Mario mario)
-        {
-            mario.ChangeToStandard();
-        }
-
-        public void PowerUpToFireMario(Mario mario)
-        {
-            mario.ChangeToFire();
-        }
-
-        public void PowerUpToSuperMario(Mario mario)
-        {
-            mario.ChangeToSuper();
-        }
+      
     }
 }

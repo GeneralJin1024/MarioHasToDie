@@ -10,10 +10,6 @@ namespace Sprint0.MarioClasses
     {
         void Destroy(Mario mario);
 
-        void PowerUpToFireMario(Mario mario);
-
-        void PowerUpToSuperMario(Mario mario);
-
-        void PowerDownToStandard(Mario mario);
+       
     }
 }
