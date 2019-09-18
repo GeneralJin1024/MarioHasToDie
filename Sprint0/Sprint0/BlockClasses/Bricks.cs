@@ -87,7 +87,7 @@ namespace Sprint0.BlockClasses
             currentbState = bStates[2];
             if (containItems)
                 ShowItem();
-            MinY = ((int)bPosition.Y - frameSize.Y)/2;
+            MinY = (int)bPosition.Y - frameSize.Y/2;
             MaxY = (int)bPosition.Y;
         }
         public override void Update(GameTime gameTime)

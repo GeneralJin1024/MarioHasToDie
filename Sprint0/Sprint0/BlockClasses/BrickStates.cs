@@ -19,14 +19,17 @@ namespace Sprint0.BlockClasses
         private Mario mario;
         public void Handle(Bricks brick)
         {
-            if (mario.IsSuper())
-            {
-                brick.ChangeToDestroyed();
-            }
-            else
-            {   
-                brick.Bumping();
-            }
+            /*
+             if (mario.IsSuper())
+             {
+                 brick.ChangeToDestroyed();
+             }
+             else
+             {   
+                 brick.Bumping();
+             }
+             */
+            brick.Bumping();
         }
     }
     class BumpingState : IBrickStates
