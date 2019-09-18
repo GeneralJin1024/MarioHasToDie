@@ -9,11 +9,45 @@ using Microsoft.Xna.Framework;
 using sprint0.Background;
 using Sprint0.Sprites;
 using Sprint0.Sprites.Sprint0.Sprites;
+using Microsoft.Xna.Framework.Content;
+using System.Collections;
 
 namespace Sprint0
 {
     class Factory
     {
+        /*
+        private ContentManager Content;
+
+        public Factory(ContentManager content)
+        {
+            Content = content;
+        }
+        public void LoadSpriteToList(ArrayList spriteList)
+        {
+            LoadEnemyItemTexture(spriteList);
+        }
+        private void LoadEnemyItemTexture(ArrayList spriteList)
+        {
+
+            Texture2D goomba = Content.Load<Texture2D>("EnemySprite/goomba");
+            Texture2D greenkoopa = Content.Load<Texture2D>("EnemySprite/greenkoopa");
+            Texture2D redkoopa = Content.Load<Texture2D>("EnemySprite/redkoopa");
+            Texture2D coin = Content.Load<Texture2D>("ItemSprite/coin");
+            Texture2D flower = Content.Load<Texture2D>("ItemSprite/flower");
+            Texture2D greenMushroom = Content.Load<Texture2D>("ItemSprite/greenMushroom");
+            Texture2D redMushroom = Content.Load<Texture2D>("ItemSprite/redMushroom");
+            Texture2D star = Content.Load<Texture2D>("ItemSprite/star");
+            spriteList.Add(getCoin(coin));
+            spriteList.Add(getFlower(flower));
+            spriteList.Add(getGreenMushroom(greenMushroom));
+            spriteList.Add(getRedMushroom(redMushroom));
+            spriteList.Add(getStar(star));
+            spriteList.Add(getGreenKoopa(greenkoopa));
+            spriteList.Add(getRedKoopa(redkoopa));
+            spriteList.Add(getGoomba(goomba));
+        }
+        */
         public Mario getMario(Texture2D[] standardSheets, Texture2D[] superSheet,
             Texture2D[] fireSheet, Texture2D diedSheet, Vector2 location)
         {
