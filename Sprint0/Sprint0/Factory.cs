@@ -67,6 +67,10 @@ namespace Sprint0
         {
             return new SmallCloudSprite(texture);
         }
+        public BigBushSprite getBigBush(Texture2D texture)
+        {
+            return new BigBushSprite(texture);
+        }
 
     }
 }

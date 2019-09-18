@@ -262,7 +262,20 @@ namespace Sprint0
             spriteList.Add(factory.getGreenKoopa(greenkoopa));
             spriteList.Add(factory.getRedKoopa(redkoopa));
             spriteList.Add(factory.getGoomba(goomba));
+        }
+        private void LoadBackgroundTexture()
+        {
 
+            Texture2D bigCloud = Content.Load<Texture2D>("BackgroundSprite/bigCloud");
+            Texture2D smallCloud = Content.Load<Texture2D>("BackgroundSprite/smallCloud");
+            Texture2D bigHill = Content.Load<Texture2D>("BackgroundSprite/bigHill");
+            Texture2D smallHill = Content.Load<Texture2D>("BackgroundSprite/smallHill");
+            Texture2D bigBush = Content.Load<Texture2D>("BackgroundSprite/bigBush");
+            spriteList.Add(factory.getBigCloud(bigCloud));
+            spriteList.Add(factory.getBigHill(bigHill));
+            spriteList.Add(factory.getSmallCloud(smallCloud));
+            spriteList.Add(factory.getSmallHill(smallHill));
+            spriteList.Add(factory.getBigBush(bigBush));
         }
     }
 }
