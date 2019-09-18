@@ -157,7 +157,7 @@ namespace Sprint0
             {
                 //Controller.UpdateInput(...);
                 foreach (IController controller in controllerList)
-                    controller.UpdateInput();
+                    controller.Update();
                 foreach (ISprite sprite in spriteList)
                     sprite.Update(gameTime);
             }

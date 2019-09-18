@@ -17,21 +17,22 @@ namespace Sprint0.BlockClasses
     class Bricks : Blocks
     {
         public BrickState bState;
+        public bool IsBumping { get; private set; }
         public bool containItems;
         private List<ISprite> items;
-        private bool isBumping;
         private int MinY, MaxY;
         private float[] destroyedBrickPosX;
         private float[] destroyedBrickPosY;
-        private Point positionOffset = new Point(0, 1);
-        private Vector2 spriteSpeed = new Vector2(50.0f, 100.0f);
+        protected Point positionOffset = new Point(1, 5);
+        protected Vector2 spriteSpeed = new Vector2(50.0f, 200.0f);
+        private Vector2 dPos;
         public Bricks(Texture2D sheet, Vector2 pos, Point rowAndColumn, int totalFrame, BrickState state, List<ISprite> itemList) 
             : base(sheet, pos, rowAndColumn,totalFrame)
         {
             items = itemList;
             containItems = itemList.Count != 0 ? true : false;
             bState = state;
-            isBumping = false;
+            IsBumping = false;
         }
 
         /*
@@ -71,12 +72,10 @@ namespace Sprint0.BlockClasses
         public void ChangeToDestroyed()
         {
             bState = BrickState.destroyed;
-            destroyedBrickPosX = new float[4];
-            destroyedBrickPosY = new float[4];
         }
         public void Bumping()
         {
-            isBumping = true;
+            IsBumping = true;
             if (bState == BrickState.bitem)
                 ShowItem();
             MinY = (int)bPosition.Y - frameSize.Y;
@@ -84,21 +83,7 @@ namespace Sprint0.BlockClasses
         }
         public override void Update(GameTime gameTime)
         {
-            if (bState == BrickState.destroyed)
-            {
-                Vector2 dPos = new Vector2(0, 0);
-                Point positionOffset = new Point(1, 5);
-                Vector2 spriteSpeed = new Vector2(10.0f, 50.0f);
-                dPos.X += positionOffset.X != 0 ? spriteSpeed.X * (float)gameTime.ElapsedGameTime.TotalSeconds : 0;
-                dPos.Y += positionOffset.Y != 0 ? spriteSpeed.Y * (float)gameTime.ElapsedGameTime.TotalSeconds : 0;
-
-                destroyedBrickPosX[0] = bPosition.X - dPos.X; destroyedBrickPosX[1] = bPosition.X - dPos.X;
-                destroyedBrickPosX[2] = bPosition.X + dPos.X; destroyedBrickPosX[3] = bPosition.X + dPos.X;
-
-                for (int i = 0; i < 4; i++)
-                    destroyedBrickPosY[i] = bPosition.Y + dPos.Y;
-            }
-            else if (!isBumping)
+            if (!IsBumping)
             {
                 base.Update(gameTime);
             }
@@ -112,7 +97,7 @@ namespace Sprint0.BlockClasses
                 }
                 if (bPosition.Y > MaxY)
                 {
-                    isBumping = false;
+                    IsBumping = false;
                     spriteSpeed.Y *= -1;
                     bPosition.Y = MaxY;
                 }
@@ -120,18 +105,13 @@ namespace Sprint0.BlockClasses
         }
         public override void Draw(SpriteBatch spriteBatch, Vector2 location, bool isLeft)
         {
-            if (bState != BrickState.bHidden && bState != BrickState.destroyed && !isBumping)
+            if (bState != BrickState.bHidden && bState != BrickState.destroyed && !IsBumping)
             {
                 base.Draw(spriteBatch, location, isLeft);
             }
-            if (isBumping)
+            if (IsBumping)
             {
                 base.Draw(spriteBatch, bPosition, isLeft);
-            }
-            if (bState == BrickState.destroyed)
-            {
-                for (int index = 0; index < 4; index++)
-                    spriteBatch.Draw(SpriteSheets, new Vector2(destroyedBrickPosX[index], destroyedBrickPosY[index]), new Rectangle(0, 0, frameSize.X / 2, frameSize.Y / 2), Color.White);
             }
         }
         private void ShowItem()
