@@ -30,7 +30,7 @@ namespace Sprint0.Sprites
             base.Update(gameTime);
             if (isBump&&bumpHeight > 0)
             {
-                Location.Y--;
+                Location.Y++;
                 bumpHeight--;
                 if (bumpHeight <= 0)
                 {
