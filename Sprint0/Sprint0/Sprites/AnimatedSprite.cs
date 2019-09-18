@@ -16,7 +16,7 @@ namespace Sprint0
         {
             get
             {
-                return this.location;
+                return this.Location;
             }
         }
 
@@ -24,7 +24,7 @@ namespace Sprint0
         private int ActionFrame;
         private int TimeSinceLastFrame;
         private int MillisecondsPerFrame;
-        private Vector2 location;
+        private Vector2 Location;
         public AnimatedSprite(Texture2D spriteSheet, Point rowAndColumn)
         {
             SpriteSheets = spriteSheet;
@@ -59,7 +59,7 @@ namespace Sprint0
             Rectangle destinationRectangle = new Rectangle((int)Location.X,
                 (int)Location.Y, (int)frameWidth, (int)frameHeight);
 
-            this.location = new Vector2(destinationRectangle.X, destinationRectangle.Y);
+            this.Location = new Vector2(destinationRectangle.X, destinationRectangle.Y);
             if (isLeft)
             {
                 spriteBatch.Draw(SpriteSheets, destinationRectangle, sourceRectangle,

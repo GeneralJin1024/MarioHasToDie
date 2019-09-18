@@ -118,8 +118,8 @@ namespace Sprint0
             //load mario texture and construct mario. Then add mario into sprite list.
             LoadMarioTexture();
             //spriteList.Add(Mario);
+            LoadEnemyItemTexture();
 
-            
 
             #region Controller
 
@@ -242,6 +242,40 @@ namespace Sprint0
                 Content.Load<Texture2D>("BlockSprites/mario-question-blocks"),
                 Content.Load<Texture2D>("BlockSprites/mario-shiny-block")};
             _blockSheets = blockSheets;
+        }
+        private void LoadEnemyItemTexture()
+        {
+
+            Texture2D goomba =Content.Load<Texture2D>("EnemySprite/goomba");
+            Texture2D greenkoopa = Content.Load<Texture2D>("EnemySprite/greenkoopa");
+            Texture2D redkoopa = Content.Load<Texture2D>("EnemySprite/redkoopa");
+            Texture2D coin = Content.Load<Texture2D>("ItemSprite/coin");
+            Texture2D flower = Content.Load<Texture2D>("ItemSprite/flower");
+            Texture2D greenMushroom = Content.Load<Texture2D>("ItemSprite/greenMushroom");
+            Texture2D redMushroom = Content.Load<Texture2D>("ItemSprite/redMushroom");
+            Texture2D star = Content.Load<Texture2D>("ItemSprite/star");
+            spriteList.Add(factory.getCoin(coin));
+            spriteList.Add(factory.getFlower(flower));
+            spriteList.Add(factory.getGreenMushroom(greenMushroom));
+            spriteList.Add(factory.getRedMushroom(redMushroom));
+            spriteList.Add(factory.getStar(star));
+            spriteList.Add(factory.getGreenKoopa(greenkoopa));
+            spriteList.Add(factory.getRedKoopa(redkoopa));
+            spriteList.Add(factory.getGoomba(goomba));
+        }
+        private void LoadBackgroundTexture()
+        {
+
+            Texture2D bigCloud = Content.Load<Texture2D>("BackgroundSprite/bigCloud");
+            Texture2D smallCloud = Content.Load<Texture2D>("BackgroundSprite/smallCloud");
+            Texture2D bigHill = Content.Load<Texture2D>("BackgroundSprite/bigHill");
+            Texture2D smallHill = Content.Load<Texture2D>("BackgroundSprite/smallHill");
+            Texture2D bigBush = Content.Load<Texture2D>("BackgroundSprite/bigBush");
+            spriteList.Add(factory.getBigCloud(bigCloud));
+            spriteList.Add(factory.getBigHill(bigHill));
+            spriteList.Add(factory.getSmallCloud(smallCloud));
+            spriteList.Add(factory.getSmallHill(smallHill));
+            spriteList.Add(factory.getBigBush(bigBush));
         }
     }
 }
