@@ -27,6 +27,8 @@ namespace sprint0.Background
         {
             return new Vector2((float)SpriteSheets.Height, (float)SpriteSheets.Width);
         }
+
+
         public void Draw(SpriteBatch spriteBatch, Vector2 location, bool isLeft)
         {
             foreach (Vector2 vector in Location)
