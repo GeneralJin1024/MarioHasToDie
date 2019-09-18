@@ -13,14 +13,17 @@ namespace Sprint0.MarioClasses
 
         void PowerState.PowerUpToFireMario(Mario mario)
         {
+            mario.ChangeToFire();
         }
 
         public void PowerUpToSuperMario(Mario mario)
         {
+            mario.ChangeToSuper();
         }
 
         public void PowerDownToStandard(Mario mario)
         {
+            mario.ChangeToStandard();
         }
     }
     class SuperState : PowerState
@@ -29,14 +32,17 @@ namespace Sprint0.MarioClasses
 
         public void PowerDownToStandard(Mario mario)
         {
+            mario.ChangeToStandard();
         }
 
         public void PowerUpToFireMario(Mario mario)
         {
+            mario.ChangeToFire();
         }
 
         public void PowerUpToSuperMario(Mario mario)
         {
+            mario.ChangeToSuper();
         }
     }
     class FireState : PowerState
@@ -45,14 +51,17 @@ namespace Sprint0.MarioClasses
 
         public void PowerDownToStandard(Mario mario)
         {
+            mario.ChangeToStandard();
         }
 
         public void PowerUpToFireMario(Mario mario)
         {
+            mario.ChangeToFire();
         }
 
         public void PowerUpToSuperMario(Mario mario)
         {
+            mario.ChangeToSuper();
         }
     }
     class DiedState : PowerState
@@ -61,14 +70,17 @@ namespace Sprint0.MarioClasses
 
         public void PowerDownToStandard(Mario mario)
         {
+            mario.ChangeToStandard();
         }
 
         public void PowerUpToFireMario(Mario mario)
         {
+            mario.ChangeToFire();
         }
 
         public void PowerUpToSuperMario(Mario mario)
         {
+            mario.ChangeToSuper();
         }
     }
 }
