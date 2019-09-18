@@ -46,6 +46,8 @@ namespace Sprint0.MarioClasses
         private ISprite WalkingSprite;
         private ISprite DiedSprite;
         private ISprite currentMarioAction;
+        //{Idle, Jump, Crouch, Walking}
+        private ISprite[] ActionSprites;
         #endregion ActionSprites
 
         #region Action States
@@ -130,7 +132,7 @@ namespace Sprint0.MarioClasses
         public void ChangeToIdle()
         {
             CurrentAction = ActionStates[0];
-            currentMarioAction = IdleSprite;
+            currentMarioAction = ActionSprites[0];
             if (powerType == PowerType.Super && actionType == ActionType.Crouch)
                 // The difference of height between standing and crouch.
                 Location.Y -= 10;
@@ -140,19 +142,19 @@ namespace Sprint0.MarioClasses
         public void ChangeToJump()
         {
             CurrentAction = ActionStates[1];
-            currentMarioAction = JumpSprite;
+            currentMarioAction = ActionSprites[1];
         }
 
         public void ChangeToWalk()
         {
             CurrentAction = ActionStates[2];
-            currentMarioAction = WalkingSprite;
+            currentMarioAction = ActionSprites[2];
         }
 
         public void ChangeToCrouch()
         {
             CurrentAction = ActionStates[4];
-            currentMarioAction = CrouchSprite;
+            currentMarioAction = ActionSprites[3];
             if (powerType == PowerType.Super)
                 //The difference of height between standing and crouch.
                 Location.Y += 10;
@@ -162,32 +164,30 @@ namespace Sprint0.MarioClasses
         public void ChangeToRunningJump()
         {
             CurrentAction = ActionStates[3];
-            currentMarioAction = JumpSprite;
+            currentMarioAction = ActionSprites[1];
         }
         #endregion Action Change
 
         #region Power Command Receiver Method
         // try update
-        public void MoveStandard() { ChangeToStandard();
-        }
-        public void MoveSuper() { ChangeToSuper();
-            }
-        public void MoveFire() { ChangeToFire();
-        }
-        public void MoveDestroy() { CurrentPower.Destroy(this);
-        }
+        public void MoveStandard() { ChangeToStandard();}
+        public void MoveSuper() { ChangeToSuper();}
+        public void MoveFire() { ChangeToFire();}
+        public void MoveDestroy() { CurrentPower.Destroy(this);}
         #endregion Power Command Receiver Method
 
         #region Power Change
         public void ChangeToSuper()
         {
             CurrentPower = PowerStates[1];
-            IdleSprite.SpriteSheets = SuperMario[0];
-            JumpSprite.SpriteSheets = SuperMario[1];
-            WalkingSprite.SpriteSheets = SuperMario[2];
-            CrouchSprite.SpriteSheets = SuperMario[3];
+            ActionSprites[0].SpriteSheets = SuperMario[0];
+            ActionSprites[1].SpriteSheets = SuperMario[1];
+            ActionSprites[2].SpriteSheets = SuperMario[2];
+            ActionSprites[3].SpriteSheets = SuperMario[3];
 
-            if(powerType  != PowerType.Super)
+            if (powerType == PowerType.Died)
+                currentMarioAction = ActionSprites[0];
+            if (powerType  != PowerType.Super)
             {
                 Location.Y -=16;
                 powerType = PowerType.Super;
@@ -206,7 +206,7 @@ namespace Sprint0.MarioClasses
             
             if(powerType == PowerType.Died)
 
-                currentMarioAction = IdleSprite;
+                currentMarioAction = ActionSprites[0];
 
             else if (powerType ==PowerType.Super)
             {
@@ -224,7 +224,7 @@ namespace Sprint0.MarioClasses
             CrouchSprite.SpriteSheets = FireMario[3];
 
             if(powerType ==PowerType.Died)
-                currentMarioAction = IdleSprite;
+                currentMarioAction = ActionSprites[0];
             if(powerType != PowerType.Super)
             {
                 Location.Y -=16;
@@ -251,11 +251,15 @@ namespace Sprint0.MarioClasses
 
         private void SetActionSprites()
         {
+            ActionSprites = new ISprite[4] { new AnimatedSprite(StandardMario[0], new Point(1, 1)),
+                new AnimatedSprite(StandardMario[1], new Point(1, 1)),
+                new AnimatedSprite(StandardMario[2], new Point(1, 3)),
+                new AnimatedSprite(StandardMario[3], new Point(1, 1))};
             IdleSprite = new AnimatedSprite(StandardMario[0], new Point(1, 1));
             JumpSprite = new AnimatedSprite(StandardMario[1], new Point(1, 1));
             WalkingSprite = new AnimatedSprite(StandardMario[2], new Point(1, 3));
             CrouchSprite = new AnimatedSprite(StandardMario[3], new Point(1, 1));
-            currentMarioAction = IdleSprite;
+            currentMarioAction = ActionSprites[0];
         }
 
         private void SetActionStates()
