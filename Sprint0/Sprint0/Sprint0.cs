@@ -216,10 +216,10 @@ namespace Sprint0
         private void LoadMarioTexture()
         {
             //13*16
-            Texture2D[] StandardSheets = new Texture2D[4] {Content.Load<Texture2D>("MarioSprites/smallMarioRightStand"),
+            Texture2D[] StandardSheets = new Texture2D[5] {Content.Load<Texture2D>("MarioSprites/smallMarioRightStand"),
                 Content.Load<Texture2D>("MarioSprites/smallMarioRightJump"),
                 Content.Load<Texture2D>("MarioSprites/smallMarioRightMove"),
-                Content.Load<Texture2D>("MarioSprites/smallMarioRightStand")};
+                Content.Load<Texture2D>("MarioSprites/smallMarioRightStand"), Content.Load<Texture2D>("DiedMario/deadMario")};
             //16*32
             Texture2D[] SuperSheets = new Texture2D[4] {Content.Load<Texture2D>("SuperMario/superMarioRightStand"),
                 Content.Load<Texture2D>("SuperMario/superMarioJumpRight"),
@@ -230,8 +230,7 @@ namespace Sprint0
                 Content.Load<Texture2D>("FireMario/fireMarioJumpRight"),
                 Content.Load<Texture2D>("FireMario/fireMarioRightMove"),
                 Content.Load<Texture2D>("FireMario/fireMarioRightCrouch")};
-            Mario = factory.getMario(StandardSheets, SuperSheets, FireSheets,
-                Content.Load<Texture2D>("DiedMario/deadMario"), new Vector2(400, 300));
+            Mario = factory.getMario(StandardSheets, SuperSheets, FireSheets, new Vector2(400, 300));
         }
 
         private void LoadBlockTexture()

@@ -10,6 +10,7 @@ namespace Sprint0.MarioClasses
     {
         Mario.PowerType Type { get; set; }
         void Destroy(Mario mario);
+        void Leave(Mario mario);
 
        
     }
