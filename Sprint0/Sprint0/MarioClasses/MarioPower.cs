@@ -11,8 +11,6 @@ namespace Sprint0.MarioClasses
     {
         public Mario.PowerType Type { get; set; } = Mario.PowerType.Standard;
         public void Destroy(Mario mario) { mario.ChangeToDied(); }
-
-       
     }
     class SuperState : PowerState
     {

@@ -37,7 +37,6 @@ namespace Sprint0.MarioClasses
         #endregion Textures
 
         private ActionType actionType;
-        private PowerType powerType;
 
         #region ActionSprites
         private ISprite DiedSprite;
@@ -90,7 +89,6 @@ namespace Sprint0.MarioClasses
             CurrentPower = PowerStates[0];
             IsLeft = false;
             actionType = ActionType.Other;
-            powerType = PowerType.Standard;
             Location = location;
         }
         #region ISprite Methods
@@ -112,22 +110,22 @@ namespace Sprint0.MarioClasses
 
         #region Action Command Receiver Method
         public void MoveRight() {
-            if (powerType != PowerType.Died)
+            if (CurrentPower.Type != PowerType.Died)
                 CurrentAction.Right(this);
         }
 
         public void MoveLeft() {
-            if (powerType != PowerType.Died)
+            if (CurrentPower.Type != PowerType.Died)
                 CurrentAction.Left(this);
         }
 
         public void MoveUp() {
-            if (powerType != PowerType.Died)
+            if (CurrentPower.Type != PowerType.Died)
                 CurrentAction.Up(this);
         }
 
         public void MoveDown() {
-            if (powerType != PowerType.Died)
+            if (CurrentPower.Type != PowerType.Died)
                 CurrentAction.Down(this);
         }
         #endregion Action Command Receiver Method
@@ -137,7 +135,7 @@ namespace Sprint0.MarioClasses
         {
             CurrentAction = ActionStates[0];
             currentMarioAction = ActionSprites[0];
-            if (powerType == PowerType.Super && actionType == ActionType.Crouch)
+            if (CurrentPower.Type == PowerType.Super && actionType == ActionType.Crouch)
                 // The difference of height between standing and crouch.
                 Location.Y -= 10;
             actionType = ActionType.Other;
@@ -159,7 +157,7 @@ namespace Sprint0.MarioClasses
         {
             CurrentAction = ActionStates[4];
             currentMarioAction = ActionSprites[3];
-            if (powerType == PowerType.Super)
+            if (CurrentPower.Type == PowerType.Super)
                 //The difference of height between standing and crouch.
                 Location.Y += 10;
             actionType = ActionType.Crouch;
@@ -183,73 +181,65 @@ namespace Sprint0.MarioClasses
         #region Power Change
         public void ChangeToSuper()
         {
-            CurrentPower = PowerStates[1];
             ActionSprites[0].SpriteSheets = SuperMario[0];
             ActionSprites[1].SpriteSheets = SuperMario[1];
             ActionSprites[2].SpriteSheets = SuperMario[2];
             ActionSprites[3].SpriteSheets = SuperMario[3];
 
-            if (powerType == PowerType.Died)
+            if (CurrentPower.Type == PowerType.Died)
                 currentMarioAction = ActionSprites[0];
-            if (powerType  != PowerType.Super)
+            if (CurrentPower.Type != PowerType.Super)
             {
                 Location.Y -=16;
-                powerType = PowerType.Super;
             }
-
+            CurrentPower = PowerStates[1];
         }
         public void ChangeToStandard()
         {
             if(actionType == ActionType.Crouch)  
                 ChangeToIdle();
-            CurrentPower = PowerStates[0];
+            
             ActionSprites[0].SpriteSheets = StandardMario[0];
             ActionSprites[1].SpriteSheets = StandardMario[1];
             ActionSprites[2].SpriteSheets = StandardMario[2];
             ActionSprites[3].SpriteSheets = StandardMario[3];
             
-            if(powerType == PowerType.Died)
-
+            if(CurrentPower.Type == PowerType.Died)
                 currentMarioAction = ActionSprites[0];
-
-            else if (powerType ==PowerType.Super)
+            else if (CurrentPower.Type == PowerType.Super)
             {
                 Location.Y +=16;
             }
-            powerType = PowerType.Standard;
-
+            CurrentPower = PowerStates[0];
         }
         public void ChangeToFire()
         {
-            CurrentPower = PowerStates[2];
             ActionSprites[0].SpriteSheets = FireMario[0];
             ActionSprites[1].SpriteSheets = FireMario[1];
             ActionSprites[2].SpriteSheets = FireMario[2];
             ActionSprites[3].SpriteSheets = FireMario[3];
 
-            if(powerType ==PowerType.Died)
+            if(CurrentPower.Type == PowerType.Died)
                 currentMarioAction = ActionSprites[0];
-            if(powerType != PowerType.Super)
+            if(CurrentPower.Type != PowerType.Super)
             {
                 Location.Y -=16;
-                powerType = PowerType.Super;
             }
-
+            CurrentPower = PowerStates[2];
         }
         public void ChangeToDied()
         {
-            CurrentPower = PowerStates[3];
             currentMarioAction = DiedSprite;
-            if(powerType == PowerType.Super)
+            if(CurrentPower.Type == PowerType.Super)
                 Location.Y +=16;
-            powerType = PowerType.Died;
+            CurrentPower = PowerStates[3];
         }
         #endregion Power Change
 
         // give Block to justify
        public bool IsSuper()
         {
-            return (powerType == PowerType.Super);
+            return (CurrentPower.Type == PowerType.Super);
         }
     }
 }
