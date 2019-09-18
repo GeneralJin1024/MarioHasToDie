@@ -31,30 +31,29 @@ namespace Sprint0.MarioClasses
 
         #region Textures
         //{Stand, Jump, Walk, Crouch}
-        private Texture2D[] StandardMario;
-        private Texture2D[] SuperMario;
-        private Texture2D[] FireMario;
+        private readonly Texture2D[] StandardMario;
+        private readonly Texture2D[] SuperMario;
+        private readonly Texture2D[] FireMario;
         #endregion Textures
 
-        private ActionType actionType;
 
         #region ActionSprites
         private ISprite DiedSprite;
         private ISprite currentMarioAction;
         //{Idle, Jump, Walking, Crouch}
-        private ISprite[] ActionSprites;
+        private readonly ISprite[] ActionSprites;
         #endregion ActionSprites
 
         #region Action States
         private ActionState CurrentAction;
         //{Idle, Jump, Walk, RunningJump, Crouch}
-        private ActionState[] ActionStates;
+        private readonly ActionState[] ActionStates;
         #endregion Action States
 
         #region PowerState
         private PowerState CurrentPower;
         //{Standard, Super, Fire, Died}
-        private PowerState[] PowerStates;
+        private readonly PowerState[] PowerStates;
         #endregion PowerState
 
         public bool IsLeft { get; set; }
@@ -88,7 +87,6 @@ namespace Sprint0.MarioClasses
             CurrentAction = ActionStates[0];
             CurrentPower = PowerStates[0];
             IsLeft = false;
-            actionType = ActionType.Other;
             Location = location;
         }
         #region ISprite Methods
@@ -133,12 +131,11 @@ namespace Sprint0.MarioClasses
         #region Action Change
         public void ChangeToIdle()
         {
-            CurrentAction = ActionStates[0];
             currentMarioAction = ActionSprites[0];
-            if (CurrentPower.Type == PowerType.Super && actionType == ActionType.Crouch)
+            if (CurrentPower.Type == PowerType.Super && CurrentAction.Type == ActionType.Crouch)
                 // The difference of height between standing and crouch.
                 Location.Y -= 10;
-            actionType = ActionType.Other;
+            CurrentAction = ActionStates[0];
         }
 
         public void ChangeToJump()
@@ -155,12 +152,11 @@ namespace Sprint0.MarioClasses
 
         public void ChangeToCrouch()
         {
-            CurrentAction = ActionStates[4];
             currentMarioAction = ActionSprites[3];
             if (CurrentPower.Type == PowerType.Super)
                 //The difference of height between standing and crouch.
                 Location.Y += 10;
-            actionType = ActionType.Crouch;
+            CurrentAction = ActionStates[4];
         }
 
         public void ChangeToRunningJump()
@@ -196,7 +192,7 @@ namespace Sprint0.MarioClasses
         }
         public void ChangeToStandard()
         {
-            if(actionType == ActionType.Crouch)  
+            if(CurrentAction.Type == ActionType.Crouch)  
                 ChangeToIdle();
             
             ActionSprites[0].SpriteSheets = StandardMario[0];
