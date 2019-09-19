@@ -120,7 +120,7 @@ namespace Sprint0
             spriteBatch = new SpriteBatch(GraphicsDevice);
             LoadBlockTexture();
             //load mario texture and construct mario. Then add mario into sprite list.
-            LoadMarioTexture();
+            Mario = new FactoryClasses.MarioFactory(Content).GetMario(new Vector2(400, 300));
             spriteList.Add(Mario);
             LoadEnemyItemTexture();
             LoadBackgroundTexture();
