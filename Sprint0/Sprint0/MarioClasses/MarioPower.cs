@@ -9,66 +9,37 @@ namespace Sprint0.MarioClasses
 {
     class StandardState : PowerState
     {
+        public Mario.PowerType Type { get; set; } = Mario.PowerType.Standard;
         public void Destroy(Mario mario) { mario.ChangeToDied(); }
-
-        void PowerState.PowerUpToFireMario(Mario mario)
-        {
-        }
-
-        public void PowerUpToSuperMario(Mario mario)
-        {
-        }
-
-        public void PowerDownToStandard(Mario mario)
-        {
-        }
+        public void Leave(Mario mario) { }
     }
     class SuperState : PowerState
     {
+        public Mario.PowerType Type { get; set; } = Mario.PowerType.Super;
         public void Destroy(Mario mario) { mario.ChangeToStandard(); }
+        public void Leave(Mario mario) { }
 
-        public void PowerDownToStandard(Mario mario)
-        {
-        }
 
-        public void PowerUpToFireMario(Mario mario)
-        {
-        }
-
-        public void PowerUpToSuperMario(Mario mario)
-        {
-        }
     }
     class FireState : PowerState
     {
+        public Mario.PowerType Type { get; set; } = Mario.PowerType.Super;
         public void Destroy(Mario mario) { mario.ChangeToSuper(); }
+        public void Leave(Mario mario) { }
 
-        public void PowerDownToStandard(Mario mario)
-        {
-        }
 
-        public void PowerUpToFireMario(Mario mario)
-        {
-        }
-
-        public void PowerUpToSuperMario(Mario mario)
-        {
-        }
     }
     class DiedState : PowerState
     {
+        public Mario.PowerType Type { get; set; } = Mario.PowerType.Died;
         public void Destroy(Mario mario) { }
 
-        public void PowerDownToStandard(Mario mario)
+        public void Leave(Mario mario)
         {
+            mario.CurrentActionAndState[0] = 0;
+            mario.CurrentActionAndState[1] = 0;
         }
 
-        public void PowerUpToFireMario(Mario mario)
-        {
-        }
 
-        public void PowerUpToSuperMario(Mario mario)
-        {
-        }
     }
 }

@@ -8,12 +8,10 @@ namespace Sprint0.MarioClasses
 {
     interface PowerState
     {
+        Mario.PowerType Type { get; set; }
         void Destroy(Mario mario);
+        void Leave(Mario mario);
 
-        void PowerUpToFireMario(Mario mario);
-
-        void PowerUpToSuperMario(Mario mario);
-
-        void PowerDownToStandard(Mario mario);
+       
     }
 }

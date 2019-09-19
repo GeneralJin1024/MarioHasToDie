@@ -8,17 +8,17 @@ using System.Threading.Tasks;
 
 namespace Sprint0.BlockClasses
 {
-    class FloorBlock : Blocks
+    class FloorBlockSprite : Blocks
     {
-        public FloorBlock(Sprint0 game, Vector2 pos) : base(game.Content.Load<Texture2D>("BlockSprites/mario-gravel-blocks"), pos, new Point(4, 1), 1)
+        public FloorBlockSprite(Sprint0 game, Vector2 pos) : base(game.Content.Load<Texture2D>("BlockSprites/mario-gravel-blocks"), pos, new Point(4, 1), 1)
         {
             // nothing to do
         }
     }
 
-    class StairBlock : Blocks
+    class StairBlockSprite : Blocks
     {
-        public StairBlock(Sprint0 game, Vector2 pos) : base(game.Content.Load<Texture2D>("BlockSprites/mario-shiny-block"), pos, new Point(4, 1), 1)
+        public StairBlockSprite(Sprint0 game, Vector2 pos) : base(game.Content.Load<Texture2D>("BlockSprites/mario-shiny-block"), pos, new Point(4, 1), 1)
         {
             // nothing to do
         }
