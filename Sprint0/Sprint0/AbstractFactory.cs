@@ -7,7 +7,7 @@ using Sprint0.MarioClasses;
 
 namespace Sprint0
 {
-    abstract class AbstractFactory
+    public abstract class AbstractFactory
     {
         public abstract Mario GetMario();
         public abstract void GetBlock();
