@@ -31,7 +31,7 @@ namespace Sprint0.FactoryClasses
         {
         }
 
-        public Mario GetMario(Vector2 location)
+        public override Mario GetMario(Vector2 location)
         {
             Texture2D[] StandardSheets = new Texture2D[5] {Content.Load<Texture2D>("MarioSprites/smallMarioRightStand"),
                 Content.Load<Texture2D>("MarioSprites/smallMarioRightJump"),
