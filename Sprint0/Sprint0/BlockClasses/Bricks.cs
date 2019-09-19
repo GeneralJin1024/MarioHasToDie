@@ -86,7 +86,7 @@ namespace Sprint0.BlockClasses
         {
             IsBumping = true;
             currentbState = bStates[2];
-            MinY = (int)bPosition.Y - frameSize.Y/2;
+            MinY = (int)bPosition.Y - frameSize.Y;
             MaxY = (int)bPosition.Y;
         }
         public override void Update(GameTime gameTime)
@@ -98,7 +98,10 @@ namespace Sprint0.BlockClasses
                 if (bPosition.Y < MinY)
                 {
                     if (containItems)
-                        ShowItem();
+                    {
+                        ItemSprite item = items[0];
+                        item.bumping(bPosition, this.Position.Y - 3 * frameSize.Y, spriteSpeed);
+                    }
                     spriteSpeed.Y *= -1;
                     bPosition.Y = MinY;
                 }
@@ -107,6 +110,7 @@ namespace Sprint0.BlockClasses
                     IsBumping = false;
                     if (currentbState != bStates[3])
                         currentbState = bStates[1];
+                    ShowItem();
                     spriteSpeed.Y *= -1;
                     bPosition.Y = MaxY;
                 }
@@ -125,9 +129,7 @@ namespace Sprint0.BlockClasses
         }
         private void ShowItem()
         {
-            ItemSprite item = items[0];
-            items.RemoveAt(0);
-            item.bumping(bPosition, this.Position.Y - 2*frameSize.Y, spriteSpeed);
+            //items.RemoveAt(0);
             if (items.Count == 0)
             {
                 containItems = false;
