@@ -11,7 +11,7 @@ using Microsoft.Xna.Framework.Content;
 
 namespace Sprint0.FactoryClasses
 {
-    public class MarioFactory : AbstractFactory
+    public class MarioFactory
     {
         private ContentManager Content;
 
@@ -19,19 +19,8 @@ namespace Sprint0.FactoryClasses
         {
             Content = content;
         }
-        public override void GetBlock()
-        {
-        }
 
-        public override void GetEnemy()
-        {
-        }
-
-        public override void GetItem()
-        {
-        }
-
-        public override Mario GetMario(Vector2 location)
+        public Mario GetMario(Vector2 location)
         {
             Texture2D[] StandardSheets = new Texture2D[5] {Content.Load<Texture2D>("MarioSprites/smallMarioRightStand"),
                 Content.Load<Texture2D>("MarioSprites/smallMarioRightJump"),
