@@ -41,8 +41,10 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="AbstractFactory.cs" />
     <Compile Include="BlockClasses\IBrickStates.cs" />
     <Compile Include="BlockClasses\BrickStates.cs" />
+    <Compile Include="FactoryClasses\MarioFactory.cs" />
     <Compile Include="ICommand.cs" />
     <Compile Include="Sprites\AnimatedSprite.cs" />
     <Compile Include="BlockClasses\Blocks.cs" />
