@@ -24,7 +24,7 @@ namespace Sprint0.BlockClasses
 
         protected int totalFrame;
         protected Point frameSize { get; set; }
-        private Point sheetSize { get; set; }
+        protected Point sheetSize { get; set; }
         private int timeSinceLastFrame { get; set; }
         private int millisecondsPerFrame { get; set; }
         private Point frameOrigin { get; set; }

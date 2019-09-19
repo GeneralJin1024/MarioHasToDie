@@ -28,6 +28,8 @@ namespace Sprint0
         private String Jian  = "WWE";
         private ArrayList controllerList;
         private ArrayList spriteList;
+        List<ItemSprite> itemList1;
+        List<ItemSprite> itemList2;
         #region Sprite
         #endregion
 
@@ -82,12 +84,14 @@ namespace Sprint0
             #region TestBlockSprites
             float x = GraphicsDevice.Viewport.Width / 7;
             float y = GraphicsDevice.Viewport.Height / 2;
-            qBlockTest = new QuestionBlockSprite(this, new Vector2(x, y), new List<ItemSprite>() { factory.getRedMushroom(Content.Load<Texture2D>("ItemSprite/redMushroom")) });
+            itemList1 = new List<ItemSprite>() { factory.getRedMushroom(Content.Load<Texture2D>("ItemSprite/redMushroom")) };
+            itemList2 = new List<ItemSprite>() { factory.getCoin(Content.Load<Texture2D>("ItemSprite/coin")), factory.getCoin(Content.Load<Texture2D>("ItemSprite/coin")) };
+            qBlockTest = new QuestionBlockSprite(this, new Vector2(x, y), itemList1);
             hitBlockTest = new UsedBlockSprite(this, new Vector2(2 * x, y));
             hiddenBlockTest = new HiddenBlockSprite(this, new Vector2(3 * x, y), new List<ItemSprite>());
             floorBlockTest = new FloorBlockSprite(this, new Vector2(4 * x, y));
             stairBlockTest = new StairBlockSprite(this, new Vector2(5 * x, y));
-            brickBlockTest = new BrickBlockSprite(this, new Vector2(6 * x, y), new List<ItemSprite>() { factory.getCoin(Content.Load<Texture2D>("ItemSprite/coin")), factory.getCoin(Content.Load<Texture2D>("ItemSprite/coin")) });
+            brickBlockTest = new BrickBlockSprite(this, new Vector2(6 * x, y), itemList2);
             spriteList = new ArrayList();
             spriteList.Add(qBlockTest);
             spriteList.Add(hitBlockTest);
@@ -160,6 +164,10 @@ namespace Sprint0
                     controller.Update();
                 foreach (ISprite sprite in spriteList)
                     sprite.Update(gameTime);
+                foreach (ItemSprite item in itemList1)
+                    item.Update(gameTime);
+                foreach (ItemSprite item in itemList2)
+                    item.Update(gameTime);
             }
 
             base.Update(gameTime);
@@ -181,8 +189,15 @@ namespace Sprint0
             if (MenuMode)
                 GameMenu.Draw(spriteBatch);
             else
+            {
                 foreach (ISprite sprite in spriteList)
                     sprite.Draw(spriteBatch, sprite.Position, true);
+                foreach (ItemSprite item in itemList1)
+                    item.Draw(spriteBatch, item.Position, true);
+                foreach (ItemSprite item in itemList2)
+                    item.Draw(spriteBatch, item.Position, true);
+            }
+                
 
             #region Fonts
             //DrawFonts(spriteBatch);

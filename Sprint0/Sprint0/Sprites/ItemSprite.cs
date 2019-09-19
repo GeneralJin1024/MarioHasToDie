@@ -22,13 +22,13 @@ namespace Sprint0.Sprites
             Location=location;
             isBump = false;
         }
-        public void bumping(Vector2 startP, float maxY, Vector2 blockSpeed)
+        public void bumping(Vector2 startP, float minY, Vector2 blockSpeed)
         {
             positionOffset = new Point(0, 1);
-            spriteSpeed.Y = blockSpeed.Y / 10;
+            spriteSpeed.Y = blockSpeed.Y * 5;
             Location = startP;
-            bumpHeight = maxY;
-            isBump = true;
+            bumpHeight = minY;
+            //isBump = true;
         }
         public override void Update(GameTime gameTime)
         {
@@ -36,10 +36,9 @@ namespace Sprint0.Sprites
             if (isBump&&bumpHeight > 0)
             {
                 Location.Y -= positionOffset.Y != 0 ? spriteSpeed.Y * (float)gameTime.ElapsedGameTime.TotalSeconds : 0;
-                if (Location.Y > bumpHeight)
+                if (Location.Y < bumpHeight)
                 {
                     isBump = false;
-                    spriteSpeed.Y *= -1;
                     Location.Y = bumpHeight;
                 }
             }

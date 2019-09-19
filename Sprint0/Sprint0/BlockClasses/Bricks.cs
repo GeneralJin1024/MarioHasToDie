@@ -72,9 +72,10 @@ namespace Sprint0.BlockClasses
         private void ChangeToUsed()
         {
             bType = BrickType.Used;
-            SpriteSheets = Sprint0.BlockTextures[2];
-            currentbState = bStates[3];
             totalFrame = 1;
+            sheetSize = new Point(4, 1);
+            currentbState = bStates[3];
+            SpriteSheets = Sprint0.BlockTextures[2];
         }
         public void ChangeToDestroyed()
         {
@@ -85,8 +86,6 @@ namespace Sprint0.BlockClasses
         {
             IsBumping = true;
             currentbState = bStates[2];
-            if (containItems)
-                ShowItem();
             MinY = (int)bPosition.Y - frameSize.Y/2;
             MaxY = (int)bPosition.Y;
         }
@@ -98,12 +97,16 @@ namespace Sprint0.BlockClasses
                 bPosition.Y -= positionOffset.Y != 0 ? spriteSpeed.Y * (float)gameTime.ElapsedGameTime.TotalSeconds : 0;
                 if (bPosition.Y < MinY)
                 {
+                    if (containItems)
+                        ShowItem();
                     spriteSpeed.Y *= -1;
                     bPosition.Y = MinY;
                 }
                 if (bPosition.Y > MaxY)
                 {
                     IsBumping = false;
+                    if (currentbState != bStates[3])
+                        currentbState = bStates[1];
                     spriteSpeed.Y *= -1;
                     bPosition.Y = MaxY;
                 }
@@ -122,9 +125,9 @@ namespace Sprint0.BlockClasses
         }
         private void ShowItem()
         {
-            ItemSprite item = items.First();
+            ItemSprite item = items[0];
             items.RemoveAt(0);
-            item.bumping(this.Position, this.Position.Y + frameSize.Y, spriteSpeed);
+            item.bumping(bPosition, this.Position.Y - 2*frameSize.Y, spriteSpeed);
             if (items.Count == 0)
             {
                 containItems = false;
