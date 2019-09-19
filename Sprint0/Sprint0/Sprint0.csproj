@@ -41,12 +41,11 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="AbstractFactory.cs" />
-    <Compile Include="BlockClasses\IBrickStates.cs" />
-    <Compile Include="BlockClasses\BrickStates.cs" />
-    <Compile Include="FactoryClasses\MarioFactory.cs" />
+    <Compile Include="Command\MoveLeftCommand.cs" />
+    <Compile Include="Command\MoveRightCommand.cs" />
     <Compile Include="ICommand.cs" />
     <Compile Include="Sprites\AnimatedSprite.cs" />
+    <Compile Include="BlockClasses\BlockCommands.cs" />
     <Compile Include="BlockClasses\Blocks.cs" />
     <Compile Include="BlockClasses\Bricks.cs" />
     <Compile Include="BlockClasses\BrickBlockSprite.cs" />
@@ -69,10 +68,18 @@
     <Compile Include="Sprint0.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Sprites\BackgroundSprites.cs" />
-    <Compile Include="Sprites\BackgroundSprite.cs" />
-    <Compile Include="Sprites\EnemySprite.cs" />
-    <Compile Include="Sprites\ItemSprite.cs" />
+    <Compile Include="Sprites\BackgroundSprites\SmallHillSprite.cs" />
+    <Compile Include="Sprites\BackgroundSprites\SmallCloudSprite.cs" />
+    <Compile Include="Sprites\BackgroundSprites\BigHillSprite.cs" />
+    <Compile Include="Sprites\BackgroundSprites\BigCloudSprite.cs" />
+    <Compile Include="Sprites\EnemySprites\RedkoopaSprite.cs" />
+    <Compile Include="Sprites\EnemySprites\GreenkoopaSprite.cs" />
+    <Compile Include="Sprites\EnemySprites\GoombaSprite.cs" />
+    <Compile Include="Sprites\ItemSprites\RedMushroomSprite.cs" />
+    <Compile Include="Sprites\ItemSprites\GreenMushroomSprite.cs" />
+    <Compile Include="Sprites\ItemSprites\StarSprite.cs" />
+    <Compile Include="Sprites\ItemSprites\FlowerSprite.cs" />
+    <Compile Include="Sprites\ItemSprites\CoinSprite.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MonoGame.Framework">
