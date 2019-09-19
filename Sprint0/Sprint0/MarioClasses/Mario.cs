@@ -9,7 +9,7 @@ using System.ComponentModel;
 
 namespace Sprint0.MarioClasses
 {
-    class Mario : ISprite
+    public class Mario : ISprite
     {
         public Texture2D SpriteSheets { get; set; }//useless variable
 
