@@ -7,6 +7,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Sprint0.BlockClasses;
 using Sprint0.MarioClasses;
+using Sprint0.Sprites;
 
 namespace Sprint0
 {
@@ -27,6 +28,8 @@ namespace Sprint0
         private String Jian  = "WWE";
         private ArrayList controllerList;
         private ArrayList spriteList;
+        List<ItemSprite> itemList1;
+        List<ItemSprite> itemList2;
         #region Sprite
         #endregion
 
@@ -79,15 +82,16 @@ namespace Sprint0
             factory = new Factory();
 
             #region TestBlockSprites
-            List<ISprite> items = new List<ISprite>();
             float x = GraphicsDevice.Viewport.Width / 7;
             float y = GraphicsDevice.Viewport.Height / 2;
-            qBlockTest = new QuestionBlockSprite(this, new Vector2(x, y), items);
+            itemList1 = new List<ItemSprite>() { factory.getRedMushroom(Content.Load<Texture2D>("ItemSprite/redMushroom")) };
+            itemList2 = new List<ItemSprite>() { factory.getCoin(Content.Load<Texture2D>("ItemSprite/coin")), factory.getCoin(Content.Load<Texture2D>("ItemSprite/coin")) };
+            qBlockTest = new QuestionBlockSprite(this, new Vector2(x, y), itemList1);
             hitBlockTest = new UsedBlockSprite(this, new Vector2(2 * x, y));
-            hiddenBlockTest = new HiddenBlockSprite(this, new Vector2(3 * x, y), items);
-            floorBlockTest = new FloorBlock(this, new Vector2(4 * x, y));
-            stairBlockTest = new StairBlock(this, new Vector2(5 * x, y));
-            brickBlockTest = new BrickBlockSprite(this, new Vector2(6 * x, y), items, BrickState.bempty);
+            hiddenBlockTest = new HiddenBlockSprite(this, new Vector2(3 * x, y), new List<ItemSprite>());
+            floorBlockTest = new FloorBlockSprite(this, new Vector2(4 * x, y));
+            stairBlockTest = new StairBlockSprite(this, new Vector2(5 * x, y));
+            brickBlockTest = new BrickBlockSprite(this, new Vector2(6 * x, y), itemList2);
             spriteList = new ArrayList();
             spriteList.Add(qBlockTest);
             spriteList.Add(hitBlockTest);
@@ -98,7 +102,7 @@ namespace Sprint0
             #endregion
 
             #region Controllers
-            controllerList = new ArrayList() { new KeyboardController(this, brickBlockTest) };
+            controllerList = new ArrayList() { new KeyboardController(this, brickBlockTest, hiddenBlockTest, qBlockTest) };
             #endregion
 
             GameMenu = new Menu(this);
@@ -116,7 +120,7 @@ namespace Sprint0
             spriteBatch = new SpriteBatch(GraphicsDevice);
             LoadBlockTexture();
             //load mario texture and construct mario. Then add mario into sprite list.
-            LoadMarioTexture();
+            Mario = new FactoryClasses.MarioFactory(Content).GetMario(new Vector2(400, 300));
             spriteList.Add(Mario);
             LoadEnemyItemTexture();
             LoadBackgroundTexture();
@@ -160,6 +164,10 @@ namespace Sprint0
                     controller.Update();
                 foreach (ISprite sprite in spriteList)
                     sprite.Update(gameTime);
+                foreach (ItemSprite item in itemList1)
+                    item.Update(gameTime);
+                foreach (ItemSprite item in itemList2)
+                    item.Update(gameTime);
             }
 
             base.Update(gameTime);
@@ -181,8 +189,15 @@ namespace Sprint0
             if (MenuMode)
                 GameMenu.Draw(spriteBatch);
             else
+            {
                 foreach (ISprite sprite in spriteList)
                     sprite.Draw(spriteBatch, sprite.Position, true);
+                foreach (ItemSprite item in itemList1)
+                    item.Draw(spriteBatch, item.Position, true);
+                foreach (ItemSprite item in itemList2)
+                    item.Draw(spriteBatch, item.Position, true);
+            }
+                
 
             #region Fonts
             //DrawFonts(spriteBatch);
@@ -213,26 +228,6 @@ namespace Sprint0
             #endregion
         }
 
-        private void LoadMarioTexture()
-        {
-            //13*16
-            Texture2D[] StandardSheets = new Texture2D[4] {Content.Load<Texture2D>("MarioSprites/smallMarioRightStand"),
-                Content.Load<Texture2D>("MarioSprites/smallMarioRightJump"),
-                Content.Load<Texture2D>("MarioSprites/smallMarioRightMove"),
-                Content.Load<Texture2D>("MarioSprites/smallMarioRightStand")};
-            //16*32
-            Texture2D[] SuperSheets = new Texture2D[4] {Content.Load<Texture2D>("SuperMario/superMarioRightStand"),
-                Content.Load<Texture2D>("SuperMario/superMarioJumpRight"),
-                Content.Load<Texture2D>("SuperMario/superMarioMoveRight"),
-                Content.Load<Texture2D>("SuperMario/superMarioRightCrouch")};
-            //16*32   16*22
-            Texture2D[] FireSheets = new Texture2D[4] {Content.Load<Texture2D>("FireMario/fireMarioRightStand"),
-                Content.Load<Texture2D>("FireMario/fireMarioJumpRight"),
-                Content.Load<Texture2D>("FireMario/fireMarioRightMove"),
-                Content.Load<Texture2D>("FireMario/fireMarioRightCrouch")};
-            Mario = factory.getMario(StandardSheets, SuperSheets, FireSheets,
-                Content.Load<Texture2D>("DiedMario/deadMario"), new Vector2(400, 300));
-        }
 
         private void LoadBlockTexture()
         {

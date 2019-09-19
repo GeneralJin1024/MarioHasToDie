@@ -4,10 +4,8 @@
     "\\Sprint0",
     "\\Sprint0\\Sprint0",
     "\\Sprint0\\Sprint0\\Content",
-    "\\Sprint0\\Sprint0\\MarioClasses",
-    "\\Sprint0\\Sprint0\\sprites",
-    "\\Sprint0\\Sprint0\\sprites\\EnemySprite"
+    "\\Sprint0\\Sprint0\\MarioClasses"
   ],
-  "SelectedNode": "\\Sprint0\\Sprint0\\sprites\\EnemySprite\\CoinSprite.cs",
+  "SelectedNode": "\\Sprint0\\Sprint0\\Sprint0.cs",
   "PreviewInSolutionExplorer": false
 }

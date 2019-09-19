@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Sprint0.Sprites;
 
 namespace Sprint0.BlockClasses
 {
@@ -13,14 +14,14 @@ namespace Sprint0.BlockClasses
         private float[] destroyedBrickPosX;
         private float[] destroyedBrickPosY;
         private Vector2 dPos;
-        public BrickBlockSprite(Sprint0 game, Vector2 pos, List<ISprite> items, BrickState state) : base(game.Content.Load<Texture2D>("BlockSprites/mario-brick-blocks"), pos, new Point(4, 1), 1, state, items)
+        public BrickBlockSprite(Sprint0 game, Vector2 pos, List<ItemSprite> items) : base(game.Content.Load<Texture2D>("BlockSprites/mario-brick-blocks"), pos, new Point(4, 1), 1, BrickType.Normal, items)
         {
             destroyedBrickPosX = new float[4];
             destroyedBrickPosY = new float[4];
         }
         public override void Update(GameTime gameTime)
         {
-            if (bState == BrickState.destroyed)
+            if (bType == BrickType.Destroyed)
             {
                 dPos.X += positionOffset.X != 0 ? spriteSpeed.X * (float)gameTime.ElapsedGameTime.TotalSeconds : 0;
                 dPos.Y += positionOffset.Y != 0 ? spriteSpeed.Y * (float)gameTime.ElapsedGameTime.TotalSeconds : 0;
@@ -38,7 +39,7 @@ namespace Sprint0.BlockClasses
         }
         public override void Draw(SpriteBatch spriteBatch, Vector2 location, bool isLeft)
         {
-            if (bState == BrickState.destroyed)
+            if (bType == BrickType.Destroyed)
             {
                 for (int index = 0; index < 4; index++)
                     spriteBatch.Draw(SpriteSheets, new Vector2(destroyedBrickPosX[index], destroyedBrickPosY[index]), new Rectangle(0, 0, frameSize.X / 2, frameSize.Y / 2), Color.White);

@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>C:/Users/13667/source/repos/SmartMario/Sprint0/Sprint0/Content/ItemSprite/flower.png</SourceFile>
-  <SourceTime>2019-09-17T20:31:04.0825271-04:00</SourceTime>
-  <DestFile>C:/Users/13667/source/repos/SmartMario/Sprint0/Sprint0/Content/bin/Windows/Content/ItemSprite/flower.xnb</DestFile>
-  <DestTime>2019-09-17T21:07:43.1798594-04:00</DestTime>
+  <SourceFile>C:/Users/runmi/Source/Repos/SmartMario2/Sprint0/Sprint0/Content/ItemSprite/flower.png</SourceFile>
+  <SourceTime>2018-12-29T19:54:21-05:00</SourceTime>
+  <DestFile>C:/Users/runmi/Source/Repos/SmartMario2/Sprint0/Sprint0/Content/bin/Windows/Content/ItemSprite/flower.xnb</DestFile>
+  <DestTime>2019-09-19T18:29:23.0838498-04:00</DestTime>
   <Importer>TextureImporter</Importer>
-  <ImporterTime>2018-12-08T11:35:54-05:00</ImporterTime>
+  <ImporterTime>2019-08-21T08:16:16-04:00</ImporterTime>
   <Processor>TextureProcessor</Processor>
-  <ProcessorTime>2018-12-08T11:35:54-05:00</ProcessorTime>
+  <ProcessorTime>2019-08-21T08:16:16-04:00</ProcessorTime>
   <Parameters>
     <Key>ColorKeyColor</Key>
     <Value>255,0,255,255</Value>

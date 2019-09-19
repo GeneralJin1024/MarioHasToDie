@@ -8,6 +8,7 @@ namespace Sprint0.MarioClasses
 {
     interface ActionState
     {
+        Mario.ActionType Type { get; set; }
         void Up(Mario mario);
         void Down(Mario mario);
         void Left(Mario mario);
