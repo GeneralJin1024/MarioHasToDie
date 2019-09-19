@@ -59,7 +59,7 @@ namespace Sprint0
             Rectangle destinationRectangle = new Rectangle((int)Location.X,
                 (int)Location.Y, (int)frameWidth, (int)frameHeight);
 
-            this.Location = new Vector2(destinationRectangle.X, destinationRectangle.Y);
+            this.Location = Location;
             if (isLeft)
             {
                 spriteBatch.Draw(SpriteSheets, destinationRectangle, sourceRectangle,

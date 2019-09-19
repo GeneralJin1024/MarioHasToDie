@@ -22,9 +22,9 @@ namespace Sprint0.BlockClasses
         //protected bool isHidden;
         protected Vector2 bPosition;
 
-        private int totalFrame;
+        protected int totalFrame;
         protected Point frameSize { get; set; }
-        private Point sheetSize { get; set; }
+        protected Point sheetSize { get; set; }
         private int timeSinceLastFrame { get; set; }
         private int millisecondsPerFrame { get; set; }
         private Point frameOrigin { get; set; }
@@ -55,11 +55,6 @@ namespace Sprint0.BlockClasses
         public Vector2 GetHeightAndWidth()
         {
             return new Vector2(frameSize.X, frameSize.Y);
-        }
-
-        public Vector2 GetPosition()
-        {
-            return bPosition;
         }
 
         public virtual void Update(GameTime gameTime)
