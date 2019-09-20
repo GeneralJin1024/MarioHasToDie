@@ -25,7 +25,6 @@ namespace Sprint0
         private Factory factory;
         private Mario Mario;
 
-        private String Jian  = "WWE";
         private ArrayList controllerList;
         private ArrayList spriteList;
         #region Sprite
@@ -121,6 +120,7 @@ namespace Sprint0
             Mario = new FactoryClasses.MarioFactory(Content).GetMario(new Vector2(400, 300));
             spriteList.Add(Mario);
             controllerList.Add(new KeyboardController(Mario, this));
+            controllerList.Add(new GamepadController(Mario, this));
             LoadEnemyItemTexture();
             LoadBackgroundTexture();
 

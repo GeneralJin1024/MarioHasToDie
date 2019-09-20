@@ -20,8 +20,8 @@ namespace Sprint0
         {
             prevGamePadState = GamePad.GetState(PlayerIndex.One);
             this.mario = mario;
-            GetCommand();
             Game = game;
+            GetCommand();
         }
         public void GetCommand()
         {

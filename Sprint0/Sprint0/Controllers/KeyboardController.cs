@@ -22,9 +22,8 @@ namespace Sprint0
             // KeyboardController set up
             this.mario = mario;
             controllerDic = new Dictionary<Keys, ICommand>();
-            GetCommand();
             Game = game;
-            Console.WriteLine("game: " + (Game == null));
+            GetCommand();
         }
 
         public void GetCommand()
@@ -38,6 +37,10 @@ namespace Sprint0
             controllerDic.Add(Keys.Down, new MoveDownCommand(mario));
             controllerDic.Add(Keys.A, new MoveLeftCommand(mario));
             controllerDic.Add(Keys.Left, new MoveLeftCommand(mario));
+            controllerDic.Add(Keys.Y, new MoveStandardCommand(mario));
+            controllerDic.Add(Keys.U, new MoveSuperCommand(mario));
+            controllerDic.Add(Keys.I, new MoveFireCommand(mario));
+            controllerDic.Add(Keys.O, new MoveDestroyCommand(mario));
             controllerDic.Add(Keys.Q, new QuitCommand(Game));
 
         }
