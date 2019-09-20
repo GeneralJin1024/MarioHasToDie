@@ -12,16 +12,19 @@ namespace Sprint0
     class KeyboardController : IController
     {
         private KeyboardState keyboardState;
-        Mario mario;
+        private Mario mario;
         private Dictionary<Keys, ICommand> controllerDic;
         ICommand currentCommand;
+        private Sprint0 Game;
 
-        public KeyboardController(Mario mario)
+        public KeyboardController(Mario mario, Sprint0 game)
         {
             // KeyboardController set up
             this.mario = mario;
             controllerDic = new Dictionary<Keys, ICommand>();
             GetCommand();
+            Game = game;
+            Console.WriteLine("game: " + (Game == null));
         }
 
         public void GetCommand()
@@ -35,7 +38,7 @@ namespace Sprint0
             controllerDic.Add(Keys.Down, new MoveDownCommand(mario));
             controllerDic.Add(Keys.A, new MoveLeftCommand(mario));
             controllerDic.Add(Keys.Left, new MoveLeftCommand(mario));
-            controllerDic.Add(Keys.Q, new QuitCommand());
+            controllerDic.Add(Keys.Q, new QuitCommand(Game));
 
         }
         public void Update()
