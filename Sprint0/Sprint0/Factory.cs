@@ -111,4 +111,29 @@ namespace Sprint0
            
         //}
     }
+
+    class BlockFactory
+    {
+        static private Texture2D[] _blockSheets;
+        public static Texture2D[] BlockTextures
+        {
+            get
+            {
+                return _blockSheets;
+            }
+        }
+        public void LoadBlockTexture()
+        {
+            Texture2D[] blockSheets = new Texture2D[5] {Sprint0.Game.Content.Load<Texture2D>("BlockSprites/mario-brick-blocks"),
+                Sprint0.Game.Content.Load<Texture2D>("BlockSprites/mario-gravel-blocks"),
+                Sprint0.Game.Content.Load<Texture2D>("BlockSprites/mario-hit-block"),
+                Sprint0.Game.Content.Load<Texture2D>("BlockSprites/mario-question-blocks"),
+                Sprint0.Game.Content.Load<Texture2D>("BlockSprites/mario-shiny-block")};
+            _blockSheets = blockSheets;
+        }
+        //public BrickBlockSprite GetBrickBlockSprite(Vector2 pos, ArrayList items)
+        //{
+            //return new BrickBlockSprite()
+        //}
+    }
 }

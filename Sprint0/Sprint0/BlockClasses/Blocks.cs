@@ -57,6 +57,19 @@ namespace Sprint0.BlockClasses
             return new Vector2(frameSize.X, frameSize.Y);
         }
 
+        protected void ResizeFrame(Texture2D sheet, Point rowAndCol, int totFrame)
+        {
+            SpriteSheets = sheet;
+            sheetSize = rowAndCol;
+            totalFrame = totFrame;
+            frameSize = new Point(SpriteSheets.Width / sheetSize.X, SpriteSheets.Height / sheetSize.Y);
+            this.timeSinceLastFrame = 0;
+            this.millisecondsPerFrame = 500;
+            this.currentFrame = new Point(0, 0);
+            this.animationFrame = 0;
+            this.frameOrigin = new Point(0, 0);
+        }
+
         public virtual void Update(GameTime gameTime)
         {
             timeSinceLastFrame += gameTime.ElapsedGameTime.Milliseconds;

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,14 +23,16 @@ namespace Sprint0.BlockClasses
         public IBrickStates currentbState;
         public bool IsBumping { get; private set; }
         public bool containItems { get; private set; }     
-        private List<ItemSprite> items;
+        private ArrayList items;
+        private ArrayList shownItems;
         private int MinY, MaxY;
         protected Point positionOffset = new Point(1, 1);
         protected Vector2 spriteSpeed = new Vector2(50.0f, 200.0f);
-        public Bricks(Texture2D sheet, Vector2 pos, Point rowAndColumn, int totalFrame, BrickType type, List<ItemSprite> itemList) 
+        public Bricks(Texture2D sheet, Vector2 pos, Point rowAndColumn, int totalFrame, BrickType type, ArrayList itemList) 
             : base(sheet, pos, rowAndColumn,totalFrame)
         {
             items = itemList;
+            shownItems = new ArrayList { };
             containItems = itemList.Count != 0 ? true : false;
             bStates = new IBrickStates[4] { new HiddenState(), new NormalState(), new BumpingState(), new UsedOrDestroyedState() };
             bType = type;
@@ -50,37 +53,23 @@ namespace Sprint0.BlockClasses
                     return bStates[1];
             }
         }
-        /*
-         *public void Draw(SpriteBatch spriteBatch, Vector2 location, bool isLeft)
-          {
-              blockSprite.Draw(spriteBatch, location, isLeft);
-          }
-
-          public void Update(GameTime gameTime)
-          {
-              blockSprite.Update(gameTime);
-          }
-          */
-        #region FromHiddenToBrick
+        #region CommandReciver
         public void ChangeToBrick()
         {
             bType = BrickType.Normal;
             SpriteSheets = Sprint0.BlockTextures[0];
-            currentbState = bStates[1];
+            currentbState = GenerateCurrentState();
         }
-        #endregion
         private void ChangeToUsed()
         {
             bType = BrickType.Used;
-            totalFrame = 1;
-            sheetSize = new Point(4, 1);
-            currentbState = bStates[3];
-            SpriteSheets = Sprint0.BlockTextures[2];
+            base.ResizeFrame(Sprint0.BlockTextures[2], new Point(4, 1), 1);          
+            currentbState = GenerateCurrentState();
         }
         public void ChangeToDestroyed()
         {
             bType = BrickType.Destroyed;
-            currentbState = bStates[3];
+            currentbState = GenerateCurrentState();
         }
         public void Bumping()
         {
@@ -89,8 +78,11 @@ namespace Sprint0.BlockClasses
             MinY = (int)bPosition.Y - frameSize.Y;
             MaxY = (int)bPosition.Y;
         }
+        #endregion
         public override void Update(GameTime gameTime)
         {
+            foreach (AnimatedSprite sprite in shownItems)
+                sprite.Update(gameTime);
             base.Update(gameTime);   
             if (IsBumping)
             {                
@@ -99,8 +91,10 @@ namespace Sprint0.BlockClasses
                 {
                     if (containItems)
                     {
-                        ItemSprite item = items[0];
-                        item.bumping(bPosition, this.Position.Y - 3 * frameSize.Y, spriteSpeed);
+                        ItemSprite item = GenerateItems();
+                        shownItems.Add(item);
+                        item.bumping(bPosition, bPosition.Y - 3 * frameSize.Y, spriteSpeed);
+                        RemoveItem();
                     }
                     spriteSpeed.Y *= -1;
                     bPosition.Y = MinY;
@@ -108,9 +102,7 @@ namespace Sprint0.BlockClasses
                 if (bPosition.Y > MaxY)
                 {
                     IsBumping = false;
-                    if (currentbState != bStates[3])
-                        currentbState = bStates[1];
-                    ShowItem();
+                    currentbState = GenerateCurrentState();
                     spriteSpeed.Y *= -1;
                     bPosition.Y = MaxY;
                 }
@@ -118,25 +110,39 @@ namespace Sprint0.BlockClasses
         }
         public override void Draw(SpriteBatch spriteBatch, Vector2 location, bool isLeft)
         {
-            if (bType != BrickType.Hidden && bType != BrickType.Destroyed && !IsBumping)
-            {
-                base.Draw(spriteBatch, location, isLeft);
-            }
-            if (IsBumping)
+            foreach (AnimatedSprite sprite in shownItems)
+                sprite.Draw(spriteBatch, sprite.Position, isLeft);
+            if (bType != BrickType.Hidden && bType != BrickType.Destroyed)
             {
                 base.Draw(spriteBatch, bPosition, isLeft);
             }
         }
-        private void ShowItem()
+        #region Methods Interact Items
+        public void RemoveItem()
         {
-            //items.RemoveAt(0);
+            items.RemoveAt(0);
             if (items.Count == 0)
             {
                 containItems = false;
                 ChangeToUsed();
             }
         }
-
-        
+        #endregion
+        private ItemSprite GenerateItems()
+        {
+            switch (items[0])
+            {
+                case "redMushroom":
+                    return new Factory().getRedMushroom(Sprint0.Game.Content.Load<Texture2D>("ItemSprite/redMushroom"));
+                case "greenMushroom":
+                    return new Factory().getGreenMushroom(Sprint0.Game.Content.Load<Texture2D>("ItemSprite/greenMushroom"));
+                case "star":
+                    return new Factory().getStar(Sprint0.Game.Content.Load<Texture2D>("ItemSprite/star"));
+                case "flower":
+                    return new Factory().getFlower(Sprint0.Game.Content.Load<Texture2D>("ItemSprite/flower"));
+                default:
+                    return new Factory().getCoin(Sprint0.Game.Content.Load<Texture2D>("ItemSprite/coin"));
+            }
+        }
     }
 }

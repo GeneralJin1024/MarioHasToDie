@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,7 +13,7 @@ namespace Sprint0.BlockClasses
 
     class HiddenBlockSprite : Bricks
     {
-        public HiddenBlockSprite(Sprint0 game, Vector2 pos, List<ItemSprite> items) : base(game.Content.Load<Texture2D>("BlockSprites/mario-brick-blocks"), pos, new Point(4, 1), 1, BrickType.Hidden, items)
+        public HiddenBlockSprite(Sprint0 game, Vector2 pos, ArrayList items) : base(game.Content.Load<Texture2D>("BlockSprites/mario-brick-blocks"), pos, new Point(4, 1), 1, BrickType.Hidden, items)
         {
         }
     }

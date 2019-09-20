@@ -25,10 +25,10 @@ namespace Sprint0.Sprites
         public void bumping(Vector2 startP, float minY, Vector2 blockSpeed)
         {
             positionOffset = new Point(0, 1);
-            spriteSpeed.Y = 0.05F;
+            spriteSpeed.Y = blockSpeed.Y * 2;
             Location = startP;
             bumpHeight = minY;
-            //isBump = true;
+            isBump = true;
         }
         public override void Update(GameTime gameTime)
         {
