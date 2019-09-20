@@ -50,6 +50,8 @@ namespace Sprint0
 
         static private Sprint0 _game;
         static private Texture2D[] _blockSheets;
+        private Mario mario;
+
         public static Sprint0 Game
         {
             get
@@ -102,7 +104,7 @@ namespace Sprint0
             #endregion
 
             #region Controllers
-            controllerList = new ArrayList() { new KeyboardController(this, brickBlockTest, hiddenBlockTest, qBlockTest) };
+            controllerList = new ArrayList() { new KeyboardController(mario) };
             #endregion
 
             GameMenu = new Menu(this);

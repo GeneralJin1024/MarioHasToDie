@@ -51,10 +51,12 @@
     <Compile Include="Command\MoveStandardCommand.cs" />
     <Compile Include="Command\MoveSuperCommand.cs" />
     <Compile Include="Command\MoveUpCommand.cs" />
+    <Compile Include="Command\QuitCommand.cs" />
+    <Compile Include="Controllers\GamepadController.cs" />
+    <Compile Include="Controllers\KeyboardController.cs" />
     <Compile Include="FactoryClasses\MarioFactory.cs" />
     <Compile Include="ICommand.cs" />
     <Compile Include="Sprites\AnimatedSprite.cs" />
-    <Compile Include="BlockClasses\BlockCommands.cs" />
     <Compile Include="BlockClasses\Blocks.cs" />
     <Compile Include="BlockClasses\Bricks.cs" />
     <Compile Include="BlockClasses\BrickBlockSprite.cs" />
@@ -72,17 +74,12 @@
     <Compile Include="Menu.cs" />
     <Compile Include="QuitGameCommand.cs" />
     <Compile Include="ISprite.cs" />
-    <Compile Include="KeyboardController.cs" />
     <Compile Include="IController.cs" />
     <Compile Include="Sprint0.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Sprites\BackgroundSprite.cs" />
     <Compile Include="Sprites\BackgroundSprites.cs" />
-    <Compile Include="Sprites\BackgroundSprites\SmallHillSprite.cs" />
-    <Compile Include="Sprites\BackgroundSprites\SmallCloudSprite.cs" />
-    <Compile Include="Sprites\BackgroundSprites\BigHillSprite.cs" />
-    <Compile Include="Sprites\BackgroundSprites\BigCloudSprite.cs" />
     <Compile Include="Sprites\EnemySprite.cs" />
     <Compile Include="Sprites\ItemSprite.cs" />
   </ItemGroup>
