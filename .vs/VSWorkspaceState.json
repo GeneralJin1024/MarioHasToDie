@@ -3,9 +3,11 @@
     "",
     "\\Sprint0",
     "\\Sprint0\\Sprint0",
-    "\\Sprint0\\Sprint0\\Content",
-    "\\Sprint0\\Sprint0\\MarioClasses"
+    "\\Sprint0\\Sprint0\\BlockClasses",
+    "\\Sprint0\\Sprint0\\Command",
+    "\\Sprint0\\Sprint0\\Controllers",
+    "\\Sprint0\\Sprint0\\MarioClasses",
+    "\\Sprint0\\Sprint0\\Sprites"
   ],
-  "SelectedNode": "\\Sprint0\\Sprint0\\Sprint0.cs",
   "PreviewInSolutionExplorer": false
 }
