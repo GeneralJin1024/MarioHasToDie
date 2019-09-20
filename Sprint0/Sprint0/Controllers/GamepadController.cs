@@ -14,12 +14,14 @@ namespace Sprint0
         private GamePadState prevGamePadState;
         Mario mario;
         private Dictionary<Buttons, ICommand> controllerDic;
+        private Sprint0 Game;
 
-        public GamepadController(Mario mario)
+        public GamepadController(Mario mario, Sprint0 game)
         {
             prevGamePadState = GamePad.GetState(PlayerIndex.One);
             this.mario = mario;
             GetCommand();
+            Game = game;
         }
         public void GetCommand()
         {
@@ -28,7 +30,7 @@ namespace Sprint0
             controllerDic.Add(Buttons.DPadRight, new MoveRightCommand(mario));
             controllerDic.Add(Buttons.DPadRight, new MoveRightCommand(mario));
             controllerDic.Add(Buttons.DPadDown, new MoveDownCommand(mario));
-            controllerDic.Add(Buttons.Start, new QuitCommand());
+            controllerDic.Add(Buttons.Start, new QuitCommand(Game));
 
         }
         public void Update()

@@ -89,7 +89,7 @@ namespace Sprint0
             #endregion
 
             #region Controllers
-            controllerList = new ArrayList() { new KeyboardController(mario) };
+            controllerList = new ArrayList();
             #endregion
 
             GameMenu = new Menu(this);
@@ -108,7 +108,7 @@ namespace Sprint0
             //load mario texture and construct mario. Then add mario into sprite list.
             Mario = new FactoryClasses.MarioFactory(Content).GetMario(new Vector2(400, 300));
             spriteList.Add(Mario);
-
+            controllerList.Add(new KeyboardController(Mario, this));
             LoadEnemyItemTexture();
             LoadBackgroundTexture();
 
