@@ -23,20 +23,17 @@ namespace Sprint0
         SpriteBatch spriteBatch;
 
         private Factory factory;
-        private Mario Mario;
-
-        private String Jian  = "WWE";
+        public Mario Mario { get; private set; }
         private ArrayList controllerList;
         private ArrayList spriteList;
-        #region Sprite
-        #endregion
-
+        #region Blocks
         private Bricks qBlockTest;
         private Bricks hitBlockTest;
         private Bricks hiddenBlockTest;
         private Blocks floorBlockTest;
         private Blocks stairBlockTest;
         private Bricks brickBlockTest;
+        #endregion
 
         #region Fonts
         public Color fontColor { get; set; } = Color.DarkBlue;
@@ -55,13 +52,6 @@ namespace Sprint0
                 return _game;
             }
         }
-        public static Texture2D[] BlockTextures
-        {
-            get
-            {
-                return _blockSheets;
-            }
-        }
         public Sprint0()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -78,17 +68,16 @@ namespace Sprint0
         {
             _game = this;
             factory = new Factory();
-
-            #region TestBlockSprites
-            float x = GraphicsDevice.Viewport.Width / 7;
-            float y = GraphicsDevice.Viewport.Height / 2;
-            qBlockTest = new QuestionBlockSprite(this, new Vector2(x, y), new ArrayList { "redMushroom" });
-            hitBlockTest = new UsedBlockSprite(this, new Vector2(2 * x, y));
-            hiddenBlockTest = new HiddenBlockSprite(this, new Vector2(3 * x, y), new ArrayList {});
-            floorBlockTest = new FloorBlockSprite(this, new Vector2(4 * x, y));
-            stairBlockTest = new StairBlockSprite(this, new Vector2(5 * x, y));
-            brickBlockTest = new BrickBlockSprite(this, new Vector2(6 * x, y), new ArrayList { "coin", "coin" });
             spriteList = new ArrayList();
+            #region TestBlockSprites
+            float x = GraphicsDevice.Viewport.Width / 9;
+            float y = GraphicsDevice.Viewport.Height / 2;
+            qBlockTest = BlockFactory.Instance.GetQuestionBlock(new Vector2(x, y), new ArrayList { "redMushroom" });
+            hitBlockTest = BlockFactory.Instance.GetUsedBlock(new Vector2(2 * x, y));
+            hiddenBlockTest = BlockFactory.Instance.GetHiddenBlock(new Vector2(3 * x, y), new ArrayList { });
+            floorBlockTest = BlockFactory.Instance.GetFloorBlock(new Vector2(4 * x, y));
+            stairBlockTest = BlockFactory.Instance.GetStairBlock(new Vector2(5 * x, y));
+            brickBlockTest = BlockFactory.Instance.GetBrickBlock(new Vector2(6 * x, y), new ArrayList { "coin", "coin" });
             spriteList.Add(qBlockTest);
             spriteList.Add(hitBlockTest);
             spriteList.Add(hiddenBlockTest);
@@ -114,10 +103,10 @@ namespace Sprint0
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            LoadBlockTexture();
             //load mario texture and construct mario. Then add mario into sprite list.
             Mario = new FactoryClasses.MarioFactory(Content).GetMario(new Vector2(400, 300));
             spriteList.Add(Mario);
+
             LoadEnemyItemTexture();
             LoadBackgroundTexture();
 

@@ -24,7 +24,7 @@ namespace Sprint0.BlockClasses
 
         protected int totalFrame;
         protected Point frameSize { get; set; }
-        protected Point sheetSize { get; set; }
+        private Point sheetSize { get; set; }
         private int timeSinceLastFrame { get; set; }
         private int millisecondsPerFrame { get; set; }
         private Point frameOrigin { get; set; }
@@ -34,15 +34,7 @@ namespace Sprint0.BlockClasses
 
         public Blocks(Texture2D sheet, Vector2 pos, Point rowAndCol, int totFrame)
         {
-            SpriteSheets = sheet;
-            sheetSize = rowAndCol;
-            totalFrame = totFrame;
-            frameSize = new Point(SpriteSheets.Width / sheetSize.X, SpriteSheets.Height / sheetSize.Y);
-            this.timeSinceLastFrame = 0;
-            this.millisecondsPerFrame = 500;
-            this.currentFrame = new Point(0, 0);
-            this.animationFrame = 0;
-            this.frameOrigin = new Point(0, 0);
+            ResizeFrame(sheet, rowAndCol, totFrame);
             this.bPosition = pos;
         }
         public virtual void Draw(SpriteBatch spriteBatch, Vector2 location, bool isLeft)

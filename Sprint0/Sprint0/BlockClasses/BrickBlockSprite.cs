@@ -15,7 +15,7 @@ namespace Sprint0.BlockClasses
         private float[] destroyedBrickPosX;
         private float[] destroyedBrickPosY;
         private Vector2 dPos;
-        public BrickBlockSprite(Sprint0 game, Vector2 pos, ArrayList items) : base(game.Content.Load<Texture2D>("BlockSprites/mario-brick-blocks"), pos, new Point(4, 1), 1, BrickType.Normal, items)
+        public BrickBlockSprite(Texture2D texture, Vector2 pos, ArrayList items) : base(texture, pos, new Point(4, 1), 1, BrickType.BNormal, items)
         {
             destroyedBrickPosX = new float[4];
             destroyedBrickPosY = new float[4];

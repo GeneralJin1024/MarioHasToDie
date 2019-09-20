@@ -15,29 +15,26 @@ namespace Sprint0
     class KeyboardController : IController
     {
         private KeyboardState prevKeyboardState;
-        //private enum PossibleCommands { StandingNoAnim, StandingAnim, MovingNoAnim, MovingAnim, Quit};
-        private Dictionary<Keys, ICommand> keyMap;
-        private Dictionary<Keys, Bricks> keyMap2;   
+        private Dictionary<Keys, ICommand> keyMap;   
         public KeyboardController(Sprint0 myGame, Bricks normalBrick, Bricks hiddenBrick, Bricks questionBrick)
         {
             prevKeyboardState = Keyboard.GetState();
             keyMap = new Dictionary<Keys, ICommand>();
             keyMap.Add(Keys.Q, new QuitGameCommand(myGame));
-            keyMap2 = new Dictionary<Keys, Bricks>();
-            keyMap2.Add(Keys.A, normalBrick);
-            keyMap2.Add(Keys.S, hiddenBrick);
-            keyMap2.Add(Keys.D, questionBrick);
+            keyMap.Add(Keys.B, new BlockCommands(normalBrick));
+            keyMap.Add(Keys.H, new BlockCommands(hiddenBrick));
+            keyMap.Add(Keys.OemQuestion, new BlockCommands(questionBrick));
         }
 
         public void Update()
         {
             KeyboardState curr = Keyboard.GetState();
 
-            foreach (KeyValuePair<Keys, Bricks> key in keyMap2)
+            foreach (KeyValuePair<Keys, ICommand> key in keyMap)
             {
                 if (keyPressed(key.Key, curr))
                 {
-                    key.Value.currentbState.Handle(key.Value);
+                    key.Value.Execute();
                 }
             }
             prevKeyboardState = curr;
@@ -47,5 +44,6 @@ namespace Sprint0
         {
             return (current.IsKeyDown(k) && !prevKeyboardState.IsKeyDown(k));
         }
+
     }
 }

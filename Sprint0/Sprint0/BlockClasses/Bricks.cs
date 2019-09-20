@@ -12,17 +12,17 @@ namespace Sprint0.BlockClasses
 {
     public enum BrickType
     {
-        Hidden, Normal, Used, Destroyed
+        Hidden, BNormal, QNormal, Used, Destroyed
     }
 
     //public for genernate blocks
     class Bricks : Blocks
     {
         public BrickType bType;
-        private readonly IBrickStates[] bStates;
-        public IBrickStates currentbState;
-        public bool IsBumping { get; private set; }
-        public bool containItems { get; private set; }     
+        private readonly IBlockStates[] bStates;
+        public IBlockStates currentbState;
+        private bool IsBumping;
+        private bool containItems;
         private ArrayList items;
         private ArrayList shownItems;
         private int MinY, MaxY;
@@ -34,13 +34,13 @@ namespace Sprint0.BlockClasses
             items = itemList;
             shownItems = new ArrayList { };
             containItems = itemList.Count != 0 ? true : false;
-            bStates = new IBrickStates[4] { new HiddenState(), new NormalState(), new BumpingState(), new UsedOrDestroyedState() };
+            bStates = new IBlockStates[4] { new HiddenState(), new NormalState(), new BumpingState(), new UsedOrDestroyedState() };
             bType = type;
             currentbState = GenerateCurrentState();
             IsBumping = false;
         }
 
-        private IBrickStates GenerateCurrentState()
+        private IBlockStates GenerateCurrentState()
         {
             switch (bType)
             {
@@ -56,14 +56,14 @@ namespace Sprint0.BlockClasses
         #region CommandReciver
         public void ChangeToBrick()
         {
-            bType = BrickType.Normal;
-            SpriteSheets = Sprint0.BlockTextures[0];
-            currentbState = GenerateCurrentState();
+            bType = BrickType.BNormal;
+            SpriteSheets = BlockFactory.Instance.GetBlockTextures(0);
+            //currentbState = GenerateCurrentState();
         }
         private void ChangeToUsed()
         {
             bType = BrickType.Used;
-            base.ResizeFrame(Sprint0.BlockTextures[2], new Point(4, 1), 1);          
+            base.ResizeFrame(BlockFactory.Instance.GetBlockTextures(2), new Point(4, 1), 1);          
             currentbState = GenerateCurrentState();
         }
         public void ChangeToDestroyed()
