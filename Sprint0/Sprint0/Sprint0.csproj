@@ -57,7 +57,6 @@
     <Compile Include="Controllers\KeyboardController.cs" />
     <Compile Include="FactoryClasses\MarioFactory.cs" />
     <Compile Include="ICommand.cs" />
-    <Compile Include="KeyboardController.cs" />
     <Compile Include="Sprites\AnimatedSprite.cs" />
     <Compile Include="BlockClasses\Blocks.cs" />
     <Compile Include="BlockClasses\Bricks.cs" />
