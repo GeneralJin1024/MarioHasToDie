@@ -13,7 +13,7 @@ namespace Sprint0.BlockClasses
 
     class HiddenBlockSprite : Bricks
     {
-        public HiddenBlockSprite(Sprint0 game, Vector2 pos, ArrayList items) : base(game.Content.Load<Texture2D>("BlockSprites/mario-brick-blocks"), pos, new Point(4, 1), 1, BrickType.Hidden, items)
+        public HiddenBlockSprite(Texture2D texture, Vector2 pos, ArrayList items) : base(texture, pos, new Point(4, 1), 1, BrickType.Hidden, items)
         {
         }
     }

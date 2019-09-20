@@ -7,20 +7,20 @@ using Sprint0.MarioClasses;
 
 namespace Sprint0.BlockClasses
 {
-    class HiddenState : IBrickStates
+    class HiddenState : IBlockStates
     {
         public void Handle(Bricks brick)
         {
             brick.ChangeToBrick();
         }
     }
-    class NormalState : IBrickStates
+    class NormalState : IBlockStates
     {
         private Mario mario;
         public void Handle(Bricks brick)
         {
-            /*
-             if (mario.IsSuper())
+            mario = Sprint0.Game.Mario;
+             if (mario.IsSuper() && brick.bType == BrickType.BNormal)
              {
                  brick.ChangeToDestroyed();
              }
@@ -28,18 +28,16 @@ namespace Sprint0.BlockClasses
              {   
                  brick.Bumping();
              }
-             */
-            brick.Bumping();
         }
     }
-    class BumpingState : IBrickStates
+    class BumpingState : IBlockStates
     {
         public void Handle(Bricks brick)
         {
         //nothing to do
         }
     }
-    class UsedOrDestroyedState : IBrickStates
+    class UsedOrDestroyedState : IBlockStates
     {
         public void Handle(Bricks brick)
         {

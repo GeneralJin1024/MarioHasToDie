@@ -10,7 +10,7 @@ namespace Sprint0.BlockClasses
 {
     class FloorBlockSprite : Blocks
     {
-        public FloorBlockSprite(Sprint0 game, Vector2 pos) : base(game.Content.Load<Texture2D>("BlockSprites/mario-gravel-blocks"), pos, new Point(4, 1), 1)
+        public FloorBlockSprite(Texture2D texture, Vector2 pos) : base(texture, pos, new Point(4, 1), 1)
         {
             // nothing to do
         }
@@ -18,7 +18,7 @@ namespace Sprint0.BlockClasses
 
     class StairBlockSprite : Blocks
     {
-        public StairBlockSprite(Sprint0 game, Vector2 pos) : base(game.Content.Load<Texture2D>("BlockSprites/mario-shiny-block"), pos, new Point(4, 1), 1)
+        public StairBlockSprite(Texture2D texture, Vector2 pos) : base(texture, pos, new Point(4, 1), 1)
         {
             // nothing to do
         }
