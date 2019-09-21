@@ -48,17 +48,14 @@ namespace Sprint0
             KeyboardState curr = Keyboard.GetState();
                 foreach (Keys key in curr.GetPressedKeys())
                 {
-                    if (KeyPressed(key, curr))
+                    if (controllerDic.ContainsKey(key) && !oldkeyboardState.IsKeyDown(key))
                     {
                         controllerDic[key].Execute();
                     }
                 }
             oldkeyboardState = curr;
         }
-        private bool KeyPressed(Keys b, KeyboardState current)
-        {
-            return (current.IsKeyDown(b) && !oldkeyboardState.IsKeyDown(b));
-        }
+       
     }
 }
 
