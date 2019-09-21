@@ -58,7 +58,7 @@ namespace Sprint0.BlockClasses
         {
             bType = BrickType.BNormal;
             SpriteSheets = BlockFactory.Instance.GetBlockTextures(0);
-            //currentbState = GenerateCurrentState();
+            //currentbState = GenerateCurrentState(); for key-map specific test 
         }
         private void ChangeToUsed()
         {
