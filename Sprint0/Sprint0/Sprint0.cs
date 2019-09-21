@@ -46,21 +46,12 @@ namespace Sprint0
         public bool MenuMode { get; set; }
 
         static private Sprint0 _game;
-        static private Texture2D[] _blockSheets;
-        private Mario mario;
-
+        public Mario GetMario => Mario;
         public static Sprint0 Game
         {
             get
             {
                 return _game;
-            }
-        }
-        public static Texture2D[] BlockTextures
-        {
-            get
-            {
-                return _blockSheets;
             }
         }
         public Sprint0()
@@ -81,21 +72,22 @@ namespace Sprint0
             factory = new Factory();
 
             #region TestBlockSprites
-            float x = GraphicsDevice.Viewport.Width / 7;
+            float x = GraphicsDevice.Viewport.Width / 8;
             float y = GraphicsDevice.Viewport.Height / 2;
-            qBlockTest = new QuestionBlockSprite(this, new Vector2(x, y), new ArrayList { "redMushroom" });
-            hitBlockTest = new UsedBlockSprite(this, new Vector2(2 * x, y));
-            hiddenBlockTest = new HiddenBlockSprite(this, new Vector2(3 * x, y), new ArrayList {});
-            floorBlockTest = new FloorBlockSprite(this, new Vector2(4 * x, y));
-            stairBlockTest = new StairBlockSprite(this, new Vector2(5 * x, y));
-            brickBlockTest = new BrickBlockSprite(this, new Vector2(6 * x, y), new ArrayList { "coin", "coin" });
+            qBlockTest = BlockFactory.Instance.GetQuestionBlock(new Vector2(x, y), new ArrayList { "redMushroom" });
+            hitBlockTest = BlockFactory.Instance.GetUsedBlock(new Vector2(2 * x, y));
+            hiddenBlockTest = BlockFactory.Instance.GetHiddenBlock(new Vector2(3 * x, y), new ArrayList {});
+            floorBlockTest = BlockFactory.Instance.GetFloorBlock(new Vector2(4 * x, y));
+            stairBlockTest = BlockFactory.Instance.GetStairBlock(new Vector2(5 * x, y));
+            brickBlockTest = BlockFactory.Instance.GetBrickBlock(new Vector2(6 * x, y), new ArrayList { "coin", "coin" });
             spriteList = new ArrayList();
             spriteList.Add(qBlockTest);
-            spriteList.Add(hitBlockTest);
             spriteList.Add(hiddenBlockTest);
+            spriteList.Add(brickBlockTest);
+            spriteList.Add(hitBlockTest);
             spriteList.Add(floorBlockTest);
             spriteList.Add(stairBlockTest);
-            spriteList.Add(brickBlockTest);
+
             #endregion
 
             #region Controllers
@@ -115,11 +107,10 @@ namespace Sprint0
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            LoadBlockTexture();
             //load mario texture and construct mario. Then add mario into sprite list.
             Mario = new FactoryClasses.MarioFactory(Content).GetMario(new Vector2(400, 300));
             spriteList.Add(Mario);
-            controllerList.Add(new KeyboardController(Mario, this));
+            controllerList.Add(new KeyboardController(Mario, this, new Bricks[] { qBlockTest, hiddenBlockTest, brickBlockTest }));
             controllerList.Add(new GamepadController(Mario, this));
             LoadEnemyItemTexture();
             LoadBackgroundTexture();
@@ -220,15 +211,6 @@ namespace Sprint0
         }
 
 
-        private void LoadBlockTexture()
-        {
-            Texture2D[] blockSheets = new Texture2D[5] {Content.Load<Texture2D>("BlockSprites/mario-brick-blocks"),
-                Content.Load<Texture2D>("BlockSprites/mario-gravel-blocks"),
-                Content.Load<Texture2D>("BlockSprites/mario-hit-block"),
-                Content.Load<Texture2D>("BlockSprites/mario-question-blocks"),
-                Content.Load<Texture2D>("BlockSprites/mario-shiny-block")};
-            _blockSheets = blockSheets;
-        }
         private void LoadEnemyItemTexture()
         {
 

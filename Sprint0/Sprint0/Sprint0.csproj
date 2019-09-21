@@ -66,7 +66,6 @@
     <Compile Include="BlockClasses\QuestionBlockSprite.cs" />
     <Compile Include="BlockClasses\UsedBlockSprite.cs" />
     <Compile Include="Factory.cs" />
-    <Compile Include="GamePadController.cs" />
     <Compile Include="MarioClasses\ActionState.cs" />
     <Compile Include="MarioClasses\Mario.cs" />
     <Compile Include="MarioClasses\MarioAction.cs" />

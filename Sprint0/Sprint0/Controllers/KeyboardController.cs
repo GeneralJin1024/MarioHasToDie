@@ -1,7 +1,9 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
+using Sprint0.BlockClasses;
 using Sprint0.MarioClasses;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,13 +15,15 @@ namespace Sprint0
     {
         private KeyboardState oldkeyboardState;
         private Mario mario;
+        private Bricks[] blockList;
         private Dictionary<Keys, ICommand> controllerDic;
         private Sprint0 Game;
 
-        public KeyboardController(Mario mario, Sprint0 game)
+        public KeyboardController(Mario mario, Sprint0 game, Bricks[] blockList)
         {
             // KeyboardController set up
             this.mario = mario;
+            this.blockList = blockList;
             controllerDic = new Dictionary<Keys, ICommand>();
             Game = game;
             GetCommand();
@@ -41,6 +45,9 @@ namespace Sprint0
             controllerDic.Add(Keys.I, new MoveFireCommand(mario));
             controllerDic.Add(Keys.O, new MoveDestroyCommand(mario));
             controllerDic.Add(Keys.Q, new QuitCommand(Game));
+            controllerDic.Add(Keys.B, new BlockCommands(blockList[2]));
+            controllerDic.Add(Keys.H, new BlockCommands(blockList[1]));
+            controllerDic.Add(Keys.OemQuestion, new BlockCommands(blockList[0]));
 
         }
         public void Update()
