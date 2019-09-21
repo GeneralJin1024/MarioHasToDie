@@ -46,18 +46,14 @@ namespace Sprint0
         public void Update()
         {
             KeyboardState curr = Keyboard.GetState();
-            KeyboardState emptyInput = new KeyboardState();
-            if (curr != emptyInput)
-            {
-                foreach (KeyValuePair<Keys, ICommand> k in controllerDic)
+                foreach (Keys key in curr.GetPressedKeys())
                 {
-                    if (KeyPressed(k.Key, curr))
+                    if (KeyPressed(key, curr))
                     {
-                        k.Value.Execute();
+                        controllerDic[key].Execute();
                     }
-                    oldkeyboardState = curr;
                 }
-            }
+            oldkeyboardState = curr;
         }
         private bool KeyPressed(Keys b, KeyboardState current)
         {
