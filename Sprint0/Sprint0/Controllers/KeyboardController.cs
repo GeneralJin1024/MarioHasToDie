@@ -11,10 +11,9 @@ namespace Sprint0
 {
     class KeyboardController : IController
     {
-        private KeyboardState keyboardState;
+        private KeyboardState oldkeyboardState;
         private Mario mario;
         private Dictionary<Keys, ICommand> controllerDic;
-        ICommand currentCommand;
         private Sprint0 Game;
 
         public KeyboardController(Mario mario, Sprint0 game)
@@ -46,15 +45,23 @@ namespace Sprint0
         }
         public void Update()
         {
-            keyboardState = Keyboard.GetState();
-            foreach (Keys key in keyboardState.GetPressedKeys())
+            KeyboardState curr = Keyboard.GetState();
+            KeyboardState emptyInput = new KeyboardState();
+            if (curr != emptyInput)
             {
-                if (controllerDic.ContainsKey(key))
+                foreach (KeyValuePair<Keys, ICommand> k in controllerDic)
                 {
-                    currentCommand = controllerDic[key];
-                    currentCommand.Execute();
+                    if (KeyPressed(k.Key, curr))
+                    {
+                        k.Value.Execute();
+                    }
+                    oldkeyboardState = curr;
                 }
             }
+        }
+        private bool KeyPressed(Keys b, KeyboardState current)
+        {
+            return (current.IsKeyDown(b) && !oldkeyboardState.IsKeyDown(b));
         }
     }
 }

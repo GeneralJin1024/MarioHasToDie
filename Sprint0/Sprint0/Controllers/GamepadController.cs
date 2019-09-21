@@ -12,15 +12,16 @@ namespace Sprint0
     class GamepadController : IController
     {
         private GamePadState prevGamePadState;
-        Mario mario;
+        private Mario mario;
         private Dictionary<Buttons, ICommand> controllerDic;
         private Sprint0 Game;
 
         public GamepadController(Mario mario, Sprint0 game)
         {
-            prevGamePadState = GamePad.GetState(PlayerIndex.One);
-            this.mario = mario;
             Game = game;
+            this.mario = mario;
+            controllerDic = new Dictionary<Buttons, ICommand>();
+            prevGamePadState = GamePad.GetState(PlayerIndex.One);
             GetCommand();
         }
         public void GetCommand()
@@ -28,7 +29,7 @@ namespace Sprint0
             // Map KeyboardController keys and Game commands
             controllerDic.Add(Buttons.A, new MoveUpCommand(mario));
             controllerDic.Add(Buttons.DPadRight, new MoveRightCommand(mario));
-            controllerDic.Add(Buttons.DPadRight, new MoveRightCommand(mario));
+            controllerDic.Add(Buttons.DPadLeft, new MoveLeftCommand(mario));
             controllerDic.Add(Buttons.DPadDown, new MoveDownCommand(mario));
             controllerDic.Add(Buttons.Start, new QuitCommand(Game));
 

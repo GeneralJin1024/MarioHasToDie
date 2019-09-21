@@ -1,10 +1,4 @@
-﻿using System;
-using Sprint0.MarioClasses;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Sprint0.MarioClasses;
 
 namespace Sprint0
 {
