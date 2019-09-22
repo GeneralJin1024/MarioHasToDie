@@ -64,6 +64,7 @@ namespace Sprint0
         {
             _game = this;
 
+
             spriteList = new ArrayList();
 
             #region Controllers

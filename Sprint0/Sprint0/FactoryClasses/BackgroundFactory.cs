@@ -29,6 +29,7 @@ namespace Sprint0.FactoryClasses
         Texture2D bigHill;
         Texture2D smallHill;
         Texture2D bigBush;
+        Texture2D smallBush;
         public BackgroundFactory()
         {
             LoadTexture();
@@ -40,6 +41,8 @@ namespace Sprint0.FactoryClasses
             bigHill = Sprint1.Game.Content.Load<Texture2D>("BackgroundSprite/bigHill");
             smallHill = Sprint1.Game.Content.Load<Texture2D>("BackgroundSprite/smallHill");
             bigBush = Sprint1.Game.Content.Load<Texture2D>("BackgroundSprite/bigBush");
+            smallBush = Sprint1.Game.Content.Load<Texture2D>("BackgroundSprite/smallBush");
+
         }
         public void AddToList(ArrayList spriteList)
         {
@@ -48,7 +51,9 @@ namespace Sprint0.FactoryClasses
             spriteList.Add(getSmallCloud());
             spriteList.Add(getSmallHill());
             spriteList.Add(getBigBush());
+            spriteList.Add(getSmallBush());
         }
+
         public BigHillSprite getBigHill()
         {
             return new BigHillSprite(bigHill);
@@ -69,7 +74,10 @@ namespace Sprint0.FactoryClasses
         {
             return new BigBushSprite(bigBush);
         }
-
+        public SmallBushSprite getSmallBush()
+        {
+            return new SmallBushSprite(smallBush);
+        }
     }
 }
 

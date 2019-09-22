@@ -33,7 +33,7 @@ namespace sprint0.Background
         {
             foreach (Vector2 vector in Location)
             {
-                spriteBatch.Draw(SpriteSheets, SpriteSheets.Bounds, Color.White);
+                spriteBatch.Draw(SpriteSheets, vector, Color.White);
             }
         }
 
