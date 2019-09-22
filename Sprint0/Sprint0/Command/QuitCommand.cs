@@ -10,9 +10,9 @@ namespace Sprint0
 {
     public class QuitCommand : ICommand
     {
-        Sprint0 game;
+        Sprint1 game;
 
-        public QuitCommand(Sprint0 myGame)
+        public QuitCommand(Sprint1 myGame)
         {
             game = myGame;
         }

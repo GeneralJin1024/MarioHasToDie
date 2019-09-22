@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Sprint0.FactoryClasses
 {
-    class BlockFactory
+    class BlockFactory:IFactory
     {
         private static BlockFactory _instance;
         public static BlockFactory Instance
@@ -23,19 +23,42 @@ namespace Sprint0.FactoryClasses
             }
         }
         private static Texture2D[] blockTextures;
+        public Bricks qBlockTest;
+        public Bricks hitBlockTest;
+        public Bricks hiddenBlockTest;
+        public Bricks brickBlockTest;
+        public Blocks floorBlockTest;
+        public Blocks stairBlockTest;
         public BlockFactory()
         {
-            LoadBlockTexture();
+            LoadTexture();
         }
-        private void LoadBlockTexture()
+        private void LoadTexture()
         {
-            blockTextures = new Texture2D[5] {Sprint0.Game.Content.Load<Texture2D>("BlockSprites/mario-brick-blocks"),
-                Sprint0.Game.Content.Load<Texture2D>("BlockSprites/mario-gravel-blocks"),
-                Sprint0.Game.Content.Load<Texture2D>("BlockSprites/mario-hit-block"),
-                Sprint0.Game.Content.Load<Texture2D>("BlockSprites/mario-question-blocks"),
-                Sprint0.Game.Content.Load<Texture2D>("BlockSprites/mario-shiny-block")};
+            blockTextures = new Texture2D[5] {Sprint1.Game.Content.Load<Texture2D>("BlockSprites/mario-brick-blocks"),
+                Sprint1.Game.Content.Load<Texture2D>("BlockSprites/mario-gravel-blocks"),
+                Sprint1.Game.Content.Load<Texture2D>("BlockSprites/mario-hit-block"),
+                Sprint1.Game.Content.Load<Texture2D>("BlockSprites/mario-question-blocks"),
+                Sprint1.Game.Content.Load<Texture2D>("BlockSprites/mario-shiny-block")};
         }
-        public Texture2D GetBlockTextures(int index)
+        public void AddToList(ArrayList spriteList)
+        {
+            float x = Sprint1.Game.GraphicsDevice.Viewport.Width / 8;
+            float y = Sprint1.Game.GraphicsDevice.Viewport.Height / 2;
+            qBlockTest = BlockFactory.Instance.GetQuestionBlock(new Vector2(x, y), new ArrayList { "redMushroom" });
+            hitBlockTest = BlockFactory.Instance.GetUsedBlock(new Vector2(2 * x, y));
+            hiddenBlockTest = BlockFactory.Instance.GetHiddenBlock(new Vector2(3 * x, y), new ArrayList { });
+            floorBlockTest = BlockFactory.Instance.GetFloorBlock(new Vector2(4 * x, y));
+            stairBlockTest = BlockFactory.Instance.GetStairBlock(new Vector2(5 * x, y));
+            brickBlockTest = BlockFactory.Instance.GetBrickBlock(new Vector2(6 * x, y), new ArrayList { "coin", "coin" });
+            spriteList.Add(qBlockTest);
+            spriteList.Add(hiddenBlockTest);
+            spriteList.Add(brickBlockTest);
+            spriteList.Add(hitBlockTest);
+            spriteList.Add(floorBlockTest);
+            spriteList.Add(stairBlockTest);
+        }
+        public Texture2D GetBlockTextures( int index)
         {
             return blockTextures[index];
         }

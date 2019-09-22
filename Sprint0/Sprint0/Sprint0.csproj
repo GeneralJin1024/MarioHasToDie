@@ -59,9 +59,13 @@
     <Compile Include="Command\QuitCommand.cs" />
     <Compile Include="Controllers\GamepadController.cs" />
     <Compile Include="Controllers\KeyboardController.cs" />
+    <Compile Include="FactoryClasses\ItemFactory.cs" />
+    <Compile Include="FactoryClasses\EnemyFactory.cs" />
+    <Compile Include="FactoryClasses\BackgroundFactory.cs" />
     <Compile Include="FactoryClasses\BlockFactory.cs" />
     <Compile Include="FactoryClasses\MarioFactory.cs" />
     <Compile Include="ICommand.cs" />
+    <Compile Include="IFactory.cs" />
     <Compile Include="Sprites\AnimatedSprite.cs" />
     <Compile Include="BlockClasses\Blocks.cs" />
     <Compile Include="BlockClasses\Bricks.cs" />
@@ -70,7 +74,6 @@
     <Compile Include="BlockClasses\HiddenBlockSprite.cs" />
     <Compile Include="BlockClasses\QuestionBlockSprite.cs" />
     <Compile Include="BlockClasses\UsedBlockSprite.cs" />
-    <Compile Include="Factory.cs" />
     <Compile Include="MarioClasses\ActionState.cs" />
     <Compile Include="MarioClasses\Mario.cs" />
     <Compile Include="MarioClasses\MarioAction.cs" />
@@ -80,7 +83,7 @@
     <Compile Include="QuitGameCommand.cs" />
     <Compile Include="ISprite.cs" />
     <Compile Include="IController.cs" />
-    <Compile Include="Sprint0.cs" />
+    <Compile Include="Sprint1.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Sprites\BackgroundSprite.cs" />

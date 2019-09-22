@@ -18,25 +18,18 @@ namespace Sprint0
     /// <summary>
     /// This is the main type for your game.
     /// </summary>
-    public class Sprint0 : Game
+    public class Sprint1 : Game
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
-        private Factory factory;
         private Mario Mario;
-
+        private ArrayList factoryList;
         private ArrayList controllerList;
         private ArrayList spriteList;
         #region Sprite
         #endregion
 
-        private Bricks qBlockTest;
-        private Bricks hitBlockTest;
-        private Bricks hiddenBlockTest;
-        private Blocks floorBlockTest;
-        private Blocks stairBlockTest;
-        private Bricks brickBlockTest;
 
         #region Fonts
         public Color fontColor { get; set; } = Color.DarkBlue;
@@ -46,16 +39,16 @@ namespace Sprint0
         private Menu GameMenu;
         public bool MenuMode { get; set; }
 
-        static private Sprint0 _game;
+        static private Sprint1 _game;
         public Mario GetMario => Mario;
-        public static Sprint0 Game
+        public static Sprint1 Game
         {
             get
             {
                 return _game;
             }
         }
-        public Sprint0()
+        public Sprint1()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
@@ -70,24 +63,14 @@ namespace Sprint0
         protected override void Initialize()
         {
             _game = this;
-            factory = new Factory();
 
-            #region TestBlockSprites
-            InitialBlocks();
             spriteList = new ArrayList();
-            spriteList.Add(qBlockTest);
-            spriteList.Add(hiddenBlockTest);
-            spriteList.Add(brickBlockTest);
-            spriteList.Add(hitBlockTest);
-            spriteList.Add(floorBlockTest);
-            spriteList.Add(stairBlockTest);
-
-            #endregion
 
             #region Controllers
             controllerList = new ArrayList();
             #endregion
 
+            factoryList = new ArrayList();
             GameMenu = new Menu(this);
             MenuMode = true;
             base.Initialize();
@@ -104,11 +87,14 @@ namespace Sprint0
             //load mario texture and construct mario. Then add mario into sprite list.
             Mario = new FactoryClasses.MarioFactory(Content).GetMario(new Vector2(400, 300));
             spriteList.Add(Mario);
-            controllerList.Add(new KeyboardController(Mario, this, new Bricks[] { qBlockTest, hiddenBlockTest, brickBlockTest }));
+            factoryList.Add(BlockFactory.Instance);
+            factoryList.Add(EnemyFactory.Instance);
+            factoryList.Add(BackgroundFactory.Instance);
+            factoryList.Add(ItemFactory.Instance);
+            foreach (IFactory factory in factoryList)
+                factory.AddToList(spriteList);
+            controllerList.Add(new KeyboardController(Mario, this, new Bricks[] { BlockFactory.Instance.qBlockTest, BlockFactory.Instance.hiddenBlockTest, BlockFactory.Instance.brickBlockTest }));
             controllerList.Add(new GamepadController(Mario, this));
-            LoadEnemyItemTexture();
-            LoadBackgroundTexture();
-
             #region Controller
 
             #endregion
@@ -204,51 +190,5 @@ namespace Sprint0
             #endregion
         }
 
-        private void InitialBlocks()
-        {
-            float x = GraphicsDevice.Viewport.Width / 8;
-            float y = GraphicsDevice.Viewport.Height / 2;
-            qBlockTest = BlockFactory.Instance.GetQuestionBlock(new Vector2(x, y), new ArrayList { "redMushroom" });
-            hitBlockTest = BlockFactory.Instance.GetUsedBlock(new Vector2(2 * x, y));
-            hiddenBlockTest = BlockFactory.Instance.GetHiddenBlock(new Vector2(3 * x, y), new ArrayList { });
-            floorBlockTest = BlockFactory.Instance.GetFloorBlock(new Vector2(4 * x, y));
-            stairBlockTest = BlockFactory.Instance.GetStairBlock(new Vector2(5 * x, y));
-            brickBlockTest = BlockFactory.Instance.GetBrickBlock(new Vector2(6 * x, y), new ArrayList { "coin", "coin" });
-        }
-
-        private void LoadEnemyItemTexture()
-        {
-
-            Texture2D goomba =Content.Load<Texture2D>("EnemySprite/goomba");
-            Texture2D greenkoopa = Content.Load<Texture2D>("EnemySprite/greenkoopa");
-            Texture2D redkoopa = Content.Load<Texture2D>("EnemySprite/redkoopa");
-            Texture2D coin = Content.Load<Texture2D>("ItemSprite/coin");
-            Texture2D flower = Content.Load<Texture2D>("ItemSprite/flower");
-            Texture2D greenMushroom = Content.Load<Texture2D>("ItemSprite/greenMushroom");
-            Texture2D redMushroom = Content.Load<Texture2D>("ItemSprite/redMushroom");
-            Texture2D star = Content.Load<Texture2D>("ItemSprite/star");
-            spriteList.Add(factory.getCoin(coin));
-            spriteList.Add(factory.getFlower(flower));
-            spriteList.Add(factory.getGreenMushroom(greenMushroom));
-            spriteList.Add(factory.getRedMushroom(redMushroom));
-            spriteList.Add(factory.getStar(star));
-            spriteList.Add(factory.getGreenKoopa(greenkoopa));
-            spriteList.Add(factory.getRedKoopa(redkoopa));
-            spriteList.Add(factory.getGoomba(goomba));
-        }
-        private void LoadBackgroundTexture()
-        {
-
-            Texture2D bigCloud = Content.Load<Texture2D>("BackgroundSprite/bigCloud");
-            Texture2D smallCloud = Content.Load<Texture2D>("BackgroundSprite/smallCloud");
-            Texture2D bigHill = Content.Load<Texture2D>("BackgroundSprite/bigHill");
-            Texture2D smallHill = Content.Load<Texture2D>("BackgroundSprite/smallHill");
-            Texture2D bigBush = Content.Load<Texture2D>("BackgroundSprite/bigBush");
-            spriteList.Add(factory.getBigCloud(bigCloud));
-            spriteList.Add(factory.getBigHill(bigHill));
-            spriteList.Add(factory.getSmallCloud(smallCloud));
-            spriteList.Add(factory.getSmallHill(smallHill));
-            spriteList.Add(factory.getBigBush(bigBush));
-        }
     }
 }

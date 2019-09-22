@@ -134,15 +134,15 @@ namespace Sprint0.BlockClasses
             switch (items[0])
             {
                 case "redMushroom":
-                    return new Factory().getRedMushroom(Sprint0.Game.Content.Load<Texture2D>("ItemSprite/redMushroom"));
+                    return ItemFactory.Instance.getRedMushroom();
                 case "greenMushroom":
-                    return new Factory().getGreenMushroom(Sprint0.Game.Content.Load<Texture2D>("ItemSprite/greenMushroom"));
+                    return ItemFactory.Instance.getGreenMushroom();
                 case "star":
-                    return new Factory().getStar(Sprint0.Game.Content.Load<Texture2D>("ItemSprite/star"));
+                    return ItemFactory.Instance.getStar();
                 case "flower":
-                    return new Factory().getFlower(Sprint0.Game.Content.Load<Texture2D>("ItemSprite/flower"));
+                    return ItemFactory.Instance.getFlower();
                 default:
-                    return new Factory().getCoin(Sprint0.Game.Content.Load<Texture2D>("ItemSprite/coin"));
+                    return ItemFactory.Instance.getCoin();
             }
         }
     }

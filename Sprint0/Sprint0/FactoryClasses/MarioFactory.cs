@@ -20,6 +20,7 @@ namespace Sprint0.FactoryClasses
             Content = content;
         }
 
+
         public Mario GetMario(Vector2 location)
         {
             Texture2D[] StandardSheets = new Texture2D[5] {Content.Load<Texture2D>("MarioSprites/smallMarioRightStand"),

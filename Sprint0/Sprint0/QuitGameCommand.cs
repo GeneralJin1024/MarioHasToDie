@@ -8,8 +8,8 @@ namespace Sprint0
 {
     class QuitGameCommand : ICommand
     {
-        Sprint0 game;
-        public QuitGameCommand(Sprint0 myGame)
+        Sprint1 game;
+        public QuitGameCommand(Sprint1 myGame)
         {
             game = myGame;
         }

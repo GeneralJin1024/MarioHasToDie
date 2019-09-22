@@ -17,9 +17,9 @@ namespace Sprint0
         private Mario mario;
         private Bricks[] blockList;
         private Dictionary<Keys, ICommand> controllerDic;
-        private Sprint0 Game;
+        private Sprint1 Game;
 
-        public KeyboardController(Mario mario, Sprint0 game, Bricks[] blockList)
+        public KeyboardController(Mario mario, Sprint1 game, Bricks[] blockList)
         {
             // KeyboardController set up
             this.mario = mario;

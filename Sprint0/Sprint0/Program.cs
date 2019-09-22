@@ -14,7 +14,7 @@ namespace Sprint0
         [STAThread]
         static void Main()
         {
-            using (var game = new Sprint0())
+            using (var game = new Sprint1())
                 game.Run();
         }
     }
