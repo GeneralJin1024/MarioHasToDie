@@ -98,7 +98,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="bin\Windows\x86\Debug\MonoGame.Framework.dll" />
-    <Content Include="bin\Windows\x86\Debug\MonoGame.Framework.xml" />
     <Content Include="bin\Windows\x86\Debug\SharpDX.Direct2D1.dll" />
     <Content Include="bin\Windows\x86\Debug\SharpDX.Direct2D1.xml" />
     <Content Include="bin\Windows\x86\Debug\SharpDX.Direct3D11.dll" />

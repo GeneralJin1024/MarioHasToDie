@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <SourceFile>C:/Users/13667/Source/Repos/SmartMario/Sprint0/Sprint0/Content/BlockSprites/mario-brick-blocks.png</SourceFile>
-  <SourceTime>2019-09-21T22:10:33.6938095-04:00</SourceTime>
+  <SourceTime>2019-09-21T22:23:16.0445148-04:00</SourceTime>
   <DestFile>C:/Users/13667/Source/Repos/SmartMario/Sprint0/Sprint0/Content/bin/Windows/Content/BlockSprites/mario-brick-blocks.xnb</DestFile>
-  <DestTime>2019-09-21T22:19:15.9802877-04:00</DestTime>
+  <DestTime>2019-09-21T22:23:32.1678749-04:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2018-12-08T11:35:54-05:00</ImporterTime>
   <Processor>TextureProcessor</Processor>
