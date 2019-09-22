@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Sprint0.MarioClasses
 {
-    interface ActionState
+    interface IActionState
     {
         Mario.ActionType Type { get; set; }
         void Up(Mario mario);

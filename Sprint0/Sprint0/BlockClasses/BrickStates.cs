@@ -19,7 +19,7 @@ namespace Sprint0.BlockClasses
         private Mario mario;
         public void Handle(Bricks brick)
         {
-            mario = Sprint1.Game.GetMario;
+            mario = Sprint1.Game.Mario;
              if (mario.IsSuper() && brick.bType == BrickType.BNormal)
              {
                  brick.ChangeToDestroyed();
