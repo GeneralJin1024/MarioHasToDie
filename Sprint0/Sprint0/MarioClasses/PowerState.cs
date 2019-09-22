@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace Sprint0.MarioClasses
 {
-    interface PowerState
+    interface IPowerState
     {
         Mario.PowerType Type { get; set; }
         void Destroy(Mario mario);
-        void Leave(Mario mario);
+        void Leave(Mario mario, int[] CurrentActionAndState);
 
        
     }

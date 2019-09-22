@@ -43,16 +43,16 @@ namespace Sprint0.MarioClasses
 
         #region Action States
         //{Idle, Jump, Walk, RunningJump, Crouch}
-        private readonly ActionState[] ActionStates;
+        private readonly IActionState[] ActionStates;
         #endregion Action States
 
         #region PowerState
         //{Standard, Super, Fire, Died}
-        private readonly PowerState[] PowerStates;
+        private readonly IPowerState[] PowerStates;
         #endregion PowerState
 
         //{ActionSprite, ActionState, PowerState}
-        public int[] CurrentActionAndState { get; set; }
+        private readonly int[] CurrentActionAndState;
 
         public bool IsLeft { get; set; }
 
@@ -75,9 +75,9 @@ namespace Sprint0.MarioClasses
                 new AnimatedSprite(MarioSpriteSheets[0][2], new Point(1, 3)),
                 new AnimatedSprite(MarioSpriteSheets[0][3], new Point(1, 1)),
                 new AnimatedSprite(MarioSpriteSheets[0][4], new Point(1, 1))};
-            ActionStates = new ActionState[5] { new IdleState(), new JumpState(), new WalkState(),
+            ActionStates = new IActionState[5] { new IdleState(), new JumpState(), new WalkState(),
                 new CrouchState(), new RunningJumpState() };
-            PowerStates = new PowerState[4] { new StandardState(), new SuperState(), new FireState(),
+            PowerStates = new IPowerState[4] { new StandardState(), new SuperState(), new FireState(),
                 new DiedState() };
             CurrentActionAndState = new int[3] { 0, 0, 0 };
             IsLeft = false;
@@ -176,7 +176,7 @@ namespace Sprint0.MarioClasses
         public void ChangeToSuper()
         {
             ChangeTexture(MarioSpriteSheets[1]);
-            PowerStates[CurrentActionAndState[2]].Leave(this);
+            PowerStates[CurrentActionAndState[2]].Leave(this, CurrentActionAndState);
             if (PowerStates[CurrentActionAndState[2]].Type != PowerType.Super)
             {
                 Location.Y -= 16;
@@ -189,7 +189,7 @@ namespace Sprint0.MarioClasses
                 ChangeToIdle();
 
             ChangeTexture(MarioSpriteSheets[0]);
-            PowerStates[CurrentActionAndState[2]].Leave(this);
+            PowerStates[CurrentActionAndState[2]].Leave(this, CurrentActionAndState);
             if (PowerStates[CurrentActionAndState[2]].Type == PowerType.Super)
             {
                 Location.Y += 16;
@@ -199,7 +199,7 @@ namespace Sprint0.MarioClasses
         public void ChangeToFire()
         {
             ChangeTexture(MarioSpriteSheets[2]);
-            PowerStates[CurrentActionAndState[2]].Leave(this);
+            PowerStates[CurrentActionAndState[2]].Leave(this, CurrentActionAndState);
             if (PowerStates[CurrentActionAndState[2]].Type != PowerType.Super)
             {
                 Location.Y -= 16;

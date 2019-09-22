@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Sprint0.MarioClasses
 {
-    class IdleState : ActionState
+    class IdleState : IActionState
     {
         public Mario.ActionType Type { get; set; } = Mario.ActionType.Other;
         public void Up(Mario mario) { mario.ChangeToJump(); }
@@ -25,7 +25,7 @@ namespace Sprint0.MarioClasses
         }
     }
 
-    class JumpState : ActionState
+    class JumpState : IActionState
     {
         public Mario.ActionType Type { get; set; } = Mario.ActionType.Other;
         public void Up(Mario mario) { }
@@ -40,7 +40,7 @@ namespace Sprint0.MarioClasses
         }
     }
 
-    class RunningJumpState : ActionState
+    class RunningJumpState : IActionState
     {
         public Mario.ActionType Type { get; set; } = Mario.ActionType.Other;
         public void Up(Mario mario) { }
@@ -55,7 +55,7 @@ namespace Sprint0.MarioClasses
         }
     }
 
-    class WalkState : ActionState
+    class WalkState : IActionState
     {
         public Mario.ActionType Type { get; set; } = Mario.ActionType.Other;
         public void Up(Mario mario) { mario.ChangeToRunningJump(); }
@@ -70,7 +70,7 @@ namespace Sprint0.MarioClasses
         }
     }
 
-    class CrouchState : ActionState
+    class CrouchState : IActionState
     {
         public Mario.ActionType Type { get; set; } = Mario.ActionType.Crouch;
         public void Up(Mario mario) { mario.ChangeToIdle();}
