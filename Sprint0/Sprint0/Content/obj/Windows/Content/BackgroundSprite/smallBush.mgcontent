@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <SourceFile>C:/Users/13667/Source/Repos/SmartMario/Sprint0/Sprint0/Content/BackgroundSprite/smallBush.png</SourceFile>
-  <SourceTime>2019-09-21T21:19:54.9233077-04:00</SourceTime>
+  <SourceTime>2019-09-21T22:10:33.6868285-04:00</SourceTime>
   <DestFile>C:/Users/13667/Source/Repos/SmartMario/Sprint0/Sprint0/Content/bin/Windows/Content/BackgroundSprite/smallBush.xnb</DestFile>
-  <DestTime>2019-09-21T21:22:53.1659948-04:00</DestTime>
+  <DestTime>2019-09-21T22:19:15.9304096-04:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2018-12-08T11:35:54-05:00</ImporterTime>
   <Processor>TextureProcessor</Processor>
