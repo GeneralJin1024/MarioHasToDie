@@ -35,7 +35,7 @@ namespace Sprint0.FactoryClasses
         {
             if (spriteList == null)
             {
-                throw new ArgumentNullException("spriteList");
+                throw new ArgumentNullException(nameof(spriteList));
             }
             spriteList.Add(Mario);
         }

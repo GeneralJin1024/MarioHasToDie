@@ -3,7 +3,11 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
+using System.Reflection;
+using System.Resources;
 
+[assembly: NeutralResourcesLanguage("en-US")]
 namespace Sprint0
 {
     class Menu
@@ -18,12 +22,13 @@ namespace Sprint0
         private Vector2 CurrentChoose;
 
         private KeyboardState oldState;
-
+        //ResourceManager stringManager;
         public Menu(Sprint1 game)
         {
             Game = game;
             FirstChoose = true;
             oldState = Keyboard.GetState();
+            //stringManager = new ResourceManager("en-US", Assembly.GetExecutingAssembly());
         }
 
 

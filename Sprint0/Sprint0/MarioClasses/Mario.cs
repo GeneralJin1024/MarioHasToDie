@@ -69,6 +69,10 @@ namespace Sprint0.MarioClasses
         public Mario(Texture2D[] standardSheets, Texture2D[] superSheet,
             Texture2D[] fireSheet, Vector2 location)
         {
+            if (standardSheets == null || superSheet == null || fireSheet == null)
+            {
+                throw new ArgumentNullException(nameof(standardSheets));
+            }
             MarioSpriteSheets = new Texture2D[3][] { standardSheets, superSheet, fireSheet };
             ActionSprites = new ISprite[5] { new AnimatedSprite(MarioSpriteSheets[0][0], new Point(1, 1)),
                 new AnimatedSprite(MarioSpriteSheets[0][1], new Point(1, 1)),
