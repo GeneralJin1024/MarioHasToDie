@@ -102,7 +102,7 @@ namespace Sprint0
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
             //load mario texture and construct mario. Then add mario into sprite list.
-            Mario = new FactoryClasses.MarioFactory(Content).GetMario(new Vector2(400, 300));
+            Mario = new MarioFactory(Content).GetMario(new Vector2(400, 300));
             spriteList.Add(Mario);
             controllerList.Add(new KeyboardController(Mario, this, new Bricks[] { qBlockTest, hiddenBlockTest, brickBlockTest }));
             controllerList.Add(new GamepadController(Mario, this));
