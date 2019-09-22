@@ -236,3 +236,19 @@ C:\Users\runmi\source\repos\SmartMario2 - 副本 - 副本 (2)\Sprint0\Sprint0\ob
 C:\Users\runmi\source\repos\SmartMario2 - 副本 - 副本 (2)\Sprint0\Sprint0\obj\x86\Debug\Sprint0.csproj.CoreCompileInputs.cache
 C:\Users\runmi\source\repos\SmartMario2 - 副本 - 副本 (2)\Sprint0\Sprint0\obj\x86\Debug\Sprint0.exe
 C:\Users\runmi\source\repos\SmartMario2 - 副本 - 副本 (2)\Sprint0\Sprint0\obj\x86\Debug\Sprint0.pdb
+C:\Users\13667\Source\Repos\SmartMario\Sprint0\Sprint0\bin\Windows\x86\Debug\Content\ItemSprite\coin.xnb
+C:\Users\13667\Source\Repos\SmartMario\Sprint0\Sprint0\bin\Windows\x86\Debug\Content\ItemSprite\flower.xnb
+C:\Users\13667\Source\Repos\SmartMario\Sprint0\Sprint0\bin\Windows\x86\Debug\Content\ItemSprite\greenMushroom.xnb
+C:\Users\13667\Source\Repos\SmartMario\Sprint0\Sprint0\bin\Windows\x86\Debug\Content\ItemSprite\redMushroom.xnb
+C:\Users\13667\Source\Repos\SmartMario\Sprint0\Sprint0\bin\Windows\x86\Debug\Content\ItemSprite\star.xnb
+C:\Users\13667\Source\Repos\SmartMario\Sprint0\Sprint0\bin\Windows\x86\Debug\Content\EnemySprite\goomba.xnb
+C:\Users\13667\Source\Repos\SmartMario\Sprint0\Sprint0\bin\Windows\x86\Debug\Content\EnemySprite\greenkoopa.xnb
+C:\Users\13667\Source\Repos\SmartMario\Sprint0\Sprint0\bin\Windows\x86\Debug\Content\EnemySprite\redkoopa.xnb
+C:\Users\13667\Source\Repos\SmartMario\Sprint0\Sprint0\bin\Windows\x86\Debug\Content\BackgroundSprite\bigBush.xnb
+C:\Users\13667\Source\Repos\SmartMario\Sprint0\Sprint0\bin\Windows\x86\Debug\Content\BackgroundSprite\bigCloud.xnb
+C:\Users\13667\Source\Repos\SmartMario\Sprint0\Sprint0\bin\Windows\x86\Debug\Content\BackgroundSprite\bigHill.xnb
+C:\Users\13667\Source\Repos\SmartMario\Sprint0\Sprint0\bin\Windows\x86\Debug\Content\BackgroundSprite\mediumBush.xnb
+C:\Users\13667\Source\Repos\SmartMario\Sprint0\Sprint0\bin\Windows\x86\Debug\Content\BackgroundSprite\mediumCloud.xnb
+C:\Users\13667\Source\Repos\SmartMario\Sprint0\Sprint0\bin\Windows\x86\Debug\Content\BackgroundSprite\smallBush.xnb
+C:\Users\13667\Source\Repos\SmartMario\Sprint0\Sprint0\bin\Windows\x86\Debug\Content\BackgroundSprite\smallCloud.xnb
+C:\Users\13667\Source\Repos\SmartMario\Sprint0\Sprint0\bin\Windows\x86\Debug\Content\BackgroundSprite\smallHill.xnb

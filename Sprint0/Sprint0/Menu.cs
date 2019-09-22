@@ -10,7 +10,7 @@ namespace Sprint0
     {
         private readonly Sprint0 Game;
 
-        public Color FontColor { get; set; } = Color.White;
+        private Color FontColor = Color.White;
         private SpriteFont Font;
         private ISprite chooseSprite;
 
@@ -66,12 +66,12 @@ namespace Sprint0
         {
             //GraphicsDevice.Clear(Color.CornflowerBlue);
             //GraphicsDevice.Clear(Color.Black);
-            spriteBatch.DrawString(Font, "Welcome To Mario", new Vector2(190.0f, 150.0f), FontColor, 0,
+            string[] legend = { "Welcome To Mario", "Start", "Quit", "W/Up Arrow: Up       S/Down Arrow: Down        Z: choose" };
+            spriteBatch.DrawString(Font, legend[0], new Vector2(190.0f, 150.0f), FontColor, 0,
                 Vector2.Zero, 2.5f, SpriteEffects.None, 0);
-            spriteBatch.DrawString(Font, "Start", new Vector2(370.0f, 300.0f), FontColor);
-            spriteBatch.DrawString(Font, "Quit", new Vector2(370.0f, 350.0f), FontColor);
-            spriteBatch.DrawString(Font, "W/Up Arrow: Up       S/Down Arrow: Down        Z: choose",
-                new Vector2(0, 450), FontColor);
+            spriteBatch.DrawString(Font, legend[1], new Vector2(370.0f, 300.0f), FontColor);
+            spriteBatch.DrawString(Font, legend[2], new Vector2(370.0f, 350.0f), FontColor);
+            spriteBatch.DrawString(Font, legend[3], new Vector2(0, 450), FontColor);
             chooseSprite.Draw(spriteBatch, CurrentChoose, false);
         }
     }

@@ -16,7 +16,7 @@ namespace Sprint0
         {
             get
             {
-                return this.Location;
+                return Location;
             }
         }
 
@@ -49,7 +49,7 @@ namespace Sprint0
             }
         }
 
-        public virtual void Draw(SpriteBatch spriteBatch, Vector2 Location, bool isLeft)
+        public virtual void Draw(SpriteBatch spriteBatch, Vector2 location, bool isLeft)
         {
             float frameWidth = (float)SpriteSheets.Width / RowsAndColumns.Y;
             float frameHeight = (float)SpriteSheets.Height / RowsAndColumns.X;
@@ -59,7 +59,7 @@ namespace Sprint0
             Rectangle destinationRectangle = new Rectangle((int)Location.X,
                 (int)Location.Y, (int)frameWidth, (int)frameHeight);
 
-            this.Location = Location;
+            Location = location;
             if (isLeft)
             {
                 spriteBatch.Draw(SpriteSheets, destinationRectangle, sourceRectangle,
