@@ -7,6 +7,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Sprint0.BlockClasses;
 using Sprint0.MarioClasses;
+using Sprint0.FactoryClasses;
 using Sprint0.Sprites;
 
 namespace Sprint0
@@ -72,14 +73,7 @@ namespace Sprint0
             factory = new Factory();
 
             #region TestBlockSprites
-            float x = GraphicsDevice.Viewport.Width / 8;
-            float y = GraphicsDevice.Viewport.Height / 2;
-            qBlockTest = BlockFactory.Instance.GetQuestionBlock(new Vector2(x, y), new ArrayList { "redMushroom" });
-            hitBlockTest = BlockFactory.Instance.GetUsedBlock(new Vector2(2 * x, y));
-            hiddenBlockTest = BlockFactory.Instance.GetHiddenBlock(new Vector2(3 * x, y), new ArrayList {});
-            floorBlockTest = BlockFactory.Instance.GetFloorBlock(new Vector2(4 * x, y));
-            stairBlockTest = BlockFactory.Instance.GetStairBlock(new Vector2(5 * x, y));
-            brickBlockTest = BlockFactory.Instance.GetBrickBlock(new Vector2(6 * x, y), new ArrayList { "coin", "coin" });
+            InitialBlocks();
             spriteList = new ArrayList();
             spriteList.Add(qBlockTest);
             spriteList.Add(hiddenBlockTest);
@@ -210,6 +204,17 @@ namespace Sprint0
             #endregion
         }
 
+        private void InitialBlocks()
+        {
+            float x = GraphicsDevice.Viewport.Width / 8;
+            float y = GraphicsDevice.Viewport.Height / 2;
+            qBlockTest = BlockFactory.Instance.GetQuestionBlock(new Vector2(x, y), new ArrayList { "redMushroom" });
+            hitBlockTest = BlockFactory.Instance.GetUsedBlock(new Vector2(2 * x, y));
+            hiddenBlockTest = BlockFactory.Instance.GetHiddenBlock(new Vector2(3 * x, y), new ArrayList { });
+            floorBlockTest = BlockFactory.Instance.GetFloorBlock(new Vector2(4 * x, y));
+            stairBlockTest = BlockFactory.Instance.GetStairBlock(new Vector2(5 * x, y));
+            brickBlockTest = BlockFactory.Instance.GetBrickBlock(new Vector2(6 * x, y), new ArrayList { "coin", "coin" });
+        }
 
         private void LoadEnemyItemTexture()
         {

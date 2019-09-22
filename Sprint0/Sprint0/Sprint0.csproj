@@ -55,6 +55,7 @@
     <Compile Include="Command\QuitCommand.cs" />
     <Compile Include="Controllers\GamepadController.cs" />
     <Compile Include="Controllers\KeyboardController.cs" />
+    <Compile Include="FactoryClasses\BlockFactory.cs" />
     <Compile Include="FactoryClasses\MarioFactory.cs" />
     <Compile Include="ICommand.cs" />
     <Compile Include="Sprites\AnimatedSprite.cs" />
