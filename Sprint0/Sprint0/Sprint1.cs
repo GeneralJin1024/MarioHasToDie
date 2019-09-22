@@ -20,10 +20,10 @@ namespace Sprint0
     /// </summary>
     public class Sprint1 : Game
     {
-        GraphicsDeviceManager graphics;
+        readonly GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
-        private Mario Mario;
+        //private Mario Mario;
         private ArrayList factoryList;
         private ArrayList controllerList;
         private ArrayList spriteList;
@@ -32,7 +32,7 @@ namespace Sprint0
 
 
         #region Fonts
-        public Color fontColor { get; set; } = Color.DarkBlue;
+        public Color FontColor { get; set; } = Color.DarkBlue;
         private SpriteFont instructionFont;
         #endregion
 
@@ -40,7 +40,7 @@ namespace Sprint0
         public bool MenuMode { get; set; }
 
         static private Sprint1 _game;
-        public Mario GetMario => Mario;
+        public Mario Mario { get; set; }
         public static Sprint1 Game
         {
             get
@@ -52,6 +52,9 @@ namespace Sprint0
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
+            graphics.PreferredBackBufferWidth = 800;  // set this value to the desired width of your window
+            graphics.PreferredBackBufferHeight = 500;   // set this value to the desired height of your window
+            graphics.ApplyChanges();
         }
 
         /// <summary>
@@ -86,15 +89,18 @@ namespace Sprint0
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
             //load mario texture and construct mario. Then add mario into sprite list.
-            Mario = new FactoryClasses.MarioFactory(Content).GetMario(new Vector2(400, 300));
-            spriteList.Add(Mario);
+            //Mario = new MarioFactory(Content).GetMario(new Vector2(400, 300));
+            //spriteList.Add(Mario);
+            factoryList.Add(MarioFactory.Instance);
             factoryList.Add(BlockFactory.Instance);
             factoryList.Add(EnemyFactory.Instance);
             factoryList.Add(BackgroundFactory.Instance);
             factoryList.Add(ItemFactory.Instance);
+            Mario = MarioFactory.Instance.Mario;
             foreach (IFactory factory in factoryList)
                 factory.AddToList(spriteList);
-            controllerList.Add(new KeyboardController(Mario, this, new Bricks[] { BlockFactory.Instance.qBlockTest, BlockFactory.Instance.hiddenBlockTest, BlockFactory.Instance.brickBlockTest }));
+            controllerList.Add(new KeyboardController(Mario, this, 
+                new Bricks[] { BlockFactory.Instance.qBlockTest, BlockFactory.Instance.hiddenBlockTest, BlockFactory.Instance.brickBlockTest }));
             controllerList.Add(new GamepadController(Mario, this));
             #region Controller
 
@@ -163,7 +169,7 @@ namespace Sprint0
                 
 
             #region Fonts
-            //DrawFonts(spriteBatch);
+            //DrawFonts();
             #endregion
 
             spriteBatch.End();
@@ -171,25 +177,25 @@ namespace Sprint0
             base.Draw(gameTime);
         }
 
-        private void DrawFonts(SpriteBatch spriteBatch)
-        {
-            #region Legend
-            Color color = fontColor;
-            spriteBatch.DrawString(instructionFont, "Legend for Keyboard", new Vector2(0.00f, 0.00f), color);
-            spriteBatch.DrawString(instructionFont, "Q - Quit Game", new Vector2(0.00f, 20.00f), color);
-            spriteBatch.DrawString(instructionFont, "W - Display a Non-moving Non-animated Sprite", new Vector2(0.00f, 40.00f), color);
-            spriteBatch.DrawString(instructionFont, "E - Display a Non-moving Animated Sprite", new Vector2(0.00f, 60.00f), color);
-            spriteBatch.DrawString(instructionFont, "R - Display a Moving Non-animated sprite", new Vector2(0.00f, 80.00f), color);
-            spriteBatch.DrawString(instructionFont, "T - Display a Moving and Animated sprite", new Vector2(0.00f, 100.00f), color);
+        //private void DrawFonts()
+        //{
+        //    #region Legend
+        //    Color color = FontColor;
+        //    spriteBatch.DrawString(instructionFont, "Legend for Keyboard", new Vector2(0.00f, 0.00f), color);
+        //    spriteBatch.DrawString(instructionFont, "Q - Quit Game", new Vector2(0.00f, 20.00f), color);
+        //    spriteBatch.DrawString(instructionFont, "W - Display a Non-moving Non-animated Sprite", new Vector2(0.00f, 40.00f), color);
+        //    spriteBatch.DrawString(instructionFont, "E - Display a Non-moving Animated Sprite", new Vector2(0.00f, 60.00f), color);
+        //    spriteBatch.DrawString(instructionFont, "R - Display a Moving Non-animated sprite", new Vector2(0.00f, 80.00f), color);
+        //    spriteBatch.DrawString(instructionFont, "T - Display a Moving and Animated sprite", new Vector2(0.00f, 100.00f), color);
 
-            spriteBatch.DrawString(instructionFont, "Legend for Gamepad", new Vector2(GraphicsDevice.Viewport.Width - 400.0f, 0.00f), color);
-            spriteBatch.DrawString(instructionFont, "Start - Quit Game", new Vector2(GraphicsDevice.Viewport.Width - 400.0f, 20.00f), color);
-            spriteBatch.DrawString(instructionFont, "A - Display a Non-moving Non-animated Sprite", new Vector2(GraphicsDevice.Viewport.Width - 400.0f, 40.00f), color);
-            spriteBatch.DrawString(instructionFont, "B - Display a Non-moving Animated Sprite", new Vector2(GraphicsDevice.Viewport.Width - 400.0f, 60.00f), color);
-            spriteBatch.DrawString(instructionFont, "X - Display a Moving Non-animated sprite", new Vector2(GraphicsDevice.Viewport.Width - 400.0f, 80.00f), color);
-            spriteBatch.DrawString(instructionFont, "Y - Display a Moving and Animated sprite", new Vector2(GraphicsDevice.Viewport.Width - 400.0f, 100.00f), color);
-            #endregion
-        }
+        //    spriteBatch.DrawString(instructionFont, "Legend for Gamepad", new Vector2(GraphicsDevice.Viewport.Width - 400.0f, 0.00f), color);
+        //    spriteBatch.DrawString(instructionFont, "Start - Quit Game", new Vector2(GraphicsDevice.Viewport.Width - 400.0f, 20.00f), color);
+        //    spriteBatch.DrawString(instructionFont, "A - Display a Non-moving Non-animated Sprite", new Vector2(GraphicsDevice.Viewport.Width - 400.0f, 40.00f), color);
+        //    spriteBatch.DrawString(instructionFont, "B - Display a Non-moving Animated Sprite", new Vector2(GraphicsDevice.Viewport.Width - 400.0f, 60.00f), color);
+        //    spriteBatch.DrawString(instructionFont, "X - Display a Moving Non-animated sprite", new Vector2(GraphicsDevice.Viewport.Width - 400.0f, 80.00f), color);
+        //    spriteBatch.DrawString(instructionFont, "Y - Display a Moving and Animated sprite", new Vector2(GraphicsDevice.Viewport.Width - 400.0f, 100.00f), color);
+        //    #endregion
+        //}
 
     }
 }

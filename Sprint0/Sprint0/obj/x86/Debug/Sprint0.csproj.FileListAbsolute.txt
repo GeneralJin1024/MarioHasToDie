@@ -306,3 +306,4 @@ C:\Users\runmi\Source\Repos\SmartMario\Sprint0\Sprint0\obj\x86\Debug\Sprint0.csp
 C:\Users\runmi\Source\Repos\SmartMario\Sprint0\Sprint0\obj\x86\Debug\Sprint0.csproj.CopyComplete
 C:\Users\runmi\Source\Repos\SmartMario\Sprint0\Sprint0\obj\x86\Debug\Sprint0.exe
 C:\Users\runmi\Source\Repos\SmartMario\Sprint0\Sprint0\obj\x86\Debug\Sprint0.pdb
+C:\Users\13667\Source\Repos\SmartMario\Sprint0\Sprint0\obj\x86\Debug\Sprint0.csprojAssemblyReference.cache

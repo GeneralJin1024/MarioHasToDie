@@ -17,7 +17,7 @@ namespace sprint0.Background
         protected ArrayList Location;
         public Texture2D SpriteSheets { get; set; }
 
-        void Update(GameTime gameTime) { }
+        //void Update(GameTime gameTime) { }
         public BackgroundSprite(Texture2D texture)
         {
             SpriteSheets = texture;
