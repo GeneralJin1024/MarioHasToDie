@@ -8,7 +8,7 @@ namespace Sprint0
 {
     class Menu
     {
-        private readonly Sprint0 Game;
+        private readonly Sprint1 Game;
 
         private Color FontColor = Color.White;
         private SpriteFont Font;
@@ -19,7 +19,7 @@ namespace Sprint0
 
         private KeyboardState oldState;
 
-        public Menu(Sprint0 game)
+        public Menu(Sprint1 game)
         {
             Game = game;
             FirstChoose = true;

@@ -18,7 +18,7 @@ namespace Sprint0
     /// <summary>
     /// This is the main type for your game.
     /// </summary>
-    public class Sprint0 : Game
+    public class Sprint1 : Game
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
@@ -46,16 +46,16 @@ namespace Sprint0
         private Menu GameMenu;
         public bool MenuMode { get; set; }
 
-        static private Sprint0 _game;
+        static private Sprint1 _game;
         public Mario GetMario => Mario;
-        public static Sprint0 Game
+        public static Sprint1 Game
         {
             get
             {
                 return _game;
             }
         }
-        public Sprint0()
+        public Sprint1()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";

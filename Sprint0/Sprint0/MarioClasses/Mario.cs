@@ -52,7 +52,7 @@ namespace Sprint0.MarioClasses
         #endregion PowerState
 
         //{ActionSprite, ActionState, PowerState}
-        public int[] CurrentActionAndState { get; set; }
+        public int[] CurrentActionAndState;
 
         public bool IsLeft { get; set; }
 

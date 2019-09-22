@@ -29,11 +29,11 @@ namespace Sprint0.FactoryClasses
         }
         private void LoadBlockTexture()
         {
-            blockTextures = new Texture2D[5] {Sprint0.Game.Content.Load<Texture2D>("BlockSprites/mario-brick-blocks"),
-                Sprint0.Game.Content.Load<Texture2D>("BlockSprites/mario-gravel-blocks"),
-                Sprint0.Game.Content.Load<Texture2D>("BlockSprites/mario-hit-block"),
-                Sprint0.Game.Content.Load<Texture2D>("BlockSprites/mario-question-blocks"),
-                Sprint0.Game.Content.Load<Texture2D>("BlockSprites/mario-shiny-block")};
+            blockTextures = new Texture2D[5] {Sprint1.Game.Content.Load<Texture2D>("BlockSprites/mario-brick-blocks"),
+                Sprint1.Game.Content.Load<Texture2D>("BlockSprites/mario-gravel-blocks"),
+                Sprint1.Game.Content.Load<Texture2D>("BlockSprites/mario-hit-block"),
+                Sprint1.Game.Content.Load<Texture2D>("BlockSprites/mario-question-blocks"),
+                Sprint1.Game.Content.Load<Texture2D>("BlockSprites/mario-shiny-block")};
         }
         public Texture2D GetBlockTextures(int index)
         {
