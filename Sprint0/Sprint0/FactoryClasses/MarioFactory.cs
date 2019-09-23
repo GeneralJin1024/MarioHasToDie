@@ -28,11 +28,13 @@ namespace Sprint0.FactoryClasses
 
         public MarioFactory()
         {
+            //Create Mario as soon as the factory is initialized.
             Mario = GetMario(new Vector2(400, 300));
         }
 
         public void AddToList(ArrayList spriteList)
         {
+            //check null first
             if (spriteList == null)
             {
                 throw new ArgumentNullException(nameof(spriteList));

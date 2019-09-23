@@ -15,11 +15,11 @@ namespace Sprint0.MarioClasses
             if (mario.IsLeft)
                 mario.ChangeToWalk();
             else
-                mario.IsLeft = true;
+                mario.IsLeft = true; // if Mario points to right, turn left
         }
         public void Right(Mario mario) {
             if (mario.IsLeft)
-                mario.IsLeft = false;
+                mario.IsLeft = false; //if Mario points to right, turn right.
             else
                 mario.ChangeToWalk();
         }
@@ -27,31 +27,33 @@ namespace Sprint0.MarioClasses
 
     class JumpState : IActionState
     {
+        //Jump can only from Idle.MoveUp
         public Mario.ActionType Type { get; set; } = Mario.ActionType.Other;
         public void Up(Mario mario) { }
         public void Down(Mario mario) { mario.ChangeToIdle(); }
         public void Left(Mario mario) {
             if (!mario.IsLeft)
-                mario.IsLeft = true;
+                mario.IsLeft = true; //if Mario points to left, turn right
         }
         public void Right(Mario mario) {
             if (mario.IsLeft)
-                mario.IsLeft = false;
+                mario.IsLeft = false; //if Mario points to right, turn left
         }
     }
 
     class RunningJumpState : IActionState
     {
+        //RunningJump can only from Running.MoveUp, and only to Running
         public Mario.ActionType Type { get; set; } = Mario.ActionType.Other;
         public void Up(Mario mario) { }
         public void Down(Mario mario) { mario.ChangeToWalk(); }
         public void Left(Mario mario) {
             if (!mario.IsLeft)
-                mario.IsLeft = true;
+                mario.IsLeft = true; //if Mario points to right, turn left
         }
         public void Right(Mario mario) {
             if (mario.IsLeft)
-                mario.IsLeft = false;
+                mario.IsLeft = false; //if Mario points to right, turn left
         }
     }
 
