@@ -32,9 +32,11 @@ namespace Sprint0.Background
     {
         public SmallHillSprite(Texture2D texture) : base(texture)
         {
-            Location = new ArrayList();
-            Location.Add(new Vector2(50, Sprint1.Game.GraphicsDevice.Viewport.Height-texture.Height));
-            Location.Add(new Vector2(100, Sprint1.Game.GraphicsDevice.Viewport.Height - texture.Height));
+            Location = new ArrayList
+            {
+                new Vector2(50, Sprint1.Game.GraphicsDevice.Viewport.Height - texture.Height),
+                new Vector2(100, Sprint1.Game.GraphicsDevice.Viewport.Height - texture.Height)
+            };
         }
     }
     class BigCloudSprite : BackgroundSprite

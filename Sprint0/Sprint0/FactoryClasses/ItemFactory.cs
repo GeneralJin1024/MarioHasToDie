@@ -28,7 +28,8 @@ namespace Sprint0.FactoryClasses
         Texture2D flower;
         Texture2D greenMushroom;
         Texture2D redMushroom;
-          Texture2D star;
+        Texture2D star;
+        Texture2D pipe;
         public ItemFactory()
         {
             LoadTexture();
@@ -40,6 +41,7 @@ namespace Sprint0.FactoryClasses
             greenMushroom = Sprint1.Game.Content.Load<Texture2D>("ItemSprite/greenMushroom");
             redMushroom = Sprint1.Game.Content.Load<Texture2D>("ItemSprite/redMushroom");
             star = Sprint1.Game.Content.Load<Texture2D>("ItemSprite/star");
+            pipe = Sprint1.Game.Content.Load<Texture2D>("ItemSprite/PipeSpriteSheet");
         }
         public void AddToList(ArrayList spriteList)
         {
@@ -48,6 +50,11 @@ namespace Sprint0.FactoryClasses
             spriteList.Add(GetGreenMushroom());
             spriteList.Add(GetRedMushroom());
             spriteList.Add(GetStar());
+            spriteList.Add(GetPipe());
+        }
+        public ItemSprite GetPipe()
+        {
+            return new ItemSprite(pipe, new Vector2(500, 150), new Point(1, 1));
         }
         public ItemSprite GetCoin()
         {
