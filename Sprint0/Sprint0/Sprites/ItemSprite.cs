@@ -18,12 +18,14 @@ namespace Sprint0.Sprites
         private Vector2 spriteSpeed;
         public ItemSprite(Texture2D texture, Vector2 location, Point sheetSize) : base(texture, sheetSize)
         {
+            //initialize
             spriteSpeed = new Vector2(0, 0);
             Location=location;
             isBump = false;
         }
         public void Bumping(Vector2 startP, float minY, Vector2 blockSpeed)
         {
+            //set the item's position to startP, and set the bump height and speed
             positionOffset = new Point(0, 1);
             spriteSpeed.Y = blockSpeed.Y * 2;
             Location = startP;
@@ -33,9 +35,11 @@ namespace Sprint0.Sprites
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
-            if (isBump&&bumpHeight > 0)
+            //if item need bump, increase the location
+            if (isBump)
             {
                 Location.Y -= positionOffset.Y != 0 ? spriteSpeed.Y * (float)gameTime.ElapsedGameTime.TotalSeconds : 0;
+                //if item is at the height, set bump to false.
                 if (Location.Y < bumpHeight)
                 {
                     isBump = false;

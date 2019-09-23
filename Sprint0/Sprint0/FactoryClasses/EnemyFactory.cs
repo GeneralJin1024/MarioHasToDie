@@ -30,9 +30,10 @@ namespace Sprint0.FactoryClasses
         Texture2D redkoopa ;
         public EnemyFactory()
         {
+            //when factory initialzed, load the texture
             LoadTexture();
         }
-        public void LoadTexture()
+        private void LoadTexture()
         {
             goomba = Sprint1.Game.Content.Load<Texture2D>("EnemySprite/goomba");
             greenkoopa = Sprint1.Game.Content.Load<Texture2D>("EnemySprite/greenkoopa");
@@ -40,6 +41,7 @@ namespace Sprint0.FactoryClasses
         }
         public void AddToList(ArrayList spriteList)
         {
+            //initialize the sprites and add the sprites to the list
             spriteList.Add(getGreenKoopa());
             spriteList.Add(getRedKoopa());
             spriteList.Add(getGoomba());
