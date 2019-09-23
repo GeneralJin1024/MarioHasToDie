@@ -22,6 +22,18 @@ namespace Sprint0.FactoryClasses
                 return _instance;
             }
         }
+
+        public static Texture2D[] BlockTextures
+        {
+            get
+            {
+                if (blockTextures == null)
+                {
+                    LoadTexture();
+                }
+                return blockTextures;
+            }
+        }
         private static Texture2D[] blockTextures;
         public Bricks qBlockTest;
         public Bricks hitBlockTest;
@@ -33,7 +45,7 @@ namespace Sprint0.FactoryClasses
         {
             LoadTexture();
         }
-        private void LoadTexture()
+        private static void LoadTexture()
         {
             blockTextures = new Texture2D[5] {Sprint1.Game.Content.Load<Texture2D>("BlockSprites/mario-brick-blocks"),
                 Sprint1.Game.Content.Load<Texture2D>("BlockSprites/mario-gravel-blocks"),
@@ -58,33 +70,29 @@ namespace Sprint0.FactoryClasses
             spriteList.Add(floorBlockTest);
             spriteList.Add(stairBlockTest);
         }
-        public Texture2D GetBlockTextures( int index)
-        {
-            return blockTextures[index];
-        }
         public BrickBlockSprite GetBrickBlock(Vector2 pos, ArrayList items)
         {
-            return new BrickBlockSprite(blockTextures[0], pos, items);
+            return new BrickBlockSprite(BlockTextures[0], pos, items);
         }
         public HiddenBlockSprite GetHiddenBlock(Vector2 pos, ArrayList items)
         {
-            return new HiddenBlockSprite(blockTextures[0], pos, items);
+            return new HiddenBlockSprite(BlockTextures[0], pos, items);
         }
         public QuestionBlockSprite GetQuestionBlock(Vector2 pos, ArrayList items)
         {
-            return new QuestionBlockSprite(blockTextures[3], pos, items);
+            return new QuestionBlockSprite(BlockTextures[3], pos, items);
         }
         public UsedBlockSprite GetUsedBlock(Vector2 pos)
         {
-            return new UsedBlockSprite(blockTextures[2], pos);
+            return new UsedBlockSprite(BlockTextures[2], pos);
         }
         public FloorBlockSprite GetFloorBlock(Vector2 pos)
         {
-            return new FloorBlockSprite(blockTextures[1], pos);
+            return new FloorBlockSprite(BlockTextures[1], pos);
         }
         public StairBlockSprite GetStairBlock(Vector2 pos)
         {
-            return new StairBlockSprite(blockTextures[4], pos);
+            return new StairBlockSprite(BlockTextures[4], pos);
         }
 
     }

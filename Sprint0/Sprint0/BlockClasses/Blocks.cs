@@ -9,21 +9,14 @@ using Microsoft.Xna.Framework.Graphics;
 namespace Sprint0.BlockClasses
 {
     
-    public class Blocks : ISprite
+    class Blocks : ISprite
     {
         public Texture2D SpriteSheets { get; set; }
-        public Vector2 Position
-        {
-            get
-            {
-                return bPosition;
-            }
-        }        
         //protected bool isHidden;
-        protected Vector2 bPosition;
+        private Vector2 bPosition;
 
-        protected int totalFrame;
-        protected Point frameSize { get; set; }
+        protected int totalFrame { get; set; }
+        protected Point FrameSize { get; set; }
         private Point sheetSize { get; set; }
         private int timeSinceLastFrame { get; set; }
         private int millisecondsPerFrame { get; set; }
@@ -31,6 +24,7 @@ namespace Sprint0.BlockClasses
 
         private Point currentFrame { get; set; }
         private int animationFrame { get; set; }
+        public Vector2 Position { get => bPosition; }
 
         public Blocks(Texture2D sheet, Vector2 pos, Point rowAndCol, int totFrame)
         {
@@ -39,22 +33,29 @@ namespace Sprint0.BlockClasses
         }
         public virtual void Draw(SpriteBatch spriteBatch, Vector2 location, bool isLeft)
         {
-
-            spriteBatch.Draw(SpriteSheets, location, new Rectangle(frameOrigin.X + currentFrame.X * frameSize.X, frameOrigin.Y + currentFrame.Y * frameSize.Y, frameSize.X, frameSize.Y), Color.White);
+            if (spriteBatch == null)
+            {
+                throw new ArgumentNullException(nameof(spriteBatch));
+            }
+            spriteBatch.Draw(SpriteSheets, location, new Rectangle(frameOrigin.X + currentFrame.X * FrameSize.X, frameOrigin.Y + currentFrame.Y * FrameSize.Y, FrameSize.X, FrameSize.Y), Color.White);
            
         }
 
         public Vector2 GetHeightAndWidth()
         {
-            return new Vector2(frameSize.X, frameSize.Y);
+            return new Vector2(FrameSize.X, FrameSize.Y);
         }
 
         protected void ResizeFrame(Texture2D sheet, Point rowAndCol, int totFrame)
         {
+            if (sheet == null)
+            {
+                throw new ArgumentNullException(nameof(sheet));
+            }
             SpriteSheets = sheet;
             sheetSize = rowAndCol;
             totalFrame = totFrame;
-            frameSize = new Point(SpriteSheets.Width / sheetSize.X, SpriteSheets.Height / sheetSize.Y);
+            FrameSize = new Point(SpriteSheets.Width / sheetSize.X, SpriteSheets.Height / sheetSize.Y);
             this.timeSinceLastFrame = 0;
             this.millisecondsPerFrame = 500;
             this.currentFrame = new Point(0, 0);
@@ -64,6 +65,10 @@ namespace Sprint0.BlockClasses
 
         public virtual void Update(GameTime gameTime)
         {
+            if (gameTime == null)
+            {
+                throw new ArgumentNullException(nameof(gameTime));
+            }
             timeSinceLastFrame += gameTime.ElapsedGameTime.Milliseconds;
             if (timeSinceLastFrame > millisecondsPerFrame)
             {

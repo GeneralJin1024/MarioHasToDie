@@ -15,6 +15,8 @@ namespace Sprint0
    //Teammate: Runmin Zhou
     //Teammate : Zhenhao Lu
     // teammate: Ziye Zhu
+    // Teammate: Shengyu Jin
+    // Teammate: Jian Zhang
     /// <summary>
     /// This is the main type for your game.
     /// </summary>

@@ -27,11 +27,11 @@ namespace Sprint0.BlockClasses
                 dPos.X += positionOffset.X != 0 ? spriteSpeed.X * (float)gameTime.ElapsedGameTime.TotalSeconds : 0;
                 dPos.Y += positionOffset.Y != 0 ? spriteSpeed.Y * (float)gameTime.ElapsedGameTime.TotalSeconds : 0;
 
-                destroyedBrickPosX[0] = bPosition.X - dPos.X; destroyedBrickPosX[1] = bPosition.X - 2 * dPos.X;
-                destroyedBrickPosX[2] = bPosition.X + dPos.X; destroyedBrickPosX[3] = bPosition.X + 2 * dPos.X;
+                destroyedBrickPosX[0] = Position.X - dPos.X; destroyedBrickPosX[1] = Position.X - 2 * dPos.X;
+                destroyedBrickPosX[2] = Position.X + dPos.X; destroyedBrickPosX[3] = Position.X + 2 * dPos.X;
 
                 for (int i = 0; i < 4; i++)
-                    destroyedBrickPosY[i] = bPosition.Y + dPos.Y;
+                    destroyedBrickPosY[i] = Position.Y + dPos.Y;
             }
             else
             {
@@ -43,7 +43,7 @@ namespace Sprint0.BlockClasses
             if (bType == BrickType.Destroyed)
             {
                 for (int index = 0; index < 4; index++)
-                    spriteBatch.Draw(SpriteSheets, new Vector2(destroyedBrickPosX[index], destroyedBrickPosY[index]), new Rectangle(0, 0, frameSize.X / 2, frameSize.Y / 2), Color.White);
+                    spriteBatch.Draw(SpriteSheets, new Vector2(destroyedBrickPosX[index], destroyedBrickPosY[index]), new Rectangle(0, 0, FrameSize.X / 2, FrameSize.Y / 2), Color.White);
             }
             else
             {

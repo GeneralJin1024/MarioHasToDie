@@ -22,6 +22,7 @@ namespace Sprint0.BlockClasses
         public BrickType bType;
         private readonly IBlockStates[] bStates;
         public IBlockStates currentbState;
+        private Vector2 bPosition;
         private bool IsBumping;
         private bool containItems;
         private ArrayList items;
@@ -35,6 +36,7 @@ namespace Sprint0.BlockClasses
             items = itemList;
             shownItems = new ArrayList { };
             containItems = itemList.Count != 0 ? true : false;
+            bPosition = pos;
             bStates = new IBlockStates[4] { new HiddenState(), new NormalState(), new BumpingState(), new UsedOrDestroyedState() };
             bType = type;
             currentbState = GenerateCurrentState();
@@ -58,13 +60,13 @@ namespace Sprint0.BlockClasses
         public void ChangeToBrick()
         {
             bType = BrickType.BNormal;
-            SpriteSheets = BlockFactory.Instance.GetBlockTextures(0);
+            SpriteSheets = BlockFactory.BlockTextures[0];
             //currentbState = GenerateCurrentState(); for key-map specific test 
         }
         private void ChangeToUsed()
         {
             bType = BrickType.Used;
-            base.ResizeFrame(BlockFactory.Instance.GetBlockTextures(2), new Point(4, 1), 1);          
+            base.ResizeFrame(BlockFactory.BlockTextures[2], new Point(4, 1), 1);          
             currentbState = GenerateCurrentState();
         }
         public void ChangeToDestroyed()
@@ -76,7 +78,7 @@ namespace Sprint0.BlockClasses
         {
             IsBumping = true;
             currentbState = bStates[2];
-            MinY = (int)bPosition.Y - frameSize.Y;
+            MinY = (int)bPosition.Y - FrameSize.Y;
             MaxY = (int)bPosition.Y;
         }
         #endregion
@@ -94,7 +96,7 @@ namespace Sprint0.BlockClasses
                     {
                         ItemSprite item = GenerateItems();
                         shownItems.Add(item);
-                        item.bumping(bPosition, bPosition.Y - 3 * frameSize.Y, spriteSpeed);
+                        item.bumping(bPosition, bPosition.Y - 3 * FrameSize.Y, spriteSpeed);
                         RemoveItem();
                     }
                     spriteSpeed.Y *= -1;
