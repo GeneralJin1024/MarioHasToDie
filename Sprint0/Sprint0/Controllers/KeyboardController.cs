@@ -14,10 +14,10 @@ namespace Sprint0
     class KeyboardController : IController
     {
         private KeyboardState oldkeyboardState;
-        private Mario mario;
-        private Bricks[] blockList;
-        private Dictionary<Keys, ICommand> controllerDic;
-        private Sprint1 Game;
+        private readonly Mario mario;
+        private readonly Bricks[] blockList;
+        private readonly Dictionary<Keys, ICommand> controllerDic;
+        private readonly Sprint1 Game;
 
         public KeyboardController(Mario mario, Sprint1 game, Bricks[] blockList)
         {

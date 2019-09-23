@@ -12,9 +12,9 @@ namespace Sprint0
     class GamepadController : IController
     {
         private GamePadState prevGamePadState;
-        private Mario mario;
-        private Dictionary<Buttons, ICommand> controllerDic;
-        private Sprint1 Game;
+        private readonly Mario mario;
+        private readonly Dictionary<Buttons, ICommand> controllerDic;
+        private readonly Sprint1 Game;
 
         public GamepadController(Mario mario, Sprint1 game)
         {

@@ -25,8 +25,8 @@ namespace Sprint0.BlockClasses
         private Vector2 bPosition;
         private bool IsBumping;
         private bool containItems;
-        private ArrayList items;
-        private ArrayList shownItems;
+        private readonly ArrayList items;
+        private readonly ArrayList shownItems;
         private int MinY, MaxY;
         protected Point positionOffset = new Point(1, 1);
         protected Vector2 spriteSpeed = new Vector2(50.0f, 200.0f);
@@ -96,7 +96,7 @@ namespace Sprint0.BlockClasses
                     {
                         ItemSprite item = GenerateItems();
                         shownItems.Add(item);
-                        item.bumping(bPosition, bPosition.Y - 3 * FrameSize.Y, spriteSpeed);
+                        item.Bumping(bPosition, bPosition.Y - 3 * FrameSize.Y, spriteSpeed);
                         RemoveItem();
                     }
                     spriteSpeed.Y *= -1;
@@ -136,15 +136,15 @@ namespace Sprint0.BlockClasses
             switch (items[0])
             {
                 case "redMushroom":
-                    return ItemFactory.Instance.getRedMushroom();
+                    return ItemFactory.Instance.GetRedMushroom();
                 case "greenMushroom":
-                    return ItemFactory.Instance.getGreenMushroom();
+                    return ItemFactory.Instance.GetGreenMushroom();
                 case "star":
-                    return ItemFactory.Instance.getStar();
+                    return ItemFactory.Instance.GetStar();
                 case "flower":
-                    return ItemFactory.Instance.getFlower();
+                    return ItemFactory.Instance.GetFlower();
                 default:
-                    return ItemFactory.Instance.getCoin();
+                    return ItemFactory.Instance.GetCoin();
             }
         }
     }

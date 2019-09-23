@@ -22,7 +22,7 @@ namespace Sprint0.Sprites
             Location=location;
             isBump = false;
         }
-        public void bumping(Vector2 startP, float minY, Vector2 blockSpeed)
+        public void Bumping(Vector2 startP, float minY, Vector2 blockSpeed)
         {
             positionOffset = new Point(0, 1);
             spriteSpeed.Y = blockSpeed.Y * 2;

@@ -13,14 +13,16 @@ namespace Sprint0.Background
 {
     class BackgroundSprite : ISprite
     {
-        public Vector2 Position { get; set; }
+        public Vector2 Position { get => BPosition; }
         protected ArrayList Location;
         public Texture2D SpriteSheets { get; set; }
+        private Vector2 BPosition; // use to eleminate warning
 
         //void Update(GameTime gameTime) { }
         public BackgroundSprite(Texture2D texture)
         {
             SpriteSheets = texture;
+            BPosition = new Vector2(0, 0); // use to eleminate warning
             Location = new ArrayList();
         }
         public Vector2 GetHeightAndWidth()

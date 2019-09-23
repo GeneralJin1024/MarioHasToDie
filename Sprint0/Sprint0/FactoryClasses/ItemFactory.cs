@@ -43,29 +43,29 @@ namespace Sprint0.FactoryClasses
         }
         public void AddToList(ArrayList spriteList)
         {
-            spriteList.Add(getCoin());
-            spriteList.Add(getFlower());
-            spriteList.Add(getGreenMushroom());
-            spriteList.Add(getRedMushroom());
-            spriteList.Add(getStar());
+            spriteList.Add(GetCoin());
+            spriteList.Add(GetFlower());
+            spriteList.Add(GetGreenMushroom());
+            spriteList.Add(GetRedMushroom());
+            spriteList.Add(GetStar());
         }
-        public ItemSprite getCoin()
+        public ItemSprite GetCoin()
         {
             return new ItemSprite(coin, new Vector2(100, 100), new Point(1, 4));
         }
-        public ItemSprite getFlower()
+        public ItemSprite GetFlower()
         {
             return new ItemSprite(flower, new Vector2(200, 100), new Point(1, 8));
         }
-        public ItemSprite getGreenMushroom()
+        public ItemSprite GetGreenMushroom()
         {
             return new ItemSprite(greenMushroom, new Vector2(300, 100), new Point(1, 1));
         }
-        public ItemSprite getRedMushroom()
+        public ItemSprite GetRedMushroom()
         {
             return new ItemSprite(redMushroom, new Vector2(400, 100), new Point(1, 1));
         }
-        public ItemSprite getStar()
+        public ItemSprite GetStar()
         {
             return new ItemSprite(star, new Vector2(500, 100), new Point(1, 4));
         }

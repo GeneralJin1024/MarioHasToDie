@@ -46,35 +46,35 @@ namespace Sprint0.FactoryClasses
         }
         public void AddToList(ArrayList spriteList)
         {
-            spriteList.Add(getBigCloud());
-            spriteList.Add(getBigHill());
-            spriteList.Add(getSmallCloud());
-            spriteList.Add(getSmallHill());
-            spriteList.Add(getBigBush());
-            spriteList.Add(getSmallBush());
+            spriteList.Add(GetBigCloud());
+            spriteList.Add(GetBigHill());
+            spriteList.Add(GetSmallCloud());
+            spriteList.Add(GetSmallHill());
+            spriteList.Add(GetBigBush());
+            spriteList.Add(GetSmallBush());
         }
 
-        public BigHillSprite getBigHill()
+        public BigHillSprite GetBigHill()
         {
             return new BigHillSprite(bigHill);
         }
-        public SmallHillSprite getSmallHill()
+        public SmallHillSprite GetSmallHill()
         {
             return new SmallHillSprite(smallHill);
         }
-        public BigCloudSprite getBigCloud()
+        public BigCloudSprite GetBigCloud()
         {
             return new BigCloudSprite(bigCloud);
         }
-        public SmallCloudSprite getSmallCloud()
+        public SmallCloudSprite GetSmallCloud()
         {
             return new SmallCloudSprite(smallCloud);
         }
-        public BigBushSprite getBigBush()
+        public BigBushSprite GetBigBush()
         {
             return new BigBushSprite(bigBush);
         }
-        public SmallBushSprite getSmallBush()
+        public SmallBushSprite GetSmallBush()
         {
             return new SmallBushSprite(smallBush);
         }

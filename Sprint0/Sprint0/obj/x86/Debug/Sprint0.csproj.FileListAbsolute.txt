@@ -309,5 +309,3 @@ C:\Users\13667\source\repos\SmartMario\Sprint0\Sprint0\obj\x86\Debug\Sprint0.Res
 C:\Users\13667\source\repos\SmartMario\Sprint0\Sprint0\obj\x86\Debug\Sprint0.csproj.GenerateResource.cache
 C:\Users\72957\source\repos\SmartMario\Sprint0\Sprint0\obj\x86\Debug\Sprint0.Resource1.resources
 C:\Users\72957\source\repos\SmartMario\Sprint0\Sprint0\obj\x86\Debug\Sprint0.csproj.GenerateResource.cache
-C:\Users\13667\Source\Repos\SmartMario\Sprint0\Sprint0\bin\Windows\x86\Debug\Sprint0.exe.CodeAnalysisLog.xml
-C:\Users\13667\Source\Repos\SmartMario\Sprint0\Sprint0\bin\Windows\x86\Debug\Sprint0.exe.lastcodeanalysissucceeded

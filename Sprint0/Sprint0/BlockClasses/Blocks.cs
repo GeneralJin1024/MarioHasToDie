@@ -15,15 +15,15 @@ namespace Sprint0.BlockClasses
         //protected bool isHidden;
         private Vector2 bPosition;
 
-        protected int totalFrame { get; set; }
+        protected int TotalFrame { get; set; }
         protected Point FrameSize { get; set; }
-        private Point sheetSize { get; set; }
-        private int timeSinceLastFrame { get; set; }
-        private int millisecondsPerFrame { get; set; }
-        private Point frameOrigin { get; set; }
+        private Point SheetSize { get; set; }
+        private int TimeSinceLastFrame { get; set; }
+        private int MillisecondsPerFrame { get; set; }
+        private Point FrameOrigin { get; set; }
 
-        private Point currentFrame { get; set; }
-        private int animationFrame { get; set; }
+        private Point CurrentFrame { get; set; }
+        private int AnimationFrame { get; set; }
         public Vector2 Position { get => bPosition; }
 
         public Blocks(Texture2D sheet, Vector2 pos, Point rowAndCol, int totFrame)
@@ -37,7 +37,7 @@ namespace Sprint0.BlockClasses
             {
                 throw new ArgumentNullException(nameof(spriteBatch));
             }
-            spriteBatch.Draw(SpriteSheets, location, new Rectangle(frameOrigin.X + currentFrame.X * FrameSize.X, frameOrigin.Y + currentFrame.Y * FrameSize.Y, FrameSize.X, FrameSize.Y), Color.White);
+            spriteBatch.Draw(SpriteSheets, location, new Rectangle(FrameOrigin.X + CurrentFrame.X * FrameSize.X, FrameOrigin.Y + CurrentFrame.Y * FrameSize.Y, FrameSize.X, FrameSize.Y), Color.White);
            
         }
 
@@ -48,19 +48,15 @@ namespace Sprint0.BlockClasses
 
         protected void ResizeFrame(Texture2D sheet, Point rowAndCol, int totFrame)
         {
-            if (sheet == null)
-            {
-                throw new ArgumentNullException(nameof(sheet));
-            }
-            SpriteSheets = sheet;
-            sheetSize = rowAndCol;
-            totalFrame = totFrame;
-            FrameSize = new Point(SpriteSheets.Width / sheetSize.X, SpriteSheets.Height / sheetSize.Y);
-            this.timeSinceLastFrame = 0;
-            this.millisecondsPerFrame = 500;
-            this.currentFrame = new Point(0, 0);
-            this.animationFrame = 0;
-            this.frameOrigin = new Point(0, 0);
+            SpriteSheets = sheet ?? throw new ArgumentNullException(nameof(sheet));
+            SheetSize = rowAndCol;
+            TotalFrame = totFrame;
+            FrameSize = new Point(SpriteSheets.Width / SheetSize.X, SpriteSheets.Height / SheetSize.Y);
+            this.TimeSinceLastFrame = 0;
+            this.MillisecondsPerFrame = 500;
+            this.CurrentFrame = new Point(0, 0);
+            this.AnimationFrame = 0;
+            this.FrameOrigin = new Point(0, 0);
         }
 
         public virtual void Update(GameTime gameTime)
@@ -69,18 +65,18 @@ namespace Sprint0.BlockClasses
             {
                 throw new ArgumentNullException(nameof(gameTime));
             }
-            timeSinceLastFrame += gameTime.ElapsedGameTime.Milliseconds;
-            if (timeSinceLastFrame > millisecondsPerFrame)
+            TimeSinceLastFrame += gameTime.ElapsedGameTime.Milliseconds;
+            if (TimeSinceLastFrame > MillisecondsPerFrame)
             {
-                timeSinceLastFrame -= millisecondsPerFrame;
+                TimeSinceLastFrame -= MillisecondsPerFrame;
 
-                animationFrame += 1;
-                if (animationFrame >= totalFrame)
+                AnimationFrame += 1;
+                if (AnimationFrame >= TotalFrame)
                 {
-                    animationFrame = 0;
+                    AnimationFrame = 0;
                 }
 
-                currentFrame = new Point(animationFrame % sheetSize.X, animationFrame / sheetSize.X);
+                CurrentFrame = new Point(AnimationFrame % SheetSize.X, AnimationFrame / SheetSize.X);
             }
         }
     }
