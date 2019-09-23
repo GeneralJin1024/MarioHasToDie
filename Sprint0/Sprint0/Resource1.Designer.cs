@@ -79,11 +79,11 @@ namespace Sprint0 {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to W/Up Arrow: Up       S/Down Arrow: Down        Z: choose.
+        ///   Looks up a localized string similar to W/Up Arrow: Up       S/Down Arrow: Down        Z/Button X: choose.
         /// </summary>
-        internal static string W_Up_Arrow__Up_______S_Down_Arrow__Down________Z__choose {
+        internal static string W_Up_Arrow__Up_______S_Down_Arrow__Down________Z_Button_X__choose {
             get {
-                return ResourceManager.GetString("W/Up Arrow: Up       S/Down Arrow: Down        Z: choose", resourceCulture);
+                return ResourceManager.GetString("W/Up Arrow: Up       S/Down Arrow: Down        Z/Button X: choose", resourceCulture);
             }
         }
         
