@@ -9,7 +9,7 @@ using System.ComponentModel;
 using Sprint0;
 using System.Collections;
 
-namespace sprint0.Background
+namespace Sprint0.Background
 {
     class BigHillSprite : BackgroundSprite
     {

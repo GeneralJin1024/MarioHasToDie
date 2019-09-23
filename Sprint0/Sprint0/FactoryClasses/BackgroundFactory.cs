@@ -1,6 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using sprint0.Background;
+using Sprint0.Background;
 using Sprint0.BlockClasses;
 using Sprint0.Sprites.Sprint0.Sprites;
 using System;
