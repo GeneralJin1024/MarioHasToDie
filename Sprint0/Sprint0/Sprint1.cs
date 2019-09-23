@@ -107,7 +107,7 @@ namespace Sprint0
             controllerList.Add(new GamepadController(Mario, this));
 
             #region Fonts
-            //instructionFont = Content.Load<SpriteFont>("arial");
+            instructionFont = Content.Load<SpriteFont>("arial");
             #endregion
 
             GameMenu.LoadContent(instructionFont);

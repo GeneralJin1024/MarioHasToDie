@@ -23,7 +23,7 @@ namespace Sprint0
         private Point RowsAndColumns;
         private int ActionFrame;
         private int TimeSinceLastFrame;
-        private int MillisecondsPerFrame;
+        private readonly int MillisecondsPerFrame;
         private Vector2 Location;
         public AnimatedSprite(Texture2D spriteSheet, Point rowAndColumn)
         {
