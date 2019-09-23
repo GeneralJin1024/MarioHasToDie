@@ -34,7 +34,7 @@ namespace Sprint0.BlockClasses
     {
         public void Handle(Bricks brick)
         {
-        //nothing to do
+        //nothing to do when brick is in the air
         }
     }
     class UsedOrDestroyedState : IBlockStates

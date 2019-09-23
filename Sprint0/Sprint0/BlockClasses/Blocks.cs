@@ -12,7 +12,6 @@ namespace Sprint0.BlockClasses
     class Blocks : ISprite
     {
         public Texture2D SpriteSheets { get; set; }
-        //protected bool isHidden;
         private Vector2 bPosition;
 
         protected int TotalFrame { get; set; }
