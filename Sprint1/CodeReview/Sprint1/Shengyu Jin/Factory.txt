@@ -1,0 +1,12 @@
+Reviewer: Shengyu Jin
+Date: 9/23/2019
+Sprint1
+Files: ActionState.cs, Mario.cs, MarioAction.cs, MarioPower.cs, PowerState.cs
+Author: Runming Zhou，Shengyu Jin, Jian Zhang, Zhenhao Lu
+Comments:
+	1. Basic idea for the factory methods showed in the class
+	2. Great arrangement on listing all the sprites to generate, and combining with the corresponding textures generation.
+	3. Singleton Pattern would be a nice solution to design the factory.
+Review Time: 30 min
+Hypothesis: With the increasing types of factory, it is possible to build an abstruct factory class where the other concrete factory derivated from.
+	Between the main game class and the factory class we can add a stage/level class to do the sprites drawing for the specfic level.
