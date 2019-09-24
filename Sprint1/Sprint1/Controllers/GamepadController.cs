@@ -10,7 +10,8 @@ using System.Threading.Tasks;
 namespace Sprint1
 {
     class GamepadController : IController
-    {
+    {   
+        // variables declarations
         private GamePadState prevGamePadState;
         private readonly Mario mario;
         private readonly Dictionary<Buttons, ICommand> controllerDic;
@@ -18,6 +19,7 @@ namespace Sprint1
 
         public GamepadController(Mario mario, Sprint1Main game)
         {
+            // GamepadController set up
             Game = game;
             this.mario = mario;
             controllerDic = new Dictionary<Buttons, ICommand>();
@@ -38,7 +40,7 @@ namespace Sprint1
         {
             GamePadState curr = GamePad.GetState(PlayerIndex.One);
             GamePadState emptyInput = new GamePadState();
-
+            // check if the gamepad is connected 
             if (curr.IsConnected)
             {
                 if (curr != emptyInput) // Button Pressed
@@ -47,6 +49,7 @@ namespace Sprint1
                     {
                         if (ButtonPressed(button.Key, curr))
                         {
+                            // execute commands
                             button.Value.Execute();
                         }
                     }
@@ -54,7 +57,7 @@ namespace Sprint1
                 }
             }
         }
-
+        // method to check the previous pressed buttons 
         private bool ButtonPressed(Buttons b, GamePadState current)
         {
             return (current.IsButtonDown(b) && !prevGamePadState.IsButtonDown(b));

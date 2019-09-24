@@ -13,6 +13,7 @@ namespace Sprint1
 {
     class KeyboardController : IController
     {
+        // variables declarations
         private KeyboardState oldkeyboardState;
         private readonly Mario mario;
         private readonly Bricks[] blockList;
@@ -54,8 +55,8 @@ namespace Sprint1
         {
             KeyboardState curr = Keyboard.GetState();
                 foreach (Keys key in curr.GetPressedKeys())
-                {
-                    if (controllerDic.ContainsKey(key) && !oldkeyboardState.IsKeyDown(key))
+            {   // check the previous pressed key and current pressed key
+                if (controllerDic.ContainsKey(key) && !oldkeyboardState.IsKeyDown(key))
                     {
                         controllerDic[key].Execute();
                     }
