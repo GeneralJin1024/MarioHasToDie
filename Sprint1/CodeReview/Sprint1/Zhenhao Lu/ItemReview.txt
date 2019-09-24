@@ -1,0 +1,18 @@
+Reviewer: Zhenhao Lu
+Date: 9/22/2019
+Sprint1
+Files: Sprites/ItemSprite.cs
+Author: Runming Zhou, Shengyu Jin
+Comment: 
+	1. Good idea to combine BlockSprite with ItemSprite, Since the item is a kind of block that 
+	has animation. Since when mario jump and hit the question block both the block and item 
+	hidden inside it would bump up, creating them with the same class can make system use 
+	one method to control both of them.
+	2. Parameterized minY and blockSpeed can easily control the question block and the item 
+	hidden in it bumped with different speed.
+Time: 20 min
+Hypothesis:
+	1. If we need to get the position of items, we can easily implement it by changing Location 
+	to a property so that it can be read by other classes.
+	2. If we add a function: "after mario touch this item, the item disappear." We can add a bool
+	IsHidden and easily modify Draw() to draw the item only if IsHidden == false.

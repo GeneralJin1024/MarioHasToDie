@@ -2,5 +2,6 @@
 # 此 .gitignore 文件已由 Microsoft(R) Visual Studio 自动创建。
 ################################################################################
 
-/Sprint0/.vs/Sprint0/v16/Server/sqlite3
-/Sprint0/.vs/Sprint0/v16
+/Sprint1/.vs/Sprint1/v16/Server/sqlite3
+/Sprint1/.vs/Sprint1/v16
+.vs

@@ -1,0 +1,20 @@
+Reviewer: Zhenhao Lu
+Date: 9/22/2019
+Sprint1
+Files: MoveDestroyCommand.cs, MoveDownCommand.cs, MoveFireCommand.cs, MoveRightCommand.cs
+	MoveLeftCommand.cs, MoveStandardCommand.cs, MoveSuperCommand.cs, 
+	MoveUpCommand.cs, QuitCommand.cs
+Author: Jian Zhang
+Comment: 
+	1. Each file contains a class which is very short. Can try to assemble them into a single file
+	next time. All commands are for Mario and each classes make Mario as a field variable.
+	Try to construct each command without any object. When this command need to be 
+	executed, pass the targeted Mario into Execute(Mario mario). 
+	
+	2. Try to set the type of field to Game instead of Sprint1 for QuitCommand.
+Time:  20 min
+Hypothesis:
+	QuitCommand need to execute Game.exit(). However, the method Exit() is a method of 
+	Game instead of Sprint1. In the next several Sprints, the name of Main program's name
+	may change. If so, we also need to change the field's type in QuitCommand. It will take 
+	editors more time to modify.

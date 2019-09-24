@@ -1,0 +1,20 @@
+Reviewer: Zhenhao Lu
+Date: 9/22/2019
+Sprint1
+Files: FactoryClasses/BackgroundFactory.cs
+	BlockFactory.cs
+	EnemyFactory.cs
+	ItemFactory.cs
+	MarioFactory.cs
+Author: Runming Zhou，Shengyu Jin, Jian Zhang, Zhenhao Lu
+Comment: 
+	1. These factory classes use a good idea to both add object into sprite list inside factory 
+	class and make main program "Sprint1.cs" be able to access some of those objects that 
+	will be used for Controller.
+	2. All textures are loaded inside of factories so that main program will not know which to 
+	load for the game. This seperate the function of classes and increase their independency.
+Time: 30 min
+Hypothesis:
+	1. If we need to create the whole game, we may need to load more blocks, items and 
+	enemies. To archieve this, we can just changing the number and kind of objects that added 
+	into spriteList. this will not change the structure.
