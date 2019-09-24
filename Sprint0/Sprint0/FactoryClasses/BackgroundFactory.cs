@@ -32,9 +32,10 @@ namespace Sprint0.FactoryClasses
         Texture2D smallBush;
         public BackgroundFactory()
         {
+            //when factory initialzed, load the texture
             LoadTexture();
         }
-        public void LoadTexture()
+        private void LoadTexture()
         {
             bigCloud = Sprint1.Game.Content.Load<Texture2D>("BackgroundSprite/bigCloud");
            smallCloud = Sprint1.Game.Content.Load<Texture2D>("BackgroundSprite/smallCloud");
@@ -46,6 +47,7 @@ namespace Sprint0.FactoryClasses
         }
         public void AddToList(ArrayList spriteList)
         {
+            //initialize the sprites and add the sprites to the list
             spriteList.Add(GetBigCloud());
             spriteList.Add(GetBigHill());
             spriteList.Add(GetSmallCloud());

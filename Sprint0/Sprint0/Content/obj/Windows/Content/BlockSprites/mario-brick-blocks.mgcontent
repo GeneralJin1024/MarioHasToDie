@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>C:/Users/72957/source/repos/SmartMario/Sprint0/Sprint0/Content/BlockSprites/mario-brick-blocks.png</SourceFile>
-  <SourceTime>2019-09-15T11:43:42.0958414-04:00</SourceTime>
-  <DestFile>C:/Users/72957/source/repos/SmartMario/Sprint0/Sprint0/Content/bin/Windows/Content/BlockSprites/mario-brick-blocks.xnb</DestFile>
-  <DestTime>2019-09-23T20:27:01.3410755-04:00</DestTime>
+  <SourceFile>C:/Users/runmi/source/repos/SmartMario/Sprint0/Sprint0/Content/BlockSprites/mario-brick-blocks.png</SourceFile>
+  <SourceTime>2019-09-21T23:49:22.0735265-04:00</SourceTime>
+  <DestFile>C:/Users/runmi/source/repos/SmartMario/Sprint0/Sprint0/Content/bin/Windows/Content/BlockSprites/mario-brick-blocks.xnb</DestFile>
+  <DestTime>2019-09-23T17:49:25.3071063-04:00</DestTime>
   <Importer>TextureImporter</Importer>
-  <ImporterTime>2018-12-08T11:35:54-05:00</ImporterTime>
+  <ImporterTime>2019-08-21T08:16:16-04:00</ImporterTime>
   <Processor>TextureProcessor</Processor>
-  <ProcessorTime>2018-12-08T11:35:54-05:00</ProcessorTime>
+  <ProcessorTime>2019-08-21T08:16:16-04:00</ProcessorTime>
   <Parameters>
     <Key>ColorKeyColor</Key>
     <Value>255,0,255,255</Value>

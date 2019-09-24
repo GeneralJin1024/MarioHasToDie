@@ -43,6 +43,7 @@ namespace Sprint0.FactoryClasses
         public Blocks stairBlockTest;
         public BlockFactory()
         {
+            //when factory initialzed, load the texture
             LoadTexture();
         }
         private static void LoadTexture()
@@ -55,6 +56,7 @@ namespace Sprint0.FactoryClasses
         }
         public void AddToList(ArrayList spriteList)
         {
+            //initialize the sprites and add the sprites to the list
             float x = Sprint1.Game.GraphicsDevice.Viewport.Width / 8;
             float y = Sprint1.Game.GraphicsDevice.Viewport.Height / 2;
             qBlockTest = BlockFactory.Instance.GetQuestionBlock(new Vector2(x, y), new ArrayList { "redMushroom" });

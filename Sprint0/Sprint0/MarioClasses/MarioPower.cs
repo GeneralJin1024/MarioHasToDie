@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace Sprint0.MarioClasses
 {
+    /*
+     * Died <--> Standard <--> Super <--> Fire
+     */
     class StandardState : IPowerState
     {
         public Mario.PowerType Type { get; set; } = Mario.PowerType.Standard;
@@ -36,6 +39,7 @@ namespace Sprint0.MarioClasses
 
         public void Leave(Mario mario, int[] CurrentActionAndState)
         {
+            //No matter change to which porwer state. The action must become idle.
             CurrentActionAndState[0] = 0;
             CurrentActionAndState[1] = 0;
         }

@@ -33,6 +33,7 @@ namespace Sprint0.Background
 
         public void Draw(SpriteBatch spriteBatch, Vector2 location, bool isLeft)
         {
+            //draw sprite at the each location
             foreach (Vector2 vector in Location)
             {
                 spriteBatch.Draw(SpriteSheets, vector, Color.White);

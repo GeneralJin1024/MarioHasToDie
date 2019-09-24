@@ -77,6 +77,7 @@ namespace Sprint0
             #endregion
 
             factoryList = new ArrayList();
+            //initialize menu and start from it
             GameMenu = new Menu(this);
             MenuMode = true;
             base.Initialize();
@@ -91,22 +92,19 @@ namespace Sprint0
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
             //load mario texture and construct mario. Then add mario into sprite list.
-            //Mario = new MarioFactory(Content).GetMario(new Vector2(400, 300));
-            //spriteList.Add(Mario);
+            //add factories.
             factoryList.Add(MarioFactory.Instance);
             factoryList.Add(BlockFactory.Instance);
             factoryList.Add(EnemyFactory.Instance);
             factoryList.Add(BackgroundFactory.Instance);
             factoryList.Add(ItemFactory.Instance);
+            //get Mario from Mario factory.
             Mario = MarioFactory.Instance.Mario;
             foreach (IFactory factory in factoryList)
                 factory.AddToList(spriteList);
             controllerList.Add(new KeyboardController(Mario, this, 
                 new Bricks[] { BlockFactory.Instance.qBlockTest, BlockFactory.Instance.hiddenBlockTest, BlockFactory.Instance.brickBlockTest }));
             controllerList.Add(new GamepadController(Mario, this));
-            #region Controller
-
-            #endregion
 
             #region Fonts
             instructionFont = Content.Load<SpriteFont>("arial");
@@ -154,6 +152,7 @@ namespace Sprint0
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
+            //change background when change from menu to game.
             if (MenuMode)
                 GraphicsDevice.Clear(Color.Black);
             else

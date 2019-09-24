@@ -237,7 +237,6 @@ C:\Users\runmi\Source\Repos\SmartMario\Sprint0\Sprint0\bin\Windows\x86\Debug\Sha
 C:\Users\runmi\Source\Repos\SmartMario\Sprint0\Sprint0\bin\Windows\x86\Debug\SharpDX.Direct3D11.dll
 C:\Users\runmi\Source\Repos\SmartMario\Sprint0\Sprint0\bin\Windows\x86\Debug\SharpDX.Direct2D1.dll
 C:\Users\runmi\Source\Repos\SmartMario\Sprint0\Sprint0\bin\Windows\x86\Debug\SharpDX.XInput.dll
-C:\Users\runmi\Source\Repos\SmartMario\Sprint0\Sprint0\bin\Windows\x86\Debug\MonoGame.Framework.xml
 C:\Users\runmi\Source\Repos\SmartMario\Sprint0\Sprint0\bin\Windows\x86\Debug\SharpDX.MediaFoundation.xml
 C:\Users\runmi\Source\Repos\SmartMario\Sprint0\Sprint0\bin\Windows\x86\Debug\SharpDX.xml
 C:\Users\runmi\Source\Repos\SmartMario\Sprint0\Sprint0\bin\Windows\x86\Debug\SharpDX.XAudio2.xml
@@ -254,3 +253,6 @@ C:\Users\13667\source\repos\SmartMario\Sprint0\Sprint0\obj\x86\Debug\Sprint0.Res
 C:\Users\13667\source\repos\SmartMario\Sprint0\Sprint0\obj\x86\Debug\Sprint0.csproj.GenerateResource.cache
 C:\Users\13667\Source\Repos\SmartMario\Sprint0\Sprint0\bin\Windows\x86\Debug\Content\ItemSprite\PipeSpriteSheet.xnb
 C:\Users\13667\Source\Repos\SmartMario\Sprint0\Sprint0\obj\x86\Debug\Sprint0.csprojAssemblyReference.cache
+C:\Users\runmi\source\repos\SmartMario\Sprint0\Sprint0\bin\Windows\x86\Debug\Content\ItemSprite\PipeSpriteSheet.xnb
+C:\Users\runmi\source\repos\SmartMario\Sprint0\Sprint0\obj\x86\Debug\Sprint0.Resource1.resources
+C:\Users\runmi\source\repos\SmartMario\Sprint0\Sprint0\obj\x86\Debug\Sprint0.csproj.GenerateResource.cache

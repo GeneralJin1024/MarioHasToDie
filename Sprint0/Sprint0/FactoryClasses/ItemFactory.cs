@@ -32,9 +32,10 @@ namespace Sprint0.FactoryClasses
         Texture2D pipe;
         public ItemFactory()
         {
+            //when factory initialzed, load the texture
             LoadTexture();
         }
-        public void LoadTexture()
+        private void LoadTexture()
         {
             coin = Sprint1.Game.Content.Load<Texture2D>("ItemSprite/coin");
             flower = Sprint1.Game.Content.Load<Texture2D>("ItemSprite/flower");
@@ -45,6 +46,7 @@ namespace Sprint0.FactoryClasses
         }
         public void AddToList(ArrayList spriteList)
         {
+            //initialize the sprites and add the sprites to the list
             spriteList.Add(GetCoin());
             spriteList.Add(GetFlower());
             spriteList.Add(GetGreenMushroom());
