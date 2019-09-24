@@ -1,0 +1,16 @@
+Reviewer: Zhenhao Lu
+Date: 9/22/2019
+Sprint1
+Files: Sprites/EnemySprite.cs
+Author: Runming Zhou
+Comment: 
+	1. Use a little code to implement Enemy, which can generate different enemy by passing 
+	different texture while constructing.
+	2. Double namespace is unnecessary, delete one.
+Time: 10 min
+Hypothesis:
+	1. In next Sprint, we will add collision detection. Then we should be able to read Enemy's 
+	location in collision part, so at that time we need to change the field "Location" to public
+	property.
+	2. In the future, if we want to make enemy moving, we can directly override Update and add 
+	moving code. But we also need to add some new fields such as velocity-X.
