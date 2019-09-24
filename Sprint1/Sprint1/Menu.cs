@@ -59,7 +59,7 @@ namespace Sprint1
                     if (key == Keys.W || key == Keys.Up || key == Keys.Down || key == Keys.S)
                         FirstChoose = !FirstChoose;
                 }
-                else if (key == Keys.Z || key == Keys.X)
+                else if ( key == Keys.Z )
                 {
                     if (FirstChoose)
                         Game.MenuMode = false;
