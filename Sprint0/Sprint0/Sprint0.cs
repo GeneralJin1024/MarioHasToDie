@@ -11,8 +11,9 @@ using Sprint0.Sprites;
 
 namespace Sprint0
 {
-   //Teammate: Runmin Zhou
+    //Teammate: Runmin Zhou
     //Teammate : Zhenhao Lu
+    //Teammate : Jian Zhang
     // teammate: Ziye Zhu
     /// <summary>
     /// This is the main type for your game.
