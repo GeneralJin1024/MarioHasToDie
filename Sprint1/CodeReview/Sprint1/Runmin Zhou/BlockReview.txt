@@ -1,0 +1,15 @@
+Reviewer: Runmin Zhou
+Date: 9/22/2019
+Sprint1
+Files: BlockClasses/BlockCommands.cs	Blocks.cs	BrickBlockSprite.cs	Bricks.cs BrickStates.cs
+	FloorAndStairBlocks.cs	HiddenBlock.cs	IBlockStates.cs	QuestionBlockSprite.cs
+	UsedBlockSprite.cs
+Author: Shengyu Jin
+Comment: 
+	1. Good use of the state to show every state's sprite. 
+	2. Good structure of the block, which has brick and block class.
+	3. Good parameterization. It uses four little bricks to form a block, which can has own velocity to explode.
+Time: 40 min
+Hypothesis:
+	In the future, when the coin bump up from the block, the coin will go up and go down a little bit. If other items bump up, they will just be above the block.
+	This will change the function in item and question block and usedblocksprite. The other aspects is good for the future use, which include more states.

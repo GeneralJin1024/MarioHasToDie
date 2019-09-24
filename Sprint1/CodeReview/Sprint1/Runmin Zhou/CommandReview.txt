@@ -1,0 +1,13 @@
+Reviewer: Runmin Zhou
+Date: 9/24/2019
+Sprint1
+Files: MoveDestroyCommand.cs, MoveDownCommand.cs, MoveFireCommand.cs, MoveRightCommand.cs
+	MoveLeftCommand.cs, MoveStandardCommand.cs, MoveSuperCommand.cs, 
+	MoveUpCommand.cs, QuitCommand.cs
+Author: Jian Zhang
+Comment: 
+	1. All commands can be in the same command file next time, because all the commands are very short.
+	2. It can directly uses sprint1.game to quit the game in the quitcommand.
+Time:  20 min
+Hypothesis:
+	It's good for the future use. If we want to add more intercations, we just need to create more commands and map it with keys. 
