@@ -1,4 +1,11 @@
-﻿namespace Sprint1
+﻿using Sprint1.MarioClasses;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Sprint1
 {
     public class QuitCommand : ICommand
     {
@@ -10,7 +17,7 @@
         }
 
         public void Execute()
-        {
+        {   // Quit the running game
             game.Exit();
         }
     }

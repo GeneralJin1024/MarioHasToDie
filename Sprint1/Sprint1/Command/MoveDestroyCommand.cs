@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Sprint1
-{
+{   // Command Class for the Avatar to take damage
     public class MoveDestroyCommand : ICommand
     {
         Mario mario;
@@ -16,7 +16,7 @@ namespace Sprint1
         }
 
         public void Execute()
-        {
+        {   // take the receiver method of power state change
             mario.MoveDestroy();
         }
     }
