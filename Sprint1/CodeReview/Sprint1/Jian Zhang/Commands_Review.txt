@@ -1,0 +1,20 @@
+Reviewer: Jian Zhang
+Date: 9/23/2019
+Sprint1
+Files: MoveDestroyCommand.cs, MoveDownCommand.cs, MoveFireCommand.cs, MoveRightCommand.cs
+	MoveLeftCommand.cs, MoveStandardCommand.cs, MoveSuperCommand.cs, 
+	MoveUpCommand.cs, QuitCommand.cs
+Author: Jian Zhang
+Comment: 
+	1. Each file contains a class which is very short, which is a very good point. 
+	Rather than assemble all the command classes in to one single file, I perfer to separate
+	different command class into different files. This is very clear and easy for my teamates to 
+	locate and figure out each states and actions change.
+	
+	2. Try to set the type of field to Game instead of Sprint1 for QuitCommand.
+Time:  20 min
+Hypothesis:
+    My teamate(Zhenhao Lu) suggest to set the type of field to Game instead of Sprint1 for QuitCommand.
+	The method Exit() is a method of Game indeed. However, I do feel that I can use game.Exit() to quit 
+	the current running game. I do want get some suggestions from our professor.
+	
