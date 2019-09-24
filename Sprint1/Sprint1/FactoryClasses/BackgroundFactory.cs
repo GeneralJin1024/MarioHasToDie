@@ -37,12 +37,12 @@ namespace Sprint1.FactoryClasses
         }
         private void LoadTexture()
         {
-            bigCloud = Sprint1.Game.Content.Load<Texture2D>("BackgroundSprite/bigCloud");
-           smallCloud = Sprint1.Game.Content.Load<Texture2D>("BackgroundSprite/smallCloud");
-            bigHill = Sprint1.Game.Content.Load<Texture2D>("BackgroundSprite/bigHill");
-            smallHill = Sprint1.Game.Content.Load<Texture2D>("BackgroundSprite/smallHill");
-            bigBush = Sprint1.Game.Content.Load<Texture2D>("BackgroundSprite/bigBush");
-            smallBush = Sprint1.Game.Content.Load<Texture2D>("BackgroundSprite/smallBush");
+            bigCloud = Sprint1Main.Game.Content.Load<Texture2D>("BackgroundSprite/bigCloud");
+           smallCloud = Sprint1Main.Game.Content.Load<Texture2D>("BackgroundSprite/smallCloud");
+            bigHill = Sprint1Main.Game.Content.Load<Texture2D>("BackgroundSprite/bigHill");
+            smallHill = Sprint1Main.Game.Content.Load<Texture2D>("BackgroundSprite/smallHill");
+            bigBush = Sprint1Main.Game.Content.Load<Texture2D>("BackgroundSprite/bigBush");
+            smallBush = Sprint1Main.Game.Content.Load<Texture2D>("BackgroundSprite/smallBush");
 
         }
         public void AddToList(ArrayList spriteList)

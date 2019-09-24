@@ -16,8 +16,8 @@ namespace Sprint1.Background
         public BigHillSprite(Texture2D texture) : base(texture)
         {
             //add the location
-            Location.Add(new Vector2(150, Sprint1.Game.GraphicsDevice.Viewport.Height - texture.Height));
-            Location.Add(new Vector2(250, Sprint1.Game.GraphicsDevice.Viewport.Height - texture.Height));
+            Location.Add(new Vector2(150, Sprint1Main.Game.GraphicsDevice.Viewport.Height - texture.Height));
+            Location.Add(new Vector2(250, Sprint1Main.Game.GraphicsDevice.Viewport.Height - texture.Height));
         }
     }
     class SmallCloudSprite : BackgroundSprite
@@ -37,8 +37,8 @@ namespace Sprint1.Background
             Location = new ArrayList
             {
                 //add the location
-                new Vector2(50, Sprint1.Game.GraphicsDevice.Viewport.Height - texture.Height),
-                new Vector2(100, Sprint1.Game.GraphicsDevice.Viewport.Height - texture.Height)
+                new Vector2(50, Sprint1Main.Game.GraphicsDevice.Viewport.Height - texture.Height),
+                new Vector2(100, Sprint1Main.Game.GraphicsDevice.Viewport.Height - texture.Height)
             };
         }
     }
@@ -57,7 +57,7 @@ namespace Sprint1.Background
         public BigBushSprite(Texture2D texture) : base(texture)
         {
             //add the location
-            Location.Add(new Vector2(350, Sprint1.Game.GraphicsDevice.Viewport.Height - texture.Height));
+            Location.Add(new Vector2(350, Sprint1Main.Game.GraphicsDevice.Viewport.Height - texture.Height));
         }
     }
     class SmallBushSprite : BackgroundSprite
@@ -65,9 +65,9 @@ namespace Sprint1.Background
         public SmallBushSprite(Texture2D texture) : base(texture)
         {
             //add the location
-            Location.Add(new Vector2(550, Sprint1.Game.GraphicsDevice.Viewport.Height - texture.Height));
-            Location.Add(new Vector2(450, Sprint1.Game.GraphicsDevice.Viewport.Height - texture.Height));
-            Location.Add(new Vector2(500, Sprint1.Game.GraphicsDevice.Viewport.Height - texture.Height));
+            Location.Add(new Vector2(550, Sprint1Main.Game.GraphicsDevice.Viewport.Height - texture.Height));
+            Location.Add(new Vector2(450, Sprint1Main.Game.GraphicsDevice.Viewport.Height - texture.Height));
+            Location.Add(new Vector2(500, Sprint1Main.Game.GraphicsDevice.Viewport.Height - texture.Height));
         }
     }
 }

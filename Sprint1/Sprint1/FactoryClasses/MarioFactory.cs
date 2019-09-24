@@ -45,21 +45,21 @@ namespace Sprint1.FactoryClasses
 
         private static Mario GetMario(Vector2 location)
         {
-            Texture2D[] StandardSheets = new Texture2D[5] {Sprint1.Game.Content.Load<Texture2D>("MarioSprites/smallMarioRightStand"),
-                Sprint1.Game.Content.Load<Texture2D>("MarioSprites/smallMarioRightJump"),
-                Sprint1.Game.Content.Load<Texture2D>("MarioSprites/smallMarioRightMove"),
-                Sprint1.Game.Content.Load<Texture2D>("MarioSprites/smallMarioRightStand"),
-                Sprint1.Game.Content.Load<Texture2D>("DiedMario/deadMario")};
+            Texture2D[] StandardSheets = new Texture2D[5] {Sprint1Main.Game.Content.Load<Texture2D>("MarioSprites/smallMarioRightStand"),
+                Sprint1Main.Game.Content.Load<Texture2D>("MarioSprites/smallMarioRightJump"),
+                Sprint1Main.Game.Content.Load<Texture2D>("MarioSprites/smallMarioRightMove"),
+                Sprint1Main.Game.Content.Load<Texture2D>("MarioSprites/smallMarioRightStand"),
+                Sprint1Main.Game.Content.Load<Texture2D>("DiedMario/deadMario")};
             //16*32
-            Texture2D[] SuperSheets = new Texture2D[4] {Sprint1.Game.Content.Load<Texture2D>("SuperMario/superMarioRightStand"),
-                Sprint1.Game.Content.Load<Texture2D>("SuperMario/superMarioJumpRight"),
-                Sprint1.Game.Content.Load<Texture2D>("SuperMario/superMarioMoveRight"),
-                Sprint1.Game.Content.Load<Texture2D>("SuperMario/superMarioRightCrouch")};
+            Texture2D[] SuperSheets = new Texture2D[4] {Sprint1Main.Game.Content.Load<Texture2D>("SuperMario/superMarioRightStand"),
+                Sprint1Main.Game.Content.Load<Texture2D>("SuperMario/superMarioJumpRight"),
+                Sprint1Main.Game.Content.Load<Texture2D>("SuperMario/superMarioMoveRight"),
+                Sprint1Main.Game.Content.Load<Texture2D>("SuperMario/superMarioRightCrouch")};
             //16*32   16*22
-            Texture2D[] FireSheets = new Texture2D[4] {Sprint1.Game.Content.Load<Texture2D>("FireMario/fireMarioRightStand"),
-                Sprint1.Game.Content.Load<Texture2D>("FireMario/fireMarioJumpRight"),
-                Sprint1.Game.Content.Load<Texture2D>("FireMario/fireMarioRightMove"),
-                Sprint1.Game.Content.Load<Texture2D>("FireMario/fireMarioRightCrouch")};
+            Texture2D[] FireSheets = new Texture2D[4] {Sprint1Main.Game.Content.Load<Texture2D>("FireMario/fireMarioRightStand"),
+                Sprint1Main.Game.Content.Load<Texture2D>("FireMario/fireMarioJumpRight"),
+                Sprint1Main.Game.Content.Load<Texture2D>("FireMario/fireMarioRightMove"),
+                Sprint1Main.Game.Content.Load<Texture2D>("FireMario/fireMarioRightCrouch")};
             return new Mario(StandardSheets, SuperSheets, FireSheets, location);
         }
     }

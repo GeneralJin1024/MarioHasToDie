@@ -12,7 +12,7 @@ namespace Sprint1
 {
     class Menu
     {
-        private readonly Sprint1 Game;
+        private readonly Sprint1Main Game;
 
         private Color FontColor = Color.White;//use white font when background is black
         private SpriteFont Font;
@@ -24,7 +24,7 @@ namespace Sprint1
         private KeyboardState OldKeyState; //keyboard state of
         private GamePadState OldPadState;
         readonly ResourceManager stringManager;
-        public Menu(Sprint1 game)
+        public Menu(Sprint1Main game)
         {
             Game = game;
             FirstChoose = true; // mouse stop at first choice first.

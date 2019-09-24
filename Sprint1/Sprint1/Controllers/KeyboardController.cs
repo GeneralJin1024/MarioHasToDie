@@ -17,9 +17,9 @@ namespace Sprint1
         private readonly Mario mario;
         private readonly Bricks[] blockList;
         private readonly Dictionary<Keys, ICommand> controllerDic;
-        private readonly Sprint1 Game;
+        private readonly Sprint1Main Game;
 
-        public KeyboardController(Mario mario, Sprint1 game, Bricks[] blockList)
+        public KeyboardController(Mario mario, Sprint1Main game, Bricks[] blockList)
         {
             // KeyboardController set up
             this.mario = mario;

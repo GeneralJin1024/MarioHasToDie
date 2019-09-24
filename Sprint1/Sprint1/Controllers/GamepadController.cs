@@ -14,9 +14,9 @@ namespace Sprint1
         private GamePadState prevGamePadState;
         private readonly Mario mario;
         private readonly Dictionary<Buttons, ICommand> controllerDic;
-        private readonly Sprint1 Game;
+        private readonly Sprint1Main Game;
 
-        public GamepadController(Mario mario, Sprint1 game)
+        public GamepadController(Mario mario, Sprint1Main game)
         {
             Game = game;
             this.mario = mario;

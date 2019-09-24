@@ -48,17 +48,17 @@ namespace Sprint1.FactoryClasses
         }
         private static void LoadTexture()
         {
-            blockTextures = new Texture2D[5] {Sprint1.Game.Content.Load<Texture2D>("BlockSprites/mario-brick-blocks"),
-                Sprint1.Game.Content.Load<Texture2D>("BlockSprites/mario-gravel-blocks"),
-                Sprint1.Game.Content.Load<Texture2D>("BlockSprites/mario-hit-block"),
-                Sprint1.Game.Content.Load<Texture2D>("BlockSprites/mario-question-blocks"),
-                Sprint1.Game.Content.Load<Texture2D>("BlockSprites/mario-shiny-block")};
+            blockTextures = new Texture2D[5] {Sprint1Main.Game.Content.Load<Texture2D>("BlockSprites/mario-brick-blocks"),
+                Sprint1Main.Game.Content.Load<Texture2D>("BlockSprites/mario-gravel-blocks"),
+                Sprint1Main.Game.Content.Load<Texture2D>("BlockSprites/mario-hit-block"),
+                Sprint1Main.Game.Content.Load<Texture2D>("BlockSprites/mario-question-blocks"),
+                Sprint1Main.Game.Content.Load<Texture2D>("BlockSprites/mario-shiny-block")};
         }
         public void AddToList(ArrayList spriteList)
         {
             //initialize the sprites and add the sprites to the list
-            float x = Sprint1.Game.GraphicsDevice.Viewport.Width / 8;
-            float y = Sprint1.Game.GraphicsDevice.Viewport.Height / 2;
+            float x = Sprint1Main.Game.GraphicsDevice.Viewport.Width / 8;
+            float y = Sprint1Main.Game.GraphicsDevice.Viewport.Height / 2;
             qBlockTest = BlockFactory.Instance.GetQuestionBlock(new Vector2(x, y), new ArrayList { "redMushroom" });
             hitBlockTest = BlockFactory.Instance.GetUsedBlock(new Vector2(2 * x, y));
             hiddenBlockTest = BlockFactory.Instance.GetHiddenBlock(new Vector2(3 * x, y), new ArrayList { });

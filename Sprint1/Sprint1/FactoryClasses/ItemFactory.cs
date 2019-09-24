@@ -37,12 +37,12 @@ namespace Sprint1.FactoryClasses
         }
         private void LoadTexture()
         {
-            coin = Sprint1.Game.Content.Load<Texture2D>("ItemSprite/coin");
-            flower = Sprint1.Game.Content.Load<Texture2D>("ItemSprite/flower");
-            greenMushroom = Sprint1.Game.Content.Load<Texture2D>("ItemSprite/greenMushroom");
-            redMushroom = Sprint1.Game.Content.Load<Texture2D>("ItemSprite/redMushroom");
-            star = Sprint1.Game.Content.Load<Texture2D>("ItemSprite/star");
-            pipe = Sprint1.Game.Content.Load<Texture2D>("ItemSprite/PipeSpriteSheet");
+            coin = Sprint1Main.Game.Content.Load<Texture2D>("ItemSprite/coin");
+            flower = Sprint1Main.Game.Content.Load<Texture2D>("ItemSprite/flower");
+            greenMushroom = Sprint1Main.Game.Content.Load<Texture2D>("ItemSprite/greenMushroom");
+            redMushroom = Sprint1Main.Game.Content.Load<Texture2D>("ItemSprite/redMushroom");
+            star = Sprint1Main.Game.Content.Load<Texture2D>("ItemSprite/star");
+            pipe = Sprint1Main.Game.Content.Load<Texture2D>("ItemSprite/PipeSpriteSheet");
         }
         public void AddToList(ArrayList spriteList)
         {
