@@ -8,10 +8,8 @@ namespace Sprint1.MarioClasses
 {
     interface IPowerState
     {
-        Mario.PowerType Type { get; set; }
-        void Destroy(Mario mario);
-        void Leave(Mario mario, int[] CurrentActionAndState);
-
-       
+        MarioState.PowerType Type { get; set; }
+        void Destroy(MarioState marioState);
+        void Leave(Mario mario);
     }
 }

@@ -8,83 +8,124 @@ namespace Sprint1.MarioClasses
 {
     class IdleState : IActionState
     {
-        public Mario.ActionType Type { get; set; } = Mario.ActionType.Other;
-        public void Up(Mario mario) { mario.ChangeToJump(); }
-        public void Down(Mario mario) { mario.ChangeToCrouch(); }
-        public void Left(Mario mario) {
-            if (mario.IsLeft)
-                mario.ChangeToWalk();
-            else
-                mario.IsLeft = true; // if Mario points to right, turn left
+        public MarioState.ActionType Type { get; set; } = MarioState.ActionType.Other;
+        public void Up(Mario mario)
+        {
+            mario.ChangeToJump(-5);
         }
-        public void Right(Mario mario) {
-            if (mario.IsLeft)
-                mario.IsLeft = false; //if Mario points to right, turn right.
-            else
+        public void Down(Mario mario)
+        {
+            mario.ChangeToCrouch();
+        }
+        public void Left(Mario mario)
+        {
+            if (mario.Parameters.IsLeft)
                 mario.ChangeToWalk();
+            else
+                mario.Parameters.IsLeft = true;
+        }
+        public void Right(Mario mario)
+        {
+            if (mario.Parameters.IsLeft)
+                mario.Parameters.IsLeft = false;
+            else
+            {
+                mario.ChangeToWalk();
+            }
         }
     }
 
     class JumpState : IActionState
     {
-        //Jump can only from Idle.MoveUp
-        public Mario.ActionType Type { get; set; } = Mario.ActionType.Other;
+        public MarioState.ActionType Type { get; set; } = MarioState.ActionType.Other;
         public void Up(Mario mario) { }
-        public void Down(Mario mario) { mario.ChangeToIdle(); }
-        public void Left(Mario mario) {
-            if (!mario.IsLeft)
-                mario.IsLeft = true; //if Mario points to left, turn right
+        public void Down(Mario mario)
+        {
+            mario.ChangeToIdle();
         }
-        public void Right(Mario mario) {
-            if (mario.IsLeft)
-                mario.IsLeft = false; //if Mario points to right, turn left
+        public void Left(Mario mario)
+        {
+            if (!mario.Parameters.IsLeft)
+                mario.Parameters.IsLeft = true;
+            else
+                mario.ChangeToRunningJump(mario.Parameters.Velocity.Y);
+            //else
+            //    marioState.ChangeActionAndSprite(4);
+        }
+        public void Right(Mario mario)
+        {
+            if (mario.Parameters.IsLeft)
+                mario.Parameters.IsLeft = false;
+            else
+                mario.ChangeToRunningJump(mario.Parameters.Velocity.Y);
         }
     }
 
     class RunningJumpState : IActionState
     {
-        //RunningJump can only from Running.MoveUp, and only to Running
-        public Mario.ActionType Type { get; set; } = Mario.ActionType.Other;
+        //(+-5, -5)
+        public MarioState.ActionType Type { get; set; } = MarioState.ActionType.Other;
         public void Up(Mario mario) { }
-        public void Down(Mario mario) { mario.ChangeToWalk(); }
-        public void Left(Mario mario) {
-            if (!mario.IsLeft)
-                mario.IsLeft = true; //if Mario points to right, turn left
+        public void Down(Mario mario)
+        {
+            mario.ChangeToWalk();
         }
-        public void Right(Mario mario) {
-            if (mario.IsLeft)
-                mario.IsLeft = false; //if Mario points to right, turn left
+        public void Left(Mario mario)
+        {
+            mario.Parameters.IsLeft = true;
+            mario.ChangeToRunningJump(mario.Parameters.Velocity.Y);
+        }
+        public void Right(Mario mario)
+        {
+            mario.Parameters.IsLeft = false;
+            mario.ChangeToRunningJump(mario.Parameters.Velocity.Y);
         }
     }
 
     class WalkState : IActionState
     {
-        public Mario.ActionType Type { get; set; } = Mario.ActionType.Other;
-        public void Up(Mario mario) { mario.ChangeToRunningJump(); }
+        public MarioState.ActionType Type { get; set; } = MarioState.ActionType.Other;
+        public void Up(Mario mario)
+        {
+            mario.ChangeToRunningJump(-5);
+        }
         public void Down(Mario mario) { }
-        public void Left(Mario mario) {
-            if (!mario.IsLeft)
+        public void Left(Mario mario)
+        {
+            if (!mario.Parameters.IsLeft)
                 mario.ChangeToIdle();
         }
-        public void Right(Mario mario) {
-            if (mario.IsLeft)
+        public void Right(Mario mario)
+        {
+            if (mario.Parameters.IsLeft)
                 mario.ChangeToIdle();
         }
     }
 
     class CrouchState : IActionState
     {
-        public Mario.ActionType Type { get; set; } = Mario.ActionType.Crouch;
-        public void Up(Mario mario) { mario.ChangeToIdle();}
+        public MarioState.ActionType Type { get; set; } = MarioState.ActionType.Crouch;
+        public void Up(Mario mario)
+        {
+            mario.ChangeToIdle();
+        }
         public void Down(Mario mario) { }
-        public void Left(Mario mario) {
-            if (!mario.IsLeft)
-                mario.IsLeft = true;
+        public void Left(Mario mario)
+        {
+            mario.Parameters.IsLeft = true;
         }
         public void Right(Mario mario)
         {
-            if (mario.IsLeft)
-                mario.IsLeft = false;
+            mario.Parameters.IsLeft = false;
         }
+    }
+
+    class DiedActionState : IActionState
+    {
+        public MarioState.ActionType Type { get; set; } = MarioState.ActionType.Other;
+        public void Up(Mario mario) { }
+        public void Down(Mario mario) { }
+        public void Left(Mario mario) { }
+        public void Right(Mario mario) { }
     }
 }

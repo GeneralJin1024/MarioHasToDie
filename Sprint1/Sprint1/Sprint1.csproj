@@ -87,8 +87,11 @@
     <Compile Include="FactoryClasses\BackgroundFactory.cs" />
     <Compile Include="FactoryClasses\BlockFactory.cs" />
     <Compile Include="FactoryClasses\MarioFactory.cs" />
+    <Compile Include="ICharacter.cs" />
     <Compile Include="ICommand.cs" />
     <Compile Include="IFactory.cs" />
+    <Compile Include="MarioClasses\MarioState.cs" />
+    <Compile Include="MoveParameters.cs" />
     <Compile Include="Resource1.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -102,11 +105,11 @@
     <Compile Include="BlockClasses\HiddenBlockSprite.cs" />
     <Compile Include="BlockClasses\QuestionBlockSprite.cs" />
     <Compile Include="BlockClasses\UsedBlockSprite.cs" />
-    <Compile Include="MarioClasses\ActionState.cs" />
+    <Compile Include="MarioClasses\IActionState.cs" />
     <Compile Include="MarioClasses\Mario.cs" />
     <Compile Include="MarioClasses\MarioAction.cs" />
     <Compile Include="MarioClasses\MarioPower.cs" />
-    <Compile Include="MarioClasses\PowerState.cs" />
+    <Compile Include="MarioClasses\IPowerState.cs" />
     <Compile Include="Menu.cs" />
     <Compile Include="ISprite.cs" />
     <Compile Include="IController.cs" />

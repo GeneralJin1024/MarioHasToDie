@@ -8,12 +8,12 @@ using System.Threading.Tasks;
 
 namespace Sprint1
 {
-    interface ISprite
+    public interface ISprite
     {
         Texture2D SpriteSheets { get; set; }
-        Vector2 Position { get; }
+        MoveParameters Parameters { get; set; }
         void Update(GameTime gameTime);
-        void Draw(SpriteBatch spriteBatch, Vector2 location, bool isLeft);
+        void Draw(SpriteBatch spriteBatch);
         Vector2 GetHeightAndWidth();   //x = Height, y = Width
     }
 }

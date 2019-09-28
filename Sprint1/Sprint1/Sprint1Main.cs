@@ -165,7 +165,7 @@ namespace Sprint1
             else
             {
                 foreach (ISprite sprite in spriteList)
-                    sprite.Draw(spriteBatch, sprite.Position, true);
+                    sprite.Draw(spriteBatch);
             }
                 
 

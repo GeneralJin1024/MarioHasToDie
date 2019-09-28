@@ -41,7 +41,7 @@ namespace Sprint1
             Font = font; //set font
             //set "mouse"
             chooseSprite = new AnimatedSprite(
-                Game.Content.Load<Texture2D>("MarioSprites/smallMarioRightStand"), new Point(1, 1));
+                Game.Content.Load<Texture2D>("MarioSprites/smallMarioRightStand"), new Point(1, 1), new MoveParameters());
         }
 
         public void Update(GameTime gameTime)
@@ -91,9 +91,9 @@ namespace Sprint1
             #endregion
             //changing mouse position if the user want to choose another choice.
             if (FirstChoose)
-                CurrentChoose = new Vector2(350.0f, 300.0f);
+                chooseSprite.Parameters.SetPosition(350, 300 + chooseSprite.GetHeightAndWidth().X);
             else
-                CurrentChoose = new Vector2(350.0f, 350.0f);
+                chooseSprite.Parameters.SetPosition(350, 350 + chooseSprite.GetHeightAndWidth().X);
 
             chooseSprite.Update(gameTime);
         }
@@ -110,7 +110,7 @@ namespace Sprint1
                 stringManager.GetString("W/Up Arrow: Up       S/Down Arrow: Down        Z/Button X: choose", CultureInfo.CurrentCulture), 
                 new Vector2(0, 450), FontColor);
             //Draw "mouse"
-            chooseSprite.Draw(spriteBatch, CurrentChoose, false);
+            chooseSprite.Draw(spriteBatch);
         }
 
         private bool CheckPressedButtons(Buttons button, GamePadState newPadState)

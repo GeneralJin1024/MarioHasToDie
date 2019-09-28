@@ -12,20 +12,14 @@ namespace Sprint1
     {
         public Texture2D SpriteSheets { get; set; }
 
-        public Vector2 Position
-        {
-            get
-            {
-                return Location;
-            }
-        }
+        public MoveParameters Parameters { get; set; }
 
+        private readonly float YAcceleration;
         private Point RowsAndColumns;
         private int ActionFrame;
         private int TimeSinceLastFrame;
         private readonly int MillisecondsPerFrame;
-        private Vector2 Location;
-        public AnimatedSprite(Texture2D spriteSheet, Point rowAndColumn)
+        public AnimatedSprite(Texture2D spriteSheet, Point rowAndColumn, MoveParameters parameters)
         {
             //set sprite sheets which can be changed from outside.
             SpriteSheets = spriteSheet;
@@ -34,7 +28,9 @@ namespace Sprint1
             //start from the first frame
             ActionFrame = 0;
             TimeSinceLastFrame = 0;
-            MillisecondsPerFrame = 200;
+            MillisecondsPerFrame = 100;
+            Parameters = parameters;
+            YAcceleration = 0;
         }
 
         public virtual void Update(GameTime gameTime)
@@ -50,24 +46,24 @@ namespace Sprint1
                 {
                     ActionFrame = 0;
                 }
+                Parameters.UpdatePositionAndVelocity(YAcceleration);
             }
         }
 
-        public virtual void Draw(SpriteBatch spriteBatch, Vector2 location, bool isLeft)
+        public virtual void Draw(SpriteBatch spriteBatch)
         {
             //get frame's height and width
-            float frameWidth = (float)SpriteSheets.Width / RowsAndColumns.Y;
-            float frameHeight = (float)SpriteSheets.Height / RowsAndColumns.X;
+            float frameWidth = GetHeightAndWidth().Y;
+            float frameHeight = GetHeightAndWidth().X;
 
             //get the frame that will be drawn in this update.
             Rectangle sourceRectangle = new Rectangle((int)(ActionFrame * frameWidth), 0,
                 (int)frameWidth, (int)frameHeight);
             //set the position the frame will be drawn
-            Rectangle destinationRectangle = new Rectangle((int)Location.X,
-                (int)Location.Y, (int)frameWidth, (int)frameHeight);
+            Rectangle destinationRectangle = new Rectangle((int)Parameters.Position.X,
+                (int)(Parameters.Position.Y - frameHeight), (int)frameWidth, (int)frameHeight);
 
-            Location = location;
-            if (isLeft)
+            if (Parameters.IsLeft)
             {
                 //flip the frame if the target point to left.
                 spriteBatch.Draw(SpriteSheets, destinationRectangle, sourceRectangle,
