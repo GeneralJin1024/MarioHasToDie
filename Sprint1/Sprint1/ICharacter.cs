@@ -12,13 +12,13 @@ namespace Sprint1
 {
     public interface ICharacter
     {
-        MoveParameters Parameter { get; }
+        MoveParameters Parameter { get; } 
         void Update(GameTime gameTime);
         void Draw(SpriteBatch spriteBatch);
-        void MarioCollideTop(Mario mario);
-        void MarioCollideBottom(Mario mario);
-        void MarioCollideLeft(Mario mario);
-        void MarioCollideRight(Mario mario);
-        Vector2 GetRealPosition();
+        void MarioCollideTop(MarioCharacter mario); //with this parameter you can tell mario "You should do ...... if you collide with me" by calling its method
+        void MarioCollideBottom(MarioCharacter mario);
+        void MarioCollideLeft(MarioCharacter mario);
+        void MarioCollideRight(MarioCharacter mario);
+        Vector2 GetRealPosition(); //Position is the coordinate of lowerleft corner, return the coordinate of upperleft corner
     }
 }
