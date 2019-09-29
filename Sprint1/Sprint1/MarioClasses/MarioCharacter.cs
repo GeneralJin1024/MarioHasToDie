@@ -55,6 +55,7 @@ namespace Sprint1.MarioClasses
         //public void CollideWithBlocksLeftAndRight() { Mario.Parameters.SetVelocity(0, Mario.Parameters.Velocity.Y); }
         #endregion
 
-        public Vector2 GetRealPosition() { return new Vector2(Parameters.Position.X, Parameters.Position.Y - Mario.GetHeightAndWidth().X); }
+        public Vector2 GetMinPosition() { return new Vector2(Parameters.Position.X, Parameters.Position.Y - Mario.GetHeightAndWidth().X); }
+        public Vector2 GetMaxPosition() { return new Vector2(Parameters.Position.X + Mario.GetHeightAndWidth().Y, Parameters.Position.Y); }
     }
 }

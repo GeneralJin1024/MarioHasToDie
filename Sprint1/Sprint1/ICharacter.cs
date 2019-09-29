@@ -19,6 +19,7 @@ namespace Sprint1
         void MarioCollideBottom(MarioCharacter mario);
         void MarioCollideLeft(MarioCharacter mario);
         void MarioCollideRight(MarioCharacter mario);
-        Vector2 GetRealPosition(); //Position is the coordinate of lowerleft corner, return the coordinate of upperleft corner
+        Vector2 GetMinPosition(); //Position is the coordinate of lower left corner, return the coordinate of upper left corner
+        Vector2 GetMaxPosition(); // return the coordinate of lower right corner
     }
 }
