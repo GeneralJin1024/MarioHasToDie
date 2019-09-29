@@ -90,6 +90,7 @@
     <Compile Include="ICharacter.cs" />
     <Compile Include="ICommand.cs" />
     <Compile Include="IFactory.cs" />
+    <Compile Include="MarioClasses\MarioCharacter.cs" />
     <Compile Include="MarioClasses\MarioState.cs" />
     <Compile Include="MoveParameters.cs" />
     <Compile Include="Resource1.Designer.cs">

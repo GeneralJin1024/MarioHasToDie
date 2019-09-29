@@ -52,27 +52,30 @@ namespace Sprint1
 
         public virtual void Draw(SpriteBatch spriteBatch)
         {
-            //get frame's height and width
-            float frameWidth = GetHeightAndWidth().Y;
-            float frameHeight = GetHeightAndWidth().X;
-
-            //get the frame that will be drawn in this update.
-            Rectangle sourceRectangle = new Rectangle((int)(ActionFrame * frameWidth), 0,
-                (int)frameWidth, (int)frameHeight);
-            //set the position the frame will be drawn
-            Rectangle destinationRectangle = new Rectangle((int)Parameters.Position.X,
-                (int)(Parameters.Position.Y - frameHeight), (int)frameWidth, (int)frameHeight);
-
-            if (Parameters.IsLeft)
+            if (!Parameters.IsHidden)
             {
-                //flip the frame if the target point to left.
-                spriteBatch.Draw(SpriteSheets, destinationRectangle, sourceRectangle,
-                    Color.White, 0, Vector2.Zero, SpriteEffects.FlipHorizontally, 0);
-            }
-            else
-            {
-                spriteBatch.Draw(SpriteSheets, destinationRectangle, sourceRectangle,
-                    Color.White);
+                //get frame's height and width
+                float frameWidth = GetHeightAndWidth().Y;
+                float frameHeight = GetHeightAndWidth().X;
+
+                //get the frame that will be drawn in this update.
+                Rectangle sourceRectangle = new Rectangle((int)(ActionFrame * frameWidth), 0,
+                    (int)frameWidth, (int)frameHeight);
+                //set the position the frame will be drawn
+                Rectangle destinationRectangle = new Rectangle((int)Parameters.Position.X,
+                    (int)(Parameters.Position.Y - frameHeight), (int)frameWidth, (int)frameHeight);
+
+                if (Parameters.IsLeft)
+                {
+                    //flip the frame if the target point to left.
+                    spriteBatch.Draw(SpriteSheets, destinationRectangle, sourceRectangle,
+                        Color.White, 0, Vector2.Zero, SpriteEffects.FlipHorizontally, 0);
+                }
+                else
+                {
+                    spriteBatch.Draw(SpriteSheets, destinationRectangle, sourceRectangle,
+                        Color.White);
+                }
             }
         }
 

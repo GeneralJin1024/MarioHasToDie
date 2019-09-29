@@ -36,11 +36,6 @@ namespace Sprint1.MarioClasses
     {
         public MarioState.PowerType Type { get; set; } = MarioState.PowerType.Died;
         public void Destroy(MarioState marioState) { }
-        public void Leave(Mario mario)
-        {
-            mario.ChangeToIdle();
-        }
-
-
+        public void Leave(Mario mario) { mario.ChangeToIdle(); }
     }
 }

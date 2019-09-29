@@ -22,20 +22,14 @@ namespace Sprint1.MarioClasses
         //{Idle, Jump, Walking, Crouch}
         private readonly ISprite[] ActionSprites;
 
-        public Mario(Texture2D[] standardSheets, Texture2D[] superSheet,
-            Texture2D[] fireSheet, Vector2 location)
+        public Mario(Texture2D[][] marioSpriteSheets, Vector2 location)
         {
             MarioState = new MarioState(this);
             Parameters = new MoveParameters();
             Parameters.SetPosition(location.X, location.Y);
             Parameters.SetVelocity(0, 0);
-            //check null of three texture arrays
-            if (standardSheets == null || superSheet == null || fireSheet == null)
-            {
-                throw new ArgumentNullException(nameof(standardSheets));
-            }
             //store 13 Mario textures
-            MarioSpriteSheets = new Texture2D[3][] { standardSheets, superSheet, fireSheet };
+            MarioSpriteSheets = marioSpriteSheets ?? throw new ArgumentNullException(nameof(marioSpriteSheets));
             ActionSprites = new ISprite[6] { new AnimatedSprite(MarioSpriteSheets[0][0], new Point(1, 1), Parameters),
                 new AnimatedSprite(MarioSpriteSheets[0][1], new Point(1, 1), Parameters),
                 new AnimatedSprite(MarioSpriteSheets[0][2], new Point(1, 3), Parameters),
@@ -54,8 +48,10 @@ namespace Sprint1.MarioClasses
         public void Draw(SpriteBatch spriteBatch)
         {
             //CurrentActionAndState[0] will locate the current action sprite.
+
             CurrentSprite.Draw(spriteBatch);
-            ChangeToIdle();
+            //if (marioState.GetPowerType() != MarioState.PowerType.Died)
+            //    ChangeToIdle();
         }
 
         public Vector2 GetHeightAndWidth()
@@ -97,11 +93,8 @@ namespace Sprint1.MarioClasses
         public void ChangeToIdle()
         {
             //change location caused by the difference of size between crouch and idle.
-            if (MarioState.GetPowerType() != MarioState.PowerType.Died)
-            {
-                ChangeActionAndSprite(0);
-                Parameters.SetVelocity(0, 0);
-            }
+            ChangeActionAndSprite(0);
+            Parameters.SetVelocity(0, 0);
         }
 
         public void ChangeToJump(float yVelocity)

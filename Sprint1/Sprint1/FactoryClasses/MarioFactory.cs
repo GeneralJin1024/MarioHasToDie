@@ -14,7 +14,7 @@ namespace Sprint1.FactoryClasses
 {
     public class MarioFactory : IFactory
     {
-        public Mario Mario { get; set; }
+        public MarioCharacter Mario { get; set; }
         private static MarioFactory _instance;
         public static MarioFactory Instance
         {
@@ -31,19 +31,20 @@ namespace Sprint1.FactoryClasses
             //Create Mario as soon as the factory is initialized.
             Mario = GetMario(new Vector2(400, 300));
         }
+        public void AddToList(ArrayList spriteList) { }
 
-        public void AddToList(ArrayList spriteList)
-        {
-            //check null first
-            if (spriteList == null)
-            {
-                throw new ArgumentNullException(nameof(spriteList));
-            }
-            spriteList.Add(Mario);
-        }
+        //public void AddToList(ArrayList spriteList)
+        //{
+        //    //check null first
+        //    if (spriteList == null)
+        //    {
+        //        throw new ArgumentNullException(nameof(spriteList));
+        //    }
+        //    spriteList.Add(Mario);
+        //}
 
 
-        private static Mario GetMario(Vector2 location)
+        private static MarioCharacter GetMario(Vector2 location)
         {
             Texture2D[] StandardSheets = new Texture2D[5] {Sprint1Main.Game.Content.Load<Texture2D>("MarioSprites/smallMarioRightStand"),
                 Sprint1Main.Game.Content.Load<Texture2D>("MarioSprites/smallMarioRightJump"),
@@ -60,7 +61,7 @@ namespace Sprint1.FactoryClasses
                 Sprint1Main.Game.Content.Load<Texture2D>("FireMario/fireMarioJumpRight"),
                 Sprint1Main.Game.Content.Load<Texture2D>("FireMario/fireMarioRightMove"),
                 Sprint1Main.Game.Content.Load<Texture2D>("FireMario/fireMarioRightCrouch")};
-            return new Mario(StandardSheets, SuperSheets, FireSheets, location);
+            return new MarioCharacter(new Texture2D[][] { StandardSheets, SuperSheets, FireSheets}, location);
         }
     }
 }

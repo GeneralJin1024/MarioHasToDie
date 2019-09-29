@@ -12,13 +12,13 @@ namespace Sprint1
 {
     public interface ICharacter
     {
+        MoveParameters Parameter { get; }
         void Update(GameTime gameTime);
         void Draw(SpriteBatch spriteBatch);
-        Vector2 GetPosition();
-        Vector2 GetVelocity();
         void MarioCollideTop(Mario mario);
         void MarioCollideBottom(Mario mario);
         void MarioCollideLeft(Mario mario);
         void MarioCollideRight(Mario mario);
+        Vector2 GetRealPosition();
     }
 }

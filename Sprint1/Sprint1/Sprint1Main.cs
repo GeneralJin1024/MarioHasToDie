@@ -42,7 +42,7 @@ namespace Sprint1
         public bool MenuMode { get; set; }
 
         static private Sprint1Main _game;
-        public Mario Mario { get; set; }
+        public MarioCharacter Mario { get; set; }
         public static Sprint1Main Game
         {
             get
@@ -93,7 +93,7 @@ namespace Sprint1
             spriteBatch = new SpriteBatch(GraphicsDevice);
             //load mario texture and construct mario. Then add mario into sprite list.
             //add factories.
-            factoryList.Add(MarioFactory.Instance);
+            //factoryList.Add(MarioFactory.Instance);
             factoryList.Add(BlockFactory.Instance);
             factoryList.Add(EnemyFactory.Instance);
             factoryList.Add(BackgroundFactory.Instance);
@@ -141,6 +141,7 @@ namespace Sprint1
                     controller.Update();
                 foreach (ISprite sprite in spriteList)
                     sprite.Update(gameTime);
+                Mario.Update(gameTime);
             }
 
             base.Update(gameTime);
@@ -166,6 +167,7 @@ namespace Sprint1
             {
                 foreach (ISprite sprite in spriteList)
                     sprite.Draw(spriteBatch);
+                Mario.Draw(spriteBatch);
             }
                 
 
