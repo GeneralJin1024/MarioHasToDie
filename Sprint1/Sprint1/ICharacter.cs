@@ -12,7 +12,7 @@ namespace Sprint1
 {
     public interface ICharacter
     {
-        MoveParameters Parameter { get; } 
+        MoveParameters Parameters { get; } 
         void Update(GameTime gameTime);
         void Draw(SpriteBatch spriteBatch);
         void MarioCollideTop(MarioCharacter mario); //with this parameter you can tell mario "You should do ...... if you collide with me" by calling its method

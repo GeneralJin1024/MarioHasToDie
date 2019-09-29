@@ -3,8 +3,9 @@
     "",
     "\\Sprint1",
     "\\Sprint1\\Sprint1",
+    "\\Sprint1\\Sprint1\\MarioClasses",
     "\\Sprint1\\Sprint1\\Sprites"
   ],
-  "SelectedNode": "\\Sprint1\\Sprint1.sln",
+  "SelectedNode": "\\Sprint1\\Sprint1\\ICharacter.cs",
   "PreviewInSolutionExplorer": false
 }
