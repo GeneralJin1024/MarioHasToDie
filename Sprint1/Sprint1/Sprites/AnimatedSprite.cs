@@ -47,6 +47,7 @@ namespace Sprint1
                     ActionFrame = 0;
                 }
                 Parameters.UpdatePositionAndVelocity(YAcceleration);
+                CheckBoundary();
             }
         }
 
@@ -82,6 +83,19 @@ namespace Sprint1
         public Vector2 GetHeightAndWidth()
         {
             return new Vector2((float)SpriteSheets.Height / RowsAndColumns.X, (float)SpriteSheets.Width / RowsAndColumns.Y);
+        }
+
+        private void CheckBoundary()
+        {
+            float x = Parameters.Position.X;
+            float y = Parameters.Position.Y;
+            float upBoundary = GetHeightAndWidth().X;
+            float rightBoundary = 800 - GetHeightAndWidth().Y;
+            x = (x <= 0) ? 0 : x;
+            x = (x >= rightBoundary) ? rightBoundary : x;
+            y = (y <= upBoundary) ? upBoundary : y;
+            y = (y >= 500) ? 500 : y;
+            Parameters.SetPosition(x, y);
         }
     }
 }
