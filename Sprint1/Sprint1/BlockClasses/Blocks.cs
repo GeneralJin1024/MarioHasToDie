@@ -8,10 +8,16 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace Sprint1.BlockClasses
 {
-    
+    public enum BlockType
+    {
+        Hidden, BNormal, QNormal, Used, Destroyed // stairs and floors are counted as used blocks
+    }
     class Blocks : ISprite
     {
+        public BlockType bType;
         public Texture2D SpriteSheets { get; set; }
+        public MoveParameters Parameters { get; set; }
+
         private Vector2 bPosition;
 
         protected int TotalFrame { get; set; }
@@ -30,13 +36,13 @@ namespace Sprint1.BlockClasses
             ResizeFrame(sheet, rowAndCol, totFrame);
             this.bPosition = pos;
         }
-        public virtual void Draw(SpriteBatch spriteBatch, Vector2 location, bool isLeft)
+        public virtual void Draw(SpriteBatch spriteBatch)
         {
             if (spriteBatch == null)
             {
                 throw new ArgumentNullException(nameof(spriteBatch));
             }
-            spriteBatch.Draw(SpriteSheets, location, new Rectangle(FrameOrigin.X + CurrentFrame.X * FrameSize.X, FrameOrigin.Y + CurrentFrame.Y * FrameSize.Y, FrameSize.X, FrameSize.Y), Color.White);
+            spriteBatch.Draw(SpriteSheets, bPosition, new Rectangle(FrameOrigin.X + CurrentFrame.X * FrameSize.X, FrameOrigin.Y + CurrentFrame.Y * FrameSize.Y, FrameSize.X, FrameSize.Y), Color.White);
            
         }
 

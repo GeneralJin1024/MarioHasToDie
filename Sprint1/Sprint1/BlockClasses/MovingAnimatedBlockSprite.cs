@@ -15,14 +15,14 @@ namespace Sprint1.BlockClasses
         private float[] destroyedBrickPosX;
         private float[] destroyedBrickPosY;
         private Vector2 dPos;
-        public BrickBlockSprite(Texture2D texture, Vector2 pos, ArrayList items) : base(texture, pos, new Point(4, 1), 1, BrickType.BNormal, items)
+        public BrickBlockSprite(Texture2D texture, Vector2 pos, ArrayList items) : base(texture, pos, new Point(4, 1), 1, BlockType.BNormal, items)
         {
             destroyedBrickPosX = new float[4];
             destroyedBrickPosY = new float[4];
         }
         public override void Update(GameTime gameTime)
         {
-            if (bType == BrickType.Destroyed)
+            if (bType == BlockType.Destroyed)
             {
                 dPos.X += positionOffset.X != 0 ? spriteSpeed.X * (float)gameTime.ElapsedGameTime.TotalSeconds : 0;
                 dPos.Y += positionOffset.Y != 0 ? spriteSpeed.Y * (float)gameTime.ElapsedGameTime.TotalSeconds : 0;
@@ -38,18 +38,35 @@ namespace Sprint1.BlockClasses
                 base.Update(gameTime);
             }
         }
-        public override void Draw(SpriteBatch spriteBatch, Vector2 location, bool isLeft)
+        public override void Draw(SpriteBatch spriteBatch)
         {
-            if (bType == BrickType.Destroyed)
+            if (bType == BlockType.Destroyed)
             {
                 for (int index = 0; index < 4; index++)
                     spriteBatch.Draw(SpriteSheets, new Vector2(destroyedBrickPosX[index], destroyedBrickPosY[index]), new Rectangle(0, 0, FrameSize.X / 2, FrameSize.Y / 2), Color.White);
             }
             else
             {
-                base.Draw(spriteBatch, location, isLeft);
+                base.Draw(spriteBatch);
             }
             
         }
+    }
+
+    class QuestionBlockSprite : Bricks
+    {
+        public QuestionBlockSprite(Texture2D texture, Vector2 pos, ArrayList items) : base(texture, pos, new Point(4, 3), 4, BlockType.QNormal, items)
+        {
+
+        }
+
+    }
+
+    class UsedBlockSprite : Bricks
+    {
+        public UsedBlockSprite(Texture2D texture, Vector2 pos) : base(texture, pos, new Point(4, 1), 1, BlockType.Used, new ArrayList { })
+        {
+        }
+
     }
 }

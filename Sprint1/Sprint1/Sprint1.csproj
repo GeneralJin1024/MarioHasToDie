@@ -68,6 +68,7 @@
     <AutoGenerateBindingRedirects>false</AutoGenerateBindingRedirects>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="BlockClasses\BlockCharacter.cs" />
     <Compile Include="BlockClasses\BlockCommands.cs" />
     <Compile Include="BlockClasses\BrickStates.cs" />
     <Compile Include="BlockClasses\IBlockStates.cs" />
@@ -101,11 +102,9 @@
     <Compile Include="Sprites\AnimatedSprite.cs" />
     <Compile Include="BlockClasses\Blocks.cs" />
     <Compile Include="BlockClasses\Bricks.cs" />
-    <Compile Include="BlockClasses\BrickBlockSprite.cs" />
-    <Compile Include="BlockClasses\FloorAndStairBlocks.cs" />
+    <Compile Include="BlockClasses\MovingAnimatedBlockSprite.cs" />
+    <Compile Include="BlockClasses\StaticBlockSprite.cs" />
     <Compile Include="BlockClasses\HiddenBlockSprite.cs" />
-    <Compile Include="BlockClasses\QuestionBlockSprite.cs" />
-    <Compile Include="BlockClasses\UsedBlockSprite.cs" />
     <Compile Include="MarioClasses\IActionState.cs" />
     <Compile Include="MarioClasses\Mario.cs" />
     <Compile Include="MarioClasses\MarioAction.cs" />

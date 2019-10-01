@@ -16,11 +16,11 @@ namespace Sprint1.BlockClasses
     }
     class NormalState : IBlockStates
     {
-        private Mario mario;
+        private MarioCharacter mario;
         public void Handle(Bricks brick)
         {
             mario = Sprint1Main.Game.Mario;
-             if (mario.IsSuper() && brick.bType == BrickType.BNormal)
+             if (mario.IsSuper() && brick.bType == BlockType.BNormal)
              {
                  brick.ChangeToDestroyed();
              }

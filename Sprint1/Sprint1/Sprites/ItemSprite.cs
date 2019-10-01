@@ -16,7 +16,7 @@ namespace Sprint1.Sprites
         private float bumpHeight;
         private Point positionOffset;
         private Vector2 spriteSpeed;
-        public ItemSprite(Texture2D texture, Vector2 location, Point sheetSize) : base(texture, sheetSize)
+        public ItemSprite(Texture2D texture, Vector2 location, Point sheetSize) : base(texture, sheetSize, new MoveParameters())
         {
             //initialize
             spriteSpeed = new Vector2(0, 0);
@@ -47,9 +47,9 @@ namespace Sprint1.Sprites
                 }
             }
         }
-        public override void Draw(SpriteBatch spriteBatch, Vector2 location, bool isLeft)
+        public override void Draw(SpriteBatch spriteBatch)
         {
-            base.Draw(spriteBatch, Location, isLeft);
+            base.Draw(spriteBatch);
         }
 
 

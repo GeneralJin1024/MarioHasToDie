@@ -11,15 +11,10 @@ using Sprint1.Sprites;
 
 namespace Sprint1.BlockClasses
 {
-    public enum BrickType
-    {
-        Hidden, BNormal, QNormal, Used, Destroyed
-    }
-
+   
     //public for genernate blocks
     class Bricks : Blocks
     {
-        public BrickType bType;
         private readonly IBlockStates[] bStates;
         public IBlockStates currentbState;
         private Vector2 bPosition;
@@ -30,7 +25,7 @@ namespace Sprint1.BlockClasses
         private int MinY, MaxY;
         protected Point positionOffset = new Point(1, 1);
         protected Vector2 spriteSpeed = new Vector2(50.0f, 200.0f);
-        public Bricks(Texture2D sheet, Vector2 pos, Point rowAndColumn, int totalFrame, BrickType type, ArrayList itemList) 
+        public Bricks(Texture2D sheet, Vector2 pos, Point rowAndColumn, int totalFrame, BlockType type, ArrayList itemList) 
             : base(sheet, pos, rowAndColumn,totalFrame)
         {
             items = itemList;
@@ -47,10 +42,10 @@ namespace Sprint1.BlockClasses
         {
             switch (bType)
             {
-                case BrickType.Hidden :
+                case BlockType.Hidden :
                     return bStates[0];
-                case BrickType.Used:
-                case BrickType.Destroyed:
+                case BlockType.Used:
+                case BlockType.Destroyed:
                     return bStates[3];
                 default:
                     return bStates[1];
@@ -59,19 +54,19 @@ namespace Sprint1.BlockClasses
         #region CommandReciver
         public void ChangeToBrick()
         {
-            bType = BrickType.BNormal;
+            bType = BlockType.BNormal;
             SpriteSheets = BlockFactory.BlockTextures[0];
             //currentbState = GenerateCurrentState(); for key-map specific test 
         }
         private void ChangeToUsed()
         {
-            bType = BrickType.Used;
+            bType = BlockType.Used;
             base.ResizeFrame(BlockFactory.BlockTextures[2], new Point(4, 1), 1);          
             currentbState = GenerateCurrentState();
         }
         public void ChangeToDestroyed()
         {
-            bType = BrickType.Destroyed;
+            bType = BlockType.Destroyed;
             currentbState = GenerateCurrentState();
         }
         public void Bumping()
@@ -111,13 +106,13 @@ namespace Sprint1.BlockClasses
                 }
             }
         }
-        public override void Draw(SpriteBatch spriteBatch, Vector2 location, bool isLeft)
+        public override void Draw(SpriteBatch spriteBatch)
         {
             foreach (AnimatedSprite sprite in shownItems)
-                sprite.Draw(spriteBatch, sprite.Position, isLeft);
-            if (bType != BrickType.Hidden && bType != BrickType.Destroyed)
+                sprite.Draw(spriteBatch);
+            if (bType != BlockType.Hidden && bType != BlockType.Destroyed)
             {
-                base.Draw(spriteBatch, bPosition, isLeft);
+                base.Draw(spriteBatch);
             }
         }
         #region Methods Interact Items
