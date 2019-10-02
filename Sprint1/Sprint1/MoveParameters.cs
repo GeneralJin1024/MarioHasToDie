@@ -14,6 +14,8 @@ namespace Sprint1
         public bool IsHidden { get; set; }
         public Vector2 Velocity { get { return _velocity; } }
         public Vector2 Position { get { return _position; } }
+        //new parameter : TimeOfFrame
+        public float TimeOfFrame { get; set; }
 
         private Vector2 _velocity;
         private Vector2 _position;

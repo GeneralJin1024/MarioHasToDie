@@ -51,6 +51,27 @@ namespace Sprint1
             }
         }
 
+        //public virtual void Update(float timeOfFrame)
+        //{
+        //    //TimeSinceLastFrame += gameTime.ElapsedGameTime.Milliseconds;
+        //    Parameters.TimeOfFrame += timeOfFrame;
+        //    if (Parameters.TimeOfFrame == MillisecondsPerFrame)
+        //    {
+        //        Parameters.TimeOfFrame = 0;
+        //        ActionFrame += 1;
+        //        if (ActionFrame >= RowsAndColumns.Y)     // Upper Limit Check
+        //        {
+        //            ActionFrame = 0;
+        //        }
+        //        //CheckBoundary();
+        //    }
+        //    Parameters.UpdatePositionAndVelocity(YAcceleration, timeOfFrame);
+        //    Vector2 checkedPosition = Sprint1.CheckBoundary(new Vector2(Parameters.Position.X, Parameters.Position.Y - GetHeightAndWidth().X),
+        //        GetHeightAndWidth());
+        //    Parameters.SetPosition(checkedPosition.X, checkedPosition.Y + GetHeightAndWidth().X);
+
+        //}
+
         public virtual void Draw(SpriteBatch spriteBatch)
         {
             if (!Parameters.IsHidden)

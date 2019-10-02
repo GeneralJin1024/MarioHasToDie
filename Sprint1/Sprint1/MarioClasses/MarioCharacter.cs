@@ -20,7 +20,7 @@ namespace Sprint1.MarioClasses
             Parameters = Mario.Parameters;
         }
         #region ISprite Methods
-        public void Update(GameTime gameTime) { Mario.Update(gameTime); }
+        public void Update(GameTime gameTime) { Mario.Update(gameTime);/*Mario.Update(timeOfFrame);*/ }
         public void Draw(SpriteBatch spriteBatch) { Mario.Draw(spriteBatch); }
         #endregion
 
@@ -38,15 +38,17 @@ namespace Sprint1.MarioClasses
         #region Collide Detection Receivers
         public void CollideWithEnemy(bool isTop)
         {
-            if (isTop)
-                Mario.ChangeToIdle();
-            else
-            {
+            if (!isTop)
                 Mario.MarioState.Destroy();
-                Parameters.SetVelocity(0, Parameters.Velocity.Y);
-            }
+            Mario.ChangeToIdle();
         }
-        public void CollideWithFlower() { Mario.MarioState.ChangeToFire(); }
+        public void CollideWithFlower()
+        {
+            if (Mario.MarioState.GetPowerType() == MarioState.PowerType.Standard)
+                Mario.MarioState.ChangeToSuper();
+            else
+                Mario.MarioState.ChangeToFire();
+        }
         public void CollideWithMushRoom() { Mario.MarioState.ChangeToSuper(); }
         public void CollideWithStar() { }
         public void CollideWithCoin() { }
@@ -57,5 +59,6 @@ namespace Sprint1.MarioClasses
 
         public Vector2 GetMinPosition() { return new Vector2(Parameters.Position.X, Parameters.Position.Y - Mario.GetHeightAndWidth().X); }
         public Vector2 GetMaxPosition() { return new Vector2(Parameters.Position.X + Mario.GetHeightAndWidth().Y, Parameters.Position.Y); }
+        public Vector2 GetHeightAndWidth() { return Mario.GetHeightAndWidth(); }
     }
 }

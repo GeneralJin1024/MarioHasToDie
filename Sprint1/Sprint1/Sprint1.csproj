@@ -72,6 +72,9 @@
     <Compile Include="BlockClasses\BlockCommands.cs" />
     <Compile Include="BlockClasses\BrickStates.cs" />
     <Compile Include="BlockClasses\IBlockStates.cs" />
+    <Compile Include="CollideDetection\CollideDetectorTest.cs" />
+    <Compile Include="CollideDetection\CollidePairTest.cs" />
+    <Compile Include="CollideDetection\TileMapTest.cs" />
     <Compile Include="Command\MoveDestroyCommand.cs" />
     <Compile Include="Command\MoveDownCommand.cs" />
     <Compile Include="Command\MoveFireCommand.cs" />
