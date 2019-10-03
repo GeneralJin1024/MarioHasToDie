@@ -12,13 +12,15 @@ namespace Sprint1.CollideDetection
     {
         private ICharacter Character;
         private MarioCharacter Mario;
-        private float xTime = 0, yTime = 0;
+        private float xTime = -2, yTime = -2;
+        private Vector2 relativeVelocity;
         public float Time { get; private set; }
 
         public CollidePair(MarioCharacter mario, ICharacter character)
         {
             Mario = mario;
             Character = character;
+            relativeVelocity = new Vector2();
         }
 
         public void GetFirstContactTime()
@@ -27,49 +29,55 @@ namespace Sprint1.CollideDetection
             Vector2 marioMax = Mario.GetMaxPosition();
             Vector2 characterMin = Character.GetMinPosition();
             Vector2 characterMax = Character.GetMaxPosition();
+            relativeVelocity = Mario.Parameters.Velocity;
+            relativeVelocity.X -= Character.Parameters.Velocity.X;
+            relativeVelocity.Y -= Character.Parameters.Velocity.Y;
 
             #region OverLap Axel
-            if (Mario.Parameters.Velocity.X > 0)
+            if (relativeVelocity.X > 0)
             {
-                xTime = (characterMin.X - marioMax.X) / Mario.Parameters.Velocity.X;
+                xTime = (characterMin.X - marioMax.X) / relativeVelocityy.X;
             }
             else if (Mario.Parameters.Velocity.X < 0)
             {
-                xTime = (marioMin.X - characterMax.X) / -Mario.Parameters.Velocity.X;
+                xTime = (marioMin.X - characterMax.X) / -relativeVelocity.X;
             }
             if (Mario.Parameters.Velocity.Y > 0)
             {
-                yTime = (characterMin.Y - marioMax.Y) / Mario.Parameters.Velocity.Y;
+                yTime = (characterMin.Y - marioMax.Y) / relativeVelocity.Y;
             }
             else if (Mario.Parameters.Velocity.Y < 0)
             {
-                yTime = (marioMin.Y - characterMax.Y) / -Mario.Parameters.Velocity.Y;
+                yTime = (marioMin.Y - characterMax.Y) / -relativeVelocity.Y;
             }
             #endregion
-            //Console.WriteLine("character = (" + characterMin.X + " , " + characterMax.Y + ")");
-            //Console.WriteLine("Mario Position1:  (" + marioMin.X + " , " + marioMin.Y + ")" + "   rightX = " + marioMax.X);
+            //Console.WriteLine("characterMin = " + characterMin + "     characterMax = " + characterMax);
+            //Console.WriteLine("Mario PositionMin:  " + marioMin + "     marioMax = " + marioMax);
+            //Console.WriteLine("xTime = " + xTime + "    yTime  = " + yTime);
 
             #region Intersect Time
-            if (xTime <= 0 && yTime <= 0)
-                Time = 0;
-            else if (yTime > 0 && (xTime <= 0 || (xTime > 0 && yTime >= xTime)))
+            if (xTime < 0 && yTime < 0) //(xTime <= 0 && yTime <= 0)
+                Time = 2;
+            else if (yTime >= 0 && yTime >= xTime) //(yTime >= 0 && (xTime < 0 || (xTime >= 0 && yTime >= xTime)))
             {
-                marioMax.X += yTime * Mario.Parameters.Velocity.X;
-                marioMin.X += yTime * Mario.Parameters.Velocity.X;
-                if ((characterMin.X <= marioMax.X && marioMax.X <= characterMax.X) || (characterMax.X >= marioMin.X && marioMin.X >= characterMin.X))
+                marioMax.X += yTime * relativeVelocity.X;
+                marioMin.X += yTime * relativeVelocity.X;
+                //((characterMin.X <= marioMax.X && marioMax.X <= characterMax.X) ||(characterMax.X >= marioMin.X && marioMin.X >= characterMin.X))
+                if ((characterMin.X <= marioMin.X && marioMin.X <= characterMax.X) || (characterMin.X >= marioMin.X && marioMax.X >= characterMin.X))
                     Time = yTime;
                 else
-                    Time = 0;
-            }//(xTime <= 0 && yTime > 0)
-            else if (xTime > 0 && (yTime <= 0 || (yTime > 0 && xTime > yTime)))
+                    Time = -2;
+            }//(xTime <= 0 && yTime > 0)//(yTime > 0 && (xTime < 0 || (xTime > 0 && yTime >= xTime)))
+            else if (xTime >= 0 && xTime > yTime) //(xTime >= 0 && (yTime < 0 || (yTime >= 0 && xTime > yTime)))
             {
-                marioMax.Y += xTime * Mario.Parameters.Velocity.Y;
-                marioMin.Y += xTime * Mario.Parameters.Velocity.Y;
-                if ((characterMin.Y <= marioMax.Y && marioMax.Y <= characterMax.Y) || (characterMax.Y >= marioMin.Y && marioMin.Y >= characterMin.Y))
+                marioMax.Y += xTime * relativeVelocity.Y;
+                marioMin.Y += xTime * relativeVelocity.Y;
+                //((characterMin.Y <= marioMax.Y && marioMax.Y <= characterMax.Y) || (characterMax.Y >= marioMin.Y && marioMin.Y >= characterMin.Y))
+                if ((marioMin.Y >= characterMin.Y && marioMin.Y <= characterMax.Y) || (characterMin.Y >= marioMin.Y && marioMax.Y >= characterMin.Y))
                     Time = xTime;
                 else
-                    Time = 0;
-            }//(xTime > 0 && yTime <= 0)
+                    Time = -2;
+            }//(xTime > 0 && yTime <= 0)//(xTime > 0 && (yTime <= 0 || (yTime > 0 && xTime > yTime)))
             else //xTime > 0 and yTime > 0
             {
                 if (xTime > yTime)
@@ -84,14 +92,14 @@ namespace Sprint1.CollideDetection
         {
             if (Time == yTime)
             {
-                if (Mario.Parameters.Velocity.Y > 0)
+                if (relativeVelocity.Y > 0)
                     Character.MarioCollideTop(Mario);
                 else
                     Character.MarioCollideBottom(Mario);
             }
             else
             {
-                if (Mario.Parameters.Velocity.X > 0)
+                if (relativeVelocity.X > 0)
                     Character.MarioCollideLeft(Mario);
                 else
                     Character.MarioCollideRight(Mario);

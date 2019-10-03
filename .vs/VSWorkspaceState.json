@@ -3,9 +3,10 @@
     "",
     "\\Sprint1",
     "\\Sprint1\\Sprint1",
+    "\\Sprint1\\Sprint1\\CollideDetection",
     "\\Sprint1\\Sprint1\\MarioClasses",
     "\\Sprint1\\Sprint1\\Sprites"
   ],
-  "SelectedNode": "\\Sprint1\\Sprint1\\ICharacter.cs",
+  "SelectedNode": "\\Sprint1\\Sprint1.sln",
   "PreviewInSolutionExplorer": false
 }

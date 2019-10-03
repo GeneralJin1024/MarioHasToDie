@@ -29,7 +29,7 @@ namespace Sprint1.CollideDetection
                 List<CollidePair> firstContactPairs = new List<CollidePair>();
                 List<ICharacter> possibleCollideList = new List<ICharacter>();
                 Map.GetPossibleCollidedObject(Mario, possibleCollideList);
-                Console.WriteLine("Finding = " + possibleCollideList.Count);
+                //Console.WriteLine("Finding = " + possibleCollideList.Count);
                 foreach (ICharacter character in possibleCollideList)
                 {
                     CollidePair collidePair = new CollidePair(Mario, character);
@@ -40,7 +40,7 @@ namespace Sprint1.CollideDetection
                 float longestTime = timeOfFrame;
                 for (int i = 0; i < pairs.Length; i++)
                 {
-                    if (CollidePairs[i].Time <= longestTime && CollidePairs[i].Time > 0)
+                    if (CollidePairs[i].Time <= longestTime && CollidePairs[i].Time >= 0)
                     {
                         longestTime = CollidePairs[i].Time;
                         firstContactPairs.Insert(0, CollidePairs[i]);

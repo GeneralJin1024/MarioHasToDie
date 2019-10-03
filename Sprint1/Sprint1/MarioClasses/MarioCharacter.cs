@@ -40,7 +40,8 @@ namespace Sprint1.MarioClasses
         {
             if (!isTop)
                 Mario.MarioState.Destroy();
-            Mario.ChangeToIdle();
+            if (Mario.MarioState.GetPowerType() != MarioState.PowerType.Died)
+                Mario.ChangeToIdle();
         }
         public void CollideWithFlower()
         {
