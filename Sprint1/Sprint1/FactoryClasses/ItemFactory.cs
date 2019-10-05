@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Sprint1.BlockClasses;
+using Sprint1.ItemClasses;
 using Sprint1.Sprites;
 using Sprint1.Sprites.Sprint1.Sprites;
 using System;
@@ -54,29 +55,29 @@ namespace Sprint1.FactoryClasses
             spriteList.Add(GetStar());
             spriteList.Add(GetPipe());
         }
-        public ItemSprite GetPipe()
+        public ItemCharacter GetPipe()
         {
-            return new ItemSprite(pipe, new Vector2(500, 150), new Point(1, 1));
+            return new PipeCharacter(pipe, new Point(1, 1), new Vector2(500, 150));
         }
-        public ItemSprite GetCoin()
+        public ItemCharacter GetCoin()
         {
-            return new ItemSprite(coin, new Vector2(100, 100), new Point(1, 4));
+            return new CoinCharacter(coin, new Point(1, 4), new Vector2(100, 100));
         }
-        public ItemSprite GetFlower()
+        public ItemCharacter GetFlower()
         {
-            return new ItemSprite(flower, new Vector2(200, 100), new Point(1, 8));
+            return new FlowerCharacter(flower, new Point(1, 8), new Vector2(200, 100));
         }
-        public ItemSprite GetGreenMushroom()
+        public ItemCharacter GetGreenMushroom()
         {
-            return new ItemSprite(greenMushroom, new Vector2(300, 100), new Point(1, 1));
+            return new GreenMushroomCharacter(greenMushroom, new Point(1, 1), new Vector2(300, 100));
         }
-        public ItemSprite GetRedMushroom()
+        public ItemCharacter GetRedMushroom()
         {
-            return new ItemSprite(redMushroom, new Vector2(400, 100), new Point(1, 1));
+            return new RedMushroomCharacter(redMushroom, new Point(1, 1),new Vector2(400, 100));
         }
-        public ItemSprite GetStar()
+        public ItemCharacter GetStar()
         {
-            return new ItemSprite(star, new Vector2(500, 100), new Point(1, 4));
+            return new StarCharacter(star, new Point(1, 4) ,new Vector2(500, 100));
         }
 
     }

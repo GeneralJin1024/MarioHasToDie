@@ -94,6 +94,12 @@
     <Compile Include="ICharacter.cs" />
     <Compile Include="ICommand.cs" />
     <Compile Include="IFactory.cs" />
+    <Compile Include="ItemClasses\PipeCharacter .cs" />
+    <Compile Include="ItemClasses\GreenMushroomCharacter .cs" />
+    <Compile Include="ItemClasses\RedMushroomCharacter.cs" />
+    <Compile Include="ItemClasses\CoinCharacter.cs" />
+    <Compile Include="ItemClasses\StarCharacter.cs" />
+    <Compile Include="ItemClasses\FlowerCharacter.cs" />
     <Compile Include="ItemClasses\ItemCharacter.cs" />
     <Compile Include="MarioClasses\MarioCharacter.cs" />
     <Compile Include="MarioClasses\MarioState.cs" />
