@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Sprint1.FactoryClasses;
+using Sprint1.ItemClasses;
 using Sprint1.Sprites;
 
 namespace Sprint1.BlockClasses
@@ -89,9 +90,9 @@ namespace Sprint1.BlockClasses
                 {
                     if (containItems)
                     {
-                        ItemSprite item = GenerateItems();
+                        ItemCharacter item = GenerateItems();
                         shownItems.Add(item);
-                        item.Bumping(bPosition, bPosition.Y - 3 * FrameSize.Y, spriteSpeed);
+                        //item.Bumping(bPosition, bPosition.Y - 3 * FrameSize.Y, spriteSpeed);
                         RemoveItem();
                     }
                     spriteSpeed.Y *= -1;
@@ -126,7 +127,7 @@ namespace Sprint1.BlockClasses
             }
         }
         #endregion
-        private ItemSprite GenerateItems()
+        private ItemCharacter GenerateItems()
         {
             switch (items[0])
             {

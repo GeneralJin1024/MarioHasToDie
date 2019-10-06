@@ -36,7 +36,7 @@ namespace Sprint1.CollideDetection
             #region OverLap Axel
             if (relativeVelocity.X > 0)
             {
-                xTime = (characterMin.X - marioMax.X) / relativeVelocityy.X;
+                xTime = (characterMin.X - marioMax.X) / relativeVelocity.X;
             }
             else if (Mario.Parameters.Velocity.X < 0)
             {

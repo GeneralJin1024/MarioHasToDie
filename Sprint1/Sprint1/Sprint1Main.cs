@@ -102,9 +102,9 @@ namespace Sprint1
             Mario = MarioFactory.Instance.Mario;
             foreach (IFactory factory in factoryList)
                 factory.AddToList(spriteList);
-            controllerList.Add(new KeyboardController(Mario, this, 
-                new Bricks[] { BlockFactory.Instance.qBlockTest, BlockFactory.Instance.hiddenBlockTest, BlockFactory.Instance.brickBlockTest }));
-            controllerList.Add(new GamepadController(Mario, this));
+            //controllerList.Add(new KeyboardController(Mario, this, 
+            //    new Bricks[] { BlockFactory.Instance.qBlockTest, BlockFactory.Instance.hiddenBlockTest, BlockFactory.Instance.brickBlockTest }));
+            //controllerList.Add(new GamepadController(Mario, this));
 
             #region Fonts
             instructionFont = Content.Load<SpriteFont>("arial");

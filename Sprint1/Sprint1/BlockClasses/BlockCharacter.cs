@@ -13,6 +13,11 @@ namespace Sprint1.BlockClasses
     {
         private Blocks block;
         public MoveParameters Parameters { get; }
+        public BlockCharacter(Blocks block)
+        {
+            this.block = block;
+            Parameters = block.Parameters;
+        }
 
         public void Draw(SpriteBatch spriteBatch)
         {

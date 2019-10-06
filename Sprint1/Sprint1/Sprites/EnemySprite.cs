@@ -13,14 +13,14 @@ namespace Sprint1.Sprites
         class EnemySprite : AnimatedSprite
         {
             private Vector2 Location;
-            public EnemySprite(Texture2D texture, Vector2 location, Point sheetSize) : base(texture, sheetSize)
+            public EnemySprite(Texture2D texture, Vector2 location, Point sheetSize) : base(texture, sheetSize, new MoveParameters())
             {
                 //initialize the location
                 Location = location;
             }
-            public override void Draw(SpriteBatch spriteBatch, Vector2 location, bool isLeft)
+            public override void Draw(SpriteBatch spriteBatch)
             {
-                base.Draw(spriteBatch, Location, isLeft);
+                base.Draw(spriteBatch);
             }
         }
     }

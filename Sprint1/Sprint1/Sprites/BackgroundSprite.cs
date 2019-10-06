@@ -16,6 +16,8 @@ namespace Sprint1.Background
         public Vector2 Position { get => BPosition; }
         protected ArrayList Location;
         public Texture2D SpriteSheets { get; set; }
+        public MoveParameters Parameters { get; set; }
+
         private Vector2 BPosition; // use to eleminate warning
 
         //void Update(GameTime gameTime) { }
@@ -30,19 +32,16 @@ namespace Sprint1.Background
             return new Vector2((float)SpriteSheets.Height, (float)SpriteSheets.Width);
         }
 
-
-        public void Draw(SpriteBatch spriteBatch, Vector2 location, bool isLeft)
+        void ISprite.Update(GameTime gameTime)
         {
-            //draw sprite at the each location
+        }
+
+        public void Draw(SpriteBatch spriteBatch)
+        {
             foreach (Vector2 vector in Location)
             {
                 spriteBatch.Draw(SpriteSheets, vector, Color.White);
             }
         }
-
-        void ISprite.Update(GameTime gameTime)
-        {
-        }
-
     }
 }
