@@ -12,7 +12,7 @@ namespace Sprint1
     {
         Texture2D SpriteSheets { get; set; }
         MoveParameters Parameters { get; set; }
-        void Update(GameTime gameTime);
+        void Update(float timeOfFrame);
         void Draw(SpriteBatch spriteBatch);
         Vector2 GetHeightAndWidth();   //x = Height, y = Width
     }

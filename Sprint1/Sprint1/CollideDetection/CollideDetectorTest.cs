@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,11 +11,11 @@ namespace Sprint1.CollideDetection
 {
     public class CollisionDetector
     {
-        private List<ICharacter> CharacterList;
+        private ArrayList CharacterList;
         private List<CollidePair> CollidePairs;
         private MarioCharacter Mario;
         private TileMap Map;
-        public CollisionDetector(MarioCharacter mario, List<ICharacter> characterList)
+        public CollisionDetector(MarioCharacter mario, ArrayList characterList)
         {
             CharacterList = characterList;
             Mario = mario;

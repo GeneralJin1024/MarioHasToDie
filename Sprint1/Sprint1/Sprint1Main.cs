@@ -9,6 +9,7 @@ using Sprint1.BlockClasses;
 using Sprint1.MarioClasses;
 using Sprint1.FactoryClasses;
 using Sprint1.Sprites;
+using Sprint1.CollideDetection;
 
 namespace Sprint1
 {
@@ -22,15 +23,24 @@ namespace Sprint1
     /// </summary>
     public class Sprint1Main : Game
     {
+        public enum CharacterType
+        {
+            Block, Enemy, DiedEnemy, Flower, Mushroom, Star, Coin, Pipe
+        }
+
+        public static Vector2 Boundary { get; private set; }
+
         readonly GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+
+        private int TimeSinceLastFrame;
+        private int MillisecondsPerFrame;
+        private CollisionDetector Collision;
 
         //private Mario Mario;
         private ArrayList factoryList;
         private ArrayList controllerList;
         private ArrayList spriteList;
-        #region Sprite
-        #endregion
 
 
         #region Fonts
@@ -68,7 +78,7 @@ namespace Sprint1
         protected override void Initialize()
         {
             _game = this;
-
+            Boundary = new Vector2(800, 500);
 
             spriteList = new ArrayList();
 
@@ -109,7 +119,7 @@ namespace Sprint1
             #region Fonts
             instructionFont = Content.Load<SpriteFont>("arial");
             #endregion
-
+            Collision = new CollisionDetector(Mario, spriteList);
             GameMenu.LoadContent(instructionFont);
             // TODO: use this.Content to load your game content here
         }
@@ -132,16 +142,26 @@ namespace Sprint1
         {
             //if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
             //    Exit();
+            if (gameTime == null)
+                throw new ArgumentNullException(nameof(gameTime));
             if (MenuMode)
                 GameMenu.Update(gameTime);
             else
             {
-                //Controller.UpdateInput(...);
                 foreach (IController controller in controllerList)
                     controller.Update();
-                foreach (ISprite sprite in spriteList)
-                    sprite.Update(gameTime);
-                Mario.Update(gameTime);
+                TimeSinceLastFrame += gameTime.ElapsedGameTime.Milliseconds;
+                if (TimeSinceLastFrame > MillisecondsPerFrame)
+                {
+                    TimeSinceLastFrame -= MillisecondsPerFrame;
+                    Collision.Update();
+                }
+                //Controller.UpdateInput(...);
+                //foreach (IController controller in controllerList)
+                //    controller.Update();
+                //foreach (ISprite sprite in spriteList)
+                //    sprite.Update(gameTime);
+                //Mario.Update(gameTime);
             }
 
             base.Update(gameTime);
@@ -200,5 +220,13 @@ namespace Sprint1
         //    #endregion
         //}
 
+        public static Vector2 CheckBoundary(Vector2 position, Vector2 heightAndWidth)
+        {
+            position.X = position.X >= 0 ? position.X : 0;
+            position.Y = position.Y >= 0 ? position.Y : 0;
+            position.X = position.X <= Boundary.X - heightAndWidth.Y ? position.X : Boundary.X - heightAndWidth.Y;
+            position.Y = position.Y <= Boundary.Y - heightAndWidth.X ? position.Y : Boundary.Y - heightAndWidth.X;
+            return position;
+        }
     }
 }

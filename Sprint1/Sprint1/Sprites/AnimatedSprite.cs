@@ -17,7 +17,6 @@ namespace Sprint1
         private readonly float YAcceleration;
         private Point RowsAndColumns;
         private int ActionFrame;
-        private int TimeSinceLastFrame;
         private readonly int MillisecondsPerFrame;
         public AnimatedSprite(Texture2D spriteSheet, Point rowAndColumn, MoveParameters parameters)
         {
@@ -27,50 +26,28 @@ namespace Sprint1
             RowsAndColumns = rowAndColumn;
             //start from the first frame
             ActionFrame = 0;
-            TimeSinceLastFrame = 0;
-            MillisecondsPerFrame = 100;
+            MillisecondsPerFrame = 1;
             Parameters = parameters;
             YAcceleration = 0;
         }
 
-        public virtual void Update(GameTime gameTime)
+        public virtual void Update(float timeOfFrame)
         {
-            TimeSinceLastFrame += gameTime.ElapsedGameTime.Milliseconds;
-            //change a fram per Milliseconds (ms)
-            if (TimeSinceLastFrame > MillisecondsPerFrame)
+            Parameters.TimeOfFrame += timeOfFrame;
+            if (Parameters.TimeOfFrame == MillisecondsPerFrame)
             {
-                TimeSinceLastFrame -= MillisecondsPerFrame;
-
+                Parameters.TimeOfFrame = 0;
                 ActionFrame += 1;
                 if (ActionFrame >= RowsAndColumns.Y)     // Upper Limit Check
                 {
                     ActionFrame = 0;
                 }
-                Parameters.UpdatePositionAndVelocity(YAcceleration);
-                CheckBoundary();
             }
+            Parameters.UpdatePositionAndVelocity(YAcceleration, timeOfFrame);
+            Vector2 checkedPosition = Sprint1Main.CheckBoundary(new Vector2(Parameters.Position.X, Parameters.Position.Y - GetHeightAndWidth().X),
+                GetHeightAndWidth());
+            Parameters.SetPosition(checkedPosition.X, checkedPosition.Y + GetHeightAndWidth().X);
         }
-
-        //public virtual void Update(float timeOfFrame)
-        //{
-        //    //TimeSinceLastFrame += gameTime.ElapsedGameTime.Milliseconds;
-        //    Parameters.TimeOfFrame += timeOfFrame;
-        //    if (Parameters.TimeOfFrame == MillisecondsPerFrame)
-        //    {
-        //        Parameters.TimeOfFrame = 0;
-        //        ActionFrame += 1;
-        //        if (ActionFrame >= RowsAndColumns.Y)     // Upper Limit Check
-        //        {
-        //            ActionFrame = 0;
-        //        }
-        //        //CheckBoundary();
-        //    }
-        //    Parameters.UpdatePositionAndVelocity(YAcceleration, timeOfFrame);
-        //    Vector2 checkedPosition = Sprint1.CheckBoundary(new Vector2(Parameters.Position.X, Parameters.Position.Y - GetHeightAndWidth().X),
-        //        GetHeightAndWidth());
-        //    Parameters.SetPosition(checkedPosition.X, checkedPosition.Y + GetHeightAndWidth().X);
-
-        //}
 
         public virtual void Draw(SpriteBatch spriteBatch)
         {
@@ -104,19 +81,6 @@ namespace Sprint1
         public Vector2 GetHeightAndWidth()
         {
             return new Vector2((float)SpriteSheets.Height / RowsAndColumns.X, (float)SpriteSheets.Width / RowsAndColumns.Y);
-        }
-
-        private void CheckBoundary()
-        {
-            float x = Parameters.Position.X;
-            float y = Parameters.Position.Y;
-            float upBoundary = GetHeightAndWidth().X;
-            float rightBoundary = 800 - GetHeightAndWidth().Y;
-            x = (x <= 0) ? 0 : x;
-            x = (x >= rightBoundary) ? rightBoundary : x;
-            y = (y <= upBoundary) ? upBoundary : y;
-            y = (y >= 500) ? 500 : y;
-            Parameters.SetPosition(x, y);
         }
     }
 }

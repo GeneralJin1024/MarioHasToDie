@@ -56,53 +56,76 @@ namespace Sprint1.CollideDetection
             //Console.WriteLine("xTime = " + xTime + "    yTime  = " + yTime);
 
             #region Intersect Time
-            if (xTime < 0 && yTime < 0) //(xTime <= 0 && yTime <= 0)
-                Time = 2;
+            if (xTime < 0 && yTime < 0)
+                Time = -2;
             else if (yTime >= 0 && yTime >= xTime) //(yTime >= 0 && (xTime < 0 || (xTime >= 0 && yTime >= xTime)))
             {
                 marioMax.X += yTime * relativeVelocity.X;
                 marioMin.X += yTime * relativeVelocity.X;
-                //((characterMin.X <= marioMax.X && marioMax.X <= characterMax.X) ||(characterMax.X >= marioMin.X && marioMin.X >= characterMin.X))
                 if ((characterMin.X <= marioMin.X && marioMin.X <= characterMax.X) || (characterMin.X >= marioMin.X && marioMax.X >= characterMin.X))
                     Time = yTime;
                 else
                     Time = -2;
-            }//(xTime <= 0 && yTime > 0)//(yTime > 0 && (xTime < 0 || (xTime > 0 && yTime >= xTime)))
+            }
             else if (xTime >= 0 && xTime > yTime) //(xTime >= 0 && (yTime < 0 || (yTime >= 0 && xTime > yTime)))
             {
                 marioMax.Y += xTime * relativeVelocity.Y;
                 marioMin.Y += xTime * relativeVelocity.Y;
-                //((characterMin.Y <= marioMax.Y && marioMax.Y <= characterMax.Y) || (characterMax.Y >= marioMin.Y && marioMin.Y >= characterMin.Y))
                 if ((marioMin.Y >= characterMin.Y && marioMin.Y <= characterMax.Y) || (characterMin.Y >= marioMin.Y && marioMax.Y >= characterMin.Y))
                     Time = xTime;
                 else
                     Time = -2;
-            }//(xTime > 0 && yTime <= 0)//(xTime > 0 && (yTime <= 0 || (yTime > 0 && xTime > yTime)))
-            else //xTime > 0 and yTime > 0
-            {
-                if (xTime > yTime)
-                {
-
-                }
             }
             #endregion
         }
 
         public void Collide()
         {
-            if (Time == yTime)
+            //if (Time == yTime)
+            //{
+            //    if (relativeVelocity.Y > 0)
+            //        Character.MarioCollideTop(Mario);
+            //    else
+            //        Character.MarioCollideBottom(Mario);
+            //}
+            //else
+            //{
+            //    if (relativeVelocity.X > 0)
+            //        Character.MarioCollideLeft(Mario);
+            //    else
+            //        Character.MarioCollideRight(Mario);
+            //}
+            switch (Character.Type)
             {
-                if (relativeVelocity.Y > 0)
-                    Character.MarioCollideTop(Mario);
-                else
-                    Character.MarioCollideBottom(Mario);
-            }
-            else
-            {
-                if (relativeVelocity.X > 0)
-                    Character.MarioCollideLeft(Mario);
-                else
-                    Character.MarioCollideRight(Mario);
+                case Sprint1Main.CharacterType.Block:
+                    Character.MarioCollide((Time == yTime) && (relativeVelocity.Y < 0));
+                    Mario.CollideWithBlock();
+                    break;
+                case Sprint1Main.CharacterType.Enemy:
+                    Character.MarioCollide((Time == yTime) && (relativeVelocity.Y > 0));
+                    Mario.CollideWithEnemy((Time == yTime) && (relativeVelocity.Y > 0));
+                    break;
+                case Sprint1Main.CharacterType.DiedEnemy:
+                    Mario.CollideWithBlock();
+                    break;
+                case Sprint1Main.CharacterType.Flower:
+                    Character.MarioCollide(true);
+                    Mario.CollideWithFlower();
+                    break;
+                case Sprint1Main.CharacterType.Mushroom:
+                    Character.MarioCollide(true);
+                    Mario.CollideWithMushRoom();
+                    break;
+                case Sprint1Main.CharacterType.Coin:
+                    Character.MarioCollide(true);
+                    break;
+                case Sprint1Main.CharacterType.Star:
+                    Character.MarioCollide(true);
+                    break;
+                case Sprint1Main.CharacterType.Pipe:
+                    Mario.CollideWithBlock();
+                    break;
+                default: break;
             }
         }
     }

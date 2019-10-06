@@ -25,6 +25,7 @@ namespace Sprint1
             _position = new Vector2(0, 0);
             IsLeft = false;
             IsHidden = false;
+            TimeOfFrame = 0;
         }
 
         public void SetVelocity(float x, float y)
@@ -42,11 +43,11 @@ namespace Sprint1
             _position.Y = y;
         }
 
-        public void UpdatePositionAndVelocity(float acceleration)
+        public void UpdatePositionAndVelocity(float acceleration, float rate)
         {
-            _position.X += _velocity.X;
-            _position.Y += _velocity.Y;
-            _velocity.Y += acceleration;
+            _position.X += (_velocity.X * rate);
+            _position.Y += (_velocity.Y * rate);
+            _velocity.Y += acceleration * rate;
         }
     }
 }

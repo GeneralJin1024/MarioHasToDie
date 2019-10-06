@@ -20,7 +20,7 @@ namespace Sprint1.MarioClasses
             Parameters = Mario.Parameters;
         }
         #region ISprite Methods
-        public void Update(GameTime gameTime) { Mario.Update(gameTime);/*Mario.Update(timeOfFrame);*/ }
+        public void Update(float timeOfFrame) { Mario.Update(timeOfFrame); }
         public void Draw(SpriteBatch spriteBatch) { Mario.Draw(spriteBatch); }
         #endregion
 
@@ -51,9 +51,7 @@ namespace Sprint1.MarioClasses
                 Mario.MarioState.ChangeToFire();
         }
         public void CollideWithMushRoom() { Mario.MarioState.ChangeToSuper(); }
-        public void CollideWithStar() { }
-        public void CollideWithCoin() { }
-        public void CollideWithBlocks() { Mario.ChangeToIdle(); }
+        public void CollideWithBlock() { Mario.ChangeToIdle(); }
         //public void CollideWithBlocksTopAndBottom() { Mario.ChangeToIdle(); }
         //public void CollideWithBlocksLeftAndRight() { Mario.Parameters.SetVelocity(0, Mario.Parameters.Velocity.Y); }
         #endregion

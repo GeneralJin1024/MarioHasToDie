@@ -39,10 +39,10 @@ namespace Sprint1.MarioClasses
             CurrentSprite = ActionSprites[0];
         }
         #region ISprite Methods
-        public void Update(GameTime gameTime)
+        public void Update(float timeOfFrame)
         {
             //CurrentActionAndState[0] will locate the current action sprite.
-            CurrentSprite.Update(gameTime);
+            CurrentSprite.Update(timeOfFrame);
         }
 
         public void Draw(SpriteBatch spriteBatch)

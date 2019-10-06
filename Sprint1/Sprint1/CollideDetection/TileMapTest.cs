@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Sprint1.MarioClasses;
+using System.Collections;
 
 namespace Sprint1.CollideDetection
 {
@@ -14,7 +15,7 @@ namespace Sprint1.CollideDetection
         private Point MapSize;
         private Point ScreenSize;
 
-        public TileMap(Point mapSize, List<ICharacter> characterList, Point screenSize)
+        public TileMap(Point mapSize, ArrayList characterList, Point screenSize)
         {
             if (characterList is null)
                 throw new ArgumentNullException(nameof(characterList));
@@ -68,8 +69,6 @@ namespace Sprint1.CollideDetection
         {
             if (mario is null || possibleCollideList is null)
                 throw new ArgumentNullException(nameof(mario));
-            if (possibleCollideList.Count > 0)
-                Console.WriteLine("Error");
             Point upperLeftGrid = GetGridPosition(mario.GetMinPosition());
             Point lowerRightGrid = GetGridPosition(mario.GetMaxPosition());
             //test for min and max Point before extend
@@ -110,7 +109,7 @@ namespace Sprint1.CollideDetection
         {
             minPosition.X += velocity.X;
             minPosition.Y += velocity.Y;
-            //Sprint1Main.CheckBoundary(minPosition, heightAndWidth);
+            Sprint1Main.CheckBoundary(minPosition, heightAndWidth);
             return minPosition;
         }
 
@@ -130,7 +129,7 @@ namespace Sprint1.CollideDetection
                 region[1].Y += 1;
         }
 
-        private void SetEntities(List<ICharacter> characterList)
+        private void SetEntities(ArrayList characterList)
         {
             for (int i = 0; i < Entities.Length; i++)
                 Entities[i] = new List<ICharacter>();
@@ -138,11 +137,19 @@ namespace Sprint1.CollideDetection
             {
                 Point minGridPosition = GetGridPosition(character.GetMinPosition());
                 Point maxGridPosition = GetGridPosition(character.GetMaxPosition());
-                Entities[minGridPosition.X + MapSize.X * minGridPosition.Y].Add(character);
-                if (!Entities[maxGridPosition.X + MapSize.X * maxGridPosition.Y].Contains(character))
+                for (int row = minGridPosition.Y; row <= maxGridPosition.Y; row++)
                 {
-                    Entities[maxGridPosition.X + MapSize.X * maxGridPosition.Y].Add(character);
+                    for (int column = minGridPosition.X; column <= maxGridPosition.X; column++)
+                    {
+                        if (!Entities[column + MapSize.X * row].Contains(character))
+                            Entities[column + MapSize.X * row].Add(character);
+                    }
                 }
+                //Entities[minGridPosition.X + MapSize.X * minGridPosition.Y].Add(character);
+                //if (!Entities[maxGridPosition.X + MapSize.X * maxGridPosition.Y].Contains(character))
+                //{
+                //    Entities[maxGridPosition.X + MapSize.X * maxGridPosition.Y].Add(character);
+                //}
             }
         }
 
