@@ -5,16 +5,30 @@ VisualStudioVersion = 16.0.29215.179
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sprint1", "Sprint1\Sprint1.csproj", "{3CD844EC-DFBE-4CD4-8A3C-C02CD35254FB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConfigrationLibrary", "ConfigrationLibrary\ConfigrationLibrary.csproj", "{0549B583-4C5C-4655-A781-65C894273E9A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
 		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3CD844EC-DFBE-4CD4-8A3C-C02CD35254FB}.Debug|Any CPU.ActiveCfg = Debug|x86
 		{3CD844EC-DFBE-4CD4-8A3C-C02CD35254FB}.Debug|x86.ActiveCfg = Debug|x86
 		{3CD844EC-DFBE-4CD4-8A3C-C02CD35254FB}.Debug|x86.Build.0 = Debug|x86
+		{3CD844EC-DFBE-4CD4-8A3C-C02CD35254FB}.Release|Any CPU.ActiveCfg = Release|x86
 		{3CD844EC-DFBE-4CD4-8A3C-C02CD35254FB}.Release|x86.ActiveCfg = Release|x86
 		{3CD844EC-DFBE-4CD4-8A3C-C02CD35254FB}.Release|x86.Build.0 = Release|x86
+		{0549B583-4C5C-4655-A781-65C894273E9A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0549B583-4C5C-4655-A781-65C894273E9A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0549B583-4C5C-4655-A781-65C894273E9A}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{0549B583-4C5C-4655-A781-65C894273E9A}.Debug|x86.Build.0 = Debug|Any CPU
+		{0549B583-4C5C-4655-A781-65C894273E9A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0549B583-4C5C-4655-A781-65C894273E9A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0549B583-4C5C-4655-A781-65C894273E9A}.Release|x86.ActiveCfg = Release|Any CPU
+		{0549B583-4C5C-4655-A781-65C894273E9A}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
