@@ -20,12 +20,7 @@ namespace Sprint1
         private readonly int MillisecondsPerFrame;
         public AnimatedSprite(Texture2D spriteSheet, Point rowAndColumn, MoveParameters parameters)
         {
-            //set sprite sheets which can be changed from outside.
-            SpriteSheets = spriteSheet;
-            //let program know how many frames this sheet has
-            RowsAndColumns = rowAndColumn;
-            //start from the first frame
-            ActionFrame = 0;
+            ResizeFrame(spriteSheet, rowAndColumn);
             MillisecondsPerFrame = 1;
             Parameters = parameters;
             YAcceleration = 0;
@@ -81,6 +76,16 @@ namespace Sprint1
         public Vector2 GetHeightAndWidth()
         {
             return new Vector2((float)SpriteSheets.Height / RowsAndColumns.X, (float)SpriteSheets.Width / RowsAndColumns.Y);
+        }
+
+        protected void ResizeFrame(Texture2D spriteSheet, Point rowAndColumn)
+        {
+            //set sprite sheets which can be changed from outside.
+            SpriteSheets = spriteSheet;
+            //let program know how many frames this sheet has
+            RowsAndColumns = rowAndColumn;
+            //start from the first frame
+            ActionFrame = 0;
         }
     }
 }

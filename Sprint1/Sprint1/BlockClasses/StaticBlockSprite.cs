@@ -8,17 +8,17 @@ using System.Threading.Tasks;
 
 namespace Sprint1.BlockClasses
 {
-    class FloorBlockSprite : Blocks
+    class FloorBlockSprite : AnimatedSprite
     {
-        public FloorBlockSprite(Texture2D texture, Vector2 pos) : base(texture, pos, new Point(4, 1), 1)
+        public FloorBlockSprite(Texture2D texture, Vector2 pos, MoveParameters moveParameters) : base(texture, new Point(4, 1), moveParameters)
         {
             // nothing to do
         }
     }
 
-    class StairBlockSprite : Blocks
+    class StairBlockSprite : AnimatedSprite
     {
-        public StairBlockSprite(Texture2D texture, Vector2 pos) : base(texture, pos, new Point(4, 1), 1)
+        public StairBlockSprite(Texture2D texture, Vector2 pos, MoveParameters moveParameters) : base(texture, new Point(4, 1), moveParameters)
         {
             // nothing to do
         }

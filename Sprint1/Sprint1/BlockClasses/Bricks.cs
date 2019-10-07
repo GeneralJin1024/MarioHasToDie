@@ -12,27 +12,31 @@ using Sprint1.Sprites;
 
 namespace Sprint1.BlockClasses
 {
-   
-    //public for genernate blocks
-    class Bricks : Blocks
+    public enum BlockType
     {
+        Hidden, BNormal, QNormal, Used, Destroyed // stairs and floors are counted as used blocks
+    }
+    //public for genernate blocks
+    class Bricks : AnimatedSprite
+    {
+        public BlockType bType;
         private readonly IBlockStates[] bStates;
         public IBlockStates currentbState;
-        private Vector2 bPosition;
+        protected Vector2 bPosition;
         private bool IsBumping;
         private bool containItems;
         private readonly ArrayList items;
         private readonly ArrayList shownItems;
-        private int MinY, MaxY;
+        private float MinY, MaxY;
         protected Point positionOffset = new Point(1, 1);
         protected Vector2 spriteSpeed = new Vector2(50.0f, 200.0f);
-        public Bricks(Texture2D sheet, Vector2 pos, Point rowAndColumn, int totalFrame, BlockType type, ArrayList itemList) 
-            : base(sheet, pos, rowAndColumn,totalFrame)
+        public Bricks(Texture2D sheet, MoveParameters moveParameters, Point rowAndColumn, BlockType type, ArrayList itemList) 
+            : base(sheet, rowAndColumn, moveParameters)
         {
             items = itemList;
             shownItems = new ArrayList { };
             containItems = itemList.Count != 0 ? true : false;
-            bPosition = pos;
+            bPosition = moveParameters.Position;
             bStates = new IBlockStates[4] { new HiddenState(), new NormalState(), new BumpingState(), new UsedOrDestroyedState() };
             bType = type;
             currentbState = GenerateCurrentState();
@@ -62,7 +66,7 @@ namespace Sprint1.BlockClasses
         private void ChangeToUsed()
         {
             bType = BlockType.Used;
-            base.ResizeFrame(BlockFactory.BlockTextures[2], new Point(4, 1), 1);          
+            base.ResizeFrame(BlockFactory.BlockTextures[2], new Point(4, 1));          
             currentbState = GenerateCurrentState();
         }
         public void ChangeToDestroyed()
@@ -74,18 +78,18 @@ namespace Sprint1.BlockClasses
         {
             IsBumping = true;
             currentbState = bStates[2];
-            MinY = (int)bPosition.Y - FrameSize.Y;
-            MaxY = (int)bPosition.Y;
+            MinY = bPosition.Y - base.GetHeightAndWidth().X;
+            MaxY = bPosition.Y;
         }
         #endregion
-        public override void Update(GameTime gameTime)
+        public override void Update(float frameTime)
         {
             foreach (AnimatedSprite sprite in shownItems)
-                sprite.Update(gameTime);
-            base.Update(gameTime);   
+                sprite.Update(frameTime);
+            base.Update(frameTime);   
             if (IsBumping)
             {                
-                bPosition.Y -= positionOffset.Y != 0 ? spriteSpeed.Y * (float)gameTime.ElapsedGameTime.TotalSeconds : 0;
+                bPosition.Y -= positionOffset.Y != 0 ? spriteSpeed.Y * frameTime : 0;
                 if (bPosition.Y < MinY)
                 {
                     if (containItems)

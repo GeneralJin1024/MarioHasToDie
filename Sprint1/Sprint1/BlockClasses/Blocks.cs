@@ -8,10 +8,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace Sprint1.BlockClasses
 {
-    public enum BlockType
-    {
-        Hidden, BNormal, QNormal, Used, Destroyed // stairs and floors are counted as used blocks
-    }
+    
     class Blocks : ISprite
     {
         public BlockType bType;

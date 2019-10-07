@@ -110,7 +110,6 @@
       <DependentUpon>Resource1.resx</DependentUpon>
     </Compile>
     <Compile Include="Sprites\AnimatedSprite.cs" />
-    <Compile Include="BlockClasses\Blocks.cs" />
     <Compile Include="BlockClasses\Bricks.cs" />
     <Compile Include="BlockClasses\MovingAnimatedBlockSprite.cs" />
     <Compile Include="BlockClasses\StaticBlockSprite.cs" />

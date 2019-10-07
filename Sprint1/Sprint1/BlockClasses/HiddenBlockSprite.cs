@@ -13,7 +13,7 @@ namespace Sprint1.BlockClasses
 
     class HiddenBlockSprite : Bricks
     {
-        public HiddenBlockSprite(Texture2D texture, Vector2 pos, ArrayList items) : base(texture, pos, new Point(4, 1), 1, BlockType.Hidden, items)
+        public HiddenBlockSprite(Texture2D texture, MoveParameters moveParameters, ArrayList items) : base(texture, moveParameters, new Point(4, 1), BlockType.Hidden, items)
         {
         }
     }
