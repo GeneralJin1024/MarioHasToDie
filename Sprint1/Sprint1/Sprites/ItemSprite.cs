@@ -32,13 +32,14 @@ namespace Sprint1.Sprites
             bumpHeight = minY;
             isBump = true;
         }
-        public override void Update(GameTime gameTime)
+        public override void Update(float timeOfFrame)
         {
-            base.Update(gameTime);
+            base.Update(timeOfFrame);
             //if item need bump, increase the location
             if (isBump)
             {
-                Location.Y -= positionOffset.Y != 0 ? spriteSpeed.Y * (float)gameTime.ElapsedGameTime.TotalSeconds : 0;
+                //WARNING:Check next Sprint.
+                Location.Y -= positionOffset.Y != 0 ? spriteSpeed.Y * timeOfFrame : 0;
                 //if item is at the height, set bump to false.
                 if (Location.Y < bumpHeight)
                 {

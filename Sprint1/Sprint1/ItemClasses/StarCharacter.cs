@@ -7,38 +7,22 @@ namespace Sprint1.ItemClasses
 {
     class StarCharacter : ItemCharacter
     {
+        public override Sprint1Main.CharacterType Type { get; set; } = Sprint1Main.CharacterType.Star;
         public StarCharacter(Texture2D texture, Point rowsAndColunms, Vector2 location)
-            : base(texture, rowsAndColunms, location)
-        {
+            : base(texture, rowsAndColunms, location) { }
 
+        public override Vector2 GetHeightAndWidth()
+        {
+            return item.GetHeightAndWidth();
+         
         }
 
-        public override void MarioCollideBottom(MarioCharacter mario)
+        public override void MarioCollide(bool specialCase)
         {
-            Parameters.IsHidden = true;
+
            
-
-        }
-
-        public override void MarioCollideLeft(MarioCharacter mario)
-        {
             Parameters.IsHidden = true;
-           
-
         }
 
-        public override void MarioCollideRight(MarioCharacter mario)
-        {
-            Parameters.IsHidden = true;
-           
-
-        }
-
-        public override void MarioCollideTop(MarioCharacter mario)
-        {
-            Parameters.IsHidden = true;
-           
-
-        }
     }
 }

@@ -11,39 +11,24 @@ namespace Sprint1.ItemClasses
 {
     class GreenMushroomCharacter : ItemCharacter
     {
+        public override Sprint1Main.CharacterType Type { get; set; } = Sprint1Main.CharacterType.Mushroom;
         public GreenMushroomCharacter(Texture2D texture, Point rowsAndColunms, Vector2 location)
-            : base(texture, rowsAndColunms, location)
-        {
+            : base(texture, rowsAndColunms, location) { }
+        
 
+     
+
+        public override Vector2 GetHeightAndWidth()
+        {
+            return item.GetHeightAndWidth();
         }
 
-        public override void MarioCollideBottom(MarioCharacter mario)
+        public override void MarioCollide(bool specialCase)
         {
+           
             Parameters.IsHidden = true;
-            mario.CollideWithMushRoom();
-
         }
 
-        public override void MarioCollideLeft(MarioCharacter mario)
-        {
-            Parameters.IsHidden = true;
-            mario.CollideWithMushRoom();
-
-        }
-
-        public override void MarioCollideRight(MarioCharacter mario)
-        {
-            Parameters.IsHidden = true;
-            mario.CollideWithMushRoom();
-
-        }
-
-        public override void MarioCollideTop(MarioCharacter mario)
-        {
-            Parameters.IsHidden = true;
-            mario.CollideWithMushRoom();
-            
-
-        }
+      
     }
 }

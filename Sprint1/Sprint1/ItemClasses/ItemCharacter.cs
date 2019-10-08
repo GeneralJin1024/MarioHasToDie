@@ -8,6 +8,10 @@ namespace Sprint1.ItemClasses
 {
    abstract class ItemCharacter : ICharacter
     {
+
+       
+       public abstract Sprint1Main.CharacterType Type { get; set; }
+      
         protected readonly ItemSprite item;
         public MoveParameters Parameters { get; }
         public ItemCharacter(Texture2D texture, Point rowsAndColumns, Vector2 location)
@@ -16,7 +20,7 @@ namespace Sprint1.ItemClasses
             Parameters = item.Parameters;
         }
 
-        public void Update(GameTime gameTime) { item.Update(gameTime); }
+        public void Update(float timeOfFrame) { item.Update(timeOfFrame); }
         public void Draw(SpriteBatch spriteBatch)
         {
             item.Draw(spriteBatch);
@@ -30,15 +34,8 @@ namespace Sprint1.ItemClasses
             return new Vector2(Parameters.Position.X, Parameters.Position.Y - item.GetHeightAndWidth().X);
         }
 
-        public abstract void MarioCollideBottom(MarioCharacter mario);
-
-        public abstract void MarioCollideLeft(MarioCharacter mario);
-
-        public abstract void MarioCollideRight(MarioCharacter mario);
-
-        public abstract void MarioCollideTop(MarioCharacter mario);
-
-
-
+     
+        public abstract void MarioCollide(bool specialCase);
+        public abstract Vector2 GetHeightAndWidth();
     }
 }
