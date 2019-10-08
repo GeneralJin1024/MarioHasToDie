@@ -15,16 +15,16 @@ namespace Sprint1
     {
         // variables declarations
         private KeyboardState oldkeyboardState;
-        private readonly Mario mario;
-        private readonly Bricks[] blockList;
+        private readonly MarioCharacter mario;
+        /*private readonly Bricks[] blockList;*/
         private readonly Dictionary<Keys, ICommand> controllerDic;
         private readonly Sprint1Main Game;
 
-        public KeyboardController(Mario mario, Sprint1Main game, Bricks[] blockList)
+        public KeyboardController(MarioCharacter mario, Sprint1Main game /*Bricks[] blockList*/)
         {
             // KeyboardController set up
             this.mario = mario;
-            this.blockList = blockList;
+            /*this.blockList = blockList;*/
             controllerDic = new Dictionary<Keys, ICommand>();
             Game = game;
             GetCommand();
@@ -46,9 +46,9 @@ namespace Sprint1
             controllerDic.Add(Keys.I, new MoveFireCommand(mario));
             controllerDic.Add(Keys.O, new MoveDestroyCommand(mario));
             controllerDic.Add(Keys.Q, new QuitCommand(Game));
-            controllerDic.Add(Keys.B, new BlockCommands(blockList[2]));
+            /*controllerDic.Add(Keys.B, new BlockCommands(blockList[2]));
             controllerDic.Add(Keys.H, new BlockCommands(blockList[1]));
-            controllerDic.Add(Keys.OemQuestion, new BlockCommands(blockList[0]));
+            controllerDic.Add(Keys.OemQuestion, new BlockCommands(blockList[0]));*/
 
         }
         public void Update()

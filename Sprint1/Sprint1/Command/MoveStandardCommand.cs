@@ -9,8 +9,8 @@ namespace Sprint1
 {   // Command Class for the Avatar to standard(small) state
     public class MoveStandardCommand : ICommand
     {
-        Mario mario;
-        public MoveStandardCommand(Mario mario)
+        MarioCharacter mario;
+        public MoveStandardCommand(MarioCharacter mario)
         {
             this.mario = mario;
         }

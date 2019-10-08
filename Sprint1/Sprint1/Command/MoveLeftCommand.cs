@@ -9,8 +9,8 @@ namespace Sprint1
 {   // Command Class for the Avatar to a left-facing walking state
     public class MoveLeftCommand : ICommand
     {
-        Mario mario;
-        public MoveLeftCommand(Mario mario)
+        MarioCharacter mario;
+        public MoveLeftCommand(MarioCharacter mario)
         {
             this.mario = mario;
         }

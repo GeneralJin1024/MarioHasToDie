@@ -13,11 +13,11 @@ namespace Sprint1
     {   
         // variables declarations
         private GamePadState prevGamePadState;
-        private readonly Mario mario;
+        private readonly MarioCharacter mario;
         private readonly Dictionary<Buttons, ICommand> controllerDic;
         private readonly Sprint1Main Game;
 
-        public GamepadController(Mario mario, Sprint1Main game)
+        public GamepadController(MarioCharacter mario, Sprint1Main game)
         {
             // GamepadController set up
             Game = game;

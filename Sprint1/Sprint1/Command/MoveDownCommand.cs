@@ -9,8 +9,8 @@ namespace Sprint1
 {   // Command Class for the Avatar to a crouching state
     public class MoveDownCommand : ICommand
     {
-        Mario mario;
-        public MoveDownCommand(Mario mario)
+        MarioCharacter mario;
+        public MoveDownCommand(MarioCharacter mario)
         {
             this.mario = mario;
         }

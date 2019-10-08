@@ -9,8 +9,8 @@ namespace Sprint1
 {   // Command Class for the Avatar to fire state
     public class MoveFireCommand : ICommand
     {
-        Mario mario;
-        public MoveFireCommand(Mario mario)
+        MarioCharacter mario;
+        public MoveFireCommand(MarioCharacter mario)
         {
             this.mario = mario;
         }

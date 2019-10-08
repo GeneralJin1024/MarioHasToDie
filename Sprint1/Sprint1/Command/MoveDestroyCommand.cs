@@ -9,8 +9,8 @@ namespace Sprint1
 {   // Command Class for the Avatar to take damage
     public class MoveDestroyCommand : ICommand
     {
-        Mario mario;
-        public MoveDestroyCommand(Mario mario)
+        MarioCharacter mario;
+        public MoveDestroyCommand(MarioCharacter mario)
         {
             this.mario = mario;
         }

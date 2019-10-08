@@ -9,8 +9,9 @@ namespace Sprint1
 {   // Command Class for the Avatar to a Jump idle state
     public class MoveUpCommand : ICommand
     {
-        Mario mario;
-        public MoveUpCommand(Mario mario)
+        MarioCharacter mario;
+
+        public MoveUpCommand(MarioCharacter mario)
         {
             this.mario = mario;
         }

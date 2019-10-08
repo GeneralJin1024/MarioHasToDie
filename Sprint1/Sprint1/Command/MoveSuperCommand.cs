@@ -9,8 +9,8 @@ namespace Sprint1
 {   // Command Class for the Avatar to Super state
     public class MoveSuperCommand : ICommand
     {
-        Mario mario;
-        public MoveSuperCommand(Mario mario)
+        MarioCharacter mario;
+        public MoveSuperCommand(MarioCharacter mario)
         {
             this.mario = mario;
         }
