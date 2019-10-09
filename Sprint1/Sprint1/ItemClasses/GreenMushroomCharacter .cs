@@ -25,7 +25,6 @@ namespace Sprint1.ItemClasses
 
         public override void MarioCollide(bool specialCase)
         {
-           
             Parameters.IsHidden = true;
         }
 

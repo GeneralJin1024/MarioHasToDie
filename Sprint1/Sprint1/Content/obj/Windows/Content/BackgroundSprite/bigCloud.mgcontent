@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>C:/Users/72957/source/repos/SmartMario/Sprint1/Sprint1/Content/BackgroundSprite/bigCloud.png</SourceFile>
-  <SourceTime>2019-09-23T20:43:08.9710569-04:00</SourceTime>
-  <DestFile>C:/Users/72957/source/repos/SmartMario/Sprint1/Sprint1/Content/bin/Windows/Content/BackgroundSprite/bigCloud.xnb</DestFile>
-  <DestTime>2019-10-06T15:10:45.7645792-04:00</DestTime>
+  <SourceFile>C:/Users/13667/Source/Repos/SmartMario/Sprint1/Sprint1/Content/BackgroundSprite/bigCloud.png</SourceFile>
+  <SourceTime>2019-09-28T11:10:08.5360716-04:00</SourceTime>
+  <DestFile>C:/Users/13667/Source/Repos/SmartMario/Sprint1/Sprint1/Content/bin/Windows/Content/BackgroundSprite/bigCloud.xnb</DestFile>
+  <DestTime>2019-10-09T14:22:40.9576354-04:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2018-12-08T11:35:54-05:00</ImporterTime>
   <Processor>TextureProcessor</Processor>

@@ -41,6 +41,7 @@ namespace Sprint1
         private ArrayList factoryList;
         private ArrayList controllerList;
         private ArrayList spriteList;
+        private ArrayList BackgroundList;
 
 
         #region Fonts
@@ -93,7 +94,7 @@ namespace Sprint1
             Boundary = new Vector2(800, 500);
 
             spriteList = new ArrayList();
-
+            BackgroundList = new ArrayList();
             #region Controllers
             controllerList = new ArrayList();
             #endregion
@@ -102,6 +103,7 @@ namespace Sprint1
             //initialize menu and start from it
             GameMenu = new Menu(this);
             MenuMode = true;
+            MillisecondsPerFrame = 100;
             base.Initialize();
         }
 
@@ -117,16 +119,18 @@ namespace Sprint1
             //add factories.
             //factoryList.Add(MarioFactory.Instance);
             factoryList.Add(BlockFactory.Instance);
-            factoryList.Add(EnemyFactory.Instance);
-            factoryList.Add(BackgroundFactory.Instance);
+            //factoryList.Add(EnemyFactory.Instance);
+            //factoryList.Add(BackgroundFactory.Instance);
+            BackgroundFactory.Instance.AddToList(BackgroundList);
             factoryList.Add(ItemFactory.Instance);
             //get Mario from Mario factory.
             Mario = MarioFactory.Instance.Mario;
             foreach (IFactory factory in factoryList)
                 factory.AddToList(spriteList);
+            controllerList.Add(new KeyboardController(Mario, this));
             //controllerList.Add(new KeyboardController(Mario, this, 
             //    new Bricks[] { BlockFactory.Instance.qBlockTest, BlockFactory.Instance.hiddenBlockTest, BlockFactory.Instance.brickBlockTest }));
-            //controllerList.Add(new GamepadController(Mario, this));
+            controllerList.Add(new GamepadController(Mario, this));
 
             #region Fonts
             instructionFont = Content.Load<SpriteFont>("arial");
@@ -157,7 +161,7 @@ namespace Sprint1
             if (gameTime == null)
                 throw new ArgumentNullException(nameof(gameTime));
             if (MenuMode)
-                GameMenu.Update(gameTime);
+                GameMenu.Update(1);
             else
             {
                 foreach (IController controller in controllerList)
@@ -192,12 +196,14 @@ namespace Sprint1
                 GraphicsDevice.Clear(Color.CornflowerBlue);
 
             spriteBatch.Begin(blendState: BlendState.AlphaBlend);
-
+            Console.WriteLine("Length = " + spriteList.Count);
             if (MenuMode)
                 GameMenu.Draw(spriteBatch);
             else
             {
-                foreach (ISprite sprite in spriteList)
+                foreach (ISprite sprite in BackgroundList)
+                    sprite.Draw(spriteBatch);
+                foreach (ICharacter sprite in spriteList)
                     sprite.Draw(spriteBatch);
                 Mario.Draw(spriteBatch);
             }

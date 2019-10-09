@@ -1,0 +1,6 @@
+C:\Users\13667\Source\Repos\SmartMario\Sprint1\ConfigrationLibrary\bin\Debug\ConfigrationLibrary.dll
+C:\Users\13667\Source\Repos\SmartMario\Sprint1\ConfigrationLibrary\bin\Debug\ConfigrationLibrary.pdb
+C:\Users\13667\Source\Repos\SmartMario\Sprint1\ConfigrationLibrary\obj\Debug\ConfigrationLibrary.csprojAssemblyReference.cache
+C:\Users\13667\Source\Repos\SmartMario\Sprint1\ConfigrationLibrary\obj\Debug\ConfigrationLibrary.csproj.CoreCompileInputs.cache
+C:\Users\13667\Source\Repos\SmartMario\Sprint1\ConfigrationLibrary\obj\Debug\ConfigrationLibrary.dll
+C:\Users\13667\Source\Repos\SmartMario\Sprint1\ConfigrationLibrary\obj\Debug\ConfigrationLibrary.pdb

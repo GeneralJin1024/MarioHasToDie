@@ -20,6 +20,8 @@ namespace Sprint1.Sprites
         {
             //initialize
             spriteSpeed = new Vector2(0, 0);
+            Parameters.SetPosition(location.X, location.Y);
+            Parameters.SetVelocity(0, 0);
             Location=location;
             isBump = false;
         }
