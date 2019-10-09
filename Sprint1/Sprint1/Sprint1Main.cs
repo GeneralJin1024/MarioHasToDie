@@ -30,7 +30,7 @@ namespace Sprint1
 
         public static Vector2 Boundary { get; private set; }
 
-        readonly GraphicsDeviceManager graphics;
+        private GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
         private int TimeSinceLastFrame;
@@ -50,7 +50,6 @@ namespace Sprint1
 
         private Menu GameMenu;
         public bool MenuMode { get; set; }
-
         static private Sprint1Main _game;
         public MarioCharacter Mario { get; set; }
         public static Sprint1Main Game
@@ -60,6 +59,19 @@ namespace Sprint1
                 return _game;
             }
         }
+        public GraphicsDeviceManager Graphics
+        {
+            get
+            {
+                return graphics;
+            }
+
+            private set
+            {
+                graphics = value;
+            }
+        }
+
         public Sprint1Main()
         {
             graphics = new GraphicsDeviceManager(this);

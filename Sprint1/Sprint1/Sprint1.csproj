@@ -101,6 +101,7 @@
     <Compile Include="ItemClasses\StarCharacter.cs" />
     <Compile Include="ItemClasses\FlowerCharacter.cs" />
     <Compile Include="ItemClasses\ItemCharacter.cs" />
+    <Compile Include="LevelLoader\Stage.cs" />
     <Compile Include="MarioClasses\MarioCharacter.cs" />
     <Compile Include="MarioClasses\MarioState.cs" />
     <Compile Include="MoveParameters.cs" />
@@ -109,6 +110,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resource1.resx</DependentUpon>
     </Compile>
+    <Compile Include="LevelLoader\Scene.cs" />
     <Compile Include="Sprites\AnimatedSprite.cs" />
     <Compile Include="BlockClasses\Blocks.cs" />
     <Compile Include="Sprites\MovingAnimatedBlockSprite.cs" />
