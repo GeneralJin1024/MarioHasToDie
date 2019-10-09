@@ -1,12 +1,6 @@
-﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
+﻿using Microsoft.Xna.Framework.Graphics;
 using Sprint1.BlockClasses;
-using System;
 using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Sprint1.FactoryClasses
 {
@@ -35,12 +29,6 @@ namespace Sprint1.FactoryClasses
             }
         }
         private static Texture2D[] blockTextures;
-        public Bricks qBlockTest;
-        public Bricks hitBlockTest;
-        public Bricks hiddenBlockTest;
-        public Bricks brickBlockTest;
-        public Blocks floorBlockTest;
-        public Blocks stairBlockTest;
         public BlockFactory()
         {
             //when factory initialzed, load the texture
@@ -59,42 +47,36 @@ namespace Sprint1.FactoryClasses
             //initialize the sprites and add the sprites to the list
             float x = Sprint1Main.Game.GraphicsDevice.Viewport.Width / 8;
             float y = Sprint1Main.Game.GraphicsDevice.Viewport.Height / 2;
-            qBlockTest = BlockFactory.Instance.GetQuestionBlock(new Vector2(x, y), new ArrayList { "redMushroom" });
-            hitBlockTest = BlockFactory.Instance.GetUsedBlock(new Vector2(2 * x, y));
-            hiddenBlockTest = BlockFactory.Instance.GetHiddenBlock(new Vector2(3 * x, y), new ArrayList { });
-            floorBlockTest = BlockFactory.Instance.GetFloorBlock(new Vector2(4 * x, y));
-            stairBlockTest = BlockFactory.Instance.GetStairBlock(new Vector2(5 * x, y));
-            brickBlockTest = BlockFactory.Instance.GetBrickBlock(new Vector2(6 * x, y), new ArrayList { "coin", "coin" });
-            spriteList.Add(qBlockTest);
-            spriteList.Add(hiddenBlockTest);
-            spriteList.Add(brickBlockTest);
-            spriteList.Add(hitBlockTest);
-            spriteList.Add(floorBlockTest);
-            spriteList.Add(stairBlockTest);
+            //spriteList.Add(qBlockTest);
+            //spriteList.Add(hiddenBlockTest);
+            //spriteList.Add(brickBlockTest);
+            //spriteList.Add(hitBlockTest);
+            //spriteList.Add(floorBlockTest);
+            //spriteList.Add(stairBlockTest);
         }
-        public BrickBlockSprite GetBrickBlock(Vector2 pos, ArrayList items)
+        public BlockCharacter GetBrickBlock(MoveParameters moveParameters, ArrayList items)
         {
-            return new BrickBlockSprite(BlockTextures[0], pos, items);
+            return new BlockCharacter(new BrickBlockSprite(BlockTextures[0], moveParameters, items));
         }
-        public HiddenBlockSprite GetHiddenBlock(Vector2 pos, ArrayList items)
+        public BlockCharacter GetHiddenBlock(MoveParameters moveParameters, ArrayList items)
         {
-            return new HiddenBlockSprite(BlockTextures[0], pos, items);
+            return new BlockCharacter(new HiddenBlockSprite(BlockTextures[0], moveParameters, items));
         }
-        public QuestionBlockSprite GetQuestionBlock(Vector2 pos, ArrayList items)
+        public BlockCharacter GetQuestionBlock(MoveParameters moveParameters, ArrayList items)
         {
-            return new QuestionBlockSprite(BlockTextures[3], pos, items);
+            return new BlockCharacter(new QuestionBlockSprite(BlockTextures[3], moveParameters, items));
         }
-        public UsedBlockSprite GetUsedBlock(Vector2 pos)
+        public BlockCharacter GetUsedBlock(MoveParameters moveParameters)
         {
-            return new UsedBlockSprite(BlockTextures[2], pos);
+            return new BlockCharacter(new UsedBlockSprite(BlockTextures[2], moveParameters));
         }
-        public FloorBlockSprite GetFloorBlock(Vector2 pos)
+        public BlockCharacter GetFloorBlock(MoveParameters moveParameters)
         {
-            return new FloorBlockSprite(BlockTextures[1], pos);
+            return new BlockCharacter(new FloorBlockSprite(BlockTextures[1], moveParameters));
         }
-        public StairBlockSprite GetStairBlock(Vector2 pos)
+        public BlockCharacter GetStairBlock(MoveParameters moveParameters)
         {
-            return new StairBlockSprite(BlockTextures[4], pos);
+            return new BlockCharacter(new StairBlockSprite(BlockTextures[4], moveParameters));
         }
 
     }

@@ -8,9 +8,9 @@ namespace Sprint1.BlockClasses
 {
     class BlockCommands : ICommand
     {
-        private Bricks brick;
+        private Blocks brick;
         
-        public BlockCommands(Bricks brick)
+        public BlockCommands(Blocks brick)
         {
             this.brick = brick;
         }

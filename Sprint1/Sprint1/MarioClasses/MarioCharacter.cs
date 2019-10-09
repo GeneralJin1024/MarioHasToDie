@@ -13,7 +13,12 @@ namespace Sprint1.MarioClasses
         private readonly Mario Mario;
 
         public MoveParameters Parameters { get; }
-
+        public bool IsSuper {
+            get
+            {
+                return Mario.IsSuper();
+            }
+        }
         public MarioCharacter(Texture2D[][] marioSpriteSheets, Vector2 location)
         {
             Mario = new Mario(marioSpriteSheets, location);

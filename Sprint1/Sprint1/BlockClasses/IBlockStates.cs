@@ -8,6 +8,6 @@ namespace Sprint1.BlockClasses
 {
     interface IBlockStates
     {
-        void Handle(Bricks brick);
+        void Handle(Blocks brick);
     }
 }

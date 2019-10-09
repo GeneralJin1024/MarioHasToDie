@@ -10,7 +10,7 @@ using Sprint1.Sprites;
 
 namespace Sprint1.BlockClasses
 {
-    class BrickBlockSprite : Bricks
+    class BrickBlockSprite : Blocks
     {
         private float[] destroyedBrickPosX;
         private float[] destroyedBrickPosY;
@@ -53,20 +53,27 @@ namespace Sprint1.BlockClasses
         }
     }
 
-    class QuestionBlockSprite : Bricks
+    class QuestionBlockSprite : Blocks
     {
-        public QuestionBlockSprite(Texture2D texture, MoveParameters moveParameters, ArrayList items) : base(texture, moveParameters, new Point(4, 3), BlockType.QNormal, items)
+        public QuestionBlockSprite(Texture2D texture, MoveParameters moveParameters, ArrayList items) : base(texture, moveParameters, new Point(3, 4), BlockType.QNormal, items)
         {
 
         }
 
     }
 
-    class UsedBlockSprite : Bricks
+    class UsedBlockSprite : Blocks
     {
         public UsedBlockSprite(Texture2D texture, MoveParameters moveParameters) : base(texture, moveParameters, new Point(4, 1), BlockType.Used, new ArrayList { })
         {
         }
 
+    }
+
+    class HiddenBlockSprite : Blocks
+    {
+        public HiddenBlockSprite(Texture2D texture, MoveParameters moveParameters, ArrayList items) : base(texture, moveParameters, new Point(4, 1), BlockType.Hidden, items)
+        {
+        }
     }
 }

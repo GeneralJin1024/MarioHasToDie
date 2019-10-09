@@ -13,9 +13,12 @@ namespace Sprint1.BlockClasses
     {
         private Blocks block;
         public MoveParameters Parameters { get; }
+        public Sprint1Main.CharacterType Type { get; set; }
+
         public BlockCharacter(Blocks block)
         {
             this.block = block;
+            Type = Sprint1Main.CharacterType.Block;
             Parameters = block.Parameters;
         }
 
@@ -26,37 +29,30 @@ namespace Sprint1.BlockClasses
 
         public Vector2 GetMaxPosition()
         {
-            return new Vector2(block.Position.X + block.GetHeightAndWidth().Y, block.Position.Y + block.GetHeightAndWidth().X);
+            return new Vector2(block.Parameters.Position.X + block.GetHeightAndWidth().Y, block.Parameters.Position.Y + block.GetHeightAndWidth().X);
         }
 
         public Vector2 GetMinPosition()
         {
-            return new Vector2(block.Position.X, block.Position.Y + block.GetHeightAndWidth().X);
+            return new Vector2(block.Parameters.Position.X, block.Parameters.Position.Y + block.GetHeightAndWidth().X);
         }
 
-        public void MarioCollideBottom(MarioCharacter mario)
+        public void Update(float timeOfFrame)
         {
-            throw new NotImplementedException();
+            block.Update(timeOfFrame);
         }
 
-        public void MarioCollideLeft(MarioCharacter mario)
+        public void MarioCollide(bool specialCase)
         {
-            mario.CollideWithBlocks();
+            if (specialCase)
+            {
+                block.currentbState.Handle(block);
+            }
         }
 
-        public void MarioCollideRight(MarioCharacter mario)
+        public Vector2 GetHeightAndWidth()
         {
-            mario.CollideWithBlocks();
-        }
-
-        public void MarioCollideTop(MarioCharacter mario)
-        {
-            mario.CollideWithBlocks();
-        }
-
-        public void Update(GameTime gameTime)
-        {
-            block.Update(gameTime);
+            return block.GetHeightAndWidth();
         }
     }
 

@@ -9,7 +9,7 @@ namespace Sprint1.BlockClasses
 {
     class HiddenState : IBlockStates
     {
-        public void Handle(Bricks brick)
+        public void Handle(Blocks brick)
         {
             brick.ChangeToBrick();
         }
@@ -17,29 +17,29 @@ namespace Sprint1.BlockClasses
     class NormalState : IBlockStates
     {
         private MarioCharacter mario;
-        public void Handle(Bricks brick)
+        public void Handle(Blocks brick)
         {
             mario = Sprint1Main.Game.Mario;
-        //     if (mario.IsSuper() && brick.bType == BlockType.BNormal)
-        //     {
-        //         brick.ChangeToDestroyed();
-        //     }
-        //     else
-        //     {   
+            if (mario.IsSuper && brick.bType == BlockType.BNormal)
+            {
+                 brick.ChangeToDestroyed();
+            }
+            else
+            {   
                  brick.Bumping();
-        //     }
+            }
         }
     }
     class BumpingState : IBlockStates
     {
-        public void Handle(Bricks brick)
+        public void Handle(Blocks brick)
         {
         //nothing to do when brick is in the air
         }
     }
     class UsedOrDestroyedState : IBlockStates
     {
-        public void Handle(Bricks brick)
+        public void Handle(Blocks brick)
         {
          //nothing to do
         }
