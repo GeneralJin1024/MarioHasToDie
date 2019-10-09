@@ -32,7 +32,7 @@ namespace Sprint1.Background
             return new Vector2((float)SpriteSheets.Height, (float)SpriteSheets.Width);
         }
 
-        void ISprite.Update(GameTime gameTime)
+        void ISprite.Update(float timeOfFrame)
         {
         }
 

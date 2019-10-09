@@ -48,9 +48,9 @@ namespace Sprint1.CollideDetection
                     }
                 }
                 //Console.WriteLine("Executing");
-                //Mario.Update(longestTime);
-                //foreach (ICharacter character in CharacterList)
-                //    character.Update(longestTime);
+                Mario.Update(longestTime);
+                foreach (ICharacter character in CharacterList)
+                    character.Update(longestTime);
                 foreach (CollidePair pair in firstContactPairs)
                 {
                     if (pair.Time == longestTime)

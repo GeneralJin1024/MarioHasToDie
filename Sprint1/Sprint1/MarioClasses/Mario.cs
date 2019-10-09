@@ -42,6 +42,7 @@ namespace Sprint1.MarioClasses
         public void Update(float timeOfFrame)
         {
             //CurrentActionAndState[0] will locate the current action sprite.
+            Console.WriteLine("time = " + timeOfFrame + "    Mario.V = " + Parameters.Velocity);
             CurrentSprite.Update(timeOfFrame);
         }
 

@@ -114,8 +114,6 @@ C:\Users\13667\Source\Repos\SmartMario\Sprint1\Sprint1\obj\x86\Debug\Sprint1.csp
 C:\Users\13667\Source\Repos\SmartMario\Sprint1\Sprint1\obj\x86\Debug\Sprint1.csproj.CopyComplete
 C:\Users\13667\Source\Repos\SmartMario\Sprint1\Sprint1\obj\x86\Debug\Sprint1.exe
 C:\Users\13667\Source\Repos\SmartMario\Sprint1\Sprint1\obj\x86\Debug\Sprint1.pdb
-C:\Users\13667\Source\Repos\SmartMario\Sprint1\Sprint1\bin\Windows\x86\Debug\Sprint1.exe.CodeAnalysisLog.xml
-C:\Users\13667\Source\Repos\SmartMario\Sprint1\Sprint1\bin\Windows\x86\Debug\Sprint1.exe.lastcodeanalysissucceeded
 C:\Users\zhangjian\Source\Repos\SmartMario\Sprint1\Sprint1\bin\Windows\x86\Debug\Content\SuperMario\superMarioJumpRight.xnb
 C:\Users\zhangjian\Source\Repos\SmartMario\Sprint1\Sprint1\bin\Windows\x86\Debug\Content\SuperMario\superMarioMoveRight.xnb
 C:\Users\zhangjian\Source\Repos\SmartMario\Sprint1\Sprint1\bin\Windows\x86\Debug\Content\SuperMario\superMarioRightCrouch.xnb
@@ -233,3 +231,6 @@ C:\Users\zzy00\Source\Repos\SmartMario\Sprint1\Sprint1\obj\x86\Debug\Sprint1.csp
 C:\Users\zzy00\Source\Repos\SmartMario\Sprint1\Sprint1\obj\x86\Debug\Sprint1.exe
 C:\Users\zzy00\Source\Repos\SmartMario\Sprint1\Sprint1\obj\x86\Debug\Sprint1.pdb
 C:\Users\72957\source\repos\SmartMario\Sprint1\Sprint1\bin\Windows\x86\Debug\Sprint1.exe.config
+C:\Users\13667\Source\Repos\SmartMario\Sprint1\Sprint1\bin\Windows\x86\Debug\Sprint1.exe.config
+C:\Users\13667\Source\Repos\SmartMario\Sprint1\Sprint1\bin\Windows\x86\Debug\ConfigrationLibrary.dll
+C:\Users\13667\Source\Repos\SmartMario\Sprint1\Sprint1\bin\Windows\x86\Debug\ConfigrationLibrary.pdb

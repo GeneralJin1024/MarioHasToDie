@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
 using Sprint1.MarioClasses;
 using Sprint1.Sprites;
+using System;
 
 namespace Sprint1.ItemClasses
 {
@@ -23,6 +24,7 @@ namespace Sprint1.ItemClasses
         public void Update(float timeOfFrame) { item.Update(timeOfFrame); }
         public void Draw(SpriteBatch spriteBatch)
         {
+            Console.WriteLine(item.Parameters.IsHidden + "   Position = " + Parameters.Position);
             item.Draw(spriteBatch);
         }
         public Vector2 GetMaxPosition()

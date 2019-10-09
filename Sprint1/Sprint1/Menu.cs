@@ -44,7 +44,7 @@ namespace Sprint1
                 Game.Content.Load<Texture2D>("MarioSprites/smallMarioRightStand"), new Point(1, 1), new MoveParameters());
         }
 
-        public void Update(GameTime gameTime)
+        public void Update(float timeOfFrame)
         {
             /*
              * Read keyboard and execute commands.
@@ -95,7 +95,7 @@ namespace Sprint1
             else
                 chooseSprite.Parameters.SetPosition(350, 350 + chooseSprite.GetHeightAndWidth().X);
 
-            chooseSprite.Update(gameTime);
+            chooseSprite.Update(timeOfFrame);
         }
 
         public void Draw(SpriteBatch spriteBatch)
