@@ -39,16 +39,16 @@ namespace Sprint1.FactoryClasses
                 Sprint1Main.Game.Content.Load<Texture2D>("EnemySprite/deadGoomba")};
 
             greenkoopa = new Texture2D[2] { Sprint1Main.Game.Content.Load<Texture2D>("EnemySprite/greenkoopa"),
-                Sprint1Main.Game.Content.Load<Texture2D>("EnemySprite/diedGreenkoopa") };
+                Sprint1Main.Game.Content.Load<Texture2D>("EnemySprite/deadGreenkoopa") };
              redkoopa = new Texture2D[2] { Sprint1Main.Game.Content.Load<Texture2D>("EnemySprite/redkoopa"),
-                Sprint1Main.Game.Content.Load<Texture2D>("EnemySprite/diedRedkoopa")};
+                Sprint1Main.Game.Content.Load<Texture2D>("EnemySprite/deadRedkoopa")};
         }
         public void AddToList(ArrayList spriteList)
         {
             //initialize the sprites and add the sprites to the list
             spriteList.Add(GetGreenKoopa(new Vector2(400, 200)));
             spriteList.Add(GetRedKoopa(new Vector2(300, 200)));
-            spriteList.Add(GetGoomba(new Vector2(100,100)));
+            spriteList.Add(GetGoomba(new Vector2(100,200)));
         }
         public EnemyCharacter GetGoomba(Vector2 location)
         {
