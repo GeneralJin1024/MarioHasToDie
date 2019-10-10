@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Sprint1.BlockClasses;
-using Sprint1.Sprites.Sprint1.Sprites;
+using Sprint1.ItemClasses;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -25,9 +25,9 @@ namespace Sprint1.FactoryClasses
                 return _instance;
             }
         }
-        Texture2D goomba;
-        Texture2D greenkoopa ;
-        Texture2D redkoopa ;
+        Texture2D[] goomba;
+        Texture2D[] greenkoopa ;
+        Texture2D[] redkoopa ;
         public EnemyFactory()
         {
             //when factory initialzed, load the texture
@@ -35,28 +35,35 @@ namespace Sprint1.FactoryClasses
         }
         private void LoadTexture()
         {
-            goomba = Sprint1Main.Game.Content.Load<Texture2D>("EnemySprite/goomba");
-            greenkoopa = Sprint1Main.Game.Content.Load<Texture2D>("EnemySprite/greenkoopa");
-            redkoopa = Sprint1Main.Game.Content.Load<Texture2D>("EnemySprite/redkoopa");
+            goomba = new Texture2D[2] {Sprint1Main.Game.Content.Load<Texture2D>("EnemySprite/goomba"),
+                Sprint1Main.Game.Content.Load<Texture2D>("EnemySprite/deadGoomba")};
+
+            greenkoopa = new Texture2D[2] { Sprint1Main.Game.Content.Load<Texture2D>("EnemySprite/greenkoopa"),
+                Sprint1Main.Game.Content.Load<Texture2D>("EnemySprite/diedGreenkoopa") };
+             redkoopa = new Texture2D[2] { Sprint1Main.Game.Content.Load<Texture2D>("EnemySprite/redkoopa"),
+                Sprint1Main.Game.Content.Load<Texture2D>("EnemySprite/diedRedkoopa")};
         }
         public void AddToList(ArrayList spriteList)
         {
             //initialize the sprites and add the sprites to the list
-            spriteList.Add(getGreenKoopa());
-            spriteList.Add(getRedKoopa());
-            spriteList.Add(getGoomba());
+            spriteList.Add(GetGreenKoopa(new Vector2(400, 200)));
+            spriteList.Add(GetRedKoopa(new Vector2(300, 200)));
+            spriteList.Add(GetGoomba(new Vector2(100,100)));
         }
-        public EnemySprite getGoomba()
+        public EnemyCharacter GetGoomba(Vector2 location)
         {
-            return new EnemySprite(goomba, new Vector2(600, 100), new Point(1, 2));
+            Point[] rowAndColumn = new Point[2] { new Point(1, 2), new Point(1, 1) };
+            return new EnemyCharacter(goomba, rowAndColumn,location);
         }
-        public EnemySprite getRedKoopa()
+        public EnemyCharacter GetRedKoopa(Vector2 location)
         {
-            return new EnemySprite(redkoopa, new Vector2(100, 150), new Point(1, 2));
+            Point[] rowAndColumn = new Point[2] { new Point(1, 2), new Point(1, 1) };
+            return new EnemyCharacter(redkoopa, rowAndColumn, location);
         }
-        public EnemySprite getGreenKoopa()
+        public EnemyCharacter GetGreenKoopa(Vector2 location)
         {
-            return new EnemySprite(greenkoopa, new Vector2(600, 150), new Point(1, 2));
+            Point[] rowAndColumn = new Point[2] { new Point(1, 2), new Point(1, 1) };
+            return new EnemyCharacter(greenkoopa, rowAndColumn, location);
         }
 
     }

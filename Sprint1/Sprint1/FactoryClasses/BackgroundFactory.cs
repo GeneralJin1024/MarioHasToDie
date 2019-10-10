@@ -2,7 +2,6 @@
 using Microsoft.Xna.Framework.Graphics;
 using Sprint1.Background;
 using Sprint1.BlockClasses;
-using Sprint1.Sprites.Sprint1.Sprites;
 using System;
 using System.Collections;
 using System.Collections.Generic;

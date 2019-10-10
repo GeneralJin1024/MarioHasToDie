@@ -119,9 +119,11 @@ namespace Sprint1
             //add factories.
             //factoryList.Add(MarioFactory.Instance);
             factoryList.Add(BlockFactory.Instance);
+            factoryList.Add(EnemyFactory.Instance);
             //factoryList.Add(EnemyFactory.Instance);
             //factoryList.Add(BackgroundFactory.Instance);
             BackgroundFactory.Instance.AddToList(BackgroundList);
+
             factoryList.Add(ItemFactory.Instance);
             //get Mario from Mario factory.
             Mario = MarioFactory.Instance.Mario;

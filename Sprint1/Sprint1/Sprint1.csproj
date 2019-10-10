@@ -94,13 +94,14 @@
     <Compile Include="ICharacter.cs" />
     <Compile Include="ICommand.cs" />
     <Compile Include="IFactory.cs" />
-    <Compile Include="ItemClasses\PipeCharacter .cs" />
-    <Compile Include="ItemClasses\GreenMushroomCharacter .cs" />
-    <Compile Include="ItemClasses\RedMushroomCharacter.cs" />
-    <Compile Include="ItemClasses\CoinCharacter.cs" />
-    <Compile Include="ItemClasses\StarCharacter.cs" />
-    <Compile Include="ItemClasses\FlowerCharacter.cs" />
-    <Compile Include="ItemClasses\ItemCharacter.cs" />
+    <Compile Include="ItemEnemyClasses\EnemyCharacter.cs" />
+    <Compile Include="ItemEnemyClasses\PipeCharacter .cs" />
+    <Compile Include="ItemEnemyClasses\GreenMushroomCharacter .cs" />
+    <Compile Include="ItemEnemyClasses\RedMushroomCharacter.cs" />
+    <Compile Include="ItemEnemyClasses\CoinCharacter.cs" />
+    <Compile Include="ItemEnemyClasses\StarCharacter.cs" />
+    <Compile Include="ItemEnemyClasses\FlowerCharacter.cs" />
+    <Compile Include="ItemEnemyClasses\ItemCharacter.cs" />
     <Compile Include="LevelLoader\Stage.cs" />
     <Compile Include="MarioClasses\MarioCharacter.cs" />
     <Compile Include="MarioClasses\MarioState.cs" />
@@ -128,7 +129,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Sprites\BackgroundSprite.cs" />
     <Compile Include="Sprites\BackgroundSprites.cs" />
-    <Compile Include="Sprites\EnemySprite.cs" />
     <Compile Include="Sprites\ItemSprite.cs" />
   </ItemGroup>
   <ItemGroup>
