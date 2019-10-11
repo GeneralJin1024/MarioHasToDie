@@ -7,6 +7,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -119,10 +120,10 @@ namespace Sprint1.LevelLoader
 
         private Vector2 StringToVecter2(string pos)
         {
-            int startInd = pos.IndexOf("X:") + 2;
-            float aXPosition = float.Parse(pos.Substring(startInd, pos.IndexOf(" Y") - startInd));
-            startInd = pos.IndexOf("Y:") + 2;
-            float aYPosition = float.Parse(pos.Substring(startInd, pos.IndexOf("}") - startInd));
+            int startInd = pos.IndexOf("X:", StringComparison.Ordinal) + 2;
+            float aXPosition = float.Parse(pos.Substring(startInd, pos.IndexOf(" Y", StringComparison.Ordinal) - startInd), CultureInfo.CurrentCulture);
+            startInd = pos.IndexOf("Y:", StringComparison.Ordinal) + 2;
+            float aYPosition = float.Parse(pos.Substring(startInd, pos.IndexOf("}", StringComparison.Ordinal) - startInd), CultureInfo.CurrentCulture);
             return new Vector2(aXPosition, aYPosition);
         }
     }
