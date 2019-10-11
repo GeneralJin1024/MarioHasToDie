@@ -92,6 +92,7 @@ namespace Sprint1.CollideDetection
             {
                 for (int k = upperLeftGrid.X; k <= lowerRightGrid.X; k++)
                 {
+                    Console.WriteLine("grid = " + (i * MapSize.X + k) + "  i = " + i + "   k = " + k);
                     foreach (ICharacter character in Entities[i * MapSize.X + k])
                     {
                         if (!collideObjects.Contains(character) && !character.Parameters.IsHidden)
@@ -137,7 +138,7 @@ namespace Sprint1.CollideDetection
                 {
                     for (int column = minGridPosition.X; column <= maxGridPosition.X; column++)
                     {
-                        if (!Entities[column + MapSize.X * row].Contains(character))
+                        if (!Entities[column + MapSize.X * row].Contains(character) && character.Type != Sprint1Main.CharacterType.Null)
                             Entities[column + MapSize.X * row].Add(character);
                     }
                 }
@@ -147,14 +148,15 @@ namespace Sprint1.CollideDetection
                 //    Entities[maxGridPosition.X + MapSize.X * maxGridPosition.Y].Add(character);
                 //}
             }
+            Console.WriteLine("Grid 0 = " + Entities[0].Count);
         }
 
         private Point GetGridPosition(Vector2 position)
         {
-            if (position.X == ScreenSize.X)
-                position.X -= 1;
-            if (position.Y == ScreenSize.Y)
-                position.Y -= 1;
+            if (position.X >= ScreenSize.X)
+                position.X = ScreenSize.X - 1;
+            if (position.Y >= ScreenSize.Y)
+                position.Y = ScreenSize.Y - 1;
             return new Point((int)position.X / (ScreenSize.X / MapSize.X), (int)position.Y / (ScreenSize.Y / MapSize.Y));
         }
     }

@@ -25,6 +25,7 @@ namespace Sprint1.CollideDetection
         public void Update()
         {
             float timeOfFrame = 1;
+            Console.WriteLine("Point 1");
             while (timeOfFrame > 0)
             {
                 List<CollidePair> firstContactPairs = new List<CollidePair>();
@@ -47,7 +48,6 @@ namespace Sprint1.CollideDetection
                         firstContactPairs.Insert(0, CollidePairs[i]);
                     }
                 }
-                //Console.WriteLine("Executing");
                 Mario.Update(longestTime);
                 foreach (ICharacter character in CharacterList)
                     character.Update(longestTime);
