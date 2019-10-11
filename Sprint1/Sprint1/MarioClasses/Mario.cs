@@ -136,7 +136,7 @@ namespace Sprint1.MarioClasses
         // give Block to justify
         public bool IsSuper()
         {
-            return MarioState.GetPowerType() == MarioState.PowerType.Super;
+            return MarioState.GetPowerType == MarioState.PowerType.Super;
         }
 
         //change four action sprites' textures with the textures of current power state.

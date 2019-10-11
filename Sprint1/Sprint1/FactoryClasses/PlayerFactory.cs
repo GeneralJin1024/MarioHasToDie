@@ -25,7 +25,7 @@ namespace Sprint1.FactoryClasses
             }
         }
 
-        public MarioCharacter FactoryMethod2(String name, Vector2 pos)
+        public static MarioCharacter FactoryMethod2(String name, Vector2 pos)
         {
             switch (name)
             {

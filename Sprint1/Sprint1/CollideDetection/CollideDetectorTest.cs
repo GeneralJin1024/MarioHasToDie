@@ -11,10 +11,10 @@ namespace Sprint1.CollideDetection
 {
     public class CollisionDetector
     {
-        private ArrayList CharacterList;
-        private List<CollidePair> CollidePairs;
-        private MarioCharacter Mario;
-        private TileMap Map;
+        private readonly ArrayList CharacterList;
+        private readonly List<CollidePair> CollidePairs;
+        private readonly MarioCharacter Mario;
+        private readonly TileMap Map;
         public CollisionDetector(MarioCharacter mario, ArrayList characterList)
         {
             CharacterList = characterList;
@@ -28,7 +28,7 @@ namespace Sprint1.CollideDetection
             while (timeOfFrame > 0)
             {
                 List<CollidePair> firstContactPairs = new List<CollidePair>();
-                List<ICharacter> possibleCollideList = new List<ICharacter>();
+                ArrayList possibleCollideList = new ArrayList();
                 Map.GetPossibleCollidedObject(Mario, possibleCollideList);
                 //Console.WriteLine("Finding = " + possibleCollideList.Count);
                 foreach (ICharacter character in possibleCollideList)
@@ -62,23 +62,23 @@ namespace Sprint1.CollideDetection
             }
         }
 
-        private void SortCollidePairs()
-        {
-            List<CollidePair> tempList = new List<CollidePair>();
-            CollidePair[] pairs = CollidePairs.ToArray();
-            while (CollidePairs.Count != 0)
-            {
-                float largestTime = int.MaxValue;
-                for (int i = 0; i < pairs.Length; i++)
-                {
-                    CollidePairs.RemoveAt(i);
-                    if (CollidePairs[i].Time <= largestTime && CollidePairs[i].Time > 0)
-                    {
-                        tempList.Add(CollidePairs[i]);
-                        largestTime = CollidePairs[i].Time;
-                    }
-                }
-            }
-        }
+        //private void SortCollidePairs()
+        //{
+        //    List<CollidePair> tempList = new List<CollidePair>();
+        //    CollidePair[] pairs = CollidePairs.ToArray();
+        //    while (CollidePairs.Count != 0)
+        //    {
+        //        float largestTime = int.MaxValue;
+        //        for (int i = 0; i < pairs.Length; i++)
+        //        {
+        //            CollidePairs.RemoveAt(i);
+        //            if (CollidePairs[i].Time <= largestTime && CollidePairs[i].Time > 0)
+        //            {
+        //                tempList.Add(CollidePairs[i]);
+        //                largestTime = CollidePairs[i].Time;
+        //            }
+        //        }
+        //    }
+        //}
     }
 }

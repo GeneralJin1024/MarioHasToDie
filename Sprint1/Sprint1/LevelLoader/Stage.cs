@@ -88,7 +88,7 @@ namespace Sprint1.LevelLoader
             }
             else
             {
-                Game.Scene.Mario = PlayerFactory.Instance.FactoryMethod2(myLevelSection.Player[1].SpriteName, StringToVecter2(myLevelSection.Player[1].SpriteLocation));       
+                Game.Scene.Mario = PlayerFactory.FactoryMethod2(myLevelSection.Player[1].SpriteName, StringToVecter2(myLevelSection.Player[1].SpriteLocation));       
                 for (int i = 1; i < myLevelSection.Backgrounds.Count; i++)
                 {
                     backgroundList.Add(BackgroundFactory.Instance.FactoryMethod2(myLevelSection.Backgrounds[i].SpriteName, StringToVecter2(myLevelSection.Backgrounds[i].SpriteLocation)));        

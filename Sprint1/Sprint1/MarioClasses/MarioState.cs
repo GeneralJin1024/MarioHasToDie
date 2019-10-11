@@ -20,10 +20,13 @@ namespace Sprint1.MarioClasses
             Standard, Super, Died
         }
 
-        private IActionState[] actionStates;
-        private IPowerState[] powerStates;
+        public ActionType GetActionType { get { return actionStates[CurrentState[0]].Type; } }
+        public PowerType GetPowerType { get { return powerStates[CurrentState[1]].Type; } }
+
+        private readonly IActionState[] actionStates;
+        private readonly IPowerState[] powerStates;
         public Mario Mario { get; }
-        private int[] CurrentState;
+        private readonly int[] CurrentState;
 
         public MarioState(Mario mario)
         {
@@ -100,14 +103,14 @@ namespace Sprint1.MarioClasses
             CurrentState[0] = changeNumber;
         }
 
-        public ActionType GetActionType()
-        {
-            return actionStates[CurrentState[0]].Type;
-        }
+        //public ActionType GetActionType()
+        //{
+        //    return actionStates[CurrentState[0]].Type;
+        //}
 
-        public PowerType GetPowerType()
-        {
-            return powerStates[CurrentState[1]].Type;
-        }
+        //public PowerType GetPowerType()
+        //{
+        //    return powerStates[CurrentState[1]].Type;
+        //}
     }
 }

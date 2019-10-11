@@ -19,7 +19,6 @@ namespace Sprint1
         private ISprite chooseSprite; //the replacement of mouse is an idle standard mario
 
         private bool FirstChoose; //since there are only start and quit, use a bool to determine where the choose sprite is.
-        private Vector2 CurrentChoose; //current position of choose sprite.
 
         private KeyboardState OldKeyState; //keyboard state of
         private GamePadState OldPadState;

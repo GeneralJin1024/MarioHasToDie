@@ -36,10 +36,6 @@ namespace Sprint1
         private GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
-        private int TimeSinceLastFrame;
-        private int MillisecondsPerFrame;
-        private CollisionDetector Collision;
-
         //private Mario Mario;
         //private ArrayList factoryList;
         //private ArrayList controllerList;
@@ -52,15 +48,8 @@ namespace Sprint1
 
         private Menu GameMenu;
         public bool MenuMode { get; set; }
-        static private Sprint1Main _game;
         public MarioCharacter Mario { get; set; }
-        public static Sprint1Main Game
-        {
-            get
-            {
-                return _game;
-            }
-        }
+        public static Sprint1Main Game { get; private set; }
         public GraphicsDeviceManager Graphics
         {
             get
@@ -89,20 +78,19 @@ namespace Sprint1
             }
         }
 
-        Stage stage;
-        List<Scene> scenes;
-        int scene;
+        private readonly Stage stage;
+        readonly List<Scene> scenes;
+        private readonly int scene;
 
         public Sprint1Main()
         {
-            _game = this;
+            Game = this;
             graphics = new GraphicsDeviceManager(this);
             stage = new Stage(this);
             
             Content.RootDirectory = "Content";
 
-            scenes = new List<Scene>();
-            scenes.Add(new Scene(stage));
+            scenes = new List<Scene>{new Scene(stage)};
             scene = 1;
         }
 

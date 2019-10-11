@@ -46,12 +46,12 @@ namespace Sprint1.MarioClasses
         {
             if (!isTop)
                 Mario.MarioState.Destroy();
-            if (Mario.MarioState.GetPowerType() != MarioState.PowerType.Died)
+            if (Mario.MarioState.GetPowerType != MarioState.PowerType.Died)
                 Mario.ChangeToIdle();
         }
         public void CollideWithFlower()
         {
-            if (Mario.MarioState.GetPowerType() == MarioState.PowerType.Standard)
+            if (Mario.MarioState.GetPowerType == MarioState.PowerType.Standard)
                 Mario.MarioState.ChangeToSuper();
             else
                 Mario.MarioState.ChangeToFire();

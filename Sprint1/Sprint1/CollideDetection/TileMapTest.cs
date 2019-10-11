@@ -11,7 +11,7 @@ namespace Sprint1.CollideDetection
 {
     public class TileMap
     {
-        private List<ICharacter>[] Entities;
+        private readonly List<ICharacter>[] Entities;
         private Point MapSize;
         private Point ScreenSize;
 
@@ -25,7 +25,7 @@ namespace Sprint1.CollideDetection
             SetEntities(characterList);
         }
 
-        public void GetPossibleCollidedObject(MarioCharacter mario, List<ICharacter> possibleCollideList)
+        public void GetPossibleCollidedObject(MarioCharacter mario, ArrayList possibleCollideList)
         {
             if (mario is null || possibleCollideList is null)
                 throw new ArgumentNullException(nameof(mario));
@@ -61,11 +61,7 @@ namespace Sprint1.CollideDetection
 
         }
 
-        private void UpdateMovingCharacters()
-        { //updating in next sprint
-        }
-
-        public void GetPossibleCollidedObject1(MarioCharacter mario, List<ICharacter> possibleCollideList)
+        public void GetPossibleCollidedObject1(MarioCharacter mario, ArrayList possibleCollideList)
         {
             if (mario is null || possibleCollideList is null)
                 throw new ArgumentNullException(nameof(mario));
@@ -90,7 +86,7 @@ namespace Sprint1.CollideDetection
             //Console.WriteLine("Number of List element: " + possibleCollideObject.Count);            
         }
 
-        private void GetObjectsInRegion(Point upperLeftGrid, Point lowerRightGrid, List<ICharacter> collideObjects)
+        private void GetObjectsInRegion(Point upperLeftGrid, Point lowerRightGrid, ArrayList collideObjects)
         {
             for (int i = upperLeftGrid.Y; i <= lowerRightGrid.Y; i++)
             {
@@ -113,21 +109,21 @@ namespace Sprint1.CollideDetection
             return minPosition;
         }
 
-        private void ExtendRegion(Vector2 velocity, Point[] region)
-        {
-            region[0].X -= 1;
-            region[0].Y -= 1;
-            region[1].X += 1;
-            region[1].Y += 1;
-            if (velocity.X < 0 && region[0].X > 0)
-                region[0].X -= 1;
-            else if (velocity.X > 0 && region[1].X < MapSize.X)
-                region[1].X += 1;
-            if (velocity.Y < 0 && region[0].Y > 0)
-                region[0].Y -= 1;
-            else if (velocity.Y > 0 && region[1].Y < MapSize.Y)
-                region[1].Y += 1;
-        }
+        //private void ExtendRegion(Vector2 velocity, Point[] region)
+        //{
+        //    region[0].X -= 1;
+        //    region[0].Y -= 1;
+        //    region[1].X += 1;
+        //    region[1].Y += 1;
+        //    if (velocity.X < 0 && region[0].X > 0)
+        //        region[0].X -= 1;
+        //    else if (velocity.X > 0 && region[1].X < MapSize.X)
+        //        region[1].X += 1;
+        //    if (velocity.Y < 0 && region[0].Y > 0)
+        //        region[0].Y -= 1;
+        //    else if (velocity.Y > 0 && region[1].Y < MapSize.Y)
+        //        region[1].Y += 1;
+        //}
 
         private void SetEntities(ArrayList characterList)
         {
