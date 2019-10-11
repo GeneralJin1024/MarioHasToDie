@@ -78,8 +78,8 @@ namespace Sprint1.BlockClasses
         {
             IsBumping = true;
             currentbState = bStates[2];
-            MinY = bPosition.Y - base.GetHeightAndWidth().X;
-            MaxY = bPosition.Y;
+            MinY = Parameters.Position.Y - base.GetHeightAndWidth().X;
+            MaxY = Parameters.Position.Y;
         }
         #endregion
         public override void Update(float frameTime)
@@ -109,6 +109,7 @@ namespace Sprint1.BlockClasses
                     spriteSpeed.Y *= -1;
                     bPosition.Y = MaxY;
                 }
+                Parameters.SetPosition(Parameters.Position.X, bPosition.Y);
             }
         }
         public override void Draw(SpriteBatch spriteBatch)
@@ -136,15 +137,15 @@ namespace Sprint1.BlockClasses
             switch (items[0])
             {
                 case "redMushroom":
-                    return ItemFactory.Instance.GetRedMushroom();
+                    return ItemFactory.Instance.GetRedMushroom(bPosition);
                 case "greenMushroom":
-                    return ItemFactory.Instance.GetGreenMushroom();
+                    return ItemFactory.Instance.GetGreenMushroom(bPosition);
                 case "star":
-                    return ItemFactory.Instance.GetStar();
+                    return ItemFactory.Instance.GetStar(bPosition);
                 case "flower":
-                    return ItemFactory.Instance.GetFlower();
+                    return ItemFactory.Instance.GetFlower(bPosition);
                 default:
-                    return ItemFactory.Instance.GetCoin();
+                    return ItemFactory.Instance.GetCoin(bPosition);
             }
         }
     }

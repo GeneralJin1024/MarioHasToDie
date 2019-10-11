@@ -29,12 +29,12 @@ namespace Sprint1.BlockClasses
 
         public Vector2 GetMaxPosition()
         {
-            return new Vector2(block.Parameters.Position.X + block.GetHeightAndWidth().Y, block.Parameters.Position.Y + block.GetHeightAndWidth().X);
+            return new Vector2(block.Parameters.Position.X + block.GetHeightAndWidth().Y, block.Parameters.Position.Y);
         }
 
         public Vector2 GetMinPosition()
         {
-            return new Vector2(block.Parameters.Position.X, block.Parameters.Position.Y + block.GetHeightAndWidth().X);
+            return new Vector2(block.Parameters.Position.X, block.Parameters.Position.Y - block.GetHeightAndWidth().X);
         }
 
         public void Update(float timeOfFrame)

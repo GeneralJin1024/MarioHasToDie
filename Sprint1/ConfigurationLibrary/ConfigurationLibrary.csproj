@@ -7,8 +7,8 @@
     <ProjectGuid>{0549B583-4C5C-4655-A781-65C894273E9A}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ConfigrationLibrary</RootNamespace>
-    <AssemblyName>ConfigrationLibrary</AssemblyName>
+    <RootNamespace>ConfigurationLibrary</RootNamespace>
+    <AssemblyName>ConfigurationLibrary</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -42,7 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ConfigrationReaderAndWriter.cs" />
+    <Compile Include="ConfigurationReaderAndWriter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

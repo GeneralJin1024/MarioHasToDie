@@ -47,38 +47,57 @@ namespace Sprint1.FactoryClasses
         public void AddToList(ArrayList spriteList)
         {
             //initialize the sprites and add the sprites to the list
-            spriteList.Add(GetCoin());
-            spriteList.Add(GetFlower());
-            spriteList.Add(GetGreenMushroom());
-            spriteList.Add(GetRedMushroom());
-            spriteList.Add(GetStar());
-            spriteList.Add(GetPipe());
+            //spriteList.Add(GetCoin());
+            //spriteList.Add(GetFlower());
+            //spriteList.Add(GetGreenMushroom());
+            //spriteList.Add(GetRedMushroom());
+            //spriteList.Add(GetStar());
+            //spriteList.Add(GetPipe());
         }
-        public ItemCharacter GetPipe()
+        public ItemCharacter GetPipe(Vector2 pos)
         {
-            return new PipeCharacter(pipe, new Point(1, 1), new Vector2(500, 150));
+            return new PipeCharacter(pipe, new Point(1, 1), pos);
         }
-        public ItemCharacter GetCoin()
+        public ItemCharacter GetCoin(Vector2 pos)
         {
-            return new CoinCharacter(coin, new Point(1, 4), new Vector2(100, 100));
+            return new CoinCharacter(coin, new Point(1, 4), pos);
         }
-        public ItemCharacter GetFlower()
+        public ItemCharacter GetFlower(Vector2 pos)
         {
-            return new FlowerCharacter(flower, new Point(1, 8), new Vector2(200, 100));
+            return new FlowerCharacter(flower, new Point(1, 8), pos);
         }
-        public ItemCharacter GetGreenMushroom()
+        public ItemCharacter GetGreenMushroom(Vector2 pos)
         {
-            return new GreenMushroomCharacter(greenMushroom, new Point(1, 1), new Vector2(300, 100));
+            return new GreenMushroomCharacter(greenMushroom, new Point(1, 1), pos);
         }
-        public ItemCharacter GetRedMushroom()
+        public ItemCharacter GetRedMushroom(Vector2 pos)
         {
-            return new RedMushroomCharacter(redMushroom, new Point(1, 1),new Vector2(400, 100));
+            return new RedMushroomCharacter(redMushroom, new Point(1, 1), pos);
         }
-        public ItemCharacter GetStar()
+        public ItemCharacter GetStar(Vector2 pos)
         {
-            return new StarCharacter(star, new Point(1, 4) ,new Vector2(500, 100));
+            return new StarCharacter(star, new Point(1, 4) , pos);
         }
 
+        public ICharacter FactoryMethod(string name, Vector2 pos)
+        {
+            switch (name)
+            {
+                case "Pipe":
+                    return GetPipe(pos);
+                case "Coin":
+                    return GetCoin(pos);
+                case "Flower":
+                    return GetFlower(pos);
+                case "GreenMushroom":
+                    return GetGreenMushroom(pos);
+                case "RedMashroom":
+                    return GetRedMushroom(pos);
+                case "Star":
+                    return GetStar(pos);
+                default: return new NullCharacter();
+            }
+        }
     }
 }
 

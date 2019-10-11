@@ -76,7 +76,7 @@ namespace Sprint1.FactoryClasses
             return null;
         }
 
-        public ISprite FactortyMethod2(string name, Vector2 pos)
+        public ISprite FactoryMethod2(string name, Vector2 pos)
         {
             switch (name)
             {

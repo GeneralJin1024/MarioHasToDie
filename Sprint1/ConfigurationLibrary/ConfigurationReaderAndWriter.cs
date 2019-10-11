@@ -39,7 +39,8 @@ namespace ConfigurationLibrary
             {
                 var appSettings = ConfigurationManager.AppSettings;
                 string result = appSettings[key] ?? "Not Found";
-                return (int)decimal.Parse(result);
+                Console.WriteLine(result);
+                return (int)decimal.Parse(appSettings[key]);
             }
             catch (ConfigurationErrorsException)
             {
@@ -127,14 +128,14 @@ namespace ConfigurationLibrary
             }
         }
 
-        [ConfigurationProperty("backgrounds",
+        [ConfigurationProperty("Backgrounds",
             IsDefaultCollection = false)]
-        public SpritesCollection backgrounds
+        public SpritesCollection Backgrounds
         {
             get
             {
                 SpritesCollection backgroundsCollection =
-                (SpritesCollection)base["backgrounds"];
+                (SpritesCollection)base["Backgrounds"];
                 return backgroundsCollection;
             }
         }
@@ -145,9 +146,10 @@ namespace ConfigurationLibrary
     public class GameConfigElement : ConfigurationElement
     {
         // Constructor allowing ??? to be specified.
-        public GameConfigElement(String name,
+        public GameConfigElement(string id, String name,
             String location)
         {
+            SpriteID = id;
             SpriteName = name;
             SpriteLocation = location;
         }
@@ -160,14 +162,29 @@ namespace ConfigurationLibrary
 
         // Constructor allowing name to be specified, will take the
         // default values for url and port.
-        public GameConfigElement(string elementName)
+        public GameConfigElement(string elementID)
         {
-            SpriteName = elementName;
+            SpriteID = elementID;
+        }
+
+        [ConfigurationProperty("SpriteID",
+            IsRequired = true,
+            IsKey = true)]
+        public string SpriteID
+        {
+            get
+            {
+                return (string)this["SpriteID"];
+            }
+            set
+            {
+                this["SpriteID"] = value;
+            }
         }
 
         [ConfigurationProperty("SpriteName",
             IsRequired = true,
-            IsKey = true)]
+            IsKey = false)]
         public string SpriteName
         {
             get
@@ -237,16 +254,16 @@ namespace ConfigurationLibrary
 
         protected override
             ConfigurationElement CreateNewElement(
-            string elementName)
+            string elementID)
         {
-            return new GameConfigElement(elementName);
+            return new GameConfigElement(elementID);
         }
 
 
         protected override Object
             GetElementKey(ConfigurationElement element)
         {
-            return ((GameConfigElement)element).SpriteName;
+            return ((GameConfigElement)element).SpriteID;
         }
 
 
@@ -298,11 +315,11 @@ namespace ConfigurationLibrary
             }
         }
 
-        new public GameConfigElement this[string Name]
+        new public GameConfigElement this[string id]
         {
             get
             {
-                return (GameConfigElement)BaseGet(Name);
+                return (GameConfigElement)BaseGet(id);
             }
         }
 
@@ -327,7 +344,7 @@ namespace ConfigurationLibrary
         public void Remove(GameConfigElement spr)
         {
             if (BaseIndexOf(spr) >= 0)
-                BaseRemove(spr.SpriteName);
+                BaseRemove(spr.SpriteID);
         }
 
         public void RemoveAt(int index)
@@ -335,9 +352,9 @@ namespace ConfigurationLibrary
             BaseRemoveAt(index);
         }
 
-        public void Remove(string name)
+        public void Remove(string id)
         {
-            BaseRemove(name);
+            BaseRemove(id);
         }
 
         public void Clear()

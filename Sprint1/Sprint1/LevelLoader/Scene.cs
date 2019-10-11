@@ -44,7 +44,7 @@ namespace Sprint1
 
         public void LoadContent()
         {
-            stage.spriteLocationReader(level, Mario, characterList, BackgroundList);
+            stage.spriteLocationReader(level, characterList, BackgroundList);
             spriteBatch = new SpriteBatch(stage.Game.GraphicsDevice);
 
             //factoryList.Add(BlockFactory.Instance);
@@ -62,8 +62,8 @@ namespace Sprint1
         {
             stage.Update(gameTime);
             
-            foreach (ICharacter character in characterList)
-                character.Update(1);
+            //foreach (ICharacter character in characterList)
+            //    character.Update(1);
         }
 
         public void Draw()

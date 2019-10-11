@@ -73,11 +73,11 @@ namespace Sprint1.FactoryClasses
             switch (name)
             {
                 case "Goomba":
-                    return GetBrickBlock(parameters, new ArrayList());
+                    return GetGoomba(parameters);
                 case "RedKoopa":
-                    return GetQuestionBlock(parameters, new ArrayList());
+                    return GetRedKoopa(parameters);
                 case "GreenKoopa":
-                    return GetHiddenBlock(parameters, new ArrayList());
+                    return GetGreenKoopa(parameters);
                 default: return new NullCharacter();
             }
         }

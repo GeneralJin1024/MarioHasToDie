@@ -14,7 +14,6 @@ namespace Sprint1.FactoryClasses
 {
     public class PlayerFactory : IFactory
     {
-        public MarioCharacter Mario { get; set; }
         private static PlayerFactory _instance;
         public static PlayerFactory Instance
         {
@@ -26,12 +25,12 @@ namespace Sprint1.FactoryClasses
             }
         }
 
-        public ICharacter FactoryMethod(String name, Vector2 pos)
+        public MarioCharacter FactoryMethod2(String name, Vector2 pos)
         {
             switch (name)
             {
                 case "Mario": return GetMario(pos);
-                default: return new NullCharacter();
+                default: return GetMario(new Vector2(0,0)); //trying to return nullCharacter but much works to do
             }
         }
 
@@ -53,6 +52,11 @@ namespace Sprint1.FactoryClasses
                 Sprint1Main.Game.Content.Load<Texture2D>("FireMario/fireMarioRightMove"),
                 Sprint1Main.Game.Content.Load<Texture2D>("FireMario/fireMarioRightCrouch")};
             return new MarioCharacter(new Texture2D[][] { StandardSheets, SuperSheets, FireSheets}, location);
+        }
+
+        public ICharacter FactoryMethod(string name, Vector2 pos)
+        {
+            return  new NullCharacter();
         }
     }
 }

@@ -436,9 +436,9 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ConfigrationLibrary\ConfigrationLibrary.csproj">
+    <ProjectReference Include="..\ConfigurationLibrary\ConfigurationLibrary.csproj">
       <Project>{0549b583-4c5c-4655-a781-65c894273e9a}</Project>
-      <Name>ConfigrationLibrary</Name>
+      <Name>ConfigurationLibrary</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

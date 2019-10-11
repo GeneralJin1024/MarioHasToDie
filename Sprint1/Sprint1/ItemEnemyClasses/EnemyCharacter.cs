@@ -17,10 +17,9 @@ namespace Sprint1.ItemClasses
         private ISprite currentSprite;
         private Boolean isDead = false;
         public MoveParameters Parameters { get; }
-        public EnemyCharacter(Texture2D[] texture, Point[] rowsAndColumns, Vector2 location)
+        public EnemyCharacter(Texture2D[] texture, Point[] rowsAndColumns, MoveParameters moveParameters)
         {
-            Parameters = new MoveParameters();
-            Parameters.SetPosition(location.X, location.Y);
+            Parameters = moveParameters;
             Parameters.SetVelocity(0, 0);
             liveEnemy = new AnimatedSprite(texture[0], rowsAndColumns[0], Parameters);
             diedEnemy = new AnimatedSprite(texture[1], rowsAndColumns[1], Parameters);

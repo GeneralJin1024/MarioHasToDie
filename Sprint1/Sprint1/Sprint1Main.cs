@@ -28,7 +28,7 @@ namespace Sprint1
     {
         public enum CharacterType
         {
-            Block, Enemy, DiedEnemy, Flower, Mushroom, Star, Coin, Pipe, Null, Player
+            Block, Enemy, DiedEnemy, Flower, Mushroom, Star, Coin, Pipe, Null
         }
 
         
@@ -96,9 +96,9 @@ namespace Sprint1
         public Sprint1Main()
         {
             _game = this;
-            stage = new Stage(this);
-
             graphics = new GraphicsDeviceManager(this);
+            stage = new Stage(this);
+            
             Content.RootDirectory = "Content";
 
             scenes = new List<Scene>();
@@ -131,6 +131,7 @@ namespace Sprint1
         /// </summary>
         protected override void LoadContent()
         {
+            spriteBatch = new SpriteBatch(GraphicsDevice);
             // Create a new SpriteBatch, which can be used to draw textures.
             //spriteBatch = new SpriteBatch(GraphicsDevice);
             //load mario texture and construct mario. Then add mario into sprite list.
