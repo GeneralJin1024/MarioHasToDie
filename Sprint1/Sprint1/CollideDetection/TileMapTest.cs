@@ -148,7 +148,6 @@ namespace Sprint1.CollideDetection
                 //    Entities[maxGridPosition.X + MapSize.X * maxGridPosition.Y].Add(character);
                 //}
             }
-            Console.WriteLine("Grid 0 = " + Entities[0].Count);
         }
 
         private Point GetGridPosition(Vector2 position)
