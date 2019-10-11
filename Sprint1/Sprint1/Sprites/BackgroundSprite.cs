@@ -13,19 +13,15 @@ namespace Sprint1.Background
 {
     class BackgroundSprite : ISprite
     {
-        public Vector2 Position { get => BPosition; }
-        protected ArrayList Location;
+        private Vector2 location;
         public Texture2D SpriteSheets { get; set; }
         public MoveParameters Parameters { get; set; }
 
-        private Vector2 BPosition; // use to eleminate warning
-
         //void Update(GameTime gameTime) { }
-        public BackgroundSprite(Texture2D texture)
+        public BackgroundSprite(Texture2D texture, Vector2 pos)
         {
             SpriteSheets = texture;
-            BPosition = new Vector2(0, 0); // use to eleminate warning
-            Location = new ArrayList();
+            location = pos;
         }
         public Vector2 GetHeightAndWidth()
         {
@@ -38,10 +34,7 @@ namespace Sprint1.Background
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            foreach (Vector2 vector in Location)
-            {
-                spriteBatch.Draw(SpriteSheets, vector, Color.White);
-            }
+            spriteBatch.Draw(SpriteSheets, location, Color.White);  
         }
     }
 }

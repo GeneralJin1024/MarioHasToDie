@@ -10,6 +10,9 @@ using Sprint1.MarioClasses;
 using Sprint1.FactoryClasses;
 using Sprint1.Sprites;
 using Sprint1.CollideDetection;
+using Sprint1.LevelLoader;
+using System.Configuration;
+using ConfigurationLibrary;
 
 namespace Sprint1
 {
@@ -25,10 +28,10 @@ namespace Sprint1
     {
         public enum CharacterType
         {
-            Block, Enemy, DiedEnemy, Flower, Mushroom, Star, Coin, Pipe
+            Block, Enemy, DiedEnemy, Flower, Mushroom, Star, Coin, Pipe, Null, Player
         }
 
-        public static Vector2 Boundary { get; private set; }
+        
 
         private GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
@@ -38,12 +41,10 @@ namespace Sprint1
         private CollisionDetector Collision;
 
         //private Mario Mario;
-        private ArrayList factoryList;
-        private ArrayList controllerList;
-        private ArrayList spriteList;
-        private ArrayList BackgroundList;
-
-
+        //private ArrayList factoryList;
+        //private ArrayList controllerList;
+        //private ArrayList spriteList;
+        //private ArrayList BackgroundList;
         #region Fonts
         public Color FontColor { get; set; } = Color.DarkBlue;
         private SpriteFont instructionFont;
@@ -72,14 +73,37 @@ namespace Sprint1
                 graphics = value;
             }
         }
+        public Stage Stage
+        {
+            get
+            {
+                return stage;
+            }
+        }
+
+        public Scene Scene
+        {
+            get
+            {
+                return scenes[scene - 1];
+            }
+        }
+
+        Stage stage;
+        List<Scene> scenes;
+        int scene;
 
         public Sprint1Main()
         {
+            _game = this;
+            stage = new Stage(this);
+
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
-            graphics.PreferredBackBufferWidth = 800;  // set this value to the desired width of your window
-            graphics.PreferredBackBufferHeight = 500;   // set this value to the desired height of your window
-            graphics.ApplyChanges();
+
+            scenes = new List<Scene>();
+            scenes.Add(new Scene(stage));
+            scene = 1;
         }
 
         /// <summary>
@@ -90,20 +114,14 @@ namespace Sprint1
         /// </summary>
         protected override void Initialize()
         {
-            _game = this;
-            Boundary = new Vector2(800, 500);
-
-            spriteList = new ArrayList();
-            BackgroundList = new ArrayList();
-            #region Controllers
-            controllerList = new ArrayList();
-            #endregion
-
-            factoryList = new ArrayList();
+            scenes[scene - 1].Initalize(scene);
+            //spriteList = new ArrayList();
+            //BackgroundList = new ArrayList();
+            //factoryList = new ArrayList();
             //initialize menu and start from it
             GameMenu = new Menu(this);
             MenuMode = true;
-            MillisecondsPerFrame = 100;
+            //MillisecondsPerFrame = 100;
             base.Initialize();
         }
 
@@ -114,30 +132,26 @@ namespace Sprint1
         protected override void LoadContent()
         {
             // Create a new SpriteBatch, which can be used to draw textures.
-            spriteBatch = new SpriteBatch(GraphicsDevice);
+            //spriteBatch = new SpriteBatch(GraphicsDevice);
             //load mario texture and construct mario. Then add mario into sprite list.
             //add factories.
             //factoryList.Add(MarioFactory.Instance);
-            factoryList.Add(BlockFactory.Instance);
-            factoryList.Add(EnemyFactory.Instance);
+            scenes[scene - 1].LoadContent();
+           
             //factoryList.Add(EnemyFactory.Instance);
             //factoryList.Add(BackgroundFactory.Instance);
-            BackgroundFactory.Instance.AddToList(BackgroundList);
-
-            factoryList.Add(ItemFactory.Instance);
+            
             //get Mario from Mario factory.
-            Mario = MarioFactory.Instance.Mario;
-            foreach (IFactory factory in factoryList)
-                factory.AddToList(spriteList);
-            controllerList.Add(new KeyboardController(Mario, this));
+            
+            //controllerList.Add(new KeyboardController(Mario, this));
             //controllerList.Add(new KeyboardController(Mario, this, 
             //    new Bricks[] { BlockFactory.Instance.qBlockTest, BlockFactory.Instance.hiddenBlockTest, BlockFactory.Instance.brickBlockTest }));
-            controllerList.Add(new GamepadController(Mario, this));
+            //controllerList.Add(new GamepadController(Mario, this));
 
             #region Fonts
             instructionFont = Content.Load<SpriteFont>("arial");
             #endregion
-            Collision = new CollisionDetector(Mario, spriteList);
+            
             GameMenu.LoadContent(instructionFont);
             // TODO: use this.Content to load your game content here
         }
@@ -166,14 +180,7 @@ namespace Sprint1
                 GameMenu.Update(1);
             else
             {
-                foreach (IController controller in controllerList)
-                    controller.Update();
-                TimeSinceLastFrame += gameTime.ElapsedGameTime.Milliseconds;
-                if (TimeSinceLastFrame > MillisecondsPerFrame)
-                {
-                    TimeSinceLastFrame -= MillisecondsPerFrame;
-                    Collision.Update();
-                }
+                scenes[scene - 1].Update(gameTime);
                 //Controller.UpdateInput(...);
                 //foreach (IController controller in controllerList)
                 //    controller.Update();
@@ -198,16 +205,12 @@ namespace Sprint1
                 GraphicsDevice.Clear(Color.CornflowerBlue);
 
             spriteBatch.Begin(blendState: BlendState.AlphaBlend);
-            Console.WriteLine("Length = " + spriteList.Count);
+            
             if (MenuMode)
                 GameMenu.Draw(spriteBatch);
             else
             {
-                foreach (ISprite sprite in BackgroundList)
-                    sprite.Draw(spriteBatch);
-                foreach (ICharacter sprite in spriteList)
-                    sprite.Draw(spriteBatch);
-                Mario.Draw(spriteBatch);
+                scenes[scene - 1].Draw();
             }
                 
 
@@ -240,13 +243,6 @@ namespace Sprint1
         //    #endregion
         //}
 
-        public static Vector2 CheckBoundary(Vector2 position, Vector2 heightAndWidth)
-        {
-            position.X = position.X >= 0 ? position.X : 0;
-            position.Y = position.Y >= 0 ? position.Y : 0;
-            position.X = position.X <= Boundary.X - heightAndWidth.Y ? position.X : Boundary.X - heightAndWidth.Y;
-            position.Y = position.Y <= Boundary.Y - heightAndWidth.X ? position.Y : Boundary.Y - heightAndWidth.X;
-            return position;
-        }
+        
     }
 }

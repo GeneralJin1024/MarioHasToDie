@@ -1,10 +1,11 @@
-﻿using Microsoft.Xna.Framework.Graphics;
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using Sprint1.BlockClasses;
 using System.Collections;
 
 namespace Sprint1.FactoryClasses
 {
-    class BlockFactory:IFactory
+    class BlockFactory : IFactory
     {
         private static BlockFactory _instance;
         public static BlockFactory Instance
@@ -79,6 +80,27 @@ namespace Sprint1.FactoryClasses
             return new BlockCharacter(new StairBlockSprite(BlockTextures[4], moveParameters));
         }
 
+        public ICharacter FactoryMethod(string name, Vector2 pos)
+        {
+            MoveParameters parameters = new MoveParameters();
+            parameters.SetPosition(pos.X, pos.Y);
+            switch(name)
+            {
+                case "Brick":
+                    return GetBrickBlock(parameters, new ArrayList());
+                case "QuestionB":
+                    return GetQuestionBlock(parameters, new ArrayList());
+                case "HiddenB":
+                    return GetHiddenBlock(parameters, new ArrayList());
+                case "UsedB":
+                    return GetUsedBlock(parameters);
+                case "FloorB":
+                    return GetFloorBlock(parameters);
+                case "StairB":
+                    return GetStairBlock(parameters);
+                default : return new NullCharacter();
+            }
+        }
     }
 }
 

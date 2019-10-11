@@ -39,7 +39,7 @@ namespace Sprint1
                 }
             }
             Parameters.UpdatePositionAndVelocity(YAcceleration, timeOfFrame);
-            Vector2 checkedPosition = Sprint1Main.CheckBoundary(new Vector2(Parameters.Position.X, Parameters.Position.Y - GetHeightAndWidth().X),
+            Vector2 checkedPosition = LevelLoader.Stage.CheckBoundary(new Vector2(Parameters.Position.X, Parameters.Position.Y - GetHeightAndWidth().X),
                 GetHeightAndWidth());
             Parameters.SetPosition(checkedPosition.X, checkedPosition.Y + GetHeightAndWidth().X);
         }

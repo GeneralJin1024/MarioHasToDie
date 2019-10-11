@@ -37,47 +37,63 @@ namespace Sprint1.FactoryClasses
         private void LoadTexture()
         {
             bigCloud = Sprint1Main.Game.Content.Load<Texture2D>("BackgroundSprite/bigCloud");
-           smallCloud = Sprint1Main.Game.Content.Load<Texture2D>("BackgroundSprite/smallCloud");
+            smallCloud = Sprint1Main.Game.Content.Load<Texture2D>("BackgroundSprite/smallCloud");
             bigHill = Sprint1Main.Game.Content.Load<Texture2D>("BackgroundSprite/bigHill");
             smallHill = Sprint1Main.Game.Content.Load<Texture2D>("BackgroundSprite/smallHill");
             bigBush = Sprint1Main.Game.Content.Load<Texture2D>("BackgroundSprite/bigBush");
             smallBush = Sprint1Main.Game.Content.Load<Texture2D>("BackgroundSprite/smallBush");
 
         }
-        public void AddToList(ArrayList spriteList)
+
+        public BackgroundSprite GetBigHill(Vector2 pos)
         {
-            //initialize the sprites and add the sprites to the list
-            spriteList.Add(GetBigCloud());
-            spriteList.Add(GetBigHill());
-            spriteList.Add(GetSmallCloud());
-            spriteList.Add(GetSmallHill());
-            spriteList.Add(GetBigBush());
-            spriteList.Add(GetSmallBush());
+            return new BackgroundSprite(bigHill, pos);
+        }
+        public BackgroundSprite GetSmallHill(Vector2 pos)
+        {
+            return new BackgroundSprite(smallHill, pos);
+        }
+        public BackgroundSprite GetBigCloud(Vector2 pos)
+        {
+            return new BackgroundSprite(bigCloud, pos);
+        }
+        public BackgroundSprite GetSmallCloud(Vector2 pos)
+        {
+            return new BackgroundSprite(smallCloud, pos);
+        }
+        public BackgroundSprite GetBigBush(Vector2 pos)
+        {
+            return new BackgroundSprite(bigBush, pos);
+        }
+        public BackgroundSprite GetSmallBush(Vector2 pos)
+        {
+            return new BackgroundSprite(smallBush, pos);
         }
 
-        public BigHillSprite GetBigHill()
+        public ICharacter FactoryMethod(string name, Vector2 pos)
         {
-            return new BigHillSprite(bigHill);
+            //no character here
+            return null;
         }
-        public SmallHillSprite GetSmallHill()
+
+        public ISprite FactortyMethod2(string name, Vector2 pos)
         {
-            return new SmallHillSprite(smallHill);
-        }
-        public BigCloudSprite GetBigCloud()
-        {
-            return new BigCloudSprite(bigCloud);
-        }
-        public SmallCloudSprite GetSmallCloud()
-        {
-            return new SmallCloudSprite(smallCloud);
-        }
-        public BigBushSprite GetBigBush()
-        {
-            return new BigBushSprite(bigBush);
-        }
-        public SmallBushSprite GetSmallBush()
-        {
-            return new SmallBushSprite(smallBush);
+            switch (name)
+            {
+                case "BigHill":
+                    return GetBigHill(pos);
+                case "SmallHill":
+                    return GetSmallHill(pos);
+                case "BigCloud":
+                    return GetBigCloud(pos);
+                case "SmallCloud":
+                    return GetSmallCloud(pos);
+                case "BigBush":
+                    return GetBigBush(pos);
+                case "SmallBush":
+                    return GetSmallBush(pos);
+                default: return new Sprites.NullSprite();
+            }
         }
     }
 }

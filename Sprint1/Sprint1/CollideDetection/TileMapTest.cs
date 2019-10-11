@@ -109,7 +109,7 @@ namespace Sprint1.CollideDetection
         {
             minPosition.X += velocity.X;
             minPosition.Y += velocity.Y;
-            Sprint1Main.CheckBoundary(minPosition, heightAndWidth);
+            LevelLoader.Stage.CheckBoundary(minPosition, heightAndWidth);
             return minPosition;
         }
 

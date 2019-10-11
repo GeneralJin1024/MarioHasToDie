@@ -13,38 +13,41 @@ namespace Sprint1.Background
 {
     class BigHillSprite : BackgroundSprite
     {
-        public BigHillSprite(Texture2D texture) : base(texture)
+        public BigHillSprite(Texture2D texture, Vector2 pos) : base(texture)
         {
             //add the location
-            Location.Add(new Vector2(150, Sprint1Main.Game.GraphicsDevice.Viewport.Height - texture.Height));
-            Location.Add(new Vector2(250, Sprint1Main.Game.GraphicsDevice.Viewport.Height - texture.Height));
+            //Location.Add(new Vector2(150, Sprint1Main.Game.GraphicsDevice.Viewport.Height - texture.Height));
+            //Location.Add(new Vector2(250, Sprint1Main.Game.GraphicsDevice.Viewport.Height - texture.Height));
+            Location.Add(pos);
         }
     }
     class SmallCloudSprite : BackgroundSprite
     {
-        public SmallCloudSprite(Texture2D texture) : base(texture)
+        public SmallCloudSprite(Texture2D texture, Vector2 pos) : base(texture)
         {
             //add the location
-            Location.Add(new Vector2(200, 50));
-            Location.Add(new Vector2(400, 50));
-            Location.Add(new Vector2(600, 50));
+            //Location.Add(new Vector2(200, 50));
+            //Location.Add(new Vector2(400, 50));
+            //Location.Add(new Vector2(600, 50));
+            Location.Add(pos);
         }
     }
     class SmallHillSprite : BackgroundSprite
     {
-        public SmallHillSprite(Texture2D texture) : base(texture)
+        public SmallHillSprite(Texture2D texture, Vector2 pos) : base(texture)
         {
-            Location = new ArrayList
-            {
-                //add the location
-                new Vector2(50, Sprint1Main.Game.GraphicsDevice.Viewport.Height - texture.Height),
-                new Vector2(100, Sprint1Main.Game.GraphicsDevice.Viewport.Height - texture.Height)
-            };
+            //Location = new ArrayList
+            //{
+            //add the location
+            //new Vector2(50, Sprint1Main.Game.GraphicsDevice.Viewport.Height - texture.Height),
+            //new Vector2(100, Sprint1Main.Game.GraphicsDevice.Viewport.Height - texture.Height)
+            //};
+            Location.Add(pos);
         }
     }
     class BigCloudSprite : BackgroundSprite
     {
-        public BigCloudSprite(Texture2D texture) : base(texture)
+        public BigCloudSprite(Texture2D texture, Vector2 pos) : base(texture)
         {
             //add the location
             Location.Add(new Vector2(100, 50));
@@ -54,7 +57,7 @@ namespace Sprint1.Background
     }
     class BigBushSprite : BackgroundSprite
     {
-        public BigBushSprite(Texture2D texture) : base(texture)
+        public BigBushSprite(Texture2D texture, Vector2 pos) : base(texture)
         {
             //add the location
             Location.Add(new Vector2(350, Sprint1Main.Game.GraphicsDevice.Viewport.Height - texture.Height));
@@ -62,7 +65,7 @@ namespace Sprint1.Background
     }
     class SmallBushSprite : BackgroundSprite
     {
-        public SmallBushSprite(Texture2D texture) : base(texture)
+        public SmallBushSprite(Texture2D texture, Vector2 pos) : base(texture)
         {
             //add the location
             Location.Add(new Vector2(550, Sprint1Main.Game.GraphicsDevice.Viewport.Height - texture.Height));

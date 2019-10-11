@@ -12,37 +12,28 @@ using System.Collections;
 
 namespace Sprint1.FactoryClasses
 {
-    public class MarioFactory : IFactory
+    public class PlayerFactory : IFactory
     {
         public MarioCharacter Mario { get; set; }
-        private static MarioFactory _instance;
-        public static MarioFactory Instance
+        private static PlayerFactory _instance;
+        public static PlayerFactory Instance
         {
             get
             {
                 if (_instance == null)
-                    _instance = new MarioFactory();
+                    _instance = new PlayerFactory();
                 return _instance;
             }
         }
 
-        public MarioFactory()
+        public ICharacter FactoryMethod(String name, Vector2 pos)
         {
-            //Create Mario as soon as the factory is initialized.
-            Mario = GetMario(new Vector2(400, 300));
+            switch (name)
+            {
+                case "Mario": return GetMario(pos);
+                default: return new NullCharacter();
+            }
         }
-        public void AddToList(ArrayList spriteList) { }
-
-        //public void AddToList(ArrayList spriteList)
-        //{
-        //    //check null first
-        //    if (spriteList == null)
-        //    {
-        //        throw new ArgumentNullException(nameof(spriteList));
-        //    }
-        //    spriteList.Add(Mario);
-        //}
-
 
         private static MarioCharacter GetMario(Vector2 location)
         {

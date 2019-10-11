@@ -46,26 +46,41 @@ namespace Sprint1.FactoryClasses
         public void AddToList(ArrayList spriteList)
         {
             //initialize the sprites and add the sprites to the list
-            spriteList.Add(GetGreenKoopa(new Vector2(400, 200)));
-            spriteList.Add(GetRedKoopa(new Vector2(300, 200)));
-            spriteList.Add(GetGoomba(new Vector2(100,200)));
+            //spriteList.Add(GetGreenKoopa(new Vector2(400, 200)));
+            //spriteList.Add(GetRedKoopa(new Vector2(300, 200)));
+            //spriteList.Add(GetGoomba(new Vector2(100,200)));
         }
-        public EnemyCharacter GetGoomba(Vector2 location)
+        public EnemyCharacter GetGoomba(MoveParameters moveParameters)
         {
             Point[] rowAndColumn = new Point[2] { new Point(1, 2), new Point(1, 1) };
-            return new EnemyCharacter(goomba, rowAndColumn,location);
+            return new EnemyCharacter(goomba, rowAndColumn, moveParameters);
         }
-        public EnemyCharacter GetRedKoopa(Vector2 location)
+        public EnemyCharacter GetRedKoopa(MoveParameters moveParameters)
         {
             Point[] rowAndColumn = new Point[2] { new Point(1, 2), new Point(1, 1) };
-            return new EnemyCharacter(redkoopa, rowAndColumn, location);
+            return new EnemyCharacter(redkoopa, rowAndColumn, moveParameters);
         }
-        public EnemyCharacter GetGreenKoopa(Vector2 location)
+        public EnemyCharacter GetGreenKoopa(MoveParameters moveParameters)
         {
             Point[] rowAndColumn = new Point[2] { new Point(1, 2), new Point(1, 1) };
-            return new EnemyCharacter(greenkoopa, rowAndColumn, location);
+            return new EnemyCharacter(greenkoopa, rowAndColumn, moveParameters);
         }
 
+        public ICharacter FactoryMethod(string name, Vector2 pos)
+        {
+            MoveParameters parameters = new MoveParameters();
+            parameters.SetPosition(pos.X, pos.Y);
+            switch (name)
+            {
+                case "Goomba":
+                    return GetBrickBlock(parameters, new ArrayList());
+                case "RedKoopa":
+                    return GetQuestionBlock(parameters, new ArrayList());
+                case "GreenKoopa":
+                    return GetHiddenBlock(parameters, new ArrayList());
+                default: return new NullCharacter();
+            }
+        }
     }
 }
 

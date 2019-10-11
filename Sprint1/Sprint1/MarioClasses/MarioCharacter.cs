@@ -8,7 +8,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace Sprint1.MarioClasses
 {
-    public class MarioCharacter
+    public class MarioCharacter : ICharacter
     {
         private readonly Mario Mario;
 
@@ -19,9 +19,13 @@ namespace Sprint1.MarioClasses
                 return Mario.IsSuper();
             }
         }
+
+        public Sprint1Main.CharacterType Type { get; set; } // won't use for mario himself
+
         public MarioCharacter(Texture2D[][] marioSpriteSheets, Vector2 location)
         {
             Mario = new Mario(marioSpriteSheets, location);
+            Type = Sprint1Main.CharacterType.Player;
             Parameters = Mario.Parameters;
         }
         #region ISprite Methods
@@ -64,5 +68,10 @@ namespace Sprint1.MarioClasses
         public Vector2 GetMinPosition() { return new Vector2(Parameters.Position.X, Parameters.Position.Y - Mario.GetHeightAndWidth().X); }
         public Vector2 GetMaxPosition() { return new Vector2(Parameters.Position.X + Mario.GetHeightAndWidth().Y, Parameters.Position.Y); }
         public Vector2 GetHeightAndWidth() { return Mario.GetHeightAndWidth(); }
+
+        public void MarioCollide(bool specialCase)
+        {
+            //do nothing here -- Mario won't collide it himself
+        }
     }
 }

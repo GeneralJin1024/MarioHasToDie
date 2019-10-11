@@ -33,17 +33,18 @@ namespace ConfigurationLibrary
             }
         }
 
-        public static void ReadSetting(string key)
+        public static int ReadSetting(string key)
         {
             try
             {
                 var appSettings = ConfigurationManager.AppSettings;
                 string result = appSettings[key] ?? "Not Found";
-                Console.WriteLine(result);
+                return (int)decimal.Parse(result);
             }
             catch (ConfigurationErrorsException)
             {
                 Console.WriteLine("Error reading app settings");
+                return -1;
             }
         }
 
@@ -76,77 +77,68 @@ namespace ConfigurationLibrary
     //Read Custom Sections
     public class LevelSection : ConfigurationSection
     {
-        [ConfigurationProperty("name",
-            DefaultValue = "LevelDefination",
-            IsRequired = true,
-            IsKey = false)]
-        [StringValidator(InvalidCharacters =
-            " ~!@#$%^&*()[]{}/;'\"|\\",
-            MinLength = 1, MaxLength = 60)]
-        public string Name
-        {
-
-            get
-            {
-                return (string)this["name"];
-            }
-            set
-            {
-                this["name"] = value;
-            }
-
-        }
-
-        // Declare an element (not in a collection) of the type
-        // UrlConfigElement. In the configuration
-        // file it corresponds to <simple .... />.
-        [ConfigurationProperty("SimpleSprite")]
-        public GameConfigElement Simple
-        {
-            get
-            {
-                GameConfigElement gameConfig =
-                (GameConfigElement)base["SimpleSprite"];
-                return gameConfig;
-            }
-        }
-
         // Declare a collection element represented 
         // in the configuration file by the sub-section
-        // <urls> <add .../> </urls> 
-        // Note: the "IsDefaultCollection = false" 
-        // instructs the .NET Framework to build a nested 
-        // section like <urls> ...</urls>.
-        [ConfigurationProperty("Level1",
+        [ConfigurationProperty("Player",
             IsDefaultCollection = false)]
-        public LevelsCollection Levels
+        public SpritesCollection Player
         {
             get
             {
-                LevelsCollection levelsCollection =
-                (LevelsCollection)base["level1"];
-                return levelsCollection;
+                SpritesCollection playerCollection =
+                (SpritesCollection)base["Player"];
+                return playerCollection;
             }
         }
-        //add another levels here
 
-        protected override void DeserializeSection(
-            System.Xml.XmlReader reader)
+        [ConfigurationProperty("Enemys",
+            IsDefaultCollection = false)]
+        public SpritesCollection Enemys
         {
-            base.DeserializeSection(reader);
-            // add processing codes here.
+            get
+            {
+                SpritesCollection enemysCollection =
+                (SpritesCollection)base["Enemys"];
+                return enemysCollection;
+            }
         }
 
-        protected override string SerializeSection(
-            ConfigurationElement parentElement,
-            string name, ConfigurationSaveMode saveMode)
+        [ConfigurationProperty("Blocks",
+            IsDefaultCollection = false)]
+        public SpritesCollection Blocks
         {
-            string s =
-                base.SerializeSection(parentElement,
-                name, saveMode);
-            //add processing code here.
-            return s;
+            get
+            {
+                SpritesCollection BlocksCollection =
+                (SpritesCollection)base["Blocks"];
+                return BlocksCollection;
+            }
         }
+
+        [ConfigurationProperty("Items",
+            IsDefaultCollection = false)]
+        public SpritesCollection Items
+        {
+            get
+            {
+                SpritesCollection itemsCollection =
+                (SpritesCollection)base["Items"];
+                return itemsCollection;
+            }
+        }
+
+        [ConfigurationProperty("backgrounds",
+            IsDefaultCollection = false)]
+        public SpritesCollection backgrounds
+        {
+            get
+            {
+                SpritesCollection backgroundsCollection =
+                (SpritesCollection)base["backgrounds"];
+                return backgroundsCollection;
+            }
+        }
+        //add another spriteCollections here
 
     }
 
@@ -204,28 +196,6 @@ namespace ConfigurationLibrary
         }
         //add other properties here.
 
-        protected override void DeserializeElement(
-               System.Xml.XmlReader reader,
-                bool serializeCollectionKey)
-        {
-            base.DeserializeElement(reader,
-                serializeCollectionKey);
-            // add processing codes here.
-        }
-
-
-        protected override bool SerializeElement(
-                System.Xml.XmlWriter writer,
-                bool serializeCollectionKey)
-        {
-            bool ret = base.SerializeElement(writer,
-                serializeCollectionKey);
-            // add processing codes here.
-            return ret;
-
-        }
-
-
         protected override bool IsModified()
         {
             bool ret = base.IsModified();
@@ -234,9 +204,9 @@ namespace ConfigurationLibrary
         }
     }
 
-    public class LevelsCollection : ConfigurationElementCollection
+    public class SpritesCollection : ConfigurationElementCollection
     {
-        public LevelsCollection()
+        public SpritesCollection()
         {
             // Add one level to the collection.  This is
             // not necessary; could leave the collection 
