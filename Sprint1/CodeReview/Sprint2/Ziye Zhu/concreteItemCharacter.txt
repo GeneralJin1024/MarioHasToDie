@@ -1,0 +1,15 @@
+Reviewer: Ziye Zhu
+Date: 10/12/2019
+Sprint2
+Files:ItemEnemyClasses/ all concrete item character classes
+Author: Ziye Zhu, Zhenhao Lu
+
+Comment:
+	1 By using state pattern, we are saved from using a bunch of if else structures to tell which character is being acted on
+    2 easier to debug.
+Time: 3 hrs
+
+hypothesis:
+
+  It would be easier to add more item characters in the future than eiditing on the original if else code. 
+  Also，it will looks more decent and clear if there are many different characters in the future than jaming them in many if else clauses.
