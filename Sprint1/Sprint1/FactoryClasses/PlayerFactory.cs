@@ -15,7 +15,7 @@ namespace Sprint1.FactoryClasses
     public class PlayerFactory : IFactory
     {
         private static PlayerFactory _instance;
-        public static PlayerFactory Instance
+        public static PlayerFactory Instance // only useless for mario in this Sprint
         {
             get
             {
@@ -46,7 +46,7 @@ namespace Sprint1.FactoryClasses
                 Sprint1Main.Game.Content.Load<Texture2D>("SuperMario/superMarioJumpRight"),
                 Sprint1Main.Game.Content.Load<Texture2D>("SuperMario/superMarioMoveRight"),
                 Sprint1Main.Game.Content.Load<Texture2D>("SuperMario/superMarioRightCrouch")};
-            //16*32   16*22
+            //16*32   16*22 for crouch
             Texture2D[] FireSheets = new Texture2D[4] {Sprint1Main.Game.Content.Load<Texture2D>("FireMario/fireMarioRightStand"),
                 Sprint1Main.Game.Content.Load<Texture2D>("FireMario/fireMarioJumpRight"),
                 Sprint1Main.Game.Content.Load<Texture2D>("FireMario/fireMarioRightMove"),

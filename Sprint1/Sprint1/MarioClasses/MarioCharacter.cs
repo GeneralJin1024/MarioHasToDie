@@ -31,6 +31,7 @@ namespace Sprint1.MarioClasses
         #endregion
 
         #region Controller Receiver
+        // response to controllers.
         public void MoveUp() { Mario.MarioState.MoveUp(); }
         public void MoveDown() { Mario.MarioState.MoveDown(); }
         public void MoveLeft() { Mario.MarioState.MoveLeft(); }
@@ -58,13 +59,16 @@ namespace Sprint1.MarioClasses
         }
         public void CollideWithMushRoom() { Mario.MarioState.ChangeToSuper(); }
         public void CollideWithBlock() { Mario.ChangeToIdle(); }
-        //public void CollideWithBlocksTopAndBottom() { Mario.ChangeToIdle(); }
-        //public void CollideWithBlocksLeftAndRight() { Mario.Parameters.SetVelocity(0, Mario.Parameters.Velocity.Y); }
+        /*
+         * Since mario didn't do any thing when collide with star and coin in this Sprint, I didn't add corresponding methods
+         * In this Sprint, mario hit pipe doing the same thing as hitting a block.
+         */
         #endregion
-
+        //get left up coner position.
         public Vector2 GetMinPosition() { return new Vector2(Parameters.Position.X, Parameters.Position.Y - Mario.GetHeightAndWidth().X); }
+        //get right down coner position.
         public Vector2 GetMaxPosition() { return new Vector2(Parameters.Position.X + Mario.GetHeightAndWidth().Y, Parameters.Position.Y); }
-        public Vector2 GetHeightAndWidth() { return Mario.GetHeightAndWidth(); }
+        public Vector2 GetHeightAndWidth() { return Mario.GetHeightAndWidth(); } //get mario's hit and width.
 
     }
 }

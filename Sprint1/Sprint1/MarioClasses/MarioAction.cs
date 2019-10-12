@@ -9,22 +9,16 @@ namespace Sprint1.MarioClasses
     class IdleState : IActionState
     {
         public MarioState.ActionType Type { get; set; } = MarioState.ActionType.Other;
-        public void Up(Mario mario)
-        {
-            mario.ChangeToJump(-5);
-        }
-        public void Down(Mario mario)
-        {
-            mario.ChangeToCrouch();
-        }
-        public void Left(Mario mario)
+        public void Up(Mario mario) { mario.ChangeToJump(-5); }
+        public void Down(Mario mario) { mario.ChangeToCrouch(); }
+        public void Left(Mario mario) // walk left if facing left, stand left if facing right.
         {
             if (mario.Parameters.IsLeft)
                 mario.ChangeToWalk();
             else
                 mario.Parameters.IsLeft = true;
         }
-        public void Right(Mario mario)
+        public void Right(Mario mario) // walk right if facing right, stand right if facing left.
         {
             if (mario.Parameters.IsLeft)
                 mario.Parameters.IsLeft = false;
@@ -39,18 +33,13 @@ namespace Sprint1.MarioClasses
     {
         public MarioState.ActionType Type { get; set; } = MarioState.ActionType.Other;
         public void Up(Mario mario) { }
-        public void Down(Mario mario)
-        {
-            mario.ChangeToIdle();
-        }
+        public void Down(Mario mario) { mario.ChangeToIdle(); }
         public void Left(Mario mario)
         {
             if (!mario.Parameters.IsLeft)
                 mario.Parameters.IsLeft = true;
-            else
+            else // In the future, y velocity will depend on gravity, so only left and right speed is constant.
                 mario.ChangeToRunningJump(mario.Parameters.Velocity.Y);
-            //else
-            //    marioState.ChangeActionAndSprite(4);
         }
         public void Right(Mario mario)
         {
@@ -63,13 +52,9 @@ namespace Sprint1.MarioClasses
 
     class RunningJumpState : IActionState
     {
-        //(+-5, -5)
         public MarioState.ActionType Type { get; set; } = MarioState.ActionType.Other;
         public void Up(Mario mario) { }
-        public void Down(Mario mario)
-        {
-            mario.ChangeToWalk();
-        }
+        public void Down(Mario mario) { mario.ChangeToWalk(); } // go back to walk if it has horizontal velocity.
         public void Left(Mario mario)
         {
             mario.Parameters.IsLeft = true;
@@ -87,7 +72,7 @@ namespace Sprint1.MarioClasses
         public MarioState.ActionType Type { get; set; } = MarioState.ActionType.Other;
         public void Up(Mario mario)
         {
-            mario.ChangeToRunningJump(-5);
+            mario.ChangeToRunningJump(-5); // -5 is the initial velocity of jumping
         }
         public void Down(Mario mario) { }
         public void Left(Mario mario)
@@ -105,23 +90,15 @@ namespace Sprint1.MarioClasses
     class CrouchState : IActionState
     {
         public MarioState.ActionType Type { get; set; } = MarioState.ActionType.Crouch;
-        public void Up(Mario mario)
-        {
-            mario.ChangeToIdle();
-        }
+        public void Up(Mario mario) { mario.ChangeToIdle(); } // only Super and Fire can call this method
         public void Down(Mario mario) { }
-        public void Left(Mario mario)
-        {
-            mario.Parameters.IsLeft = true;
-        }
-        public void Right(Mario mario)
-        {
-            mario.Parameters.IsLeft = false;
-        }
+        public void Left(Mario mario) { mario.Parameters.IsLeft = true; }
+        public void Right(Mario mario) { mario.Parameters.IsLeft = false; }
     }
 
     class DiedActionState : IActionState
     {
+        //Do nothing when died.
         public MarioState.ActionType Type { get; set; } = MarioState.ActionType.Other;
         public void Up(Mario mario) { }
         public void Down(Mario mario) { }

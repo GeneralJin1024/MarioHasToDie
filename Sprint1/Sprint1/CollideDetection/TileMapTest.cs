@@ -17,26 +17,30 @@ namespace Sprint1.CollideDetection
 
         public TileMap(Point mapSize, ArrayList characterList, Point screenSize)
         {
-            if (characterList is null)
+            if (characterList is null) //check null
                 throw new ArgumentNullException(nameof(characterList));
-            MapSize = mapSize;
-            ScreenSize = screenSize;
-            Entities = new List<ICharacter>[mapSize.X * mapSize.Y];
-            SetEntities(characterList);
+            MapSize = mapSize; //set MapSize: how many rows and columns
+            ScreenSize = screenSize; // set the screen size.
+            Entities = new List<ICharacter>[mapSize.X * mapSize.Y]; // generate rows * columns grids.
+            SetEntities(characterList); // put objects into map
         }
 
         public void GetPossibleCollidedObject(MarioCharacter mario, ArrayList possibleCollideList)
         {
-            if (mario is null || possibleCollideList is null)
+            if (mario is null || possibleCollideList is null) //check null
                 throw new ArgumentNullException(nameof(mario));
+            //Get which grids are mario's left up coner and right down coner occupy
             Point currentUpperLeftGrid = GetGridPosition(mario.GetMinPosition());
             Point currentLowerRightGrid = GetGridPosition(mario.GetMaxPosition());
+            //Get which grids are mario's left up coner and right down coner will occupy
             Vector2 predictMinPosition = PredictNextPosition(mario.GetMinPosition(), mario.Parameters.Velocity, mario.GetHeightAndWidth());
             Point newUpperLeftGrid = GetGridPosition(predictMinPosition);
             Point newLowerRightGrid = GetGridPosition(new Vector2(predictMinPosition.X + mario.GetHeightAndWidth().Y,
                 predictMinPosition.Y + mario.GetHeightAndWidth().Y));
+            //calculate the possible collided region which depends on mario's velocity
             Point minRegion = new Point();
             Point maxRegion = new Point();
+            // mario will hit no non-moving objects if mario is non-moving.
             if (mario.Parameters.Velocity.X > 0)
             {
                 minRegion.X = currentUpperLeftGrid.X;
@@ -57,13 +61,14 @@ namespace Sprint1.CollideDetection
                 minRegion.Y = newUpperLeftGrid.Y;
                 maxRegion.Y = currentLowerRightGrid.Y;
             }
-            GetObjectsInRegion(minRegion, maxRegion, possibleCollideList);
+            GetObjectsInRegion(minRegion, maxRegion, possibleCollideList); //get possible collided objects
 
         }
 
+        //useless for this Sprint
         public void GetPossibleCollidedObject1(MarioCharacter mario, ArrayList possibleCollideList)
         {
-            if (mario is null || possibleCollideList is null)
+            if (mario is null || possibleCollideList is null) //check null
                 throw new ArgumentNullException(nameof(mario));
             Point upperLeftGrid = GetGridPosition(mario.GetMinPosition());
             Point lowerRightGrid = GetGridPosition(mario.GetMaxPosition());
@@ -92,7 +97,8 @@ namespace Sprint1.CollideDetection
             {
                 for (int k = upperLeftGrid.X; k <= lowerRightGrid.X; k++)
                 {
-                    Console.WriteLine("grid = " + (i * MapSize.X + k) + "  i = " + i + "   k = " + k);
+                    //Save this console command to check values if the grids number exceed the array's length.
+                    //Console.WriteLine("grid = " + (i * MapSize.X + k) + "  i = " + i + "   k = " + k);
                     foreach (ICharacter character in Entities[i * MapSize.X + k])
                     {
                         if (!collideObjects.Contains(character) && !character.Parameters.IsHidden)
@@ -104,9 +110,10 @@ namespace Sprint1.CollideDetection
 
         public static Vector2 PredictNextPosition(Vector2 minPosition, Vector2 velocity, Vector2 heightAndWidth)
         {
+            //these values are both independent to Mario's real position.
             minPosition.X += velocity.X;
             minPosition.Y += velocity.Y;
-            LevelLoader.Stage.CheckBoundary(minPosition, heightAndWidth);
+            LevelLoader.Stage.CheckBoundary(minPosition, heightAndWidth); // check boundary
             return minPosition;
         }
 
@@ -128,7 +135,7 @@ namespace Sprint1.CollideDetection
 
         private void SetEntities(ArrayList characterList)
         {
-            for (int i = 0; i < Entities.Length; i++)
+            for (int i = 0; i < Entities.Length; i++) // initialize each element. Did once per map.
                 Entities[i] = new List<ICharacter>();
             foreach (ICharacter character in characterList)
             {
@@ -138,22 +145,19 @@ namespace Sprint1.CollideDetection
                 {
                     for (int column = minGridPosition.X; column <= maxGridPosition.X; column++)
                     {
+                        //put in the list only if the list didn't contain this object and this object is not null character.
                         if (!Entities[column + MapSize.X * row].Contains(character) && character.Type != Sprint1Main.CharacterType.Null)
                             Entities[column + MapSize.X * row].Add(character);
                     }
                 }
-                //Entities[minGridPosition.X + MapSize.X * minGridPosition.Y].Add(character);
-                //if (!Entities[maxGridPosition.X + MapSize.X * maxGridPosition.Y].Contains(character))
-                //{
-                //    Entities[maxGridPosition.X + MapSize.X * maxGridPosition.Y].Add(character);
-                //}
             }
         }
 
         private Point GetGridPosition(Vector2 position)
         {
+            // if position >= (800, 500), change them to (799, 499) and set to grid(7, 4)
             if (position.X >= ScreenSize.X)
-                position.X = ScreenSize.X - 1;
+                position.X = ScreenSize.X - 1; 
             if (position.Y >= ScreenSize.Y)
                 position.Y = ScreenSize.Y - 1;
             return new Point((int)position.X / (ScreenSize.X / MapSize.X), (int)position.Y / (ScreenSize.Y / MapSize.Y));

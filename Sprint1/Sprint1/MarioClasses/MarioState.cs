@@ -34,37 +34,25 @@ namespace Sprint1.MarioClasses
                 new CrouchState(), new RunningJumpState(), new DiedActionState() };
             powerStates = new IPowerState[] { new StandardState(), new SuperState(), new FireState(), new DiedState() };
             Mario = mario;
-            CurrentState = new int[] { 0, 0 };
+            CurrentState = new int[] { 0, 0 }; //CurrentState = {Current Action State, Current Power State}
         }
 
         #region Move Command Receiver
-        public void MoveUp()
-        {
-            actionStates[CurrentState[0]].Up(Mario);
-        }
+        public void MoveUp() { actionStates[CurrentState[0]].Up(Mario); }
 
-        public void MoveDown()
-        {
-            //(CurrentState[0] != 0 || CurrentState[1] != 0)
-            actionStates[CurrentState[0]].Down(Mario);
-        }
+        public void MoveDown() { actionStates[CurrentState[0]].Down(Mario); }
 
-        public void MoveLeft()
-        {
-            actionStates[CurrentState[0]].Left(Mario);
-        }
+        public void MoveLeft() { actionStates[CurrentState[0]].Left(Mario); }
 
-        public void MoveRight()
-        {
-            actionStates[CurrentState[0]].Right(Mario);
-        }
+        public void MoveRight() { actionStates[CurrentState[0]].Right(Mario); }
         #endregion
 
         #region Change Power
         public void ChangeToStandard()
         {
             if (powerStates[CurrentState[1]].Type == PowerType.Super && actionStates[CurrentState[0]].Type == ActionType.Crouch)
-                Mario.ChangeToIdle();
+                Mario.ChangeToIdle(); //Super Crouch -> Standard Idle
+            //reset to Idle if change from Died.
             powerStates[CurrentState[1]].Leave(Mario);
             Mario.ChangeTexture(0);
             CurrentState[1] = 0;
@@ -72,6 +60,7 @@ namespace Sprint1.MarioClasses
 
         public void ChangeToSuper()
         {
+            //reset to Idle if change from Died.
             powerStates[CurrentState[1]].Leave(Mario);
             Mario.ChangeTexture(1);
             CurrentState[1] = 1;
@@ -79,6 +68,7 @@ namespace Sprint1.MarioClasses
 
         public void ChangeToFire()
         {
+            //reset to Idle if change from Died.
             powerStates[CurrentState[1]].Leave(Mario);
             Mario.ChangeTexture(2);
             CurrentState[1] = 2;
@@ -86,31 +76,17 @@ namespace Sprint1.MarioClasses
 
         public void ChangeToDied()
         {
-            //Die code
             Mario.ChangeActionAndSprite(5);
-            Mario.Parameters.SetVelocity(0, 0);
+            Mario.Parameters.SetVelocity(0, 0); // stop moving
             CurrentState[1] = 3;
         }
         #endregion
 
-        public void Destroy()
-        {
-            powerStates[CurrentState[1]].Destroy(this);
-        }
+        public void Destroy() { powerStates[CurrentState[1]].Destroy(this); } // Power State Responser
 
         public void ChangeAction(int changeNumber)
         {
-            CurrentState[0] = changeNumber;
+            CurrentState[0] = changeNumber; // change action state in mario state.
         }
-
-        //public ActionType GetActionType()
-        //{
-        //    return actionStates[CurrentState[0]].Type;
-        //}
-
-        //public PowerType GetPowerType()
-        //{
-        //    return powerStates[CurrentState[1]].Type;
-        //}
     }
 }

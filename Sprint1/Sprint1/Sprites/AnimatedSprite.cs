@@ -12,6 +12,11 @@ namespace Sprint1
     {
         public Texture2D SpriteSheets { get; set; }
 
+        /*
+         * If an object has multiple action state such as Mario, each of its sprites should always have some same parameters.
+         * For example, velocity, position, facing direction and whether it exist.
+         * Store all this values in Parameters to keep all Sprites has the same value without using for loop to update each one.
+         */
         public MoveParameters Parameters { get; set; }
 
         private readonly float YAcceleration;
@@ -28,6 +33,10 @@ namespace Sprint1
 
         public virtual void Update(float timeOfFrame)
         {
+            /*
+             * One frame is a standard time for frame update. If we want the collision update velocity be different from 
+             * frame update velocity, we can directly change the value of MillisecondsPerFrame
+             */
             Parameters.TimeOfFrame += timeOfFrame;
             if (Parameters.TimeOfFrame == MillisecondsPerFrame)
             {
@@ -39,8 +48,10 @@ namespace Sprint1
                 }
             }
             Parameters.UpdatePositionAndVelocity(YAcceleration, timeOfFrame);
+            //check boundary after each update to make sure the whole object are in the screen.
             Vector2 checkedPosition = LevelLoader.Stage.CheckBoundary(new Vector2(Parameters.Position.X, Parameters.Position.Y - GetHeightAndWidth().X),
                 GetHeightAndWidth());
+            //use the checkedPosition as real position.
             Parameters.SetPosition(checkedPosition.X, checkedPosition.Y + GetHeightAndWidth().X);
         }
 

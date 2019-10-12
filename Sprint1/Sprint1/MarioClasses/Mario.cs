@@ -25,6 +25,7 @@ namespace Sprint1.MarioClasses
         public Mario(Texture2D[][] marioSpriteSheets, Vector2 location)
         {
             MarioState = new MarioState(this);
+            //initialize position and velocity, where the MoveParameter itself will not do.
             Parameters = new MoveParameters();
             Parameters.SetPosition(location.X, location.Y);
             Parameters.SetVelocity(0, 0);
@@ -42,15 +43,14 @@ namespace Sprint1.MarioClasses
         public void Update(float timeOfFrame)
         {
             //CurrentActionAndState[0] will locate the current action sprite.
-            Console.WriteLine("time = " + timeOfFrame + "    Mario.V = " + Parameters.Velocity);
             CurrentSprite.Update(timeOfFrame);
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
             //CurrentActionAndState[0] will locate the current action sprite.
-
             CurrentSprite.Draw(spriteBatch);
+            //The code below will use when the key should be "hold" instead of "pressed".
             //if (marioState.GetPowerType() != MarioState.PowerType.Died)
             //    ChangeToIdle();
         }
@@ -150,8 +150,8 @@ namespace Sprint1.MarioClasses
         //only change action sprites and action states because they always change together
         public void ChangeActionAndSprite(int changeNumber)
         {
-            CurrentSprite = ActionSprites[changeNumber];
-            MarioState.ChangeAction(changeNumber);
+            CurrentSprite = ActionSprites[changeNumber]; // change sprite in mario.
+            MarioState.ChangeAction(changeNumber); // change action state in mario state.
         }
 
     }

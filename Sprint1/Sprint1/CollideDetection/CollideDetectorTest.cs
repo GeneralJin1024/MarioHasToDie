@@ -24,22 +24,22 @@ namespace Sprint1.CollideDetection
         }
         public void Update()
         {
-            float timeOfFrame = 1;
-            Console.WriteLine("Point 1");
+            float timeOfFrame = 1; // total time for collision
             while (timeOfFrame > 0)
             {
                 List<CollidePair> firstContactPairs = new List<CollidePair>();
                 ArrayList possibleCollideList = new ArrayList();
-                Map.GetPossibleCollidedObject(Mario, possibleCollideList);
-                //Console.WriteLine("Finding = " + possibleCollideList.Count);
+                Map.GetPossibleCollidedObject(Mario, possibleCollideList); // add possible collided object in possibleCollideList
+                //generate collide pairs
                 foreach (ICharacter character in possibleCollideList)
                 {
                     CollidePair collidePair = new CollidePair(Mario, character);
-                    collidePair.GetFirstContactTime();
+                    collidePair.GetFirstContactTime(); // get first contact time and store it in CollidePair.Time
                     CollidePairs.Add(collidePair);
                 }
                 CollidePair[] pairs = CollidePairs.ToArray();
                 float longestTime = timeOfFrame;
+                // find the smallest first contact time.
                 for (int i = 0; i < pairs.Length; i++)
                 {
                     if (CollidePairs[i].Time <= longestTime && CollidePairs[i].Time >= 0)
@@ -48,17 +48,19 @@ namespace Sprint1.CollideDetection
                         firstContactPairs.Insert(0, CollidePairs[i]);
                     }
                 }
-                Mario.Update(longestTime);
+                Mario.Update(longestTime); // Update with smallest first contact time.
+                //Update all objects
                 foreach (ICharacter character in CharacterList)
                     character.Update(longestTime);
+                //Do collision response. Use List since we don't know whether more than one objects collide with mario at the same time.
                 foreach (CollidePair pair in firstContactPairs)
                 {
                     if (pair.Time == longestTime)
                         pair.Collide();
                 }
-                CollidePairs.Clear();
-                firstContactPairs.Clear();
-                timeOfFrame -= longestTime;
+                CollidePairs.Clear(); // clear collide pairs
+                firstContactPairs.Clear(); //clear sorted collide pairs
+                timeOfFrame -= longestTime; // change the rest of time.
             }
         }
 
