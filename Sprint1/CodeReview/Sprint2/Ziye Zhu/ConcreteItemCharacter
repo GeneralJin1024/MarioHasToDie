@@ -1,0 +1,10 @@
+Reviewer: Ziye Zhu
+Date: 10/12/2019
+Sprint2
+Files: Sprites/ ItemSprites
+Author: Ziye Zhu, Zhenhao Lu, Shengyu Jin
+
+Comment:
+	1. By extending animatedSprite, avoid writing the same code. 
+    We are allowed to use the methods of update and draw of the base class.
+Time: 30 min
