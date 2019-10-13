@@ -44,16 +44,7 @@ namespace Sprint1.FactoryClasses
             star = Sprint1Main.Game.Content.Load<Texture2D>("ItemSprite/star");
             pipe = Sprint1Main.Game.Content.Load<Texture2D>("ItemSprite/PipeSpriteSheet");
         }
-        public void AddToList(ArrayList spriteList)
-        {
-            //initialize the sprites and add the sprites to the list
-            //spriteList.Add(GetCoin());
-            //spriteList.Add(GetFlower());
-            //spriteList.Add(GetGreenMushroom());
-            //spriteList.Add(GetRedMushroom());
-            //spriteList.Add(GetStar());
-            //spriteList.Add(GetPipe());
-        }
+        
         public ItemCharacter GetPipe(Vector2 pos)
         {
             return new PipeCharacter(pipe, new Point(1, 1), pos);

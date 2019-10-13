@@ -11,17 +11,35 @@ namespace Sprint1.ItemClasses
     {
 
        
-       public abstract Sprint1Main.CharacterType Type { get; set; }
-      
+        public abstract Sprint1Main.CharacterType Type { get; set; }
+
+        private bool isBump;
+        private float bumpHeight;
+        private Point positionOffset;
         protected readonly ItemSprite item;
         public MoveParameters Parameters { get; }
         public ItemCharacter(Texture2D texture, Point rowsAndColumns, Vector2 location)
         {
             item = new ItemSprite(texture, location, rowsAndColumns);
             Parameters = item.Parameters;
+            isBump = false;
         }
 
-        public void Update(float timeOfFrame) { item.Update(timeOfFrame); }
+        public void Update(float timeOfFrame)
+        {
+            item.Update(timeOfFrame);
+            if (isBump)
+            {
+                //WARNING:Check next Sprint.
+                Parameters.SetPosition(0, Parameters.Position.Y - (positionOffset.Y != 0 ? Parameters.Velocity.Y * timeOfFrame : 0));
+                //if item is at the height, set bump to false.
+                if (Parameters.Position.Y < bumpHeight)
+                {
+                    isBump = false;
+                    Parameters.SetPosition(Parameters.Position.X, bumpHeight);
+                }
+            }
+        }
         public void Draw(SpriteBatch spriteBatch)
         {
             Console.WriteLine(item.Parameters.IsHidden + "   Position = " + Parameters.Position);
@@ -36,7 +54,16 @@ namespace Sprint1.ItemClasses
             return new Vector2(Parameters.Position.X, Parameters.Position.Y - item.GetHeightAndWidth().X);
         }
 
-     
+        public void Bumping(Vector2 startP, float minY, Vector2 blockSpeed)
+        {
+            //set the item's position to startP, and set the bump height and speed
+            positionOffset = new Point(0, 1);
+            Parameters.SetVelocity(0, blockSpeed.Y * 2);
+            Parameters.SetPosition(startP.X, startP.Y);
+            bumpHeight = minY;
+            isBump = true;
+        }
+
         public abstract void MarioCollide(bool specialCase);
         public abstract Vector2 GetHeightAndWidth();
     }

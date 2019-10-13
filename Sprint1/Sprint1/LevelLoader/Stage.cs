@@ -19,18 +19,13 @@ namespace Sprint1.LevelLoader
         public Sprint1Main Game { get; set; }
         public static Vector2 Boundary { get; private set; }
 
-        List<IController> controllerList;
-        private ArrayList spriteList;
+        readonly List<IController> controllerList;
         //private ArrayList factoryList;
         private int TimeSinceLastFrame;
         private int MillisecondsPerFrame;
         private CollisionDetector Collision;
-        public List<IController> Controllers
-        {
-            get { return this.controllerList; }
-        }
 
-        public GraphicsDeviceManager graphicsDevice
+        public GraphicsDeviceManager GraphicsDevice
         {
             get { return Game.Graphics; }
         }
@@ -45,13 +40,13 @@ namespace Sprint1.LevelLoader
         {
             //ConfigurationManager.RefreshSection("Configuration");
             //ConfigurationReaderAndWriter.ReadAllSettings();
-            graphicsDevice.PreferredBackBufferWidth = ConfigurationReaderAndWriter.ReadSetting("WindowWidth");
+            GraphicsDevice.PreferredBackBufferWidth = ConfigurationReaderAndWriter.ReadSetting("WindowWidth");
             //!= -1 ? ConfigurationReaderAndWriter.ReadSetting("WindowWidth") : graphicsDevice.GraphicsDevice.Viewport.Width;  // set this value to the desired width of your window
-            graphicsDevice.PreferredBackBufferHeight = ConfigurationReaderAndWriter.ReadSetting("WindowHeight");
+            GraphicsDevice.PreferredBackBufferHeight = ConfigurationReaderAndWriter.ReadSetting("WindowHeight");
             //!= -1 ? ConfigurationReaderAndWriter.ReadSetting("WindowHeight") : graphicsDevice.GraphicsDevice.Viewport.Height;   // set this value to the desired height of your window
-            graphicsDevice.ApplyChanges();
+            GraphicsDevice.ApplyChanges();
             MillisecondsPerFrame = 100;
-            Boundary = new Vector2(graphicsDevice.PreferredBackBufferWidth, graphicsDevice.PreferredBackBufferHeight);       
+            Boundary = new Vector2(GraphicsDevice.PreferredBackBufferWidth, GraphicsDevice.PreferredBackBufferHeight);       
             
         }
 
@@ -64,6 +59,8 @@ namespace Sprint1.LevelLoader
         }
         public void Update(GameTime gameTime)
         {
+            if (gameTime == null)
+                throw new ArgumentNullException(nameof(gameTime));
             foreach (IController controller in controllerList)
                 controller.Update();
             TimeSinceLastFrame += gameTime.ElapsedGameTime.Milliseconds;
@@ -75,24 +72,18 @@ namespace Sprint1.LevelLoader
 
         }
 
-        public void Draw()
+        internal void SpriteLocationReader(int levelIndex, ArrayList spriteList, ArrayList backgroundList)
         {
-            //do nothing here
-        }
-
-        internal void spriteLocationReader(int levelIndex, ArrayList spriteList, ArrayList backgroundList)
-        {
-            ConfigurationLibrary.LevelSection myLevelSection = (ConfigurationLibrary.LevelSection)System.Configuration.ConfigurationManager.GetSection("Level" + levelIndex) as LevelSection;
-            if (myLevelSection == null)
+            if (!((LevelSection)ConfigurationManager.GetSection("Level" + levelIndex) is LevelSection myLevelSection))
             {
                 Console.WriteLine("Failed to load Level" + levelIndex);
             }
             else
             {
-                Game.Scene.Mario = PlayerFactory.FactoryMethod2(myLevelSection.Player[1].SpriteName, StringToVecter2(myLevelSection.Player[1].SpriteLocation));       
+                Game.Scene.Mario = PlayerFactory.FactoryMethod2(myLevelSection.Player[1].SpriteName, StringToVecter2(myLevelSection.Player[1].SpriteLocation));
                 for (int i = 1; i < myLevelSection.Backgrounds.Count; i++)
                 {
-                    backgroundList.Add(BackgroundFactory.Instance.FactoryMethod2(myLevelSection.Backgrounds[i].SpriteName, StringToVecter2(myLevelSection.Backgrounds[i].SpriteLocation)));        
+                    backgroundList.Add(BackgroundFactory.Instance.FactoryMethod2(myLevelSection.Backgrounds[i].SpriteName, StringToVecter2(myLevelSection.Backgrounds[i].SpriteLocation)));
                 }
                 for (int i = 1; i < myLevelSection.Items.Count; i++)
                 {

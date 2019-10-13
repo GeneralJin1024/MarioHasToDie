@@ -14,11 +14,11 @@ namespace Sprint1
 {
     public class Scene : IDisposable
     {
-        Stage stage;
+        readonly Stage stage;
         SpriteBatch spriteBatch;
         private int level;
-        private ArrayList characterList;
-        private ArrayList BackgroundList;
+        private readonly ArrayList characterList;
+        private readonly ArrayList BackgroundList;
         public MarioCharacter Mario { get; internal set; }
         public Stage Stage
         {
@@ -44,7 +44,7 @@ namespace Sprint1
 
         public void LoadContent()
         {
-            stage.spriteLocationReader(level, characterList, BackgroundList);
+            stage.SpriteLocationReader(level, characterList, BackgroundList);
             spriteBatch = new SpriteBatch(stage.Game.GraphicsDevice);
 
             //factoryList.Add(BlockFactory.Instance);
@@ -68,7 +68,6 @@ namespace Sprint1
 
         public void Draw()
         {
-            stage.Draw();
             spriteBatch.Begin(SpriteSortMode.BackToFront, BlendState.AlphaBlend);
             Console.WriteLine("Length = " + characterList.Count);
             foreach (ISprite sprite in BackgroundList)

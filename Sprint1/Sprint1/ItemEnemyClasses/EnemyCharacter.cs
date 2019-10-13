@@ -12,10 +12,9 @@ namespace Sprint1.ItemClasses
 
         public Sprint1Main.CharacterType Type { get; set; } = Sprint1Main.CharacterType.Enemy;
         
-        private ISprite liveEnemy;
-        private ISprite diedEnemy;
+        readonly private ISprite liveEnemy;
+        readonly private ISprite diedEnemy;
         private ISprite currentSprite;
-        private Boolean isDead = false;
         public MoveParameters Parameters { get; }
         public EnemyCharacter(Texture2D[] texture, Point[] rowsAndColumns, MoveParameters moveParameters)
         {
@@ -45,7 +44,6 @@ namespace Sprint1.ItemClasses
         {
             if (specialCase)
             {
-                 isDead = true;
                  currentSprite = diedEnemy;
             }
         }

@@ -43,13 +43,6 @@ namespace Sprint1.FactoryClasses
              redkoopa = new Texture2D[2] { Sprint1Main.Game.Content.Load<Texture2D>("EnemySprite/redkoopa"),
                 Sprint1Main.Game.Content.Load<Texture2D>("EnemySprite/deadRedkoopa")};
         }
-        public void AddToList(ArrayList spriteList)
-        {
-            //initialize the sprites and add the sprites to the list
-            //spriteList.Add(GetGreenKoopa(new Vector2(400, 200)));
-            //spriteList.Add(GetRedKoopa(new Vector2(300, 200)));
-            //spriteList.Add(GetGoomba(new Vector2(100,200)));
-        }
         public EnemyCharacter GetGoomba(MoveParameters moveParameters)
         {
             Point[] rowAndColumn = new Point[2] { new Point(1, 2), new Point(1, 1) };

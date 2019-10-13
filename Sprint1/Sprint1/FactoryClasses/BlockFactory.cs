@@ -43,18 +43,7 @@ namespace Sprint1.FactoryClasses
                 Sprint1Main.Game.Content.Load<Texture2D>("BlockSprites/mario-question-blocks"),
                 Sprint1Main.Game.Content.Load<Texture2D>("BlockSprites/mario-shiny-block")};
         }
-        public void AddToList(ArrayList spriteList)
-        {
-            //initialize the sprites and add the sprites to the list
-            float x = Sprint1Main.Game.GraphicsDevice.Viewport.Width / 8;
-            float y = Sprint1Main.Game.GraphicsDevice.Viewport.Height / 2;
-            //spriteList.Add(qBlockTest);
-            //spriteList.Add(hiddenBlockTest);
-            //spriteList.Add(brickBlockTest);
-            //spriteList.Add(hitBlockTest);
-            //spriteList.Add(floorBlockTest);
-            //spriteList.Add(stairBlockTest);
-        }
+        
         public BlockCharacter GetBrickBlock(MoveParameters moveParameters, ArrayList items)
         {
             return new BlockCharacter(new BrickBlockSprite(BlockTextures[0], moveParameters, items));

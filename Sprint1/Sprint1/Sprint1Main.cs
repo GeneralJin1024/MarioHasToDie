@@ -35,12 +35,6 @@ namespace Sprint1
 
         private GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
-
-        //private Mario Mario;
-        //private ArrayList factoryList;
-        //private ArrayList controllerList;
-        //private ArrayList spriteList;
-        //private ArrayList BackgroundList;
         #region Fonts
         public Color FontColor { get; set; } = Color.DarkBlue;
         private SpriteFont instructionFont;
@@ -85,7 +79,7 @@ namespace Sprint1
         public Sprint1Main()
         {
             Game = this;
-            graphics = new GraphicsDeviceManager(this);
+            Graphics = new GraphicsDeviceManager(this);
             stage = new Stage(this);
             
             Content.RootDirectory = "Content";
@@ -103,13 +97,8 @@ namespace Sprint1
         protected override void Initialize()
         {
             scenes[scene - 1].Initalize(scene);
-            //spriteList = new ArrayList();
-            //BackgroundList = new ArrayList();
-            //factoryList = new ArrayList();
-            //initialize menu and start from it
             GameMenu = new Menu(this);
             MenuMode = true;
-            //MillisecondsPerFrame = 100;
             base.Initialize();
         }
 
@@ -120,22 +109,9 @@ namespace Sprint1
         protected override void LoadContent()
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            // Create a new SpriteBatch, which can be used to draw textures.
-            //spriteBatch = new SpriteBatch(GraphicsDevice);
-            //load mario texture and construct mario. Then add mario into sprite list.
-            //add factories.
-            //factoryList.Add(MarioFactory.Instance);
+
             scenes[scene - 1].LoadContent();
            
-            //factoryList.Add(EnemyFactory.Instance);
-            //factoryList.Add(BackgroundFactory.Instance);
-            
-            //get Mario from Mario factory.
-            
-            //controllerList.Add(new KeyboardController(Mario, this));
-            //controllerList.Add(new KeyboardController(Mario, this, 
-            //    new Bricks[] { BlockFactory.Instance.qBlockTest, BlockFactory.Instance.hiddenBlockTest, BlockFactory.Instance.brickBlockTest }));
-            //controllerList.Add(new GamepadController(Mario, this));
 
             #region Fonts
             instructionFont = Content.Load<SpriteFont>("arial");

@@ -22,7 +22,7 @@ namespace Sprint1.BlockClasses
         }
         public override void Update(float frameTime)
         {
-            if (bType == BlockType.Destroyed)
+            if (BType == BlockType.Destroyed)
             {
                 dPos.X += positionOffset.X != 0 ? spriteSpeed.X * frameTime : 0;
                 dPos.Y += positionOffset.Y != 0 ? spriteSpeed.Y * frameTime : 0;
@@ -40,7 +40,7 @@ namespace Sprint1.BlockClasses
         }
         public override void Draw(SpriteBatch spriteBatch)
         {
-            if (bType == BlockType.Destroyed)
+            if (BType == BlockType.Destroyed)
             {
                 for (int index = 0; index < 4; index++)
                     spriteBatch.Draw(SpriteSheets, new Vector2(destroyedBrickPosX[index], destroyedBrickPosY[index]), new Rectangle(0, 0, (int)GetHeightAndWidth().Y / 2, (int)GetHeightAndWidth().X / 2), Color.White);

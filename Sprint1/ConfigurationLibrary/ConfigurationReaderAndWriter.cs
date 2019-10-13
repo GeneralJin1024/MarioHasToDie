@@ -8,31 +8,9 @@ using System.Threading.Tasks;
 namespace ConfigurationLibrary
 {
     //Read built in Sections
-    public class ConfigurationReaderAndWriter
+    public static class ConfigurationReaderAndWriter
     {
-        public static void ReadAllSettings()
-        {
-            try
-            {
-                var appSettings = ConfigurationManager.AppSettings;
-                if (appSettings.Count == 0)
-                {
-                    Console.WriteLine("AppSettings is empty.");
-                }
-                else
-                {
-                    foreach (var key in appSettings.AllKeys)
-                    {
-                        Console.WriteLine("Key:{0} Value:{1}", key, appSettings[key]);
-                    }
-                }
-            }
-            catch (ConfigurationErrorsException)
-            {
-                Console.WriteLine("Error reading app settings");
-            }
-        }
-
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1031:Do not catch general exception types", Justification = "<挂起>")]
         public static int ReadSetting(string key)
         {
             try
@@ -49,30 +27,6 @@ namespace ConfigurationLibrary
             }
         }
 
-        public static void AddUpdateAppSettings(string key, string value)
-        {
-            try
-            {
-                var configFile = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
-                var settings = configFile.AppSettings.Settings;
-                if (settings[key] == null)
-                {
-                    settings.Add(key, value);
-                }
-                else
-                {
-                    settings[key].Value = value;
-                }
-                configFile.Save(ConfigurationSaveMode.Modified);
-                ConfigurationManager.RefreshSection(configFile.AppSettings.SectionInformation.Name);
-            }
-            catch (ConfigurationErrorsException)
-            {
-                Console.WriteLine("Error writing app settings");
-            }
-        }
-
-
     }
 
     //Read Custom Sections
@@ -87,7 +41,7 @@ namespace ConfigurationLibrary
             get
             {
                 SpritesCollection playerCollection =
-                (SpritesCollection)base["Player"];
+                (SpritesCollection)base[nameof(Player)];
                 return playerCollection;
             }
         }
@@ -99,7 +53,7 @@ namespace ConfigurationLibrary
             get
             {
                 SpritesCollection enemysCollection =
-                (SpritesCollection)base["Enemys"];
+                (SpritesCollection)base[nameof(Enemys)];
                 return enemysCollection;
             }
         }
@@ -111,7 +65,7 @@ namespace ConfigurationLibrary
             get
             {
                 SpritesCollection BlocksCollection =
-                (SpritesCollection)base["Blocks"];
+                (SpritesCollection)base[nameof(Blocks)];
                 return BlocksCollection;
             }
         }
@@ -123,7 +77,7 @@ namespace ConfigurationLibrary
             get
             {
                 SpritesCollection itemsCollection =
-                (SpritesCollection)base["Items"];
+                (SpritesCollection)base[nameof(Items)];
                 return itemsCollection;
             }
         }
@@ -135,7 +89,7 @@ namespace ConfigurationLibrary
             get
             {
                 SpritesCollection backgroundsCollection =
-                (SpritesCollection)base["Backgrounds"];
+                (SpritesCollection)base[nameof(Backgrounds)];
                 return backgroundsCollection;
             }
         }
@@ -174,11 +128,11 @@ namespace ConfigurationLibrary
         {
             get
             {
-                return (string)this["SpriteID"];
+                return (string)this[nameof(SpriteID)];
             }
             set
             {
-                this["SpriteID"] = value;
+                this[nameof(SpriteID)] = value;
             }
         }
 
@@ -189,11 +143,11 @@ namespace ConfigurationLibrary
         {
             get
             {
-                return (string)this["SpriteName"];
+                return (string)this[nameof(SpriteName)];
             }
             set
             {
-                this["SpriteName"] = value;
+                this[nameof(SpriteName)] = value;
             }
         }
 
@@ -204,11 +158,11 @@ namespace ConfigurationLibrary
         {
             get
             {
-                return (string)this["SpriteLocation"];
+                return (string)this[nameof(SpriteLocation)];
             }
             set
             {
-                this["SpriteLocation"] = value;
+                this[nameof(SpriteLocation)] = value;
             }
         }
         //add other properties here.
@@ -249,14 +203,6 @@ namespace ConfigurationLibrary
             ConfigurationElement CreateNewElement()
         {
             return new GameConfigElement();
-        }
-
-
-        protected override
-            ConfigurationElement CreateNewElement(
-            string elementID)
-        {
-            return new GameConfigElement(elementID);
         }
 
 

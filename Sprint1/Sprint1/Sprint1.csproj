@@ -69,7 +69,6 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="BlockClasses\BlockCharacter.cs" />
-    <Compile Include="BlockClasses\BlockCommands.cs" />
     <Compile Include="BlockClasses\BrickStates.cs" />
     <Compile Include="BlockClasses\IBlockStates.cs" />
     <Compile Include="CollideDetection\CollideDetectorTest.cs" />
@@ -91,6 +90,7 @@
     <Compile Include="FactoryClasses\BackgroundFactory.cs" />
     <Compile Include="FactoryClasses\BlockFactory.cs" />
     <Compile Include="FactoryClasses\PlayerFactory.cs" />
+    <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="ICharacter.cs" />
     <Compile Include="ICommand.cs" />
     <Compile Include="IFactory.cs" />

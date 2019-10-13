@@ -19,7 +19,7 @@ namespace Sprint1.BlockClasses
     //public for genernate blocks
     class Blocks : AnimatedSprite
     {
-        public BlockType bType { get; protected set; }
+        public BlockType BType { get; protected set; }
         private readonly IBlockStates[] bStates;
         public IBlockStates currentbState;
         protected Vector2 bPosition;
@@ -33,7 +33,7 @@ namespace Sprint1.BlockClasses
         public Blocks(Texture2D sheet, MoveParameters moveParameters, Point rowAndColumn, BlockType type, ArrayList itemList) 
             : base(sheet, rowAndColumn, moveParameters)
         {
-            bType = type;
+            BType = type;
             items = itemList;
             shownItems = new ArrayList { };
             containItems = itemList.Count != 0 ? true : false;
@@ -45,7 +45,7 @@ namespace Sprint1.BlockClasses
 
         private IBlockStates GenerateCurrentState()
         {
-            switch (bType)
+            switch (BType)
             {
                 case BlockType.Hidden :
                     return bStates[0];
@@ -59,19 +59,19 @@ namespace Sprint1.BlockClasses
         #region CommandReciver
         public void ChangeToBrick()
         {
-            bType = BlockType.BNormal;
+            BType = BlockType.BNormal;
             SpriteSheets = BlockFactory.BlockTextures[0];
-            //currentbState = GenerateCurrentState(); for key-map specific test 
+            currentbState = GenerateCurrentState();
         }
         private void ChangeToUsed()
         {
-            bType = BlockType.Used;
+            BType = BlockType.Used;
             base.ResizeFrame(BlockFactory.BlockTextures[2], new Point(4, 1));          
             currentbState = GenerateCurrentState();
         }
         public void ChangeToDestroyed()
         {
-            bType = BlockType.Destroyed;
+            BType = BlockType.Destroyed;
             currentbState = GenerateCurrentState();
         }
         public void Bumping()
@@ -96,9 +96,10 @@ namespace Sprint1.BlockClasses
                     {
                         ItemCharacter item = GenerateItems();
                         shownItems.Add(item);
-                        //item.Bumping(bPosition, bPosition.Y - 3 * FrameSize.Y, spriteSpeed);
+                        item.Bumping(bPosition, bPosition.Y - 3 * this.GetHeightAndWidth().X, spriteSpeed);
                         RemoveItem();
                     }
+                    else if (BType == BlockType.QNormal) ChangeToUsed();
                     spriteSpeed.Y *= -1;
                     bPosition.Y = MinY;
                 }
@@ -116,7 +117,7 @@ namespace Sprint1.BlockClasses
         {
             foreach (AnimatedSprite sprite in shownItems)
                 sprite.Draw(spriteBatch);
-            if (bType != BlockType.Hidden && bType != BlockType.Destroyed)
+            if (BType != BlockType.Hidden && BType != BlockType.Destroyed)
             {
                 base.Draw(spriteBatch);
             }
