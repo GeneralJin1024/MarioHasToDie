@@ -242,3 +242,9 @@ C:\Users\72957\source\repos\SmartMario\Sprint1\Sprint1\bin\Windows\x86\Debug\Con
 C:\Users\13667\source\repos\SmartMario\Sprint1\Sprint1\bin\Windows\x86\Debug\ConfigurationLibrary.dll
 C:\Users\13667\source\repos\SmartMario\Sprint1\Sprint1\bin\Windows\x86\Debug\ConfigurationLibrary.pdb
 C:\Users\72957\source\repos\SmartMario\Sprint1\Sprint1\bin\Windows\x86\Debug\SharpDX.MediaFoundation.xml
+C:\Users\zhangjian\source\repos\SmartMario\Sprint1\Sprint1\bin\Windows\x86\Debug\Content\EnemySprite\deadGoomba.xnb
+C:\Users\zhangjian\source\repos\SmartMario\Sprint1\Sprint1\bin\Windows\x86\Debug\Content\EnemySprite\deadGreenKoopa.xnb
+C:\Users\zhangjian\source\repos\SmartMario\Sprint1\Sprint1\bin\Windows\x86\Debug\Content\EnemySprite\deadRedKoopa.xnb
+C:\Users\zhangjian\source\repos\SmartMario\Sprint1\Sprint1\bin\Windows\x86\Debug\Sprint1.exe.config
+C:\Users\zhangjian\source\repos\SmartMario\Sprint1\Sprint1\bin\Windows\x86\Debug\ConfigurationLibrary.dll
+C:\Users\zhangjian\source\repos\SmartMario\Sprint1\Sprint1\bin\Windows\x86\Debug\ConfigurationLibrary.pdb
