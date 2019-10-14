@@ -44,6 +44,7 @@ namespace Sprint1.ItemClasses
         {
             if (specialCase)
             {
+                Type = Sprint1Main.CharacterType.DiedEnemy;
                  currentSprite = diedEnemy;
             }
         }
