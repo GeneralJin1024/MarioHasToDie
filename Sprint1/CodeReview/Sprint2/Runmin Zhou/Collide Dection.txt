@@ -1,0 +1,15 @@
+Reviewer: Runmin Zhou
+Date: 10/14/2019
+Sprint2
+Files: CollideDectorTest.cs, CollidePairTest.cs, TileMapTest.cs
+Author: Zhenghao Lu
+
+Comments:
+	1. Good use method to detect all of the possible collide object. Using velocity's deriction really reduce lots of useless detection.
+	2. The switch used in the CollidePairTest is very good which avoid lots of if else.
+	3. Good use method to distinguish all of the objects to their own tile map.
+	4. Good ideas to create objects' type.
+Time: 100 min
+hypothesis:
+    1. It's good for future use.
+    2. When there are more than one moving object, the method may be needed modified. 
