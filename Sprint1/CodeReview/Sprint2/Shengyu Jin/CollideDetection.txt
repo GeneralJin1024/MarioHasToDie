@@ -1,0 +1,17 @@
+Reviewer: Shengyu Jin
+Date: 10/14/2019
+Sprint2
+Files: MarioCharacter.cs, ICharacter.cs
+Author: Zhenghao Lu
+
+Comments:
+	1. ICharacter is a very helpful interface while leaving MarioCharacter Class along(not implementing the interface)
+	is not that helpful. There will be only some minor changes when implementing the class to the interface but a lot help
+	in terms of maintainability.
+	2. When it comes to using the MarioFactory method, you will generate an object of the MarioCharacter class rather than 
+	an instance of ICharacter Interface like the other Character classes. It may lead to a problem that Mario is a special case which needs
+	individual care. 
+Time: 1hrs.
+Hypothesis:
+	Since the MarioCharacter Class is very similar to other Character Classes, it is resonable to make it inherit from the ICharacter Interface.
+	For now, I have to create another factory method to take care of the return of the MarioCharacter object, leaving the factory method from IFactory empty.
