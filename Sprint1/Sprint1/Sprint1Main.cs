@@ -28,7 +28,7 @@ namespace Sprint1
     {
         public enum CharacterType
         {
-            Block, Enemy, DiedEnemy, Flower, Mushroom, Star, Coin, Pipe, Null
+            Mario, Block, Enemy, DiedEnemy, Flower, Mushroom, Star, Coin, Pipe, Fireball, Null
         }
 
         

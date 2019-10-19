@@ -6,11 +6,14 @@ using System.Threading.Tasks;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
 using System.ComponentModel;
+using Sprint1.LevelLoader;
 
 namespace Sprint1.MarioClasses
 {
     public class Mario : ISprite
     {
+        public static float XVelocity { get; } = 4;
+        public static float YVelocity{ get;} = -16; // -16为初始值
         public Texture2D SpriteSheets { get; set; }//useless variable
         public MoveParameters Parameters { get; set; }
         public MarioState MarioState { get; }
@@ -21,14 +24,16 @@ namespace Sprint1.MarioClasses
         private readonly Texture2D[][] MarioSpriteSheets;
         //{Idle, Jump, Walking, Crouch}
         private readonly ISprite[] ActionSprites;
+        private bool JumpHigher;
 
         public Mario(Texture2D[][] marioSpriteSheets, Vector2 location)
         {
             MarioState = new MarioState(this);
             //initialize position and velocity, where the MoveParameter itself will not do.
-            Parameters = new MoveParameters();
+            Parameters = new MoveParameters(true);
             Parameters.SetPosition(location.X, location.Y);
             Parameters.SetVelocity(0, 0);
+            JumpHigher = false;
             //store 13 Mario textures
             MarioSpriteSheets = marioSpriteSheets ?? throw new ArgumentNullException(nameof(marioSpriteSheets));
             ActionSprites = new ISprite[6] { new AnimatedSprite(MarioSpriteSheets[0][0], new Point(1, 1), Parameters),
@@ -43,7 +48,22 @@ namespace Sprint1.MarioClasses
         public void Update(float timeOfFrame)
         {
             //CurrentActionAndState[0] will locate the current action sprite.
+            // && marioState.GetActionType() != MarioState.ActionType.Jump
+            Console.WriteLine("Before Mario Velocity = " + Parameters.Velocity + "Current State = " + MarioState.GetActionType);
+            if (JumpHigher)
+            {
+                Parameters.SetVelocity(Math.Abs(Parameters.Velocity.X), Parameters.Velocity.Y - 0.5f);
+                JumpHigher = false;
+            }
+            if (Parameters.Velocity.Y > 0 && timeOfFrame > 0)
+            {
+                ChangeToFalling();//change to falling
+            }
             CurrentSprite.Update(timeOfFrame);
+            if (Parameters.Position.Y == Stage.Boundary.Y)
+                MarioState.ChangeToDied();
+            //marioState.Return();
+            Console.WriteLine("After Mario Velocity = " + Parameters.Velocity + "Current State = " + MarioState.GetActionType);
         }
 
         public void Draw(SpriteBatch spriteBatch)
@@ -101,20 +121,20 @@ namespace Sprint1.MarioClasses
         public void ChangeToJump(float yVelocity)
         {
             ChangeActionAndSprite(1);
-            Parameters.SetVelocity(0, yVelocity);
+            Parameters.SetVelocity(Math.Abs(Parameters.Velocity.X), yVelocity);
         }
 
         public void ChangeToWalk()
         {
             ChangeActionAndSprite(2);
-            Parameters.SetVelocity(5, 0);
+            Parameters.SetVelocity(XVelocity, Parameters.Velocity.Y);
         }
 
         public void ChangeToCrouch()
         {
             //Do nothing if Mario power is standard
             ChangeActionAndSprite(3);
-            Parameters.SetVelocity(0, 5);
+            Parameters.SetVelocity(0, 0);
         }
 
         public void ChangeToRunningJump(float yVelocity)
@@ -122,17 +142,11 @@ namespace Sprint1.MarioClasses
             ChangeActionAndSprite(4);
             Parameters.SetVelocity(5, yVelocity);
         }
+
+        public void ChangeToFalling() { ChangeActionAndSprite(4); }
         #endregion Action Change
 
-        #region Power Command Receiver Method
-        // No matter what current power state is, the first three command do 
-        //the same thing -- change to target power state.
-        public void MoveStandard() { MarioState.ChangeToStandard(); }
-        public void MoveSuper() { MarioState.ChangeToSuper(); }
-        public void MoveFire() { MarioState.ChangeToFire(); }
-        public void MoveDestroy() { MarioState.Destroy(); }
-        #endregion Power Command Receiver Method
-
+        public void Jumphigher() { JumpHigher = true; }
         // give Block to justify
         public bool IsSuper()
         {

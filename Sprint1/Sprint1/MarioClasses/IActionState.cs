@@ -13,5 +13,6 @@ namespace Sprint1.MarioClasses
         void Down(Mario mario);
         void Left(Mario mario);
         void Right(Mario mario);
+        void Return(Mario mario);
     }
 }

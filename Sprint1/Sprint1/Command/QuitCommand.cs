@@ -21,4 +21,19 @@ namespace Sprint1
             game.Exit();
         }
     }
+    class ThrowFireCommand : ICommand
+    {
+        private MarioCharacter Mario;
+        public ThrowFireCommand(MarioCharacter mario) { Mario = mario; }
+        public void Execute() { Mario.ThrowFire(); }
+    }
+    class ReturnCommand : ICommand
+    {
+        private MarioCharacter Mario;
+        public ReturnCommand(MarioCharacter mario) { Mario = mario; }
+        public void Execute()
+        {
+            Mario.Return();
+        }
+    }
 }

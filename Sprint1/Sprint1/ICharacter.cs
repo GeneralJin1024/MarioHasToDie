@@ -12,7 +12,7 @@ namespace Sprint1
 {
     public interface ICharacter
     {
-        Sprint1Main.CharacterType Type { get; set; } // used to help Mario to know what he should do.
+        Sprint1Main.CharacterType Type { get;} // used to help Mario to know what he should do.
         MoveParameters Parameters { get; } //make CollideDetector know its velocity and whether it is hidden
         void Update(float timeOfFrame);
         void Draw(SpriteBatch spriteBatch);
@@ -22,5 +22,6 @@ namespace Sprint1
         Vector2 GetMinPosition(); // get the position of left up corner
         Vector2 GetMaxPosition(); //get the position of right down corner
         Vector2 GetHeightAndWidth(); //get the height and width of object
+        void BlockCollide(bool isBottom);
     }
 }

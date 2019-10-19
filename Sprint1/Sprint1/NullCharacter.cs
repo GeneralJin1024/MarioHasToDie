@@ -16,7 +16,7 @@ namespace Sprint1
         public NullCharacter()
         {
             Type = Sprint1Main.CharacterType.Null;
-            Parameters = new MoveParameters();
+            Parameters = new MoveParameters(false);
         }
 
         public void Draw(SpriteBatch spriteBatch)
@@ -48,5 +48,6 @@ namespace Sprint1
         {
             //do nothing
         }
+        public void BlockCollide(bool isBottom) { }
     }
 }

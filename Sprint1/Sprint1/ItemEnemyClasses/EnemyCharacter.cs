@@ -48,6 +48,15 @@ namespace Sprint1.ItemClasses
                  currentSprite = diedEnemy;
             }
         }
+        public void BlockCollide(bool isBottom)
+        {
+            if (isBottom)
+            {
+                Parameters.SetVelocity(Parameters.Velocity.X, 0);
+            }
+            else
+                Parameters.IsLeft = !Parameters.IsLeft;
+        }
         public Vector2 GetHeightAndWidth()
         {
             return currentSprite.GetHeightAndWidth();

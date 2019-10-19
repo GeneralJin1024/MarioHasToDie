@@ -18,6 +18,7 @@ namespace Sprint1
         SpriteBatch spriteBatch;
         private int level;
         private readonly ArrayList characterList;
+        private ArrayList FireBallList;
         private readonly ArrayList BackgroundList;
         public MarioCharacter Mario { get; internal set; }
         public Stage Stage
@@ -29,6 +30,7 @@ namespace Sprint1
             this.stage = stage;
             characterList = new ArrayList();
             BackgroundList = new ArrayList();
+            FireBallList = new ArrayList();
         }
 
         public void Add(ICharacter character)
@@ -44,7 +46,7 @@ namespace Sprint1
 
         public void LoadContent()
         {
-            stage.SpriteLocationReader(level, characterList, BackgroundList);
+            stage.SpriteLocationReader(level, characterList, BackgroundList, FireBallList);
             spriteBatch = new SpriteBatch(stage.Game.GraphicsDevice);
 
             //factoryList.Add(BlockFactory.Instance);
@@ -54,7 +56,7 @@ namespace Sprint1
             
             //foreach (IFactory factory in factoryList)
             //factory.AddToList(spriteList);
-            stage.LoadContent(characterList);
+            stage.LoadContent(characterList, FireBallList);
             
         }
 
@@ -73,7 +75,9 @@ namespace Sprint1
             foreach (ISprite sprite in BackgroundList)
                 sprite.Draw(spriteBatch);
             foreach (ICharacter character in characterList)
-                character.Draw(spriteBatch);      
+                character.Draw(spriteBatch);
+            foreach (ICharacter character in FireBallList)
+                character.Draw(spriteBatch);
             Mario.Draw(spriteBatch);
             spriteBatch.End();
         }

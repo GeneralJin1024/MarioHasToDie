@@ -71,7 +71,7 @@ namespace Sprint1.FactoryClasses
 
         public ICharacter FactoryMethod(string name, Vector2 pos)
         {
-            MoveParameters parameters = new MoveParameters();
+            MoveParameters parameters = new MoveParameters(false);
             parameters.SetPosition(pos.X, pos.Y);
             switch(name)
             {

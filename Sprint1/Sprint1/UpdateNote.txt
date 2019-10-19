@@ -1,0 +1,46 @@
+﻿更新时间：2019/10/17		更改人：鲁振皓
+更新内容：添加马里奥 Falling State并添加重力加速度
+详细：1. 修改MoveParameter.cs
+		(1) 添加public bool HasGrativity，该值为true时，物体具备重力加速度
+			HasGrativity的初始值由Constructor的参数决定。具有加速度的物体：Mario, Enemy, Mushroom, Star, FireBall
+			不具有加速度的物体: Pipe, FLower, Coin, Block以及隐藏在方块中的Item
+	2. 更新ICharacter ： 添加新方法：BlockCollide（bool isBottom）若与block相撞，本物体应做什么。若isBottom为true则情况为踩在方块上
+	2. 更新Mario ActionState，添加Falling State
+		（1）添加FallingState类，废弃RunningJump类，其余各类添加Return（）方法
+		（2）修改Idle状态下的MoveDown（），禁止正常马里奥下蹲
+		（3）添加Return的Receiver
+	3. 更新Mario.cs 
+		（1）添加bool jumpHigher，当其为true时，马里奥再本次更新中增加的向下速度会比正常情况少
+		（2）增加ChangeToFalling（）
+	4. 更新MarioCharacter.cs
+		（1）添加Return Receiver
+		（2）MarioCharacter 实现ICharacter
+		（3）修改当马里奥与Block碰撞时Mario的响应
+	5. 添加FireBallCharacter.cs
+		（1）添加FireBallCharacter ： ItemCharacter， 已添加新加的BlockCollide
+		（2）修改ItemCharacter.cs，若该item触碰到屏幕底部则消失
+	6. 更新EnemyCharacter.cs ： 添加BlockCollide方法
+	7. 修改KeyboardController
+		(1)添加ReturnCommand
+		(2)修改上下左右键可以“holding”
+	8. 修改碰撞
+		（1）除Mario外，Item，Enemy，FireBall也将参与碰撞（主要是与Block）： 正在修改
+
+
+
+
+更新时间：2019/10/18		更改人：鲁振皓
+更新内容： 添加火球并更新碰撞
+详细：	1. 添加FireBallCharacter，其继承了ItemCharacter。
+		2. 修改碰撞，现在item，enemy均可以与block和pipe碰撞，火球可以与enemy和block碰撞
+
+
+更新时间：2019/10/19		更改人：鲁振皓
+更新内容：随着马里奥的位置改变Mushroom和Star的运动方向，添加“不在屏幕中的物体停止移动”的功能
+详细：	1. 已添加一段代码与碰撞CollideDetector中，不需要对ItemCharacter或Item进行修改
+		2. 修改MoveParameter.cs， 添加新的bool property： InScreen，当其为true时，该物体在窗口中
+		3. 添加了一段代码在CollideDetector中，改代码可以读取当前物体的InScreen，若InScreen为false，则该物体不参与碰撞。创建时默认为true
+		4. 修改AnimatedSprite， 若InScreen为false，则不进行坐标更新和速度更新
+		5. 可以在stage.Update()中，Collide.Update()之前用foreach loop判定所有物体的InScreen，若在屏幕内则为true，反之为false
+		（标题5未完成）
+		6. 总结：若物体在屏幕中，则一切正常：可移动，有碰撞。若物体不在屏幕中：不会移动，不会碰撞，但是动画不会停。

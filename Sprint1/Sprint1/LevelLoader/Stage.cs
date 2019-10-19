@@ -24,7 +24,7 @@ namespace Sprint1.LevelLoader
         private int TimeSinceLastFrame;
         private int MillisecondsPerFrame;
         private CollisionDetector Collision;
-
+        private int DiedTime = 0;
         public GraphicsDeviceManager GraphicsDevice
         {
             get { return Game.Graphics; }
@@ -50,10 +50,10 @@ namespace Sprint1.LevelLoader
             
         }
 
-        public void LoadContent(ArrayList spriteList)
+        public void LoadContent(ArrayList spriteList, ArrayList fireBallList)
         {
             //nothing to do here           
-            Collision = new CollisionDetector(Game.Scene.Mario, spriteList);
+            Collision = new CollisionDetector(Game.Scene.Mario, spriteList, fireBallList);
             controllerList.Add(new KeyboardController(Game.Scene.Mario, Game));
             controllerList.Add(new GamepadController(Game.Scene.Mario, Game));
         }
@@ -69,17 +69,23 @@ namespace Sprint1.LevelLoader
                 TimeSinceLastFrame -= MillisecondsPerFrame;
                 Collision.Update();
             }
+            if (Game.Scene.Mario.IsDied())
+                DiedTime++;
+            if (DiedTime >= 50)
+                Game.Exit();
 
         }
 
-        internal void SpriteLocationReader(int levelIndex, ArrayList spriteList, ArrayList backgroundList)
+        internal void SpriteLocationReader(int levelIndex, ArrayList spriteList, ArrayList backgroundList, ArrayList fireBallList)
         {
+
             if (!((LevelSection)ConfigurationManager.GetSection("Level" + levelIndex) is LevelSection myLevelSection))
             {
                 Console.WriteLine("Failed to load Level" + levelIndex);
             }
             else
             {
+                ItemFactory.Instance.Initialize(fireBallList);
                 Game.Scene.Mario = PlayerFactory.FactoryMethod2(myLevelSection.Player[1].SpriteName, StringToVecter2(myLevelSection.Player[1].SpriteLocation));
                 for (int i = 1; i < myLevelSection.Backgrounds.Count; i++)
                 {

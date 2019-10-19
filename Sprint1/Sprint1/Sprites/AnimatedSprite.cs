@@ -47,12 +47,15 @@ namespace Sprint1
                     ActionFrame = 0;
                 }
             }
-            Parameters.UpdatePositionAndVelocity(YAcceleration, timeOfFrame);
-            //check boundary after each update to make sure the whole object are in the screen.
-            Vector2 checkedPosition = LevelLoader.Stage.CheckBoundary(new Vector2(Parameters.Position.X, Parameters.Position.Y - GetHeightAndWidth().X),
-                GetHeightAndWidth());
-            //use the checkedPosition as real position.
-            Parameters.SetPosition(checkedPosition.X, checkedPosition.Y + GetHeightAndWidth().X);
+            if (Parameters.InScreen)
+            {
+                Parameters.UpdatePositionAndVelocity(YAcceleration, timeOfFrame);
+                //check boundary after each update to make sure the whole object are in the screen.
+                Vector2 checkedPosition = LevelLoader.Stage.CheckBoundary(new Vector2(Parameters.Position.X, Parameters.Position.Y - GetHeightAndWidth().X),
+                    GetHeightAndWidth());
+                //use the checkedPosition as real position.
+                Parameters.SetPosition(checkedPosition.X, checkedPosition.Y + GetHeightAndWidth().X);
+            }
         }
 
         public virtual void Draw(SpriteBatch spriteBatch)

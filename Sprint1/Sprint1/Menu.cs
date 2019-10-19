@@ -40,7 +40,7 @@ namespace Sprint1
             Font = font; //set font
             //set "mouse"
             chooseSprite = new AnimatedSprite(
-                Game.Content.Load<Texture2D>("MarioSprites/smallMarioRightStand"), new Point(1, 1), new MoveParameters());
+                Game.Content.Load<Texture2D>("MarioSprites/smallMarioRightStand"), new Point(1, 1), new MoveParameters(false));
         }
 
         public void Update(float timeOfFrame)

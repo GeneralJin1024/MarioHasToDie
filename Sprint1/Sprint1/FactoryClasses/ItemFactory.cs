@@ -24,17 +24,26 @@ namespace Sprint1.FactoryClasses
                 return _instance;
             }
         }
+        private ArrayList CharacterList;
         Texture2D coin;
         Texture2D flower;
         Texture2D greenMushroom;
         Texture2D redMushroom;
         Texture2D star;
         Texture2D pipe;
+        Texture2D fireBall;
         public ItemFactory()
         {
             //when factory initialzed, load the texture
             LoadTexture();
         }
+        public void Initialize(ArrayList characterList) { CharacterList = characterList; }
+        public void AddNewCharacter(Sprint1Main.CharacterType characterType, Vector2 location, bool isLeft)
+        {
+            if (characterType == Sprint1Main.CharacterType.Fireball)
+                CharacterList.Add(GetFireBall(location, isLeft));
+        }
+
         private void LoadTexture()
         {
             coin = Sprint1Main.Game.Content.Load<Texture2D>("ItemSprite/coin");
@@ -43,6 +52,7 @@ namespace Sprint1.FactoryClasses
             redMushroom = Sprint1Main.Game.Content.Load<Texture2D>("ItemSprite/redMushroom");
             star = Sprint1Main.Game.Content.Load<Texture2D>("ItemSprite/star");
             pipe = Sprint1Main.Game.Content.Load<Texture2D>("ItemSprite/PipeSpriteSheet");
+            fireBall = Sprint1Main.Game.Content.Load<Texture2D>("ItemSprite/redMushroom");
         }
         
         public ItemCharacter GetPipe(Vector2 pos)
@@ -68,6 +78,10 @@ namespace Sprint1.FactoryClasses
         public ItemCharacter GetStar(Vector2 pos)
         {
             return new StarCharacter(star, new Point(1, 4) , pos);
+        }
+        public ItemCharacter GetFireBall(Vector2 location, bool isLeft)
+        {
+            return new FireBallCharacter(fireBall, new Point(1, 1), location, isLeft);
         }
 
         public ICharacter FactoryMethod(string name, Vector2 pos)

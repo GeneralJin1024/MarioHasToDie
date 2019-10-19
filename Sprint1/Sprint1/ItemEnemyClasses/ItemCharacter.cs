@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework;
 using Sprint1.MarioClasses;
 using Sprint1.Sprites;
 using System;
+using Sprint1.LevelLoader;
 
 namespace Sprint1.ItemClasses
 {
@@ -39,6 +40,8 @@ namespace Sprint1.ItemClasses
                     Parameters.SetPosition(Parameters.Position.X, bumpHeight);
                 }
             }
+            if (Parameters.Position.Y >= Stage.Boundary.X || Parameters.Position.Y >= Stage.Boundary.Y)
+                Parameters.IsHidden = true;
         }
         public void Draw(SpriteBatch spriteBatch)
         {
@@ -66,5 +69,15 @@ namespace Sprint1.ItemClasses
 
         public abstract void MarioCollide(bool specialCase);
         public abstract Vector2 GetHeightAndWidth();
+        public virtual void BlockCollide(bool isBottom)
+        {
+            if (isBottom)
+                Parameters.SetVelocity(Math.Abs(Parameters.Velocity.X), 0);
+            else
+            {
+                Parameters.SetVelocity(0, 0);
+                Parameters.HasGravity = false;
+            }
+        }
     }
 }

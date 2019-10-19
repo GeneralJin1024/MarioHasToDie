@@ -54,6 +54,10 @@ namespace Sprint1.BlockClasses
         {
             return block.GetHeightAndWidth();
         }
+
+        public void BlockCollide(bool isBottom)
+        {
+        }
     }
 
 }
