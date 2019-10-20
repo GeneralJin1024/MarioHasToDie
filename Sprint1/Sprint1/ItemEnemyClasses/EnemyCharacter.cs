@@ -52,10 +52,13 @@ namespace Sprint1.ItemClasses
         {
             if (isBottom)
             {
-                Parameters.SetVelocity(Parameters.Velocity.X, 0);
+                Parameters.SetVelocity(Math.Abs(Parameters.Velocity.X), 0);
             }
             else
-                Parameters.IsLeft = !Parameters.IsLeft;
+            {
+                Parameters.IsLeft = !Parameters.IsLeft; //转向
+                Parameters.SetVelocity(Math.Abs(Parameters.Velocity.X), Parameters.Velocity.Y); //速度重设
+            }
         }
         public Vector2 GetHeightAndWidth()
         {
