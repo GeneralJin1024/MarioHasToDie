@@ -26,6 +26,8 @@ namespace Sprint1.ItemClasses
             isBump = false;
         }
 
+
+
         public void Update(float timeOfFrame)
         {
             item.Update(timeOfFrame);
