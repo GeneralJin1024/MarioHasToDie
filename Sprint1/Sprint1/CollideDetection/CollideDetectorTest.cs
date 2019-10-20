@@ -106,11 +106,11 @@ namespace Sprint1.CollideDetection
         {
             foreach (ICharacter character in MovingCharacters)
             {
-                if (character.Type == Sprint1Main.CharacterType.Mushroom)
+                if (character.Type == Sprint1Main.CharacterType.RedMushroom)
                 {
                     character.Parameters.IsLeft = Mario.Parameters.Position.X < character.Parameters.Position.X;
                 }
-                if (character.Type == Sprint1Main.CharacterType.Star)
+                if (character.Type == Sprint1Main.CharacterType.Star || character.Type == Sprint1Main.CharacterType.GreenMushroom)
                 {
                     character.Parameters.IsLeft = Mario.Parameters.Position.X >= character.Parameters.Position.X;
                 }
@@ -128,7 +128,8 @@ namespace Sprint1.CollideDetection
                     case Sprint1Main.CharacterType.Enemy: MovingCharacters.Add(character); break;
                     case Sprint1Main.CharacterType.DiedEnemy: MovingCharacters.Add(character); break;
                     case Sprint1Main.CharacterType.Star: MovingCharacters.Add(character); break;
-                    case Sprint1Main.CharacterType.Mushroom: MovingCharacters.Add(character); break;
+                    case Sprint1Main.CharacterType.RedMushroom: MovingCharacters.Add(character); break;
+                    case Sprint1Main.CharacterType.GreenMushroom: MovingCharacters.Add(character); break;
                     case Sprint1Main.CharacterType.Fireball: FireBallCharacters.Add(character); break;
                     default: break;
                 }

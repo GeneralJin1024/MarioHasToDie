@@ -128,9 +128,10 @@ namespace Sprint1.CollideDetection
                         //Character2.MarioCollide(true);
                         MarioCharacters.CollideWithFlower();
                         break;
-                    case Sprint1Main.CharacterType.Mushroom:
+                    case Sprint1Main.CharacterType.RedMushroom:
                         //Character2.MarioCollide(true);
                         MarioCharacters.CollideWithMushRoom(); break;
+                    case Sprint1Main.CharacterType.GreenMushroom: MarioCharacters.CollideWithMushRoom();break;
                     //case Sprint1.CharacterType.Coin:
                     //    //Character2.MarioCollide(true);
                     //    break;

@@ -158,9 +158,10 @@ namespace Sprint1.CollideDetection
                             //死去的敌人（设置速度0，0）可以被马里奥察觉.但主动不察觉其他物体，速度锁死，不再与砖块，管子产生碰撞
                             if (type == Sprint1Main.CharacterType.Mario)
                                 collideObjects.Add(character);
-                            else if ((type == Sprint1Main.CharacterType.Enemy || type == Sprint1Main.CharacterType.Mushroom ||
-                                type == Sprint1Main.CharacterType.DiedEnemy || type == Sprint1Main.CharacterType.Star) &&
-                                (character.Type == Sprint1Main.CharacterType.Block || character.Type == Sprint1Main.CharacterType.Pipe))
+                            else if ((type == Sprint1Main.CharacterType.Enemy || type == Sprint1Main.CharacterType.RedMushroom || 
+                                type == Sprint1Main.CharacterType.GreenMushroom || type == Sprint1Main.CharacterType.DiedEnemy || 
+                                type == Sprint1Main.CharacterType.Star) &&(character.Type == Sprint1Main.CharacterType.Block || 
+                                character.Type == Sprint1Main.CharacterType.Pipe))
                                 collideObjects.Add(character);
                             else if (type == Sprint1Main.CharacterType.Fireball && (character.Type == Sprint1Main.CharacterType.Block ||
                                 character.Type == Sprint1Main.CharacterType.Pipe || character.Type == Sprint1Main.CharacterType.Enemy))
@@ -256,7 +257,8 @@ namespace Sprint1.CollideDetection
                 foreach (ICharacter character in Entities[i])
                 {
                     if (character.Type == Sprint1Main.CharacterType.DiedEnemy || character.Type == Sprint1Main.CharacterType.Enemy ||
-                        character.Type == Sprint1Main.CharacterType.Mushroom || character.Type == Sprint1Main.CharacterType.Star ||
+                        character.Type == Sprint1Main.CharacterType.RedMushroom || character.Type == Sprint1Main.CharacterType.GreenMushroom
+                        || character.Type == Sprint1Main.CharacterType.Star ||
                         character.Type == Sprint1Main.CharacterType.Mario || character.Type == Sprint1Main.CharacterType.Fireball)
                         Console.WriteLine("Warning : character: " + character.Type + "exists in nonmoving");
                 }

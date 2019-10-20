@@ -248,3 +248,9 @@ C:\Users\13667\Source\Repos\SmartMario\Sprint1\Sprint1\bin\Windows\x86\Debug\Sha
 C:\Users\13667\Source\Repos\SmartMario\Sprint1\Sprint1\obj\x86\Debug\Sprint1.csproj.CopyComplete
 C:\Users\13667\Source\Repos\SmartMario\Sprint1\Sprint1\obj\x86\Debug\Sprint1.exe
 C:\Users\13667\Source\Repos\SmartMario\Sprint1\Sprint1\obj\x86\Debug\Sprint1.pdb
+C:\Users\zzy00\Source\Repos\SmartMario\Sprint1\Sprint1\bin\Windows\x86\Debug\Content\EnemySprite\deadGoomba.xnb
+C:\Users\zzy00\Source\Repos\SmartMario\Sprint1\Sprint1\bin\Windows\x86\Debug\Content\EnemySprite\deadGreenKoopa.xnb
+C:\Users\zzy00\Source\Repos\SmartMario\Sprint1\Sprint1\bin\Windows\x86\Debug\Content\EnemySprite\deadRedKoopa.xnb
+C:\Users\zzy00\Source\Repos\SmartMario\Sprint1\Sprint1\bin\Windows\x86\Debug\Sprint1.exe.config
+C:\Users\zzy00\Source\Repos\SmartMario\Sprint1\Sprint1\bin\Windows\x86\Debug\ConfigurationLibrary.dll
+C:\Users\zzy00\Source\Repos\SmartMario\Sprint1\Sprint1\bin\Windows\x86\Debug\ConfigurationLibrary.pdb
