@@ -18,8 +18,6 @@ namespace Sprint1.CollideDetection
         private Point MapSize;
         private Point ScreenSize;
 
-        public static ICharacter EnemyC;
-
         public TileMap(Point mapSize, ArrayList characterList, Point screenSize)
         {
             if (characterList is null) //check null
@@ -33,7 +31,6 @@ namespace Sprint1.CollideDetection
                 Entities[i] = new List<ICharacter>();
                 MovingEntities[i] = new List<ICharacter>();
             }
-            Console.WriteLine("Character Num 1 = " + characterList.Count);
             SetEntities(characterList); // put objects into map
         }
 
@@ -82,9 +79,6 @@ namespace Sprint1.CollideDetection
             //int i = minRegion.X;
             //加大区域（左，右，上）
             CheckGrids(ref minRegion, ref maxRegion);
-
-            if (mario.Type == Sprint1Main.CharacterType.Enemy)
-                Console.WriteLine("minRegion = " + minRegion + "   maxRegion = " + maxRegion);
 
             //检查参数模块，以防万一
             //if (i != minRegion.X)
@@ -228,17 +222,12 @@ namespace Sprint1.CollideDetection
         {
             if (characterList == null)
                 throw new ArgumentNullException(nameof(characterList));
-            Console.WriteLine("Object Num = " + characterList.Count);
             foreach (ICharacter character in characterList)
             {
                 if (character.Type == Sprint1Main.CharacterType.Mario || character.Type == Sprint1Main.CharacterType.Fireball)
                     Console.WriteLine("Warning, Warning, Warning, Warning, Warning");
                 Point minGridPosition = GetGridPosition(character.GetMinPosition());
                 Point maxGridPosition = GetGridPosition(character.GetMaxPosition());
-                if (character.Type == Sprint1Main.CharacterType.Block && character.Parameters.Position.X >= 600)
-                    Console.WriteLine("Block minPosition = " + minGridPosition + "   max Position = " + maxGridPosition);
-                if (character.Type == Sprint1Main.CharacterType.Enemy && character.Parameters.Position.X >= 600)
-                    EnemyC = character;
                 for (int row = minGridPosition.Y; row <= maxGridPosition.Y; row++)
                 {
                     for (int column = minGridPosition.X; column <= maxGridPosition.X; column++)

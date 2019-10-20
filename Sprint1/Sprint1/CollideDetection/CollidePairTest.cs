@@ -16,15 +16,13 @@ namespace Sprint1.CollideDetection
         private Vector2 relativeVelocity;
         public float Time { get; private set; }
 
-        public CollidePair(ICharacter mario, ICharacter character)
+        public CollidePair(ICharacter character1, ICharacter character2)
         {
-            Character1 = mario;
-            Character2 = character;
+            if (character1 is null || character2 is null)
+                throw new ArgumentNullException(nameof(character1));
+            Character1 = character1;
+            Character2 = character2;
             relativeVelocity = new Vector2();
-            if(Character1.Type == Sprint1Main.CharacterType.Enemy)
-            {
-                Console.WriteLine("First is enemy, second is " + Character2.Type);
-            }
             if (Character1.Type == Sprint1Main.CharacterType.Fireball && (Character2.Type != Sprint1Main.CharacterType.Enemy ||
                 Character2.Type != Sprint1Main.CharacterType.Block))
                 Console.WriteLine("Warning!!!Fireball Collide with unknown Thing: " + Character2.Type);
@@ -72,13 +70,10 @@ namespace Sprint1.CollideDetection
             }
             #endregion
             //Here, I leave three lines of code used to check values in the future.
-            if(Character1.Type == Sprint1Main.CharacterType.Enemy && Character2.Type == Sprint1Main.CharacterType.Block && Character1.Parameters.Position.X == 600)
-            {
-                Console.WriteLine("characterMin = " + characterMin + "     characterMax = " + characterMax);
-                Console.WriteLine("Mario PositionMin:  " + marioMin + "     marioMax = " + marioMax);
-                Console.WriteLine("xTime = " + xTime + "    yTime  = " + yTime);
-                Console.WriteLine("relativeVelocity = " + relativeVelocity);
-            }
+            //Console.WriteLine("characterMin = " + characterMin + "     characterMax = " + characterMax);
+            //Console.WriteLine("Mario PositionMin:  " + marioMin + "     marioMax = " + marioMax);
+            //Console.WriteLine("xTime = " + xTime + "    yTime  = " + yTime);
+            //Console.WriteLine("relativeVelocity = " + relativeVelocity);
 
             #region Intersect Time
             if (xTime < 0 && yTime < 0)
@@ -110,8 +105,6 @@ namespace Sprint1.CollideDetection
 
         public void Collide()
         {
-            if (Character1.Type == Sprint1Main.CharacterType.Enemy)
-                Console.WriteLine("Enemy is colliding1");
             // tell mario what he collide with by check object's type and tell the object mario collide with it.
             if (Character1.Type == Sprint1Main.CharacterType.Mario)
             {
@@ -126,7 +119,6 @@ namespace Sprint1.CollideDetection
                         break;
                     case Sprint1Main.CharacterType.Enemy:
                         //Character2.MarioCollide((Time == yTime) && (relativeVelocity.Y > 0));
-                        Console.WriteLine("Enemy Collide");
                         MarioCharacters.CollideWithEnemy((Time == yTime) && (relativeVelocity.Y > 0));
                         break;
                     case Sprint1Main.CharacterType.DiedEnemy:
@@ -164,7 +156,6 @@ namespace Sprint1.CollideDetection
             }
             else
             {
-                Console.WriteLine("Enemy is colliding2");
                 Character1.BlockCollide((Time == yTime) && (relativeVelocity.Y > 0));
             }
         }

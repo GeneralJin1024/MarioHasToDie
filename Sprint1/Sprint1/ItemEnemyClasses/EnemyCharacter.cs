@@ -50,8 +50,6 @@ namespace Sprint1.ItemClasses
         }
         public void BlockCollide(bool isBottom)
         {
-            Console.WriteLine("Enemy Updating");
-            Console.WriteLine("Enemy Position = " + Parameters.Position + "    Velocity = " + Parameters.Velocity + "  isBottom = " + isBottom);
             if (isBottom)
             {
                 Parameters.SetVelocity(Parameters.Velocity.X, 0);

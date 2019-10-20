@@ -19,11 +19,11 @@ namespace Sprint1.CollideDetection
         private readonly TileMap Map;
         public CollisionDetector(MarioCharacter mario, ArrayList characterList, ArrayList fireBallCharacterList)
         {
-            if (characterList is null)
+            if (characterList is null || fireBallCharacterList is null)
                 throw new ArgumentNullException(nameof(characterList));
             CharacterList = characterList;
             FireBallCharacters = fireBallCharacterList;
-            Console.WriteLine("At first, has items = " + FireBallCharacters.Count);
+            //Console.WriteLine("At first, has items = " + FireBallCharacters.Count);
             foreach (ICharacter items in FireBallCharacters)
                 CharacterList.Add(items);
             FireBallCharacters.Clear();
@@ -71,7 +71,7 @@ namespace Sprint1.CollideDetection
                         firstContactPairs.Insert(0, CollidePairs[i]);
                     }
                 }
-                Console.WriteLine("Mario Velocity Before Collide2 = " + Mario.Parameters.Velocity);
+                //Console.WriteLine("Mario Velocity Before Collide2 = " + Mario.Parameters.Velocity);
                 Mario.Update(longestTime); // Update with smallest first contact time.
                 //Update all objects
                 //foreach (ICharacter character in CharacterList)
@@ -82,7 +82,6 @@ namespace Sprint1.CollideDetection
                 {
                     //if (character.Type == Sprint1.CharacterType.Coin && !character.Parameters.IsHidden)
                     //    Console.WriteLine("Exist " + character.Parameters.Velocity + "     position = " + character.Parameters.Position);
-                    Console.WriteLine(longestTime);
                     character.Update(longestTime);
                 }
                 //Do collision response. Use List since we don't know whether more than one objects collide with mario at the same time.
@@ -130,7 +129,7 @@ namespace Sprint1.CollideDetection
                     case Sprint1Main.CharacterType.DiedEnemy: MovingCharacters.Add(character); break;
                     case Sprint1Main.CharacterType.Star: MovingCharacters.Add(character); break;
                     case Sprint1Main.CharacterType.Mushroom: MovingCharacters.Add(character); break;
-                    case Sprint1Main.CharacterType.Fireball: FireBallCharacters.Add(character); Console.WriteLine("FireBall Added before game"); break;
+                    case Sprint1Main.CharacterType.Fireball: FireBallCharacters.Add(character); break;
                     default: break;
                 }
             }
@@ -142,8 +141,6 @@ namespace Sprint1.CollideDetection
             if (!character1.Parameters.IsHidden && character1.Parameters.InScreen)
             {
                 Map.GetPossibleCollidedObject(character1, possibleCollideList);
-                if (character1.Type == Sprint1Main.CharacterType.Enemy)
-                    Console.WriteLine("Enemy's Pair is " + possibleCollideList.Count + "Enemy's position is " + character1.Parameters.Position);
                 foreach (ICharacter character in possibleCollideList)
                 {
                     CollidePair collidePair = new CollidePair(character1, character);
