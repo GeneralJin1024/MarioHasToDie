@@ -21,6 +21,10 @@ namespace Sprint1.CollideDetection
             Character1 = mario;
             Character2 = character;
             relativeVelocity = new Vector2();
+            if(Character1.Type == Sprint1Main.CharacterType.Enemy)
+            {
+                Console.WriteLine("First is enemy, second is " + Character2.Type);
+            }
             if (Character1.Type == Sprint1Main.CharacterType.Fireball && (Character2.Type != Sprint1Main.CharacterType.Enemy ||
                 Character2.Type != Sprint1Main.CharacterType.Block))
                 Console.WriteLine("Warning!!!Fireball Collide with unknown Thing: " + Character2.Type);
@@ -68,9 +72,13 @@ namespace Sprint1.CollideDetection
             }
             #endregion
             //Here, I leave three lines of code used to check values in the future.
-            //Console.WriteLine("characterMin = " + characterMin + "     characterMax = " + characterMax);
-            //Console.WriteLine("Mario PositionMin:  " + marioMin + "     marioMax = " + marioMax);
-            //Console.WriteLine("xTime = " + xTime + "    yTime  = " + yTime);
+            if(Character1.Type == Sprint1Main.CharacterType.Enemy && Character2.Type == Sprint1Main.CharacterType.Block && Character1.Parameters.Position.X == 600)
+            {
+                Console.WriteLine("characterMin = " + characterMin + "     characterMax = " + characterMax);
+                Console.WriteLine("Mario PositionMin:  " + marioMin + "     marioMax = " + marioMax);
+                Console.WriteLine("xTime = " + xTime + "    yTime  = " + yTime);
+                Console.WriteLine("relativeVelocity = " + relativeVelocity);
+            }
 
             #region Intersect Time
             if (xTime < 0 && yTime < 0)
@@ -102,6 +110,8 @@ namespace Sprint1.CollideDetection
 
         public void Collide()
         {
+            if (Character1.Type == Sprint1Main.CharacterType.Enemy)
+                Console.WriteLine("Enemy is colliding1");
             // tell mario what he collide with by check object's type and tell the object mario collide with it.
             if (Character1.Type == Sprint1Main.CharacterType.Mario)
             {
@@ -154,6 +164,7 @@ namespace Sprint1.CollideDetection
             }
             else
             {
+                Console.WriteLine("Enemy is colliding2");
                 Character1.BlockCollide((Time == yTime) && (relativeVelocity.Y > 0));
             }
         }

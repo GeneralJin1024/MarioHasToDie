@@ -74,14 +74,15 @@ namespace Sprint1.CollideDetection
                 Console.WriteLine("Mario Velocity Before Collide2 = " + Mario.Parameters.Velocity);
                 Mario.Update(longestTime); // Update with smallest first contact time.
                 //Update all objects
-                foreach (ICharacter character in CharacterList)
-                    character.Update(longestTime);
+                //foreach (ICharacter character in CharacterList)
+                //    character.Update(longestTime);
                 foreach (ICharacter character in FireBallCharacters)
                     character.Update(longestTime);
                 foreach (ICharacter character in CharacterList)
                 {
                     //if (character.Type == Sprint1.CharacterType.Coin && !character.Parameters.IsHidden)
                     //    Console.WriteLine("Exist " + character.Parameters.Velocity + "     position = " + character.Parameters.Position);
+                    Console.WriteLine(longestTime);
                     character.Update(longestTime);
                 }
                 //Do collision response. Use List since we don't know whether more than one objects collide with mario at the same time.
@@ -98,7 +99,7 @@ namespace Sprint1.CollideDetection
                 CollidePairs.Clear(); // clear collide pairs
                 firstContactPairs.Clear(); //clear sorted collide pairs
                 timeOfFrame -= longestTime; // change the rest of time.
-                Console.WriteLine("Mario Velocity Before Collide3 = " + Mario.Parameters.Velocity);
+                //Console.WriteLine("Mario Velocity Before Collide3 = " + Mario.Parameters.Velocity);
             }
         }
 
@@ -141,6 +142,8 @@ namespace Sprint1.CollideDetection
             if (!character1.Parameters.IsHidden && character1.Parameters.InScreen)
             {
                 Map.GetPossibleCollidedObject(character1, possibleCollideList);
+                if (character1.Type == Sprint1Main.CharacterType.Enemy)
+                    Console.WriteLine("Enemy's Pair is " + possibleCollideList.Count + "Enemy's position is " + character1.Parameters.Position);
                 foreach (ICharacter character in possibleCollideList)
                 {
                     CollidePair collidePair = new CollidePair(character1, character);

@@ -145,7 +145,9 @@ namespace Sprint1
                 GameMenu.Update(1);
             else
             {
+                Console.WriteLine("Enemy Position = " + TileMap.EnemyC.Parameters.Position + "EnemyVelocity = " + TileMap.EnemyC.Parameters.Velocity);
                 scenes[scene - 1].Update(gameTime);
+                Console.WriteLine("Enemy Position2 = " + TileMap.EnemyC.Parameters.Position + "EnemyVelocity 2= " + TileMap.EnemyC.Parameters.Velocity);
                 //Controller.UpdateInput(...);
                 //foreach (IController controller in controllerList)
                 //    controller.Update();

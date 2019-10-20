@@ -25,7 +25,7 @@ namespace Sprint1.ItemClasses
             currentSprite = liveEnemy;
         }
 
-        public void Update(float timeOfFrame) { currentSprite.Update(timeOfFrame); }
+        public void Update(float timeOfFrame) { currentSprite.Update(timeOfFrame);}
         public void Draw(SpriteBatch spriteBatch)
         {
             currentSprite.Draw(spriteBatch);
@@ -50,6 +50,8 @@ namespace Sprint1.ItemClasses
         }
         public void BlockCollide(bool isBottom)
         {
+            Console.WriteLine("Enemy Updating");
+            Console.WriteLine("Enemy Position = " + Parameters.Position + "    Velocity = " + Parameters.Velocity + "  isBottom = " + isBottom);
             if (isBottom)
             {
                 Parameters.SetVelocity(Parameters.Velocity.X, 0);
