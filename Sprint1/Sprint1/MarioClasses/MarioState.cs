@@ -94,5 +94,10 @@ namespace Sprint1.MarioClasses
         {
             CurrentState[0] = changeNumber; // change action state in mario state.
         }
+
+        public bool IsFireMario()
+        {
+            return CurrentState[1] == 2;
+        }
     }
 }

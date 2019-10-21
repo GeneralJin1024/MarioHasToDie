@@ -50,11 +50,14 @@ namespace Sprint1.MarioClasses
         #endregion
         public void ThrowFire()
         {
-            float distance = Parameters.IsLeft ? 0 : GetHeightAndWidth().Y;
-            Vector2 location = new Vector2(Parameters.Position.X + distance, Parameters.Position.Y - GetHeightAndWidth().Y / 2);
-            ICharacter fireBall = ItemFactory.Instance.AddNewCharacter("FireBall", location);
-            fireBall.Parameters.IsLeft = Parameters.IsLeft;
-            fireBall.Parameters.SetVelocity(20, -5);
+            if (Mario.MarioState.IsFireMario())
+            {
+                float distance = Parameters.IsLeft ? 0 : GetHeightAndWidth().Y;
+                Vector2 location = new Vector2(Parameters.Position.X + distance, Parameters.Position.Y - GetHeightAndWidth().Y / 2);
+                ICharacter fireBall = ItemFactory.Instance.AddNewCharacter("FireBall", location);
+                fireBall.Parameters.IsLeft = Parameters.IsLeft;
+                fireBall.Parameters.SetVelocity(20, -5);
+            }
         }
 
         #region Collide Detection Receivers

@@ -43,13 +43,22 @@ namespace Sprint1.CollideDetection
             Point currentUpperLeftGrid = GetGridPosition(mario.GetMinPosition());
             Point currentLowerRightGrid = GetGridPosition(mario.GetMaxPosition());
             //Get which grids are mario's left up coner and right down coner will occupy
+
             //满1移动后坐标
             Vector2 predictMinPosition = PredictNextPosition(mario.GetMinPosition(), mario.Parameters.Velocity, mario.GetHeightAndWidth());
             //左上角，右下角占据格（预计）
             Point newUpperLeftGrid = GetGridPosition(predictMinPosition);
             Point newLowerRightGrid = GetGridPosition(new Vector2(predictMinPosition.X + mario.GetHeightAndWidth().Y,
-                predictMinPosition.Y + mario.GetHeightAndWidth().Y));
+                predictMinPosition.Y + mario.GetHeightAndWidth().X));
             //calculate the possible collided region which depends on mario's velocity
+            //if (mario.Type == Sprint1Main.CharacterType.Mario)
+            //{
+            //    Console.WriteLine("CurrentPosition = " + mario.Parameters.Position + "   NextPosition右下 = " + new Vector2(predictMinPosition.X + mario.GetHeightAndWidth().Y,
+            //    predictMinPosition.Y + mario.GetHeightAndWidth().Y));
+            //    Console.WriteLine("Current Points = {" + currentUpperLeftGrid + "," + currentLowerRightGrid + "}");
+            //    Console.WriteLine("Current Points = {" + newUpperLeftGrid + "," + newLowerRightGrid + "}");
+            //    Console.WriteLine("Mario velocity = " + mario.Parameters.Velocity);
+            //}
             //捕获区域左上角，右下角
             Point minRegion = new Point();
             Point maxRegion = new Point();
@@ -79,10 +88,10 @@ namespace Sprint1.CollideDetection
             //int i = minRegion.X;
             //加大区域（左，右，上）
             CheckGrids(ref minRegion, ref maxRegion);
-            if(mario.Type == Sprint1Main.CharacterType.Mario)
-            {
-                Console.WriteLine("MinRegion = " + minRegion + "   MaxRegion = " + maxRegion);
-            }
+            //if(mario.Type == Sprint1Main.CharacterType.Mario)
+            //{
+            //    Console.WriteLine("MinRegion = " + minRegion + "   MaxRegion = " + maxRegion);
+            //}
 
             //检查参数模块，以防万一
             //if (i != minRegion.X)
@@ -190,8 +199,12 @@ namespace Sprint1.CollideDetection
         public static Vector2 PredictNextPosition(Vector2 minPosition, Vector2 velocity, Vector2 heightAndWidth)
         {
             //these values are both independent to Mario's real position.
+            //if (minPosition.X >= 350 && minPosition.X <= 400)
+            //    Console.WriteLine("minPosition Before = " + minPosition);
             minPosition.X += velocity.X;
             minPosition.Y += velocity.Y;
+            //if (minPosition.X >= 350 && minPosition.X <= 400)
+            //    Console.WriteLine("minPosition After = " + minPosition);
             LevelLoader.Stage.CheckBoundary(minPosition, heightAndWidth); // check boundary
             return minPosition;
         }
@@ -207,7 +220,7 @@ namespace Sprint1.CollideDetection
             if (minRegion.Y == maxRegion.Y)
             {
                 minRegion.Y = minRegion.Y <= 0 ? 0 : minRegion.Y - 1;
-                maxRegion.Y = maxRegion.Y >= MapSize.Y - 1 ? MapSize.Y - 1 : maxRegion.Y + 1;
+                //maxRegion.Y = maxRegion.Y >= MapSize.Y - 1 ? MapSize.Y - 1 : maxRegion.Y + 1;
             }
         }
 
