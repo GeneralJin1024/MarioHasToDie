@@ -42,6 +42,12 @@ namespace Sprint1.CollideDetection
             relativeVelocity.X -= Character2.Parameters.Velocity.X;
             relativeVelocity.Y -= Character2.Parameters.Velocity.Y;
 
+            //if (Character2.Parameters.Position.X == 384)
+            //{
+            //    Console.WriteLine("If it is Block2: " + Character2.Type + "  At this Time, Mario Position = " + Character1.Parameters.Position);
+            //    Console.WriteLine("xTime2 = " + xTime + "    yTime2  = " + yTime);
+            //    Console.WriteLine("relativeVelocity2 = " + Character1.Parameters.Velocity);
+            //}
             #region OverLap Axel
             if (relativeVelocity.X > 0)
             {
@@ -74,6 +80,13 @@ namespace Sprint1.CollideDetection
             //Console.WriteLine("Mario PositionMin:  " + marioMin + "     marioMax = " + marioMax);
             //Console.WriteLine("xTime = " + xTime + "    yTime  = " + yTime);
             //Console.WriteLine("relativeVelocity = " + relativeVelocity);
+
+            //if (Character2.Parameters.Position.X == 384)
+            //{
+            //    Console.WriteLine("If it is Block1: " + Character2.Type + "  At this Time, Mario Position = " + Character1.Parameters.Position);
+            //    Console.WriteLine("xTime1 = " + xTime + "    yTime1  = " + yTime);
+            //    Console.WriteLine("relativeVelocity1 = " + relativeVelocity);
+            //}
 
             #region Intersect Time
             if (xTime < 0 && yTime < 0)
@@ -116,6 +129,13 @@ namespace Sprint1.CollideDetection
             }
             #endregion
             //Console.WriteLine("Time = " + Time);
+
+            //if (Character2.Parameters.Position.X == 384)
+            //{
+            //    Console.WriteLine("If it is Block: " + Character2.Type + "At this Time, Mario Position = " + Character1.Parameters.Position);
+            //    Console.WriteLine("xTime = " + xTime + "    yTime  = " + yTime);
+            //    Console.WriteLine("relativeVelocity = " + relativeVelocity);
+            //}
         }
 
         public void Collide()

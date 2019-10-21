@@ -79,6 +79,10 @@ namespace Sprint1.CollideDetection
             //int i = minRegion.X;
             //加大区域（左，右，上）
             CheckGrids(ref minRegion, ref maxRegion);
+            if(mario.Type == Sprint1Main.CharacterType.Mario)
+            {
+                Console.WriteLine("MinRegion = " + minRegion + "   MaxRegion = " + maxRegion);
+            }
 
             //检查参数模块，以防万一
             //if (i != minRegion.X)
@@ -201,7 +205,10 @@ namespace Sprint1.CollideDetection
                 maxRegion.X = maxRegion.X >= MapSize.X - 1 ? MapSize.X - 1 : maxRegion.X + 1;
             }
             if (minRegion.Y == maxRegion.Y)
+            {
                 minRegion.Y = minRegion.Y <= 0 ? 0 : minRegion.Y - 1;
+                maxRegion.Y = maxRegion.Y >= MapSize.Y - 1 ? MapSize.Y - 1 : maxRegion.Y + 1;
+            }
         }
 
         //private void ExtendRegion(Vector2 velocity, Point[] region)

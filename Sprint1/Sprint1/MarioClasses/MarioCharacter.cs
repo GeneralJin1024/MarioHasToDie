@@ -29,7 +29,10 @@ namespace Sprint1.MarioClasses
             hasCollision = false;
         }
         #region ISprite Methods
-        public void Update(float timeOfFrame) { Mario.Update(timeOfFrame); hasCollision = false; }
+        public void Update(float timeOfFrame)
+        {
+            Mario.Update(timeOfFrame); hasCollision = false;
+        }
         public void Draw(SpriteBatch spriteBatch) { Mario.Draw(spriteBatch); }
         #endregion
 
@@ -87,6 +90,7 @@ namespace Sprint1.MarioClasses
                 }
                 else
                     Mario.ChangeToIdle();
+                //Parameters.HasGravity = false;
                 //Console.WriteLine("Mario Velocity2 = " + Parameters.Velocity);
             }
             else

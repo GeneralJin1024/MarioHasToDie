@@ -63,7 +63,7 @@ namespace Sprint1
         public void Update(GameTime gameTime)
         {
             stage.Update(gameTime);
-            
+
             //foreach (ICharacter character in characterList)
             //    character.Update(1);
         }
