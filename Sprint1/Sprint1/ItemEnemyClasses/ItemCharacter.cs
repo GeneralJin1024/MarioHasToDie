@@ -8,10 +8,10 @@ using Sprint1.LevelLoader;
 
 namespace Sprint1.ItemClasses
 {
-   abstract class ItemCharacter : ICharacter
+    abstract class ItemCharacter : ICharacter
     {
 
-       
+
         public abstract Sprint1Main.CharacterType Type { get; set; }
 
         private bool isBump;
@@ -19,11 +19,22 @@ namespace Sprint1.ItemClasses
         private Point positionOffset;
         protected readonly ItemSprite item;
         public MoveParameters Parameters { get; }
+        private MoveParameters InitialParameter;
         public ItemCharacter(Texture2D texture, Point rowsAndColumns, Vector2 location)
         {
             item = new ItemSprite(texture, location, rowsAndColumns);
             Parameters = item.Parameters;
+            InitialParameter = new MoveParameters(false);
+            Scene.CopyDataOfParameter(Parameters, InitialParameter);
             isBump = false;
+        }
+
+        /**
+         * Reset this objects to initial. Include Parameters (can use Scene.CopyDataOfParameter) and state (if you have).
+         */
+        public void Reset()
+        {
+            
         }
 
 

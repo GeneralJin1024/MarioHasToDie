@@ -20,6 +20,8 @@ namespace Sprint1
         private readonly ArrayList characterList;
         private ArrayList FireBallList;
         private readonly ArrayList BackgroundList;
+        private Camera Camera;
+        private List<Layer> Layers;
         public MarioCharacter Mario { get; internal set; }
         public Stage Stage
         {
@@ -46,14 +48,26 @@ namespace Sprint1
 
         public void LoadContent()
         {
-            stage.SpriteLocationReader(level, characterList, BackgroundList, FireBallList);
+            Camera = new Camera(Sprint1Main.Game.GraphicsDevice.Viewport) { Limits = new Rectangle(0, 0, 1000, 500) };
+            Layers = new List<Layer>
+            {
+                new Layer(Camera) { Parallax = new Vector2(0.2f, 1.0f) }, //云
+                new Layer(Camera) { Parallax = new Vector2(0.8f, 1.0f) }, //山
+                new Layer(Camera) { Parallax = new Vector2(1.0f, 1.0f) }, //mario，草
+                new Layer(Camera) { Parallax = new Vector2(1.0f, 1.0f) }, //item，enemy，block
+                new Layer(Camera) { Parallax = new Vector2(1.0f, 1.0f) } // 火球
+            };
+            stage.SpriteLocationReader(level, characterList, BackgroundList, FireBallList, Layers);
             spriteBatch = new SpriteBatch(stage.Game.GraphicsDevice);
+            Layers[2].Sprites.Add(Mario);
+            Layers[3].Sprites = characterList;
+            Layers[4].Sprites = FireBallList;
 
             //factoryList.Add(BlockFactory.Instance);
             //factoryList.Add(EnemyFactory.Instance);
             //BackgroundFactory.Instance.AddToList(BackgroundList);
             //factoryList.Add(ItemFactory.Instance);
-            
+
             //foreach (IFactory factory in factoryList)
             //factory.AddToList(spriteList);
             stage.LoadContent(characterList, FireBallList);
@@ -63,6 +77,7 @@ namespace Sprint1
         public void Update(GameTime gameTime)
         {
             stage.Update(gameTime);
+            Camera.LookAt(Mario.Parameters.Position);
 
             //foreach (ICharacter character in characterList)
             //    character.Update(1);
@@ -70,16 +85,18 @@ namespace Sprint1
 
         public void Draw()
         {
-            spriteBatch.Begin(SpriteSortMode.BackToFront, BlendState.AlphaBlend);
-            //Console.WriteLine("Length = " + characterList.Count);
-            foreach (ISprite sprite in BackgroundList)
-                sprite.Draw(spriteBatch);
-            foreach (ICharacter character in characterList)
-                character.Draw(spriteBatch);
-            foreach (ICharacter character in FireBallList)
-                character.Draw(spriteBatch);
-            Mario.Draw(spriteBatch);
-            spriteBatch.End();
+            //spriteBatch.Begin(SpriteSortMode.BackToFront, BlendState.AlphaBlend);
+            ////Console.WriteLine("Length = " + characterList.Count);
+            //foreach (ISprite sprite in BackgroundList)
+            //    sprite.Draw(spriteBatch);
+            //foreach (ICharacter character in characterList)
+            //    character.Draw(spriteBatch);
+            //foreach (ICharacter character in FireBallList)
+            //    character.Draw(spriteBatch);
+            //Mario.Draw(spriteBatch);
+            //spriteBatch.End();
+            foreach (Layer layer in Layers)
+                layer.Draw(spriteBatch);
         }
 
         // IDisposable
@@ -97,6 +114,17 @@ namespace Sprint1
         {
             Dispose(true);
             GC.SuppressFinalize(this);
+        }
+
+        public static void CopyDataOfParameter(MoveParameters parameter, MoveParameters newParameter)
+        {
+            if (parameter is null || newParameter is null)
+                throw new ArgumentNullException(nameof(parameter));
+            newParameter.IsHidden = parameter.IsHidden;
+            newParameter.IsLeft = parameter.IsLeft;
+            newParameter.SetPosition(parameter.Position.X, parameter.Position.Y);
+            newParameter.SetVelocity(Math.Abs(parameter.Velocity.X), Math.Abs(parameter.Velocity.Y));
+            newParameter.HasGravity = parameter.HasGravity;
         }
 
     }

@@ -18,6 +18,7 @@ namespace Sprint1.LevelLoader
     {
         public Sprint1Main Game { get; set; }
         public static Vector2 Boundary { get; private set; }
+        public static Vector2 MapBoundary { get; private set; } = new Vector2(1000, 500);
 
         readonly List<IController> controllerList;
         //private ArrayList factoryList;
@@ -76,7 +77,7 @@ namespace Sprint1.LevelLoader
 
         }
 
-        internal void SpriteLocationReader(int levelIndex, ArrayList spriteList, ArrayList backgroundList, ArrayList fireBallList)
+        internal void SpriteLocationReader(int levelIndex, ArrayList spriteList, ArrayList backgroundList, ArrayList fireBallList, List<Layer> layers)
         {
 
             if (!((LevelSection)ConfigurationManager.GetSection("Level" + levelIndex) is LevelSection myLevelSection))
@@ -89,7 +90,9 @@ namespace Sprint1.LevelLoader
                 Game.Scene.Mario = PlayerFactory.FactoryMethod2(myLevelSection.Player[1].SpriteName, StringToVecter2(myLevelSection.Player[1].SpriteLocation));
                 for (int i = 1; i < myLevelSection.Backgrounds.Count; i++)
                 {
-                    backgroundList.Add(BackgroundFactory.Instance.FactoryMethod2(myLevelSection.Backgrounds[i].SpriteName, StringToVecter2(myLevelSection.Backgrounds[i].SpriteLocation)));
+                    BackgroundFactory.Instance.AddBackground(myLevelSection.Backgrounds[i].SpriteName, 
+                        StringToVecter2(myLevelSection.Backgrounds[i].SpriteLocation), layers);
+                    //backgroundList.Add(BackgroundFactory.Instance.FactoryMethod2(myLevelSection.Backgrounds[i].SpriteName, StringToVecter2(myLevelSection.Backgrounds[i].SpriteLocation)));
                 }
                 for (int i = 1; i < myLevelSection.Items.Count; i++)
                 {
@@ -110,8 +113,8 @@ namespace Sprint1.LevelLoader
         {
             position.X = position.X >= 0 ? position.X : 0;
             position.Y = position.Y >= 0 ? position.Y : 0;
-            position.X = position.X <= Boundary.X - heightAndWidth.Y ? position.X : Boundary.X - heightAndWidth.Y;
-            position.Y = position.Y <= Boundary.Y - heightAndWidth.X ? position.Y : Boundary.Y - heightAndWidth.X;
+            position.X = position.X <= MapBoundary.X - heightAndWidth.Y ? position.X : MapBoundary.X - heightAndWidth.Y;
+            position.Y = position.Y <= MapBoundary.Y - heightAndWidth.X ? position.Y : MapBoundary.Y - heightAndWidth.X;
             return position;
         }
 

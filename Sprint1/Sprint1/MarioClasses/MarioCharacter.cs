@@ -77,11 +77,11 @@ namespace Sprint1.MarioClasses
                 Mario.MarioState.ChangeToFire();
             hasCollision = true;
         }
-        public void CollideWithMushRoom() { Mario.MarioState.ChangeToSuper(); hasCollision = true; }
-        public void CollideWithBlock(bool hitBottom, bool hitLeftOrRight)
+        public void CollideWithRedMushRoom() { Mario.MarioState.ChangeToSuper(); hasCollision = true; }
+        public void CollideWithBlock(bool hitBottom, bool movingUp)
         {
             //Console.WriteLine("Collide1 : hitBottom = " + hitBottom + "    hitLeftOrRight = " + hitLeftOrRight);
-            if (hitBottom)
+            if (hitBottom && movingUp)
             {
                 //Console.WriteLine("Hit bottom, Action = " + Mario.marioState.GetActionType());
                 //Console.WriteLine("Mario Velocity1 = " + Parameters.Velocity);
@@ -93,14 +93,13 @@ namespace Sprint1.MarioClasses
                 }
                 else
                     Mario.ChangeToIdle();
-                //Parameters.HasGravity = false;
                 //Console.WriteLine("Mario Velocity2 = " + Parameters.Velocity);
             }
             else
             {
-                if (hitLeftOrRight)
+                if (!hitBottom)
                     Parameters.SetVelocity(0, Parameters.Velocity.Y);
-                else
+                else if (Parameters.Velocity.Y < 0)
                 {
                     Mario.ChangeToFalling();
                     Parameters.SetVelocity(Math.Abs(Parameters.Velocity.X), -Parameters.Velocity.Y);
@@ -108,6 +107,24 @@ namespace Sprint1.MarioClasses
             }
             hasCollision = true;
         }
+
+        public void CollideWith(ICharacter character, bool UpOrDown, bool movingDown)
+        {
+            if (character is null)
+                throw new ArgumentNullException(nameof(character));
+            if (character.Type == Sprint1Main.CharacterType.Block || character.Type == Sprint1Main.CharacterType.Pipe ||
+                character.Type == Sprint1Main.CharacterType.DiedEnemy)
+                CollideWithBlock(UpOrDown, Parameters.Velocity.Y > 0);
+            else if (character.Type == Sprint1Main.CharacterType.RedMushroom)
+                CollideWithRedMushRoom();
+            else if (character.Type == Sprint1Main.CharacterType.Flower)
+                CollideWithFlower();
+            else if (character.Type == Sprint1Main.CharacterType.Enemy)
+                CollideWithEnemy(UpOrDown && movingDown);
+
+
+        }
+
         /*
          * Since mario didn't do any thing when collide with star and coin in this Sprint, I didn't add corresponding methods
          * In this Sprint, mario hit pipe doing the same thing as hitting a block.

@@ -25,22 +25,37 @@ namespace Sprint1.CollideDetection
             FireBallCharacters = fireBallCharacterList;
             //Console.WriteLine("At first, has items = " + FireBallCharacters.Count);
             foreach (ICharacter items in FireBallCharacters)
+            {
                 CharacterList.Add(items);
+                if (!items.Parameters.IsHidden)
+                {
+                    Console.WriteLine("This item is added by block and it is not hidden, please check again.  Its type is " + items.Type);
+                    Sprint1Main.Game.Exit();
+                }
+            }
             FireBallCharacters.Clear();
             DivideIntoList();
             Mario = mario;
             CollidePairs = new List<CollidePair>();
-            Map = new TileMap(new Point(8, 5), CharacterList, new Point(800, 500));
+            Map = new TileMap(new Point(10, 5), CharacterList, new Point(1000, 500));
         }
         public void Update()
         {
+            foreach (ICharacter character in CharacterList)
+            {
+                if (character.Parameters.Position.X >= (Mario.Parameters.Position.X - 800 / 2) &&
+                    character.Parameters.Position.X <= Mario.Parameters.Position.X + 800 / 2)
+                    character.Parameters.InScreen = true;
+                else
+                    character.Parameters.InScreen = false;
+            }
             float timeOfFrame = 1; // total time for collision
             while (timeOfFrame > 0)
             {
                 Map.UpdateMovingCharacters();
                 //Console.WriteLine("Mario Velocity Before Collide1 = " + Mario.Parameters.Velocity);
                 List<CollidePair> firstContactPairs = new List<CollidePair>();
-                UpdateItemPoint();
+                //UpdateItemPoint();
                 //List<ICharacter> possibleCollideList = new List<ICharacter>();
                 ////Map.SetEntities(CharacterList);
                 //Map.GetPossibleCollidedObject(Mario, possibleCollideList);
@@ -71,7 +86,6 @@ namespace Sprint1.CollideDetection
                         firstContactPairs.Insert(0, CollidePairs[i]);
                     }
                 }
-                //Console.WriteLine("Mario Velocity Before Collide2 = " + Mario.Parameters.Velocity);
                 Mario.Update(longestTime); // Update with smallest first contact time.
                 //Update all objects
                 //foreach (ICharacter character in CharacterList)

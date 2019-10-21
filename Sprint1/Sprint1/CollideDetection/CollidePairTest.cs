@@ -146,38 +146,41 @@ namespace Sprint1.CollideDetection
                 MarioCharacter MarioCharacters = (MarioCharacter)Character1;
                 if (Character2.Type != Sprint1Main.CharacterType.Block)
                     Character2.MarioCollide((Time == yTime) && (relativeVelocity.Y > 0));
-                switch (Character2.Type)
-                {
-                    case Sprint1Main.CharacterType.Block:
-                        Character2.MarioCollide((Time == yTime) && (relativeVelocity.Y < 0));
-                        MarioCharacters.CollideWithBlock((Time == yTime) && (relativeVelocity.Y > 0), Time == xTime);
-                        break;
-                    case Sprint1Main.CharacterType.Enemy:
-                        //Character2.MarioCollide((Time == yTime) && (relativeVelocity.Y > 0));
-                        MarioCharacters.CollideWithEnemy((Time == yTime) && (relativeVelocity.Y > 0));
-                        break;
-                    case Sprint1Main.CharacterType.DiedEnemy:
-                        MarioCharacters.CollideWithBlock((Time == yTime) && (relativeVelocity.Y > 0), Time == xTime);
-                        break;
-                    case Sprint1Main.CharacterType.Flower:
-                        //Character2.MarioCollide(true);
-                        MarioCharacters.CollideWithFlower();
-                        break;
-                    case Sprint1Main.CharacterType.RedMushroom:
-                        //Character2.MarioCollide(true);
-                        MarioCharacters.CollideWithMushRoom(); break;
-                    case Sprint1Main.CharacterType.GreenMushroom: MarioCharacters.CollideWithMushRoom();break;
-                    //case Sprint1.CharacterType.Coin:
-                    //    //Character2.MarioCollide(true);
-                    //    break;
-                    //case Sprint1.CharacterType.Star:
-                    //    //Character2.MarioCollide(true);
-                    //    break;
-                    case Sprint1Main.CharacterType.Pipe:
-                        MarioCharacters.CollideWithBlock((Time == yTime) && (relativeVelocity.Y > 0), Time == xTime);
-                        break;
-                    default: break;
-                }
+                else
+                    Character2.MarioCollide((Time == yTime) && (relativeVelocity.Y < 0));
+                MarioCharacters.CollideWith(Character2, Time == yTime, relativeVelocity.Y > 0);
+                //switch (Character2.Type)
+                //{
+                //    case Sprint1Main.CharacterType.Block:
+                //        Character2.MarioCollide((Time == yTime) && (relativeVelocity.Y < 0));
+                //        MarioCharacters.CollideWithBlock((Time == yTime) && (relativeVelocity.Y > 0), Time == xTime);
+                //        break;
+                //    case Sprint1Main.CharacterType.Enemy:
+                //        //Character2.MarioCollide((Time == yTime) && (relativeVelocity.Y > 0));
+                //        MarioCharacters.CollideWithEnemy((Time == yTime) && (relativeVelocity.Y > 0));
+                //        break;
+                //    case Sprint1Main.CharacterType.DiedEnemy:
+                //        MarioCharacters.CollideWithBlock((Time == yTime) && (relativeVelocity.Y > 0), Time == xTime);
+                //        break;
+                //    case Sprint1Main.CharacterType.Flower:
+                //        //Character2.MarioCollide(true);
+                //        MarioCharacters.CollideWithFlower();
+                //        break;
+                //    case Sprint1Main.CharacterType.RedMushroom:
+                //        //Character2.MarioCollide(true);
+                //        MarioCharacters.CollideWithMushRoom(); break;
+                //    case Sprint1Main.CharacterType.GreenMushroom: MarioCharacters.CollideWithMushRoom();break;
+                //    //case Sprint1.CharacterType.Coin:
+                //    //    //Character2.MarioCollide(true);
+                //    //    break;
+                //    //case Sprint1.CharacterType.Star:
+                //    //    //Character2.MarioCollide(true);
+                //    //    break;
+                //    case Sprint1Main.CharacterType.Pipe:
+                //        MarioCharacters.CollideWithBlock((Time == yTime) && (relativeVelocity.Y > 0), Time == xTime);
+                //        break;
+                //    default: break;
+                //}
             }
             else if (Character1.Type == Sprint1Main.CharacterType.Fireball)
             {
