@@ -31,17 +31,23 @@ namespace Sprint1.BlockClasses
 
         public Vector2 GetMaxPosition()
         {
-            return new Vector2(block.Parameters.Position.X + block.GetHeightAndWidth().Y, block.Parameters.Position.Y);
+            if (block.BType != BlockType.Destroyed)
+                return new Vector2(block.Parameters.Position.X + block.GetHeightAndWidth().Y, block.Parameters.Position.Y);
+            else
+                return new Vector2(0, 0);
         }
 
         public Vector2 GetMinPosition()
         {
-            return new Vector2(block.Parameters.Position.X, block.Parameters.Position.Y - block.GetHeightAndWidth().X);
+            if (block.BType != BlockType.Destroyed)
+                return new Vector2(block.Parameters.Position.X, block.Parameters.Position.Y - block.GetHeightAndWidth().X);
+            else
+                return new Vector2(0, 0);
         }
 
         public void Update(float timeOfFrame)
         {
-            block.Update(timeOfFrame);           
+                block.Update(timeOfFrame);
         }
 
         public void MarioCollide(bool specialCase)
@@ -61,6 +67,7 @@ namespace Sprint1.BlockClasses
         public void BlockCollide(bool isBottom)
         {
         }
+
     }
 
 }

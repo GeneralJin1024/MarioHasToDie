@@ -8,11 +8,11 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace Sprint1.Sprites
 {
-    class NullSprite : ISprite
+    class NullSprite : AnimatedSprite
     {
         public Texture2D SpriteSheets { get; set; }
         public MoveParameters Parameters { get; set; }
-
+        public NullSprite(Texture2D texture) : base(texture, new Point(0, 0), new MoveParameters(false)) { }
         public void Draw(SpriteBatch spriteBatch)
         {
             //do nothing;

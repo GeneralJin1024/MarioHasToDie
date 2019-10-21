@@ -80,8 +80,6 @@ namespace Sprint1.FactoryClasses
         {
             switch (name)
             {
-                case "BigHill":
-                    return GetBigHill(pos);
                 case "SmallHill":
                     return GetSmallHill(pos);
                 case "BigCloud":
@@ -92,7 +90,7 @@ namespace Sprint1.FactoryClasses
                     return GetBigBush(pos);
                 case "SmallBush":
                     return GetSmallBush(pos);
-                default: return new Sprites.NullSprite();
+                default: return GetBigHill(pos);
             }
         }
     }

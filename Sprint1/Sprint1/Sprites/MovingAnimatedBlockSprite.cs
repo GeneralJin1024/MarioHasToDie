@@ -15,7 +15,7 @@ namespace Sprint1.BlockClasses
         private float[] destroyedBrickPosX;
         private float[] destroyedBrickPosY;
         private Vector2 dPos;
-        public BrickBlockSprite(Texture2D texture, MoveParameters moveParameters, ArrayList items) : base(texture, moveParameters, new Point(4, 1), BlockType.BNormal, items)
+        public BrickBlockSprite(Texture2D texture, MoveParameters moveParameters, ArrayList items, BlockType type) : base(texture, moveParameters, new Point(4, 1), type, items)
         {
             destroyedBrickPosX = new float[4];
             destroyedBrickPosY = new float[4];
@@ -24,8 +24,8 @@ namespace Sprint1.BlockClasses
         {
             if (BType == BlockType.Destroyed)
             {
-                dPos.X += positionOffset.X != 0 ? spriteSpeed.X * frameTime : 0;
-                dPos.Y += positionOffset.Y != 0 ? spriteSpeed.Y * frameTime : 0;
+                dPos.X += positionOffset.X != 0 ? spriteSpeed.X * frameTime/10 : 0;
+                dPos.Y += positionOffset.Y != 0 ? spriteSpeed.Y * frameTime/10 : 0;
 
                 destroyedBrickPosX[0] = bPosition.X - dPos.X; destroyedBrickPosX[1] = bPosition.X - 2 * dPos.X;
                 destroyedBrickPosX[2] = bPosition.X + dPos.X; destroyedBrickPosX[3] = bPosition.X + 2 * dPos.X;
@@ -70,9 +70,9 @@ namespace Sprint1.BlockClasses
 
     }
 
-    class HiddenBlockSprite : Blocks
+    class HiddenBlockSprite : BrickBlockSprite
     {
-        public HiddenBlockSprite(Texture2D texture, MoveParameters moveParameters, ArrayList items) : base(texture, moveParameters, new Point(4, 1), BlockType.Hidden, items)
+        public HiddenBlockSprite(Texture2D texture, MoveParameters moveParameters, ArrayList items) : base(texture, moveParameters, items, BlockType.Hidden)
         {
         }
     }

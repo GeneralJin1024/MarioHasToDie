@@ -116,7 +116,6 @@
     <Compile Include="Sprites\AnimatedSprite.cs" />
     <Compile Include="BlockClasses\Blocks.cs" />
     <Compile Include="Sprites\MovingAnimatedBlockSprite.cs" />
-    <Compile Include="Sprites\NullSprite.cs" />
     <Compile Include="Sprites\StaticBlockSprite.cs" />
     <Compile Include="MarioClasses\IActionState.cs" />
     <Compile Include="MarioClasses\Mario.cs" />

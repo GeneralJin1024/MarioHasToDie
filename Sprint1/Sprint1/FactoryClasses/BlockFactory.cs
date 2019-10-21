@@ -46,7 +46,7 @@ namespace Sprint1.FactoryClasses
         
         public BlockCharacter GetBrickBlock(MoveParameters moveParameters, ArrayList items)
         {
-            return new BlockCharacter(new BrickBlockSprite(BlockTextures[0], moveParameters, items));
+            return new BlockCharacter(new BrickBlockSprite(BlockTextures[0], moveParameters, items, BlockType.BNormal));
         }
         public BlockCharacter GetHiddenBlock(MoveParameters moveParameters, ArrayList items)
         {

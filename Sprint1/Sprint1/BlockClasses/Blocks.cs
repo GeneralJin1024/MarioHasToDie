@@ -60,7 +60,7 @@ namespace Sprint1.BlockClasses
         public void ChangeToBrick()
         {
             BType = BlockType.BNormal;
-            Console.WriteLine("change to Bnormal");
+            //Console.WriteLine("change to Bnormal");
             SpriteSheets = BlockFactory.BlockTextures[0];
             currentbState = GenerateCurrentState();
         }
