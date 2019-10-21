@@ -19,3 +19,4 @@ C:\Users\zzy00\Source\Repos\SmartMario\Sprint1\ConfigurationLibrary\bin\Debug\Co
 C:\Users\zzy00\Source\Repos\SmartMario\Sprint1\ConfigurationLibrary\obj\Debug\ConfigurationLibrary.csproj.CoreCompileInputs.cache
 C:\Users\zzy00\Source\Repos\SmartMario\Sprint1\ConfigurationLibrary\obj\Debug\ConfigurationLibrary.dll
 C:\Users\zzy00\Source\Repos\SmartMario\Sprint1\ConfigurationLibrary\obj\Debug\ConfigurationLibrary.pdb
+C:\Users\zzy00\Source\Repos\SmartMario\Sprint1\ConfigurationLibrary\obj\Debug\ConfigurationLibrary.csprojAssemblyReference.cache

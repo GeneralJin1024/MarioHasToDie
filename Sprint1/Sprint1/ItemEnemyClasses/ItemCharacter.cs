@@ -34,7 +34,7 @@ namespace Sprint1.ItemClasses
          */
         public void Reset()
         {
-            
+            Scene.CopyDataOfParameter(InitialParameter, Parameters);
         }
 
 
