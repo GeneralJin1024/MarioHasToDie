@@ -49,7 +49,9 @@ namespace Sprint1.MarioClasses
         {
             float distance = Parameters.IsLeft ? 0 : GetHeightAndWidth().Y;
             Vector2 location = new Vector2(Parameters.Position.X + distance, Parameters.Position.Y - GetHeightAndWidth().Y / 2);
-            ItemFactory.Instance.AddNewCharacter(Sprint1Main.CharacterType.Fireball, location, Parameters.IsLeft);
+            ICharacter fireBall = ItemFactory.Instance.AddNewCharacter("FireBall", location);
+            fireBall.Parameters.IsLeft = Parameters.IsLeft;
+            fireBall.Parameters.SetVelocity(20, -5);
         }
 
         #region Collide Detection Receivers

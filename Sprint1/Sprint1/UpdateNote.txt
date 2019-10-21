@@ -44,3 +44,11 @@
 		5. 可以在stage.Update()中，Collide.Update()之前用foreach loop判定所有物体的InScreen，若在屏幕内则为true，反之为false
 		（标题5未完成）
 		6. 总结：若物体在屏幕中，则一切正常：可移动，有碰撞。若物体不在屏幕中：不会移动，不会碰撞，但是动画不会停。
+
+更新时间：2019/10/20		更改人：鲁振皓
+更新内容： 更新ItemFactory内的AddNewCharacter（）方法
+详细：	1. 通过之前添加的initialize（）方法，ItemFactory可以随时访问fireBallList方便向内添加火球。
+		2. 更新后的AddNewCharacter方法利用了已有的FactoryMethod（）方法，同时具备了将新生成的Item加入fireBallList并将新生成的Item返回至
+		使用该方法的类，该类将可以持续访问这个新生成的item以追踪其状态（位置，速度等）来对item发出相应的指令，比如根据马里奥自身的方向赋予火球初速度，
+		或者问号方块可以判断item的底部是否高于方块自身的顶部来改变其速度和其他状态
+		3. 已经删除碰撞模块内关于修改mushroom和star运动方向的代码，该部分预计于question block内实现

@@ -29,10 +29,10 @@ namespace Sprint1.ItemClasses
     class FireBallCharacter : ItemCharacter
     {
         public override Sprint1Main.CharacterType Type { get; set; } = Sprint1Main.CharacterType.Fireball;
-        public FireBallCharacter(Texture2D texture, Point rowsAndColumns, Vector2 location, bool isLeft) : base(texture, rowsAndColumns, location)
+        public FireBallCharacter(Texture2D texture, Point rowsAndColumns, Vector2 location) : base(texture, rowsAndColumns, location)
         {
-            Parameters.IsLeft = isLeft;
-            Parameters.SetVelocity(20, -5);
+            //Parameters.IsLeft = isLeft;
+            //Parameters.SetVelocity(20, -5);
             Parameters.HasGravity = true;
         }
         public override Vector2 GetHeightAndWidth() { return item.GetHeightAndWidth(); }

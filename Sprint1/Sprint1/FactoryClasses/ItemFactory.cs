@@ -38,10 +38,11 @@ namespace Sprint1.FactoryClasses
             LoadTexture();
         }
         public void Initialize(ArrayList characterList) { CharacterList = characterList; }
-        public void AddNewCharacter(Sprint1Main.CharacterType characterType, Vector2 location, bool isLeft)
+        public ICharacter AddNewCharacter(string characterType, Vector2 location)
         {
-            if (characterType == Sprint1Main.CharacterType.Fireball)
-                CharacterList.Add(GetFireBall(location, isLeft));
+            ICharacter newItem = FactoryMethod(characterType, location);
+            CharacterList.Add(newItem);
+            return newItem;
         }
 
         private void LoadTexture()
@@ -79,9 +80,9 @@ namespace Sprint1.FactoryClasses
         {
             return new StarCharacter(star, new Point(1, 4) , pos);
         }
-        public ItemCharacter GetFireBall(Vector2 location, bool isLeft)
+        public ItemCharacter GetFireBall(Vector2 pos)
         {
-            return new FireBallCharacter(fireBall, new Point(1, 1), location, isLeft);
+            return new FireBallCharacter(fireBall, new Point(1, 1), pos);
         }
 
         public ICharacter FactoryMethod(string name, Vector2 pos)
@@ -100,6 +101,7 @@ namespace Sprint1.FactoryClasses
                     return GetRedMushroom(pos);
                 case "Star":
                     return GetStar(pos);
+                case "FireBall": return GetFireBall(pos);
                 default: return new NullCharacter();
             }
         }
