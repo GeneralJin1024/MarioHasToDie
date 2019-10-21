@@ -47,7 +47,7 @@ namespace Sprint1.ItemClasses
         }
         public void Draw(SpriteBatch spriteBatch)
         {
-            Console.WriteLine(item.Parameters.IsHidden + "   Position = " + Parameters.Position);
+            //Console.WriteLine(item.Parameters.IsHidden + "   Position = " + Parameters.Position);
             item.Draw(spriteBatch);
         }
         public Vector2 GetMaxPosition()

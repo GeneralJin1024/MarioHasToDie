@@ -71,7 +71,7 @@ namespace Sprint1
         public void Draw()
         {
             spriteBatch.Begin(SpriteSortMode.BackToFront, BlendState.AlphaBlend);
-            Console.WriteLine("Length = " + characterList.Count);
+            //Console.WriteLine("Length = " + characterList.Count);
             foreach (ISprite sprite in BackgroundList)
                 sprite.Draw(spriteBatch);
             foreach (ICharacter character in characterList)

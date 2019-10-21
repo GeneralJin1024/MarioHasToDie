@@ -74,11 +74,11 @@ namespace Sprint1.MarioClasses
         public void CollideWithMushRoom() { Mario.MarioState.ChangeToSuper(); hasCollision = true; }
         public void CollideWithBlock(bool hitBottom, bool hitLeftOrRight)
         {
-            Console.WriteLine("Collide1 : hitBottom = " + hitBottom + "    hitLeftOrRight = " + hitLeftOrRight);
+            //Console.WriteLine("Collide1 : hitBottom = " + hitBottom + "    hitLeftOrRight = " + hitLeftOrRight);
             if (hitBottom)
             {
                 //Console.WriteLine("Hit bottom, Action = " + Mario.marioState.GetActionType());
-                Console.WriteLine("Mario Velocity1 = " + Parameters.Velocity);
+                //Console.WriteLine("Mario Velocity1 = " + Parameters.Velocity);
                 if (Mario.MarioState.GetActionType == MarioState.ActionType.Crouch)
                     Mario.Parameters.SetVelocity(0, 0); //Mario.ChangeToCrouch();
                 else if (Mario.MarioState.GetActionType == MarioState.ActionType.Walk)
@@ -87,7 +87,7 @@ namespace Sprint1.MarioClasses
                 }
                 else
                     Mario.ChangeToIdle();
-                Console.WriteLine("Mario Velocity2 = " + Parameters.Velocity);
+                //Console.WriteLine("Mario Velocity2 = " + Parameters.Velocity);
             }
             else
             {

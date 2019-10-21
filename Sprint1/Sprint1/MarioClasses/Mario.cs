@@ -49,7 +49,7 @@ namespace Sprint1.MarioClasses
         {
             //CurrentActionAndState[0] will locate the current action sprite.
             // && marioState.GetActionType() != MarioState.ActionType.Jump
-            Console.WriteLine("Before Mario Velocity = " + Parameters.Velocity + "Current State = " + MarioState.GetActionType);
+            //Console.WriteLine("Before Mario Velocity = " + Parameters.Velocity + "Current State = " + MarioState.GetActionType);
             if (JumpHigher)
             {
                 Parameters.SetVelocity(Math.Abs(Parameters.Velocity.X), Parameters.Velocity.Y - 0.5f);
@@ -63,7 +63,7 @@ namespace Sprint1.MarioClasses
             if (Parameters.Position.Y == Stage.Boundary.Y)
                 MarioState.ChangeToDied();
             //marioState.Return();
-            Console.WriteLine("After Mario Velocity = " + Parameters.Velocity + "Current State = " + MarioState.GetActionType);
+            //Console.WriteLine("After Mario Velocity = " + Parameters.Velocity + "Current State = " + MarioState.GetActionType);
         }
 
         public void Draw(SpriteBatch spriteBatch)

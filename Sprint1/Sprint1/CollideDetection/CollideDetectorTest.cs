@@ -139,6 +139,7 @@ namespace Sprint1.CollideDetection
         private void CreateCollidePairs(ICharacter character1)
         {
             ArrayList possibleCollideList = new ArrayList();
+                
             if (!character1.Parameters.IsHidden && character1.Parameters.InScreen)
             {
                 Map.GetPossibleCollidedObject(character1, possibleCollideList);

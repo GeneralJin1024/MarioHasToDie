@@ -65,7 +65,7 @@ namespace Sprint1.CollideDetection
             }
             else if (relativeVelocity.Y < 0)
             {
-                //If moving down, then mario can collide with object only when its top is upon object's bottom.
+                //If moving up, then mario can collide with object only when its top is upon object's bottom.
                 yTime = (marioMin.Y - characterMax.Y) / -relativeVelocity.Y;
             }
             #endregion
@@ -88,6 +88,15 @@ namespace Sprint1.CollideDetection
                     Time = yTime;
                 else
                     Time = -2; // no, the mario didn't collide
+                if (Character2.Type == Sprint1Main.CharacterType.Block)
+                {
+                    BlockClasses.BlockCharacter blockCharacter = (BlockClasses.BlockCharacter)Character2;
+                    if (blockCharacter.BlockType == BlockClasses.BlockType.Hidden && relativeVelocity.Y > 0)
+                    {
+                        Time = -2;
+                    }
+                        
+                }
             }
             else if (xTime >= 0 && xTime > yTime) //Mario must collide with object from left or right.
             {
@@ -98,6 +107,12 @@ namespace Sprint1.CollideDetection
                     Time = xTime;
                 else
                     Time = -2;// no, the mario didn't collide
+                if (Character2.Type == Sprint1Main.CharacterType.Block)
+                {
+                    BlockClasses.BlockCharacter blockCharacter = (BlockClasses.BlockCharacter)Character2;
+                    if (blockCharacter.BlockType == BlockClasses.BlockType.Hidden)
+                        Time = -2;
+                }
             }
             #endregion
             //Console.WriteLine("Time = " + Time);
