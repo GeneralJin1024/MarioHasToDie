@@ -19,13 +19,13 @@ namespace Sprint1.ItemClasses
         public EnemyCharacter(Texture2D[] texture, Point[] rowsAndColumns, MoveParameters moveParameters)
         {
             Parameters = moveParameters;
-            Parameters.SetVelocity(0, 0);
+            Parameters.SetVelocity(2, 0);
             liveEnemy = new AnimatedSprite(texture[0], rowsAndColumns[0], Parameters);
             diedEnemy = new AnimatedSprite(texture[1], rowsAndColumns[1], Parameters);
             currentSprite = liveEnemy;
         }
 
-        public void Update(float timeOfFrame) { currentSprite.Update(timeOfFrame);}
+        public void Update(float timeOfFrame) { currentSprite.Update(timeOfFrame); if (Parameters.Position.Y >= 500) { Parameters.IsHidden = true; } }
         public void Draw(SpriteBatch spriteBatch)
         {
             currentSprite.Draw(spriteBatch);

@@ -43,15 +43,25 @@ namespace Sprint1.CollideDetection
         {
             foreach (ICharacter character in CharacterList)
             {
-                if (character.Parameters.Position.X >= (Mario.Parameters.Position.X - 800 / 2) &&
-                    character.Parameters.Position.X <= Mario.Parameters.Position.X + 800 / 2)
-                    character.Parameters.InScreen = true;
+                if (Mario.Parameters.Position.X <= 400)
+                    character.Parameters.InScreen = character.Parameters.Position.X <= 800;
+                else if (Mario.Parameters.Position.X >= 600)
+                    character.Parameters.InScreen = character.GetMaxPosition().X >= 200;
                 else
-                    character.Parameters.InScreen = false;
+                {
+                    character.Parameters.InScreen = character.Parameters.Position.X >= (Mario.Parameters.Position.X - 800 / 2) &&
+                    character.Parameters.Position.X <= Mario.Parameters.Position.X + 800 / 2;
+                }
             }
+            int insurance = 0;
             float timeOfFrame = 1; // total time for collision
             while (timeOfFrame > 0)
             {
+                insurance++;
+                if(insurance > 15)
+                {
+                    Console.WriteLine("It looks the loop will not stop. Check!  The rest of Time = " + timeOfFrame); Sprint1Main.Game.Exit();
+                }
                 Map.UpdateMovingCharacters();
                 //Console.WriteLine("Mario Velocity Before Collide1 = " + Mario.Parameters.Velocity);
                 List<CollidePair> firstContactPairs = new List<CollidePair>();

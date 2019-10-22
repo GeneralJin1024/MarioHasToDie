@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>C:/Users/zzy00/Source/Repos/SmartMario/Sprint1/Sprint1/Content/BlockSprites/mario-shiny-block.png</SourceFile>
-  <SourceTime>2019-10-20T16:30:09.6100359-04:00</SourceTime>
-  <DestFile>C:/Users/zzy00/Source/Repos/SmartMario/Sprint1/Sprint1/Content/bin/Windows/Content/BlockSprites/mario-shiny-block.xnb</DestFile>
-  <DestTime>2019-10-21T19:40:16.5912549-04:00</DestTime>
+  <SourceFile>C:/Users/13667/source/repos/SmartMario/Sprint1/Sprint1/Content/BlockSprites/mario-shiny-block.png</SourceFile>
+  <SourceTime>2019-10-15T19:03:52.0529441-04:00</SourceTime>
+  <DestFile>C:/Users/13667/source/repos/SmartMario/Sprint1/Sprint1/Content/bin/Windows/Content/BlockSprites/mario-shiny-block.xnb</DestFile>
+  <DestTime>2019-10-21T21:38:59.6728242-04:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2018-12-08T11:35:54-05:00</ImporterTime>
   <Processor>TextureProcessor</Processor>
