@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
+using Sprint1.LevelLoader;
 using Sprint1.MarioClasses;
 
 namespace Sprint1.CollideDetection
@@ -43,15 +44,17 @@ namespace Sprint1.CollideDetection
         {
             foreach (ICharacter character in CharacterList)
             {
-                if (Mario.Parameters.Position.X <= 400)
-                    character.Parameters.InScreen = character.Parameters.Position.X <= 800;
-                else if (Mario.Parameters.Position.X >= 600)
-                    character.Parameters.InScreen = character.GetMaxPosition().X >= 200;
+                if (Mario.Parameters.Position.X <= (Stage.Boundary.X / 2))
+                    character.Parameters.InScreen = character.Parameters.Position.X <= Stage.Boundary.X;
+                else if (Mario.Parameters.Position.X >= (Stage.MapBoundary.X - Stage.Boundary.X / 2))
+                    character.Parameters.InScreen = character.GetMaxPosition().X >= Stage.MapBoundary.X - Stage.Boundary.X;
                 else
                 {
                     character.Parameters.InScreen = character.Parameters.Position.X >= (Mario.Parameters.Position.X - 800 / 2) &&
                     character.Parameters.Position.X <= Mario.Parameters.Position.X + 800 / 2;
                 }
+                if (Mario.IsDied())
+                    character.Parameters.InScreen = false;
             }
             int insurance = 0;
             float timeOfFrame = 1; // total time for collision
@@ -78,7 +81,8 @@ namespace Sprint1.CollideDetection
                 //    collidePair.GetFirstContactTime();
                 //    CollidePairs.Add(collidePair);
                 //}
-                CreateCollidePairs(Mario);
+                if(!Mario.IsDied())
+                    CreateCollidePairs(Mario);
                 foreach (ICharacter character in MovingCharacters)
                     if (!character.Parameters.IsHidden)
                         CreateCollidePairs(character);
@@ -144,7 +148,6 @@ namespace Sprint1.CollideDetection
         private void DivideIntoList()
         {
             MovingCharacters = new List<ICharacter>();
-            //FireBallCharacters = new ArrayList();
             foreach (ICharacter character in CharacterList)
             {
                 switch (character.Type)
