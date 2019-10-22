@@ -44,8 +44,9 @@ namespace Sprint1.ItemClasses
         {
             if (specialCase)
             {
+                Parameters.SetVelocity(0, 0); //stop moving.
                 Type = Sprint1Main.CharacterType.DiedEnemy;
-                 currentSprite = diedEnemy;
+                currentSprite = diedEnemy;
             }
         }
         public void BlockCollide(bool isBottom)
