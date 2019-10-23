@@ -43,5 +43,7 @@ namespace Sprint1.Background
         public Vector2 GetMaxPosition() { return new Vector2(); }
 
         public void BlockCollide(bool isBottom) { }
+
+        public void Reset() { }
     }
 }

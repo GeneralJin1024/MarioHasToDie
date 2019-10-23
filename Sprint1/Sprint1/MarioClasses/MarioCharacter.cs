@@ -15,6 +15,8 @@ namespace Sprint1.MarioClasses
         public Sprint1Main.CharacterType Type { get; set; } = Sprint1Main.CharacterType.Mario;
         private bool hasCollision;
         public MoveParameters Parameters { get; }
+        private MoveParameters InitialParameters;
+        //private static MarioState.PowerType PowerType = MarioState.PowerType.Standard;
         public bool IsSuper {
             get
             {
@@ -26,6 +28,8 @@ namespace Sprint1.MarioClasses
         {
             Mario = new Mario(marioSpriteSheets, location);
             Parameters = Mario.Parameters;
+            InitialParameters = new MoveParameters(false);
+            Scene.CopyDataOfParameter(Parameters, InitialParameters);
             hasCollision = false;
         }
         #region ISprite Methods
@@ -138,5 +142,12 @@ namespace Sprint1.MarioClasses
         public bool IsDied() { return Mario.MarioState.GetPowerType == MarioState.PowerType.Died; }
         public void MarioCollide(bool special) { }
         public void BlockCollide(bool isBottom) { }
+
+        public void Reset()
+        {
+            Scene.CopyDataOfParameter(InitialParameters, Parameters);
+            Mario.ChangeToIdle();
+            Mario.MarioState.ChangeToStandard();
+        }
     }
 }

@@ -36,4 +36,12 @@ namespace Sprint1
             Mario.Return();
         }
     }
+
+    class ResetCommand : ICommand
+    {
+        public void Execute()
+        {
+            Sprint1Main.Game.Scene.ResetObjects();
+        }
+    }
 }

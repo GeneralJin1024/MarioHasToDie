@@ -127,5 +127,11 @@ namespace Sprint1
             newParameter.HasGravity = parameter.HasGravity;
         }
 
+        public void ResetObjects()
+        {
+            foreach (ICharacter character in characterList)
+                character.Reset();
+        }
+
     }
 }
