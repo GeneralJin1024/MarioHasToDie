@@ -14,6 +14,8 @@ namespace Sprint1.ItemClasses
         
         readonly private ISprite liveEnemy;
         readonly private ISprite diedEnemy;
+        private int disappear;
+        private int disappearTimer;
         private ISprite currentSprite;
         public MoveParameters Parameters { get; }
         public EnemyCharacter(Texture2D[] texture, Point[] rowsAndColumns, MoveParameters moveParameters)
@@ -23,13 +25,29 @@ namespace Sprint1.ItemClasses
             liveEnemy = new AnimatedSprite(texture[0], rowsAndColumns[0], Parameters);
             diedEnemy = new AnimatedSprite(texture[1], rowsAndColumns[1], Parameters);
             currentSprite = liveEnemy;
+            disappear = 100;
         }
 
-        public void Update(float timeOfFrame) { currentSprite.Update(timeOfFrame); if (Parameters.Position.Y >= 500) { Parameters.IsHidden = true; } }
+        public void Update(float timeOfFrame) {
+            if(Type== Sprint1Main.CharacterType.Enemy) {
+                currentSprite.Update(timeOfFrame);
+                if (Parameters.Position.Y >= 500) { Parameters.IsHidden = true; }
+            }
+            else
+            {
+                disappearTimer++;
+                if (disappearTimer == disappear)
+                {
+                    Parameters.IsHidden = true;
+                }
+            }
+        }
         public void Draw(SpriteBatch spriteBatch)
         {
             currentSprite.Draw(spriteBatch);
+
         }
+
         public Vector2 GetMaxPosition()
         {
             return new Vector2(Parameters.Position.X + currentSprite.GetHeightAndWidth().Y, Parameters.Position.Y);
@@ -38,7 +56,7 @@ namespace Sprint1.ItemClasses
         {
             return new Vector2(Parameters.Position.X, Parameters.Position.Y - currentSprite.GetHeightAndWidth().X);
         }
-
+        
 
         public void MarioCollide(bool specialCase)
         {
