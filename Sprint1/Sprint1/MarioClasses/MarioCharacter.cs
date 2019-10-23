@@ -152,8 +152,8 @@ namespace Sprint1.MarioClasses
                 case MarioState.ActionType.Crouch: Mario.ChangeToCrouch(); break;
                 case MarioState.ActionType.Fall: Mario.ChangeToFalling(); break;
                 case MarioState.ActionType.Idle: Mario.ChangeToIdle();break;
-                case MarioState.ActionType.Jump:Mario.ChangeToJump(Parameters.Velocity.Y);break;
-                case MarioState.ActionType.Walk:Mario.ChangeToWalk();break;
+                case MarioState.ActionType.Jump: Mario.ChangeToJump(Parameters.Velocity.Y);break;
+                case MarioState.ActionType.Walk: Mario.ChangeToWalk();break;
                 case MarioState.ActionType.Other: Mario.MarioState.ChangeToDied();break;
                 default: break;
             }
@@ -166,8 +166,7 @@ namespace Sprint1.MarioClasses
                     else
                         Mario.MarioState.ChangeToSuper();
                     break;
-                case MarioState.PowerType.Standard:Mario.MarioState.ChangeToStandard();break;
-                default: break; 
+                default: break; //Mario default powerType is Standard.
             }
             
         }

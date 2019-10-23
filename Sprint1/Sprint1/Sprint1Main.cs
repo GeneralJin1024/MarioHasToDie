@@ -226,7 +226,7 @@ namespace Sprint1
             Scene.CopyDataOfParameter(currScene.Mario.Parameters, tempParameter);
             MarioState.ActionType actionType = currScene.Mario.GetAction();
             MarioState.PowerType powerType = currScene.Mario.GetPower();
-            bool isFire = Mario.isFire();
+            bool isFire = currScene.Mario.isFire();
 
             LoadingMode = true;       
             scenes.Remove(currScene);
@@ -237,9 +237,10 @@ namespace Sprint1
             currScene.Initalize(CurrSceneIndex);
             currScene.LoadContent();          
             LoadingMode = false;
-            Scene.CopyDataOfParameter(tempParameter, Mario.Parameters);
+
+            Scene.CopyDataOfParameter(tempParameter, currScene.Mario.Parameters);
             currScene.Mario.RestoreStates(actionType, powerType, isFire);
-            currScene.Camera.LookAt(Mario.Parameters.Position);
+            currScene.Camera.LookAt(currScene.Mario.Parameters.Position);
             #endregion
 
         }
