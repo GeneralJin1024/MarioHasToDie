@@ -14,7 +14,6 @@ namespace Sprint1.FactoryClasses
 {
     public class PlayerFactory : IFactory
     {
-        private static MarioCharacter Mario;
         private static PlayerFactory _instance;
         public static PlayerFactory Instance // only useless for mario in this Sprint
         {
@@ -26,19 +25,11 @@ namespace Sprint1.FactoryClasses
             }
         }
 
-        public PlayerFactory()
-        {
-            Mario = GetMario(new Vector2(0, 0));
-        }
-
         public static MarioCharacter FactoryMethod2(String name, Vector2 pos)
         {
-            if (Mario is null)
-                Instance.FactoryMethod("", pos);
             switch (name)
             {
-                //case "Mario": return GetMario(pos);
-                case "Mario": Mario.Parameters.SetPosition(pos.X, pos.Y); return Mario; //如果你仍想让马里奥也一起重置，请注释本行并取消上一行的注释。
+                case "Mario": return GetMario(pos);
                 default: return GetMario(new Vector2(0,0)); //trying to return nullCharacter but much works to do
             }
         }

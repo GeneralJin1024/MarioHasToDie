@@ -124,7 +124,7 @@ namespace Sprint1
             newParameter.IsHidden = parameter.IsHidden;
             newParameter.IsLeft = parameter.IsLeft;
             newParameter.SetPosition(parameter.Position.X, parameter.Position.Y);
-            newParameter.SetVelocity(Math.Abs(parameter.Velocity.X), Math.Abs(parameter.Velocity.Y));
+            newParameter.SetVelocity(Math.Abs(parameter.Velocity.X), parameter.Velocity.Y);
             newParameter.HasGravity = parameter.HasGravity;
         }
 

@@ -142,6 +142,32 @@ namespace Sprint1.MarioClasses
         public Vector2 GetMaxPosition() { return new Vector2(Parameters.Position.X + Mario.GetHeightAndWidth().Y, Parameters.Position.Y); }
         public Vector2 GetHeightAndWidth() { return Mario.GetHeightAndWidth(); } //get mario's hit and width.
         public bool IsDied() { return Mario.MarioState.GetPowerType == MarioState.PowerType.Died; }
+        public bool isFire() { return Mario.MarioState.IsFireMario(); }
+        public MarioState.ActionType GetAction() { return Mario.MarioState.GetActionType; }
+        public MarioState.PowerType GetPower() { return Mario.MarioState.GetPowerType; }
+        public void RestoreStates(MarioState.ActionType actionType, MarioState.PowerType powerType, bool isFire)
+        {
+            switch (actionType)
+            {
+                case MarioState.ActionType.Crouch : Mario.ChangeToCrouch(); break;
+                case MarioState.ActionType.Fall: Mario.ChangeToFalling(); break;
+                case MarioState.ActionType.Jump: Mario.ChangeToJump(Parameters.Velocity.Y); break;
+                case MarioState.ActionType.Other: Mario.MarioState.ChangeToDied(); break;
+                case MarioState.ActionType.Walk: Mario.ChangeToWalk(); break;
+                default: break;
+            }
+            switch (powerType)
+            {
+                case MarioState.PowerType.Died: Mario.MarioState.ChangeToDied(); break;
+                case MarioState.PowerType.Super:
+                    if (isFire)
+                        Mario.MarioState.ChangeToFire();
+                    else
+                        Mario.MarioState.ChangeToSuper();
+                    break;
+                default: break;
+            }
+        }
         public void MarioCollide(bool special) { }
         public void BlockCollide(bool isBottom) { }
 
