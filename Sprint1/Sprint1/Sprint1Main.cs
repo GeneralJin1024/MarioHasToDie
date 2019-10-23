@@ -222,6 +222,9 @@ namespace Sprint1
         public void ResetScene()
         {
             #region Reset
+            Mario = currScene.Mario; //若想让马里奥一起重置请注释本行
+            float marioX = currScene.Mario.Parameters.Position.X;//若想让马里奥一起重置请注释本行
+            float marioY = currScene.Mario.Parameters.Position.Y;//若想让马里奥一起重置请注释本行
             LoadingMode = true;       
             scenes.Remove(currScene);
             currScene.Dispose();
@@ -231,6 +234,8 @@ namespace Sprint1
             currScene.Initalize(CurrSceneIndex);
             currScene.LoadContent();          
             LoadingMode = false;
+            currScene.Mario.Parameters.SetPosition(marioX, marioY);//若想让马里奥一起重置请注释本行
+            currScene.Camera.LookAt(currScene.Mario.Parameters.Position);//若想让马里奥一起重置请注释本行
             #endregion
         }
 

@@ -20,7 +20,7 @@ namespace Sprint1
         private ArrayList characterList;
         private ArrayList FireBallList;
         private ArrayList BackgroundList;
-        private Camera Camera;
+        public Camera Camera { get; private set; }
         private List<Layer> Layers;
         public MarioCharacter Mario { get; internal set; }
         public Stage Stage

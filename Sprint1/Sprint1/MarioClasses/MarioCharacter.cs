@@ -27,6 +27,8 @@ namespace Sprint1.MarioClasses
         public MarioCharacter(Texture2D[][] marioSpriteSheets, Vector2 location)
         {
             Mario = new Mario(marioSpriteSheets, location);
+            //if (Sprint1Main.Game.Mario != null)
+            //    Scene.CopyDataOfParameter(Sprint1Main.Game.Mario.Parameters, Mario.Parameters);
             Parameters = Mario.Parameters;
             InitialParameters = new MoveParameters(false);
             Scene.CopyDataOfParameter(Parameters, InitialParameters);
