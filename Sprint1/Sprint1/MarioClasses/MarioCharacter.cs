@@ -147,6 +147,28 @@ namespace Sprint1.MarioClasses
         public MarioState.PowerType GetPower() { return Mario.MarioState.GetPowerType; }
         public void RestoreStates(MarioState.ActionType actionType, MarioState.PowerType powerType, bool isFire)
         {
+            switch (actionType)
+            {
+                case MarioState.ActionType.Crouch: Mario.ChangeToCrouch(); break;
+                case MarioState.ActionType.Fall: Mario.ChangeToFalling(); break;
+                case MarioState.ActionType.Idle: Mario.ChangeToIdle();break;
+                case MarioState.ActionType.Jump:Mario.ChangeToJump(Parameters.Velocity.Y);break;
+                case MarioState.ActionType.Walk:Mario.ChangeToWalk();break;
+                case MarioState.ActionType.Other: Mario.MarioState.ChangeToDied();break;
+                default: break;
+            }
+            switch (powerType)
+            {
+                case MarioState.PowerType.Died: Mario.MarioState.ChangeToDied();break;
+                case MarioState.PowerType.Super:
+                    if (isFire)
+                        Mario.MarioState.ChangeToFire();
+                    else
+                        Mario.MarioState.ChangeToSuper();
+                    break;
+                case MarioState.PowerType.Standard:Mario.MarioState.ChangeToStandard();break;
+                default: break; 
+            }
             
         }
         public void MarioCollide(bool special) { }

@@ -222,6 +222,11 @@ namespace Sprint1
         public void ResetScene()
         {
             #region Reset
+            MoveParameters tempParameter = new MoveParameters(true);
+            Scene.CopyDataOfParameter(currScene.Mario.Parameters, tempParameter);
+            MarioState.ActionType actionType = currScene.Mario.GetAction();
+            MarioState.PowerType powerType = currScene.Mario.GetPower();
+            bool isFire = Mario.isFire();
 
             LoadingMode = true;       
             scenes.Remove(currScene);
@@ -232,7 +237,11 @@ namespace Sprint1
             currScene.Initalize(CurrSceneIndex);
             currScene.LoadContent();          
             LoadingMode = false;
+            Scene.CopyDataOfParameter(tempParameter, Mario.Parameters);
+            currScene.Mario.RestoreStates(actionType, powerType, isFire);
+            currScene.Camera.LookAt(Mario.Parameters.Position);
             #endregion
+
         }
 
     }

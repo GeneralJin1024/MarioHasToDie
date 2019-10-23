@@ -38,12 +38,16 @@ namespace Sprint1
         }
         public void Initalize(int levelIndex)
         {
+
+
+
             characterList = new ArrayList();
             BackgroundList = new ArrayList();
             FireBallList = new ArrayList();
             this.level = levelIndex;
             //factoryList = new ArrayList();
             stage.Initialize();
+
         }
 
         public void LoadContent()
