@@ -222,13 +222,6 @@ namespace Sprint1
         public void ResetScene()
         {
             #region Reset
-            /*若想让马里奥一起重置请注释以下代码*/
-            MoveParameters tempParameter = new MoveParameters(true);
-            Scene.CopyDataOfParameter(currScene.Mario.Parameters, tempParameter);
-            MarioState.ActionType actionType = currScene.Mario.GetAction();
-            MarioState.PowerType powerType = currScene.Mario.GetPower();
-            bool isFire = currScene.Mario.isFire();
-            /*若想让马里奥一起重置请注释以上代码*/
 
             LoadingMode = true;       
             scenes.Remove(currScene);
@@ -239,12 +232,6 @@ namespace Sprint1
             currScene.Initalize(CurrSceneIndex);
             currScene.LoadContent();          
             LoadingMode = false;
-
-            /*若想让马里奥一起重置请注释以下代码*/
-            Scene.CopyDataOfParameter(tempParameter, currScene.Mario.Parameters);
-            currScene.Mario.RestoreStates(actionType, powerType, isFire);
-            currScene.Camera.LookAt(currScene.Mario.Parameters.Position);
-            /*若想让马里奥一起重置请注释以上代码*/
             #endregion
         }
 
