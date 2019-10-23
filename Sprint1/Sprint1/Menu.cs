@@ -61,7 +61,10 @@ namespace Sprint1
                 else if ( key == Keys.Z )
                 {
                     if (FirstChoose)
+                    {
+                        Game.LoadingMode = false;
                         Game.MenuMode = false;
+                    }
                     else
                         Game.Exit();
                 }

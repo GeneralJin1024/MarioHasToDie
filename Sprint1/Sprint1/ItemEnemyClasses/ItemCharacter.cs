@@ -29,16 +29,6 @@ namespace Sprint1.ItemClasses
             isBump = false;
         }
 
-        /**
-         * Reset this objects to initial. Include Parameters (can use Scene.CopyDataOfParameter) and state (if you have).
-         */
-        public void Reset()
-        {
-            Scene.CopyDataOfParameter(InitialParameter, Parameters);
-        }
-
-
-
         public void Update(float timeOfFrame)
         {
             item.Update(timeOfFrame);

@@ -126,5 +126,6 @@ namespace Sprint1.LevelLoader
             float aYPosition = float.Parse(pos.Substring(startInd, pos.IndexOf("}", StringComparison.Ordinal) - startInd), CultureInfo.CurrentCulture);
             return new Vector2(aXPosition, aYPosition);
         }
+
     }
 }

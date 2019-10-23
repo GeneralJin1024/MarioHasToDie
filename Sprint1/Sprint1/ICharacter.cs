@@ -24,6 +24,5 @@ namespace Sprint1
         Vector2 GetHeightAndWidth(); //get the height and width of object
         void BlockCollide(bool isBottom);
 
-        void Reset();  //When everyone implement reset, delete the comment
     }
 }

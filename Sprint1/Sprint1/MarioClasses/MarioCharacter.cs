@@ -143,11 +143,5 @@ namespace Sprint1.MarioClasses
         public void MarioCollide(bool special) { }
         public void BlockCollide(bool isBottom) { }
 
-        public void Reset()
-        {
-            Scene.CopyDataOfParameter(InitialParameters, Parameters);
-            Mario.ChangeToIdle();
-            Mario.MarioState.ChangeToStandard();
-        }
     }
 }

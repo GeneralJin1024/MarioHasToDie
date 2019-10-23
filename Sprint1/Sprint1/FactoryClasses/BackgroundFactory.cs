@@ -49,6 +49,8 @@ namespace Sprint1.FactoryClasses
         {
             switch (name)
             {
+                case "BigHill":
+                    layers[1].Sprites.Add(GetBigHill(pos)); break;
                 case "SmallHill":
                     layers[1].Sprites.Add(GetSmallHill(pos)); break;
                 case "BigCloud":
@@ -59,7 +61,8 @@ namespace Sprint1.FactoryClasses
                     layers[2].Sprites.Add(GetBigBush(pos)); break;
                 case "SmallBush":
                     layers[2].Sprites.Add(GetSmallBush(pos)); break;
-                default: layers[1].Sprites.Add(GetBigHill(pos)); break;
+                default:
+                    layers[0].Sprites.Add(new NullCharacter()); break;
             }
         }
 
@@ -98,6 +101,8 @@ namespace Sprint1.FactoryClasses
         {
             switch (name)
             {
+                case "BigHill":
+                    return GetBigHill(pos);
                 case "SmallHill":
                     return GetSmallHill(pos);
                 case "BigCloud":
@@ -108,7 +113,7 @@ namespace Sprint1.FactoryClasses
                     return GetBigBush(pos);
                 case "SmallBush":
                     return GetSmallBush(pos);
-                default: return GetBigHill(pos);
+                default: return new NullCharacter();
             }
         }
     }

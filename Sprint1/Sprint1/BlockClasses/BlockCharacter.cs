@@ -68,10 +68,6 @@ namespace Sprint1.BlockClasses
         {
         }
 
-        public void Reset()
-        {
-            //TO DO:
-        }
     }
 
 }

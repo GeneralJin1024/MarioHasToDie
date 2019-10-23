@@ -66,9 +66,5 @@ namespace Sprint1.ItemClasses
             return currentSprite.GetHeightAndWidth();
         }
 
-        public void Reset()
-        {
-            //TO DO:
-        }
     }
 }

@@ -44,6 +44,5 @@ namespace Sprint1.Background
 
         public void BlockCollide(bool isBottom) { }
 
-        public void Reset() { }
     }
 }

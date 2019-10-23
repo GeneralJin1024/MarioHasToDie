@@ -17,9 +17,9 @@ namespace Sprint1
         readonly Stage stage;
         SpriteBatch spriteBatch;
         private int level;
-        private readonly ArrayList characterList;
+        private ArrayList characterList;
         private ArrayList FireBallList;
-        private readonly ArrayList BackgroundList;
+        private ArrayList BackgroundList;
         private Camera Camera;
         private List<Layer> Layers;
         public MarioCharacter Mario { get; internal set; }
@@ -29,10 +29,7 @@ namespace Sprint1
         }
         public Scene(Stage stage)
         {
-            this.stage = stage;
-            characterList = new ArrayList();
-            BackgroundList = new ArrayList();
-            FireBallList = new ArrayList();
+            this.stage = stage;         
         }
 
         public void Add(ICharacter character)
@@ -41,6 +38,9 @@ namespace Sprint1
         }
         public void Initalize(int levelIndex)
         {
+            characterList = new ArrayList();
+            BackgroundList = new ArrayList();
+            FireBallList = new ArrayList();
             this.level = levelIndex;
             //factoryList = new ArrayList();
             stage.Initialize();
@@ -57,6 +57,7 @@ namespace Sprint1
                 new Layer(Camera) { Parallax = new Vector2(1.0f, 1.0f) }, //item，enemy，block
                 new Layer(Camera) { Parallax = new Vector2(1.0f, 1.0f) } // 火球
             };
+
             stage.SpriteLocationReader(level, characterList, BackgroundList, FireBallList, Layers);
             spriteBatch = new SpriteBatch(stage.Game.GraphicsDevice);
             Layers[2].Sprites.Add(Mario);
@@ -125,12 +126,6 @@ namespace Sprint1
             newParameter.SetPosition(parameter.Position.X, parameter.Position.Y);
             newParameter.SetVelocity(Math.Abs(parameter.Velocity.X), Math.Abs(parameter.Velocity.Y));
             newParameter.HasGravity = parameter.HasGravity;
-        }
-
-        public void ResetObjects()
-        {
-            foreach (ICharacter character in characterList)
-                character.Reset();
         }
 
     }

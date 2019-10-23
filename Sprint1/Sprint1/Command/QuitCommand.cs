@@ -41,7 +41,7 @@ namespace Sprint1
     {
         public void Execute()
         {
-            Sprint1Main.Game.Scene.ResetObjects();
+            Sprint1Main.Game.ResetScene();
         }
     }
 }

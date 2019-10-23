@@ -50,9 +50,5 @@ namespace Sprint1
         }
         public void BlockCollide(bool isBottom) { }
 
-        public void Reset()
-        {
-            //do nothing
-        }
     }
 }
