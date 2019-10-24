@@ -28,7 +28,7 @@ namespace Sprint1
     {
         public enum CharacterType
         {
-            Block, Enemy, DiedEnemy, Flower, Mushroom, Star, Coin, Pipe, Null
+            Mario, Block, Enemy, DiedEnemy, Flower, GreenMushroom, RedMushroom, Star, Coin, Pipe, Fireball, Null
         }
 
         
@@ -42,6 +42,7 @@ namespace Sprint1
 
         private Menu GameMenu;
         public bool MenuMode { get; set; }
+        public bool LoadingMode { get; set; }
         public MarioCharacter Mario { get; set; }
         public static Sprint1Main Game { get; private set; }
         public GraphicsDeviceManager Graphics
@@ -60,7 +61,7 @@ namespace Sprint1
         {
             get
             {
-                return stage;
+                return scenes[CurrSceneIndex-1].Stage;
             }
         }
 
@@ -68,24 +69,24 @@ namespace Sprint1
         {
             get
             {
-                return scenes[scene - 1];
+                return scenes[CurrSceneIndex - 1];
             }
         }
-
-        private readonly Stage stage;
-        readonly List<Scene> scenes;
-        private readonly int scene;
+        public int CurrSceneIndex { get; private set; }
+        private Scene currScene;
+        readonly List<Scene> scenes;        
+        private readonly int totalScene;
 
         public Sprint1Main()
         {
             Game = this;
             Graphics = new GraphicsDeviceManager(this);
-            stage = new Stage(this);
             
             Content.RootDirectory = "Content";
 
-            scenes = new List<Scene>{new Scene(stage)};
-            scene = 1;
+            scenes = new List<Scene>{};
+            totalScene = ConfigurationReaderAndWriter.ReadSetting("Scenes");
+            CurrSceneIndex = 1;
         }
 
         /// <summary>
@@ -96,9 +97,17 @@ namespace Sprint1
         /// </summary>
         protected override void Initialize()
         {
-            scenes[scene - 1].Initalize(scene);
+            for (int i = 1; i <= totalScene; i++)
+            {
+                Stage stage = new Stage(this);
+                Scene scene = new Scene(stage);
+                scene.Initalize(i);
+                scenes.Add(scene);
+            }
+            currScene = scenes[CurrSceneIndex-1];
             GameMenu = new Menu(this);
             MenuMode = true;
+            LoadingMode = true;
             base.Initialize();
         }
 
@@ -110,9 +119,10 @@ namespace Sprint1
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            scenes[scene - 1].LoadContent();
-           
-
+            for (int i = 1; i <= totalScene; i++)
+            {
+                scenes[i - 1].LoadContent();
+            }
             #region Fonts
             instructionFont = Content.Load<SpriteFont>("arial");
             #endregion
@@ -145,7 +155,8 @@ namespace Sprint1
                 GameMenu.Update(1);
             else
             {
-                scenes[scene - 1].Update(gameTime);
+                if (!LoadingMode)
+                    currScene.Update(gameTime);
                 //Controller.UpdateInput(...);
                 //foreach (IController controller in controllerList)
                 //    controller.Update();
@@ -175,7 +186,8 @@ namespace Sprint1
                 GameMenu.Draw(spriteBatch);
             else
             {
-                scenes[scene - 1].Draw();
+                if (!LoadingMode)
+                    currScene.Draw();
             }
                 
 
@@ -207,7 +219,31 @@ namespace Sprint1
         //    spriteBatch.DrawString(instructionFont, "Y - Display a Moving and Animated sprite", new Vector2(GraphicsDevice.Viewport.Width - 400.0f, 100.00f), color);
         //    #endregion
         //}
+        public void ResetScene()
+        {
+            #region Reset
+            MoveParameters tempParameter = new MoveParameters(true);
+            Scene.CopyDataOfParameter(currScene.Mario.Parameters, tempParameter);
+            MarioState.ActionType actionType = currScene.Mario.GetAction();
+            MarioState.PowerType powerType = currScene.Mario.GetPower();
+            bool isFire = currScene.Mario.isFire();
 
-        
+            LoadingMode = true;       
+            scenes.Remove(currScene);
+            currScene.Dispose();
+            Stage stage = new Stage(this);
+            currScene = new Scene(stage);
+            scenes.Insert(CurrSceneIndex-1, currScene);
+            currScene.Initalize(CurrSceneIndex);
+            currScene.LoadContent();          
+            LoadingMode = false;
+
+            Scene.CopyDataOfParameter(tempParameter, currScene.Mario.Parameters);
+            currScene.Mario.RestoreStates(actionType, powerType, isFire);
+            currScene.Camera.LookAt(currScene.Mario.Parameters.Position);
+            #endregion
+
+        }
+
     }
 }

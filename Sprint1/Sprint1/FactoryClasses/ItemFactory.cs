@@ -24,17 +24,27 @@ namespace Sprint1.FactoryClasses
                 return _instance;
             }
         }
+        private ArrayList CharacterList;
         Texture2D coin;
         Texture2D flower;
         Texture2D greenMushroom;
         Texture2D redMushroom;
         Texture2D star;
         Texture2D pipe;
+        Texture2D fireBall;
         public ItemFactory()
         {
             //when factory initialzed, load the texture
             LoadTexture();
         }
+        public void Initialize(ArrayList characterList) { CharacterList = characterList; }
+        public ICharacter AddNewCharacter(string characterType, Vector2 location)
+        {
+            ICharacter newItem = FactoryMethod(characterType, location);
+            CharacterList.Add(newItem);
+            return newItem;
+        }
+
         private void LoadTexture()
         {
             coin = Sprint1Main.Game.Content.Load<Texture2D>("ItemSprite/coin");
@@ -43,6 +53,7 @@ namespace Sprint1.FactoryClasses
             redMushroom = Sprint1Main.Game.Content.Load<Texture2D>("ItemSprite/redMushroom");
             star = Sprint1Main.Game.Content.Load<Texture2D>("ItemSprite/star");
             pipe = Sprint1Main.Game.Content.Load<Texture2D>("ItemSprite/PipeSpriteSheet");
+            fireBall = Sprint1Main.Game.Content.Load<Texture2D>("ItemSprite/redMushroom");
         }
         
         public ItemCharacter GetPipe(Vector2 pos)
@@ -69,6 +80,10 @@ namespace Sprint1.FactoryClasses
         {
             return new StarCharacter(star, new Point(1, 4) , pos);
         }
+        public ItemCharacter GetFireBall(Vector2 pos)
+        {
+            return new FireBallCharacter(fireBall, new Point(1, 1), pos);
+        }
 
         public ICharacter FactoryMethod(string name, Vector2 pos)
         {
@@ -86,6 +101,7 @@ namespace Sprint1.FactoryClasses
                     return GetRedMushroom(pos);
                 case "Star":
                     return GetStar(pos);
+                case "FireBall": return GetFireBall(pos);
                 default: return new NullCharacter();
             }
         }

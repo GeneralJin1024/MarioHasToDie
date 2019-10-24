@@ -13,6 +13,7 @@ namespace Sprint1.BlockClasses
     {
         private Blocks block;
         public MoveParameters Parameters { get; }
+        public BlockType BlockType { get; private set; }
         public Sprint1Main.CharacterType Type { get; set; }
 
         public BlockCharacter(Blocks block)
@@ -20,6 +21,7 @@ namespace Sprint1.BlockClasses
             this.block = block;
             Type = Sprint1Main.CharacterType.Block;
             Parameters = block.Parameters;
+            BlockType = block.BType;
         }
 
         public void Draw(SpriteBatch spriteBatch)
@@ -29,17 +31,23 @@ namespace Sprint1.BlockClasses
 
         public Vector2 GetMaxPosition()
         {
-            return new Vector2(block.Parameters.Position.X + block.GetHeightAndWidth().Y, block.Parameters.Position.Y);
+            if (block.BType != BlockType.Destroyed)
+                return new Vector2(block.Parameters.Position.X + block.GetHeightAndWidth().Y, block.Parameters.Position.Y);
+            else
+                return new Vector2(0, 0);
         }
 
         public Vector2 GetMinPosition()
         {
-            return new Vector2(block.Parameters.Position.X, block.Parameters.Position.Y - block.GetHeightAndWidth().X);
+            if (block.BType != BlockType.Destroyed)
+                return new Vector2(block.Parameters.Position.X, block.Parameters.Position.Y - block.GetHeightAndWidth().X);
+            else
+                return new Vector2(0, 0);
         }
 
         public void Update(float timeOfFrame)
         {
-            block.Update(timeOfFrame);
+                block.Update(timeOfFrame);
         }
 
         public void MarioCollide(bool specialCase)
@@ -47,6 +55,7 @@ namespace Sprint1.BlockClasses
             if (specialCase)
             {
                 block.currentbState.Handle(block);
+                BlockType = block.BType;
             }
         }
 
@@ -54,6 +63,11 @@ namespace Sprint1.BlockClasses
         {
             return block.GetHeightAndWidth();
         }
+
+        public void BlockCollide(bool isBottom)
+        {
+        }
+
     }
 
 }

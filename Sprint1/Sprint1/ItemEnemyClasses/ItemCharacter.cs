@@ -4,13 +4,14 @@ using Microsoft.Xna.Framework;
 using Sprint1.MarioClasses;
 using Sprint1.Sprites;
 using System;
+using Sprint1.LevelLoader;
 
 namespace Sprint1.ItemClasses
 {
-   abstract class ItemCharacter : ICharacter
+    abstract class ItemCharacter : ICharacter
     {
 
-       
+
         public abstract Sprint1Main.CharacterType Type { get; set; }
 
         private bool isBump;
@@ -18,10 +19,13 @@ namespace Sprint1.ItemClasses
         private Point positionOffset;
         protected readonly ItemSprite item;
         public MoveParameters Parameters { get; }
+        private MoveParameters InitialParameter;
         public ItemCharacter(Texture2D texture, Point rowsAndColumns, Vector2 location)
         {
             item = new ItemSprite(texture, location, rowsAndColumns);
             Parameters = item.Parameters;
+            InitialParameter = new MoveParameters(false);
+            Scene.CopyDataOfParameter(Parameters, InitialParameter);
             isBump = false;
         }
 
@@ -39,10 +43,12 @@ namespace Sprint1.ItemClasses
                     Parameters.SetPosition(Parameters.Position.X, bumpHeight);
                 }
             }
+            if (Parameters.Position.Y >= Stage.Boundary.X || Parameters.Position.Y >= Stage.Boundary.Y)
+                Parameters.IsHidden = true;
         }
         public void Draw(SpriteBatch spriteBatch)
         {
-            Console.WriteLine(item.Parameters.IsHidden + "   Position = " + Parameters.Position);
+            //Console.WriteLine(item.Parameters.IsHidden + "   Position = " + Parameters.Position);
             item.Draw(spriteBatch);
         }
         public Vector2 GetMaxPosition()
@@ -66,5 +72,15 @@ namespace Sprint1.ItemClasses
 
         public abstract void MarioCollide(bool specialCase);
         public abstract Vector2 GetHeightAndWidth();
+        public virtual void BlockCollide(bool isBottom)
+        {
+            if (isBottom)
+                Parameters.SetVelocity(Math.Abs(Parameters.Velocity.X), 0);
+            else
+            {
+                Parameters.SetVelocity(0, 0);
+                Parameters.HasGravity = false;
+            }
+        }
     }
 }

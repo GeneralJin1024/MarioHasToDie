@@ -47,7 +47,7 @@ namespace Sprint1.BlockClasses
         {
             switch (BType)
             {
-                case BlockType.Hidden :
+                case BlockType.Hidden:
                     return bStates[0];
                 case BlockType.Used:
                 case BlockType.Destroyed:
@@ -60,6 +60,7 @@ namespace Sprint1.BlockClasses
         public void ChangeToBrick()
         {
             BType = BlockType.BNormal;
+            //Console.WriteLine("change to Bnormal");
             SpriteSheets = BlockFactory.BlockTextures[0];
             currentbState = GenerateCurrentState();
         }

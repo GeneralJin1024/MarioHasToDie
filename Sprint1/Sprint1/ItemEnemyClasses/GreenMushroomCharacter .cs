@@ -11,9 +11,9 @@ namespace Sprint1.ItemClasses
 {
     class GreenMushroomCharacter : ItemCharacter
     {
-        public override Sprint1Main.CharacterType Type { get; set; } = Sprint1Main.CharacterType.Mushroom;
+        public override Sprint1Main.CharacterType Type { get; set; } = Sprint1Main.CharacterType.GreenMushroom;
         public GreenMushroomCharacter(Texture2D texture, Point rowsAndColunms, Vector2 location)
-            : base(texture, rowsAndColunms, location) { }
+            : base(texture, rowsAndColunms, location) {  }
         
 
      

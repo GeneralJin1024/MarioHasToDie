@@ -18,13 +18,14 @@ namespace Sprint1.LevelLoader
     {
         public Sprint1Main Game { get; set; }
         public static Vector2 Boundary { get; private set; }
+        public static Vector2 MapBoundary { get; private set; } = new Vector2(1000, 500);
 
         readonly List<IController> controllerList;
         //private ArrayList factoryList;
         private int TimeSinceLastFrame;
         private int MillisecondsPerFrame;
         private CollisionDetector Collision;
-
+        private int DiedTime = 0;
         public GraphicsDeviceManager GraphicsDevice
         {
             get { return Game.Graphics; }
@@ -50,10 +51,10 @@ namespace Sprint1.LevelLoader
             
         }
 
-        public void LoadContent(ArrayList spriteList)
+        public void LoadContent(ArrayList spriteList, ArrayList fireBallList)
         {
             //nothing to do here           
-            Collision = new CollisionDetector(Game.Scene.Mario, spriteList);
+            Collision = new CollisionDetector(Game.Scene.Mario, spriteList, fireBallList);
             controllerList.Add(new KeyboardController(Game.Scene.Mario, Game));
             controllerList.Add(new GamepadController(Game.Scene.Mario, Game));
         }
@@ -69,21 +70,29 @@ namespace Sprint1.LevelLoader
                 TimeSinceLastFrame -= MillisecondsPerFrame;
                 Collision.Update();
             }
+            if (Game.Scene.Mario.IsDied())
+                DiedTime++;
+            if (DiedTime >= 50)
+                Game.Exit();
 
         }
 
-        internal void SpriteLocationReader(int levelIndex, ArrayList spriteList, ArrayList backgroundList)
+        internal void SpriteLocationReader(int levelIndex, ArrayList spriteList, ArrayList backgroundList, ArrayList fireBallList, List<Layer> layers)
         {
+
             if (!((LevelSection)ConfigurationManager.GetSection("Level" + levelIndex) is LevelSection myLevelSection))
             {
                 Console.WriteLine("Failed to load Level" + levelIndex);
             }
             else
             {
+                ItemFactory.Instance.Initialize(fireBallList);
                 Game.Scene.Mario = PlayerFactory.FactoryMethod2(myLevelSection.Player[1].SpriteName, StringToVecter2(myLevelSection.Player[1].SpriteLocation));
                 for (int i = 1; i < myLevelSection.Backgrounds.Count; i++)
                 {
-                    backgroundList.Add(BackgroundFactory.Instance.FactoryMethod2(myLevelSection.Backgrounds[i].SpriteName, StringToVecter2(myLevelSection.Backgrounds[i].SpriteLocation)));
+                    BackgroundFactory.Instance.AddBackground(myLevelSection.Backgrounds[i].SpriteName, 
+                        StringToVecter2(myLevelSection.Backgrounds[i].SpriteLocation), layers);
+                    //backgroundList.Add(BackgroundFactory.Instance.FactoryMethod2(myLevelSection.Backgrounds[i].SpriteName, StringToVecter2(myLevelSection.Backgrounds[i].SpriteLocation)));
                 }
                 for (int i = 1; i < myLevelSection.Items.Count; i++)
                 {
@@ -104,8 +113,8 @@ namespace Sprint1.LevelLoader
         {
             position.X = position.X >= 0 ? position.X : 0;
             position.Y = position.Y >= 0 ? position.Y : 0;
-            position.X = position.X <= Boundary.X - heightAndWidth.Y ? position.X : Boundary.X - heightAndWidth.Y;
-            position.Y = position.Y <= Boundary.Y - heightAndWidth.X ? position.Y : Boundary.Y - heightAndWidth.X;
+            position.X = position.X <= MapBoundary.X - heightAndWidth.Y ? position.X : MapBoundary.X - heightAndWidth.Y;
+            position.Y = position.Y <= MapBoundary.Y - heightAndWidth.X ? position.Y : MapBoundary.Y - heightAndWidth.X;
             return position;
         }
 
@@ -117,5 +126,6 @@ namespace Sprint1.LevelLoader
             float aYPosition = float.Parse(pos.Substring(startInd, pos.IndexOf("}", StringComparison.Ordinal) - startInd), CultureInfo.CurrentCulture);
             return new Vector2(aXPosition, aYPosition);
         }
+
     }
 }

@@ -18,7 +18,9 @@ namespace Sprint1
         private readonly MarioCharacter mario;
         /*private readonly Bricks[] blockList;*/
         private readonly Dictionary<Keys, ICommand> controllerDic;
+        private Dictionary<Keys, ICommand> controllerDicMove;
         private readonly Sprint1Main Game;
+        private ICommand ReturnCommand;
 
         public KeyboardController(MarioCharacter mario, Sprint1Main game /*Bricks[] blockList*/)
         {
@@ -26,26 +28,30 @@ namespace Sprint1
             this.mario = mario;
             /*this.blockList = blockList;*/
             controllerDic = new Dictionary<Keys, ICommand>();
+            controllerDicMove = new Dictionary<Keys, ICommand>();
             Game = game;
             GetCommand();
         }
 
         public void GetCommand()
         {
+            ReturnCommand = new ReturnCommand(mario);
             // Map KeyboardController keys and Game commands
-            controllerDic.Add(Keys.W, new MoveUpCommand(mario));
-            controllerDic.Add(Keys.Up, new MoveUpCommand(mario));
-            controllerDic.Add(Keys.D, new MoveRightCommand(mario));
-            controllerDic.Add(Keys.Right, new MoveRightCommand(mario));
-            controllerDic.Add(Keys.S, new MoveDownCommand(mario));
-            controllerDic.Add(Keys.Down, new MoveDownCommand(mario));
-            controllerDic.Add(Keys.A, new MoveLeftCommand(mario));
-            controllerDic.Add(Keys.Left, new MoveLeftCommand(mario));
+            controllerDicMove.Add(Keys.W, new MoveUpCommand(mario));
+            controllerDicMove.Add(Keys.Up, new MoveUpCommand(mario));
+            controllerDicMove.Add(Keys.D, new MoveRightCommand(mario));
+            controllerDicMove.Add(Keys.Right, new MoveRightCommand(mario));
+            controllerDicMove.Add(Keys.S, new MoveDownCommand(mario));
+            controllerDicMove.Add(Keys.Down, new MoveDownCommand(mario));
+            controllerDicMove.Add(Keys.A, new MoveLeftCommand(mario));
+            controllerDicMove.Add(Keys.Left, new MoveLeftCommand(mario));
             controllerDic.Add(Keys.Y, new MoveStandardCommand(mario));
             controllerDic.Add(Keys.U, new MoveSuperCommand(mario));
             controllerDic.Add(Keys.I, new MoveFireCommand(mario));
             controllerDic.Add(Keys.O, new MoveDestroyCommand(mario));
             controllerDic.Add(Keys.Q, new QuitCommand(Game));
+            controllerDic.Add(Keys.J, new ThrowFireCommand(mario));
+            controllerDic.Add(Keys.R, new ResetCommand());
             /*controllerDic.Add(Keys.B, new BlockCommands(blockList[2]));
             controllerDic.Add(Keys.H, new BlockCommands(blockList[1]));
             controllerDic.Add(Keys.OemQuestion, new BlockCommands(blockList[0]));*/
@@ -53,14 +59,21 @@ namespace Sprint1
         }
         public void Update()
         {
+            bool hasMoving = false;
             KeyboardState curr = Keyboard.GetState();
-                foreach (Keys key in curr.GetPressedKeys())
+            foreach (Keys key in curr.GetPressedKeys())
             {   // check the previous pressed key and current pressed key
-                if (controllerDic.ContainsKey(key) && !oldkeyboardState.IsKeyDown(key))
-                    {
-                        controllerDic[key].Execute();
-                    }
+                if (controllerDicMove.ContainsKey(key))
+                {
+                    controllerDicMove[key].Execute(); hasMoving = true;
                 }
+                if (controllerDic.ContainsKey(key) && !oldkeyboardState.IsKeyDown(key))
+                {
+                    controllerDic[key].Execute();
+                }
+            }
+            if (!hasMoving)
+                ReturnCommand.Execute();
             oldkeyboardState = curr;
         }
        

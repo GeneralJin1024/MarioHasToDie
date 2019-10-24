@@ -45,29 +45,50 @@ namespace Sprint1.FactoryClasses
 
         }
 
-        public BackgroundSprite GetBigHill(Vector2 pos)
+        public void AddBackground(string name, Vector2 pos, List<Layer> layers)
         {
-            return new BackgroundSprite(bigHill, pos);
+            switch (name)
+            {
+                case "BigHill":
+                    layers[1].Sprites.Add(GetBigHill(pos)); break;
+                case "SmallHill":
+                    layers[1].Sprites.Add(GetSmallHill(pos)); break;
+                case "BigCloud":
+                    layers[0].Sprites.Add(GetBigCloud(pos)); break;
+                case "SmallCloud":
+                    layers[0].Sprites.Add(GetSmallCloud(pos)); break;
+                case "BigBush":
+                    layers[2].Sprites.Add(GetBigBush(pos)); break;
+                case "SmallBush":
+                    layers[2].Sprites.Add(GetSmallBush(pos)); break;
+                default:
+                    layers[0].Sprites.Add(new NullCharacter()); break;
+            }
         }
-        public BackgroundSprite GetSmallHill(Vector2 pos)
+
+        public BackgroundCharacter GetBigHill(Vector2 pos)
         {
-            return new BackgroundSprite(smallHill, pos);
+            return new BackgroundCharacter(bigHill, pos);
         }
-        public BackgroundSprite GetBigCloud(Vector2 pos)
+        public BackgroundCharacter GetSmallHill(Vector2 pos)
         {
-            return new BackgroundSprite(bigCloud, pos);
+            return new BackgroundCharacter(smallHill, pos);
         }
-        public BackgroundSprite GetSmallCloud(Vector2 pos)
+        public BackgroundCharacter GetBigCloud(Vector2 pos)
         {
-            return new BackgroundSprite(smallCloud, pos);
+            return new BackgroundCharacter(bigCloud, pos);
         }
-        public BackgroundSprite GetBigBush(Vector2 pos)
+        public BackgroundCharacter GetSmallCloud(Vector2 pos)
         {
-            return new BackgroundSprite(bigBush, pos);
+            return new BackgroundCharacter(smallCloud, pos);
         }
-        public BackgroundSprite GetSmallBush(Vector2 pos)
+        public BackgroundCharacter GetBigBush(Vector2 pos)
         {
-            return new BackgroundSprite(smallBush, pos);
+            return new BackgroundCharacter(bigBush, pos);
+        }
+        public BackgroundCharacter GetSmallBush(Vector2 pos)
+        {
+            return new BackgroundCharacter(smallBush, pos);
         }
 
         public ICharacter FactoryMethod(string name, Vector2 pos)
@@ -76,7 +97,7 @@ namespace Sprint1.FactoryClasses
             return null;
         }
 
-        public ISprite FactoryMethod2(string name, Vector2 pos)
+        public ICharacter FactoryMethod2(string name, Vector2 pos)
         {
             switch (name)
             {
@@ -92,7 +113,7 @@ namespace Sprint1.FactoryClasses
                     return GetBigBush(pos);
                 case "SmallBush":
                     return GetSmallBush(pos);
-                default: return new Sprites.NullSprite();
+                default: return new NullCharacter();
             }
         }
     }

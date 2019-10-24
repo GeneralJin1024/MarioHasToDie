@@ -11,7 +11,7 @@ namespace Sprint1.MarioClasses
         //Used to change to Idle when crouch super Mario want to change to standard Mario
         public enum ActionType
         {
-            Crouch, Other
+            Crouch, Idle, Walk, Jump, Fall, Other
         }
         //In Super, the brick block can bump.
         //In Died, reject all action command.
@@ -31,7 +31,7 @@ namespace Sprint1.MarioClasses
         public MarioState(Mario mario)
         {
             actionStates = new IActionState[] {new IdleState(), new JumpState(), new WalkState(),
-                new CrouchState(), new RunningJumpState(), new DiedActionState() };
+                new CrouchState(), new FallingState(), new DiedActionState() };
             powerStates = new IPowerState[] { new StandardState(), new SuperState(), new FireState(), new DiedState() };
             Mario = mario;
             CurrentState = new int[] { 0, 0 }; //CurrentState = {Current Action State, Current Power State}
@@ -40,17 +40,22 @@ namespace Sprint1.MarioClasses
         #region Move Command Receiver
         public void MoveUp() { actionStates[CurrentState[0]].Up(Mario); }
 
-        public void MoveDown() { actionStates[CurrentState[0]].Down(Mario); }
+        public void MoveDown()
+        {
+            if (CurrentState[0] != 0 || CurrentState[1] != 0)
+                actionStates[CurrentState[0]].Down(Mario);
+        }
 
         public void MoveLeft() { actionStates[CurrentState[0]].Left(Mario); }
 
         public void MoveRight() { actionStates[CurrentState[0]].Right(Mario); }
+        public void Return() { actionStates[CurrentState[0]].Return(Mario); }
         #endregion
 
         #region Change Power
         public void ChangeToStandard()
         {
-            if (powerStates[CurrentState[1]].Type == PowerType.Super && actionStates[CurrentState[0]].Type == ActionType.Crouch)
+            if (powerStates[CurrentState[1]].Type == PowerType.Super && GetActionType == ActionType.Crouch)
                 Mario.ChangeToIdle(); //Super Crouch -> Standard Idle
             //reset to Idle if change from Died.
             powerStates[CurrentState[1]].Leave(Mario);
@@ -79,6 +84,7 @@ namespace Sprint1.MarioClasses
             Mario.ChangeActionAndSprite(5);
             Mario.Parameters.SetVelocity(0, 0); // stop moving
             CurrentState[1] = 3;
+            Mario.Parameters.HasGravity = false;
         }
         #endregion
 
@@ -87,6 +93,11 @@ namespace Sprint1.MarioClasses
         public void ChangeAction(int changeNumber)
         {
             CurrentState[0] = changeNumber; // change action state in mario state.
+        }
+
+        public bool IsFireMario()
+        {
+            return CurrentState[1] == 2;
         }
     }
 }

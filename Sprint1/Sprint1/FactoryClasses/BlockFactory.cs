@@ -46,7 +46,7 @@ namespace Sprint1.FactoryClasses
         
         public BlockCharacter GetBrickBlock(MoveParameters moveParameters, ArrayList items)
         {
-            return new BlockCharacter(new BrickBlockSprite(BlockTextures[0], moveParameters, items));
+            return new BlockCharacter(new BrickBlockSprite(BlockTextures[0], moveParameters, items, BlockType.BNormal));
         }
         public BlockCharacter GetHiddenBlock(MoveParameters moveParameters, ArrayList items)
         {
@@ -71,7 +71,7 @@ namespace Sprint1.FactoryClasses
 
         public ICharacter FactoryMethod(string name, Vector2 pos)
         {
-            MoveParameters parameters = new MoveParameters();
+            MoveParameters parameters = new MoveParameters(false);
             parameters.SetPosition(pos.X, pos.Y);
             switch(name)
             {

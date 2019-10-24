@@ -11,7 +11,7 @@ namespace Sprint1.Sprites
 {
      class ItemSprite : AnimatedSprite
     {
-        public ItemSprite(Texture2D texture, Vector2 location, Point sheetSize) : base(texture, sheetSize, new MoveParameters())
+        public ItemSprite(Texture2D texture, Vector2 location, Point sheetSize) : base(texture, sheetSize, new MoveParameters(false))
         {
             //initialize
             Parameters.SetPosition(location.X, location.Y);
