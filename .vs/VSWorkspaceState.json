@@ -3,12 +3,14 @@
     "",
     "\\Sprint1",
     "\\Sprint1\\CodeReview",
-    "\\Sprint1\\CodeReview\\Sprint1",
+    "\\Sprint1\\CodeReview\\Sprint2",
+    "\\Sprint1\\CodeReview\\Sprint2\\Jian Zhang",
+    "\\Sprint1\\CodeReview\\Sprint2\\Ziye Zhu",
     "\\Sprint1\\Sprint1",
     "\\Sprint1\\Sprint1\\CollideDetection",
-    "\\Sprint1\\Sprint1\\MarioClasses",
-    "\\Sprint1\\Sprint1\\Sprites"
+    "\\Sprint1\\Sprint1\\ItemEnemyClasses",
+    "\\Sprint1\\Sprint1\\LevelLoader"
   ],
-  "SelectedNode": "\\Sprint1\\Sprint1.sln",
+  "SelectedNode": "\\Sprint1\\CodeReview\\Sprint1",
   "PreviewInSolutionExplorer": false
 }
