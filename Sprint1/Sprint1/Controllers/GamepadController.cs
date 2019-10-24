@@ -14,30 +14,37 @@ namespace Sprint1
         // variables declarations
         private GamePadState prevGamePadState;
         private readonly MarioCharacter mario;
+        private readonly Dictionary<Buttons, ICommand> controllerDicMove;
         private readonly Dictionary<Buttons, ICommand> controllerDic;
         private readonly Sprint1Main Game;
+        private ICommand ReturnCommand;
 
         public GamepadController(MarioCharacter mario, Sprint1Main game)
         {
             // GamepadController set up
             Game = game;
             this.mario = mario;
+            controllerDicMove = new Dictionary<Buttons, ICommand>();
             controllerDic = new Dictionary<Buttons, ICommand>();
             prevGamePadState = GamePad.GetState(PlayerIndex.One);
             GetCommand();
         }
         public void GetCommand()
         {
+            ReturnCommand = new ReturnCommand(mario);
             // Map KeyboardController keys and Game commands
-            controllerDic.Add(Buttons.A, new MoveUpCommand(mario));
-            controllerDic.Add(Buttons.DPadRight, new MoveRightCommand(mario));
-            controllerDic.Add(Buttons.DPadLeft, new MoveLeftCommand(mario));
-            controllerDic.Add(Buttons.DPadDown, new MoveDownCommand(mario));
+            controllerDicMove.Add(Buttons.A, new MoveUpCommand(mario));
+            controllerDicMove.Add(Buttons.DPadRight, new MoveRightCommand(mario));
+            controllerDicMove.Add(Buttons.DPadLeft, new MoveLeftCommand(mario));
+            controllerDicMove.Add(Buttons.DPadDown, new MoveDownCommand(mario));
             controllerDic.Add(Buttons.Start, new QuitCommand(Game));
-
+            controllerDic.Add(Buttons.Back, new ResetCommand());
+            controllerDic.Add(Buttons.B, new ThrowFireCommand(mario));
+           
         }
         public void Update()
         {
+            bool hasMoving = false;
             GamePadState curr = GamePad.GetState(PlayerIndex.One);
             GamePadState emptyInput = new GamePadState();
             // check if the gamepad is connected 
@@ -45,14 +52,25 @@ namespace Sprint1
             {
                 if (curr != emptyInput) // Button Pressed
                 {
+                    foreach (KeyValuePair<Buttons, ICommand> button in controllerDicMove)
+                    {   
+                        if (curr.IsButtonDown(button.Key))
+                        {
+                            // execute commands
+                            button.Value.Execute();
+                            hasMoving = true;
+                        }
+                    }
                     foreach (KeyValuePair<Buttons, ICommand> button in controllerDic)
                     {
-                        if (ButtonPressed(button.Key, curr))
+                        if (ButtonPressed(button.Key,curr))
                         {
                             // execute commands
                             button.Value.Execute();
                         }
                     }
+                    if(!hasMoving)
+                        ReturnCommand.Execute();
                     prevGamePadState = curr;
                 }
             }
