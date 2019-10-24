@@ -59,8 +59,9 @@ namespace Sprint1.FactoryClasses
             return new EnemyCharacter(greenkoopa, rowAndColumn, moveParameters);
         }
 
-        public ICharacter FactoryMethod(string name, Vector2 pos)
+        public ICharacter FactoryMethod(string name, Vector2 posS, Vector2 posE)
         {
+            Vector2 pos = new Vector2(posE.X - posS.X, posE.Y - posS.Y); 
             MoveParameters parameters = new MoveParameters(true);
             parameters.SetPosition(pos.X, pos.Y);
             switch (name)

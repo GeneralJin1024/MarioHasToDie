@@ -40,7 +40,7 @@ namespace Sprint1.FactoryClasses
         public void Initialize(ArrayList characterList) { CharacterList = characterList; }
         public ICharacter AddNewCharacter(string characterType, Vector2 location)
         {
-            ICharacter newItem = FactoryMethod(characterType, location);
+            ICharacter newItem = FactoryMethod(characterType, location, new Vector2(location.X+16, location.Y+16));
             CharacterList.Add(newItem);
             return newItem;
         }
@@ -85,25 +85,34 @@ namespace Sprint1.FactoryClasses
             return new FireBallCharacter(fireBall, new Point(1, 1), pos);
         }
 
-        public ICharacter FactoryMethod(string name, Vector2 pos)
+        public ICharacter FactoryMethod(string name, Vector2 posS, Vector2 posE)
         {
-            switch (name)
+            if (name.Equals("Pipe")) return GetPipe(posS); //Due to the special Format of Pipe sheet
+            for (int x = 0; x < (posE.X - posS.X) / 16; x++)
             {
-                case "Pipe":
-                    return GetPipe(pos);
-                case "Coin":
-                    return GetCoin(pos);
-                case "Flower":
-                    return GetFlower(pos);
-                case "GreenMushroom":
-                    return GetGreenMushroom(pos);
-                case "RedMashroom":
-                    return GetRedMushroom(pos);
-                case "Star":
-                    return GetStar(pos);
-                case "FireBall": return GetFireBall(pos);
-                default: return new NullCharacter();
+                for (int y = 0; y < (posE.Y - posS.Y) / 16; y++)
+                {
+                    Vector2 pos = new Vector2(posS.X + x * 16, posS.Y + y * 16);
+                    switch (name)
+                    {
+                        case "Pipe":
+                            return GetPipe(pos);
+                        case "Coin":
+                            return GetCoin(pos);
+                        case "Flower":
+                            return GetFlower(pos);
+                        case "GreenMushroom":
+                            return GetGreenMushroom(pos);
+                        case "RedMashroom":
+                            return GetRedMushroom(pos);
+                        case "Star":
+                            return GetStar(pos);
+                        case "FireBall": return GetFireBall(pos);
+                        default: return new NullCharacter();
+                    }
+                }
             }
+            return new NullCharacter();
         }
     }
 }

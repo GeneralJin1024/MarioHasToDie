@@ -25,8 +25,9 @@ namespace Sprint1.FactoryClasses
             }
         }
 
-        public static MarioCharacter FactoryMethod2(String name, Vector2 pos)
+        public static MarioCharacter FactoryMethod2(String name, Vector2 posS, Vector2 posE)
         {
+            Vector2 pos = new Vector2(posE.X - posS.X, posE.Y - posS.Y); // Only one mario exist
             switch (name)
             {
                 case "Mario": return GetMario(pos);

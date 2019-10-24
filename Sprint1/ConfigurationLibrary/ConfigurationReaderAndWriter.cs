@@ -101,11 +101,13 @@ namespace ConfigurationLibrary
     {
         // Constructor allowing ??? to be specified.
         public GameConfigElement(string id, String name,
-            String location)
+            String topLeftCornerLoc, string bottomRightCornerLoc, 
+            String embeddedSpriteName, string embeddedSpriteNum)
         {
             SpriteID = id;
             SpriteName = name;
-            SpriteLocation = location;
+            SpriteStartLocation = topLeftCornerLoc;
+            SpriteEndLocation = bottomRightCornerLoc;
         }
 
         // Default constructor, will use default values as defined
@@ -151,18 +153,63 @@ namespace ConfigurationLibrary
             }
         }
 
-        [ConfigurationProperty("SpriteLocation",
+        [ConfigurationProperty("SpriteStartLocation",
             IsRequired = true,
             IsKey = false)]
-        public string SpriteLocation
+        public string SpriteStartLocation
         {
             get
             {
-                return (string)this[nameof(SpriteLocation)];
+                return (string)this[nameof(SpriteStartLocation)];
             }
             set
             {
-                this[nameof(SpriteLocation)] = value;
+                this[nameof(SpriteStartLocation)] = value;
+            }
+        }
+
+        [ConfigurationProperty("SpriteEndLocation",
+            IsRequired = true,
+            IsKey = false)]
+        public string SpriteEndLocation
+        {
+            get
+            {
+                return (string)this[nameof(SpriteEndLocation)];
+            }
+            set
+            {
+                this[nameof(SpriteEndLocation)] = value;
+            }
+        }
+
+        [ConfigurationProperty("EmbeddedSpriteName",
+            IsRequired = true,
+            IsKey = false)]
+        public string EmbeddedSpriteName
+        {
+            get
+            {
+                return (string)this[nameof(EmbeddedSpriteName)];
+            }
+            set
+            {
+                this[nameof(EmbeddedSpriteName)] = value;
+            }
+        }
+
+        [ConfigurationProperty("EmbeddedSpriteNum",
+            IsRequired = true,
+            IsKey = false)]
+        public string EmbeddedSpriteNum
+        {
+            get
+            {
+                return (string)this[nameof(EmbeddedSpriteNum)];
+            }
+            set
+            {
+                this[nameof(EmbeddedSpriteNum)] = value;
             }
         }
         //add other properties here.

@@ -45,8 +45,9 @@ namespace Sprint1.FactoryClasses
 
         }
 
-        public void AddBackground(string name, Vector2 pos, List<Layer> layers)
+        public void AddBackground(string name, Vector2 posS, Vector2 posE, List<Layer> layers)
         {
+            Vector2 pos = new Vector2(posE.X - posS.X, posE.Y - posS.Y); //generating one background sprite at a time
             switch (name)
             {
                 case "BigHill":
@@ -91,7 +92,7 @@ namespace Sprint1.FactoryClasses
             return new BackgroundCharacter(smallBush, pos);
         }
 
-        public ICharacter FactoryMethod(string name, Vector2 pos)
+        public ICharacter FactoryMethod(string name, Vector2 posS, Vector2 posE)
         {
             //no character here
             return null;

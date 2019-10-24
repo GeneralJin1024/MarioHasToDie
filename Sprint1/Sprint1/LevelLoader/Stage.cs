@@ -87,24 +87,28 @@ namespace Sprint1.LevelLoader
             else
             {
                 ItemFactory.Instance.Initialize(fireBallList);
-                Game.Scene.Mario = PlayerFactory.FactoryMethod2(myLevelSection.Player[1].SpriteName, StringToVecter2(myLevelSection.Player[1].SpriteLocation));
+                Game.Scene.Mario = PlayerFactory.FactoryMethod2(myLevelSection.Player[1].SpriteName, 
+                    StringToVecter2(myLevelSection.Player[1].SpriteStartLocation), StringToVecter2(myLevelSection.Player[1].SpriteEndLocation));
                 for (int i = 1; i < myLevelSection.Backgrounds.Count; i++)
                 {
                     BackgroundFactory.Instance.AddBackground(myLevelSection.Backgrounds[i].SpriteName, 
-                        StringToVecter2(myLevelSection.Backgrounds[i].SpriteLocation), layers);
+                        StringToVecter2(myLevelSection.Backgrounds[i].SpriteStartLocation), StringToVecter2(myLevelSection.Backgrounds[i].SpriteEndLocation), layers);
                     //backgroundList.Add(BackgroundFactory.Instance.FactoryMethod2(myLevelSection.Backgrounds[i].SpriteName, StringToVecter2(myLevelSection.Backgrounds[i].SpriteLocation)));
                 }
                 for (int i = 1; i < myLevelSection.Items.Count; i++)
                 {
-                    spriteList.Add(ItemFactory.Instance.FactoryMethod(myLevelSection.Items[i].SpriteName, StringToVecter2(myLevelSection.Items[i].SpriteLocation)));
+                    spriteList.Add(ItemFactory.Instance.FactoryMethod(myLevelSection.Items[i].SpriteName, 
+                        StringToVecter2(myLevelSection.Items[i].SpriteStartLocation), StringToVecter2(myLevelSection.Items[i].SpriteEndLocation)));
                 }
                 for (int i = 1; i < myLevelSection.Blocks.Count; i++)
                 {
-                    spriteList.Add(BlockFactory.Instance.FactoryMethod(myLevelSection.Blocks[i].SpriteName, StringToVecter2(myLevelSection.Blocks[i].SpriteLocation)));
+                    spriteList.Add(BlockFactory.Instance.FactoryMethod(myLevelSection.Blocks[i].SpriteName, 
+                        StringToVecter2(myLevelSection.Blocks[i].SpriteStartLocation), StringToVecter2(myLevelSection.Blocks[i].SpriteEndLocation)));
                 }
                 for (int i = 1; i < myLevelSection.Enemys.Count; i++)
                 {
-                    spriteList.Add(EnemyFactory.Instance.FactoryMethod(myLevelSection.Enemys[i].SpriteName, StringToVecter2(myLevelSection.Enemys[i].SpriteLocation)));
+                    spriteList.Add(EnemyFactory.Instance.FactoryMethod(myLevelSection.Enemys[i].SpriteName, 
+                        StringToVecter2(myLevelSection.Enemys[i].SpriteStartLocation), StringToVecter2(myLevelSection.Enemys[i].SpriteEndLocation)));
                 }
             }
         }

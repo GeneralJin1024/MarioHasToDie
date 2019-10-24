@@ -11,6 +11,6 @@ namespace Sprint1
 {
     public interface IFactory
     {
-        ICharacter FactoryMethod(String name, Vector2 pos);
+        ICharacter FactoryMethod(String name, Vector2 posS, Vector2 posE);
     }
 }

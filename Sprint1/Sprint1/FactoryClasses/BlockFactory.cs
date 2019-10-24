@@ -69,26 +69,34 @@ namespace Sprint1.FactoryClasses
             return new BlockCharacter(new StairBlockSprite(BlockTextures[4], moveParameters));
         }
 
-        public ICharacter FactoryMethod(string name, Vector2 pos)
+        public ICharacter FactoryMethod(string name, Vector2 posS, Vector2 posE)
         {
-            MoveParameters parameters = new MoveParameters(false);
-            parameters.SetPosition(pos.X, pos.Y);
-            switch(name)
+            for (int x = 0; x < (posE.X - posS.X) / 16; x++)
             {
-                case "Brick":
-                    return GetBrickBlock(parameters, new ArrayList());
-                case "QuestionB":
-                    return GetQuestionBlock(parameters, new ArrayList());
-                case "HiddenB":
-                    return GetHiddenBlock(parameters, new ArrayList());
-                case "UsedB":
-                    return GetUsedBlock(parameters);
-                case "FloorB":
-                    return GetFloorBlock(parameters);
-                case "StairB":
-                    return GetStairBlock(parameters);
-                default : return new NullCharacter();
+                for (int y = 0; y < (posE.Y - posS.Y) / 16; y++)
+                {
+                    Vector2 pos = new Vector2(posS.X + x * 16, posS.Y + y * 16);
+                    MoveParameters parameters = new MoveParameters(false);
+                    parameters.SetPosition(pos.X, pos.Y);
+                    switch (name)
+                    {
+                        case "Brick":
+                            return GetBrickBlock(parameters, new ArrayList());
+                        case "QuestionB":
+                            return GetQuestionBlock(parameters, new ArrayList());
+                        case "HiddenB":
+                            return GetHiddenBlock(parameters, new ArrayList());
+                        case "UsedB":
+                            return GetUsedBlock(parameters);
+                        case "FloorB":
+                            return GetFloorBlock(parameters);
+                        case "StairB":
+                            return GetStairBlock(parameters);
+                        default: return new NullCharacter();
+                    }
+                }
             }
+            return new NullCharacter();
         }
     }
 }
