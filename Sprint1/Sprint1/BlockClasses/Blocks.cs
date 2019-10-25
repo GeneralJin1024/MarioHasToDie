@@ -117,8 +117,8 @@ namespace Sprint1.BlockClasses
         }
         public override void Draw(SpriteBatch spriteBatch)
         {
-            foreach (ICharacter sprite in shownItems)
-                sprite.Draw(spriteBatch);
+            //foreach (ICharacter sprite in shownItems)
+            //    sprite.Draw(spriteBatch);
             if (BType != BlockType.Hidden && BType != BlockType.Destroyed)
             {
                 base.Draw(spriteBatch);
