@@ -25,11 +25,11 @@ namespace Sprint1.BlockClasses
         protected Vector2 bPosition;
         private bool IsBumping;
         private bool containItems;
-        private readonly ArrayList items;
-        private readonly ArrayList shownItems;
+        private ArrayList items;
+        private ArrayList shownItems;
         private float MinY, MaxY;
         protected Point positionOffset = new Point(1, 1);
-        protected Vector2 spriteSpeed = new Vector2(50.0f, 200.0f);
+        protected Vector2 spriteSpeed = new Vector2(50.0f, 60.0f);
         public Blocks(Texture2D sheet, MoveParameters moveParameters, Point rowAndColumn, BlockType type, ArrayList itemList) 
             : base(sheet, rowAndColumn, moveParameters)
         {
@@ -93,16 +93,17 @@ namespace Sprint1.BlockClasses
                 bPosition.Y -= positionOffset.Y != 0 ? spriteSpeed.Y * frameTime : 0;
                 if (bPosition.Y < MinY)
                 {
+                    bPosition.Y = MinY;
                     if (containItems)
                     {
-                        ItemCharacter item = GenerateItems();
+                        Console.WriteLine("item bumps");
+                        ItemCharacter item = (ItemCharacter) items[0]; //For now only items in blocks                   
                         shownItems.Add(item);
-                        item.Bumping(bPosition, bPosition.Y - 3 * this.GetHeightAndWidth().X, spriteSpeed);
+                        item.Bumping(bPosition, bPosition.Y - 8.0f * this.GetHeightAndWidth().X, bPosition.Y, spriteSpeed);
                         RemoveItem();
                     }
                     else if (BType == BlockType.QNormal) ChangeToUsed();
-                    spriteSpeed.Y *= -1;
-                    bPosition.Y = MinY;
+                    spriteSpeed.Y *= -1;                   
                 }
                 if (bPosition.Y > MaxY)
                 {
@@ -116,7 +117,7 @@ namespace Sprint1.BlockClasses
         }
         public override void Draw(SpriteBatch spriteBatch)
         {
-            //foreach (AnimatedSprite sprite in shownItems)
+            //foreach (ICharacter sprite in shownItems)
             //    sprite.Draw(spriteBatch);
             if (BType != BlockType.Hidden && BType != BlockType.Destroyed)
             {
@@ -133,22 +134,13 @@ namespace Sprint1.BlockClasses
                 ChangeToUsed();
             }
         }
-        #endregion
-        private ItemCharacter GenerateItems()
-        {
-            switch (items[0])
-            {
-                case "redMushroom":
-                    return ItemFactory.Instance.GetRedMushroom(bPosition);
-                case "greenMushroom":
-                    return ItemFactory.Instance.GetGreenMushroom(bPosition);
-                case "star":
-                    return ItemFactory.Instance.GetStar(bPosition);
-                case "flower":
-                    return ItemFactory.Instance.GetFlower(bPosition);
-                default:
-                    return ItemFactory.Instance.GetCoin(bPosition);
-            }
+
+        internal void LoadItems(ArrayList items)
+        {            
+            this.items.AddRange(items);
+            containItems = items.Count != 0 ? true : false;
         }
+        #endregion
+
     }
 }

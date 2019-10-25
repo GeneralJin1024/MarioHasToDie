@@ -62,7 +62,7 @@ namespace Sprint1
                 new Layer(Camera) { Parallax = new Vector2(1.0f, 1.0f) } // 火球
             };
 
-            stage.SpriteLocationReader(level, characterList, BackgroundList, FireBallList, Layers);
+            stage.SpriteLocationReader(level, characterList, FireBallList, Layers);
             spriteBatch = new SpriteBatch(stage.Game.GraphicsDevice);
             Layers[2].Sprites.Add(Mario);
             Layers[3].Sprites = characterList;
