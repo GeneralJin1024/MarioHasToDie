@@ -142,7 +142,7 @@ namespace Sprint1.MarioClasses
         public Vector2 GetMaxPosition() { return new Vector2(Parameters.Position.X + Mario.GetHeightAndWidth().Y, Parameters.Position.Y); }
         public Vector2 GetHeightAndWidth() { return Mario.GetHeightAndWidth(); } //get mario's hit and width.
         public bool IsDied() { return Mario.MarioState.GetPowerType == MarioState.PowerType.Died; }
-        public bool isFire() { return Mario.MarioState.IsFireMario(); }
+        public bool IsFire() { return Mario.MarioState.IsFireMario(); }
         public MarioState.ActionType GetAction() { return Mario.MarioState.GetActionType; }
         public MarioState.PowerType GetPower() { return Mario.MarioState.GetPowerType; }
         public void RestoreStates(MarioState.ActionType actionType, MarioState.PowerType powerType, bool isFire)

@@ -226,7 +226,7 @@ namespace Sprint1
             Scene.CopyDataOfParameter(currScene.Mario.Parameters, tempParameter);
             MarioState.ActionType actionType = currScene.Mario.GetAction();
             MarioState.PowerType powerType = currScene.Mario.GetPower();
-            bool isFire = currScene.Mario.isFire();
+            bool isFire = currScene.Mario.IsFire();
 
             LoadingMode = true;       
             scenes.Remove(currScene);

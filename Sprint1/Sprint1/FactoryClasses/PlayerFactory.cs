@@ -25,12 +25,12 @@ namespace Sprint1.FactoryClasses
             }
         }
 
-        public static MarioCharacter FactoryMethod2(String name, Vector2 posS, Vector2 posE)
+        public static MarioCharacter FactoryMethod2(String name, Vector2 posS)
         {
-            Vector2 pos = new Vector2(posE.X - posS.X, posE.Y - posS.Y); // Only one mario exist
+            // Generating one mario at a time
             switch (name)
             {
-                case "Mario": return GetMario(pos);
+                case "Mario": return GetMario(posS);
                 default: return GetMario(new Vector2(0,0)); //trying to return nullCharacter but much works to do
             }
         }
@@ -54,10 +54,16 @@ namespace Sprint1.FactoryClasses
                 Sprint1Main.Game.Content.Load<Texture2D>("FireMario/fireMarioRightCrouch")};
             return new MarioCharacter(new Texture2D[][] { StandardSheets, SuperSheets, FireSheets}, location);
         }
-
-        public ICharacter FactoryMethod(string name, Vector2 pos)
+        #region UselessMethod
+        public List<ICharacter> FactoryMethod(string name, Vector2 posS, Vector2 posE)
         {
-            return  new NullCharacter();
+            return new List<ICharacter>();
         }
+
+        public List<ICharacter> FactoryMethod(string name, Vector2 pos)
+        {
+            return new List<ICharacter>();
+        }
+        #endregion
     }
 }

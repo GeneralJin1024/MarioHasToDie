@@ -45,23 +45,23 @@ namespace Sprint1.FactoryClasses
 
         }
 
-        public void AddBackground(string name, Vector2 posS, Vector2 posE, List<Layer> layers)
+        public void AddBackground(string name, Vector2 posS, List<Layer> layers)
         {
-            Vector2 pos = new Vector2(posE.X - posS.X, posE.Y - posS.Y); //generating one background sprite at a time
+            //generating one background sprite at a time
             switch (name)
             {
                 case "BigHill":
-                    layers[1].Sprites.Add(GetBigHill(pos)); break;
+                    layers[1].Sprites.Add(GetBigHill(posS)); break;
                 case "SmallHill":
-                    layers[1].Sprites.Add(GetSmallHill(pos)); break;
+                    layers[1].Sprites.Add(GetSmallHill(posS)); break;
                 case "BigCloud":
-                    layers[0].Sprites.Add(GetBigCloud(pos)); break;
+                    layers[0].Sprites.Add(GetBigCloud(posS)); break;
                 case "SmallCloud":
-                    layers[0].Sprites.Add(GetSmallCloud(pos)); break;
+                    layers[0].Sprites.Add(GetSmallCloud(posS)); break;
                 case "BigBush":
-                    layers[2].Sprites.Add(GetBigBush(pos)); break;
+                    layers[2].Sprites.Add(GetBigBush(posS)); break;
                 case "SmallBush":
-                    layers[2].Sprites.Add(GetSmallBush(pos)); break;
+                    layers[2].Sprites.Add(GetSmallBush(posS)); break;
                 default:
                     layers[0].Sprites.Add(new NullCharacter()); break;
             }
@@ -92,31 +92,19 @@ namespace Sprint1.FactoryClasses
             return new BackgroundCharacter(smallBush, pos);
         }
 
-        public ICharacter FactoryMethod(string name, Vector2 posS, Vector2 posE)
+        #region UselessMethods
+        public List<ICharacter> FactoryMethod(string name, Vector2 posS, Vector2 posE)
         {
             //no character here
-            return null;
+            return new List<ICharacter>();
         }
 
-        public ICharacter FactoryMethod2(string name, Vector2 pos)
+        public List<ICharacter> FactoryMethod(string name, Vector2 posS)
         {
-            switch (name)
-            {
-                case "BigHill":
-                    return GetBigHill(pos);
-                case "SmallHill":
-                    return GetSmallHill(pos);
-                case "BigCloud":
-                    return GetBigCloud(pos);
-                case "SmallCloud":
-                    return GetSmallCloud(pos);
-                case "BigBush":
-                    return GetBigBush(pos);
-                case "SmallBush":
-                    return GetSmallBush(pos);
-                default: return new NullCharacter();
-            }
+            //no character here
+            return new List<ICharacter>();
         }
+        #endregion
     }
 }
 

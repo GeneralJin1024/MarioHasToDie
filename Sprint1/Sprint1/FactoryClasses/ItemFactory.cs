@@ -6,6 +6,7 @@ using Sprint1.Sprites;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -40,7 +41,7 @@ namespace Sprint1.FactoryClasses
         public void Initialize(ArrayList characterList) { CharacterList = characterList; }
         public ICharacter AddNewCharacter(string characterType, Vector2 location)
         {
-            ICharacter newItem = FactoryMethod(characterType, location, new Vector2(location.X+16, location.Y+16));
+            ICharacter newItem = FactoryMethod(characterType, location)[0];
             CharacterList.Add(newItem);
             return newItem;
         }
@@ -85,9 +86,9 @@ namespace Sprint1.FactoryClasses
             return new FireBallCharacter(fireBall, new Point(1, 1), pos);
         }
 
-        public ICharacter FactoryMethod(string name, Vector2 posS, Vector2 posE)
+        public List<ICharacter> FactoryMethod(string name, Vector2 posS, Vector2 posE)
         {
-            if (name.Equals("Pipe")) return GetPipe(posS); //Due to the special Format of Pipe sheet
+            List<ICharacter> list = new List<ICharacter>();
             for (int x = 0; x < (posE.X - posS.X) / 16; x++)
             {
                 for (int y = 0; y < (posE.Y - posS.Y) / 16; y++)
@@ -96,23 +97,70 @@ namespace Sprint1.FactoryClasses
                     switch (name)
                     {
                         case "Pipe":
-                            return GetPipe(pos);
+                            list.Add(GetPipe(posS));
+                            return list;    //Due to the special Format of Pipe sheet
                         case "Coin":
-                            return GetCoin(pos);
+                            list.Add(GetCoin(pos));
+                            break;
                         case "Flower":
-                            return GetFlower(pos);
+                            list.Add(GetFlower(pos));
+                            break;
                         case "GreenMushroom":
-                            return GetGreenMushroom(pos);
+                            list.Add(GetGreenMushroom(pos));
+                            break;
                         case "RedMashroom":
-                            return GetRedMushroom(pos);
+                            list.Add(GetRedMushroom(pos));
+                            break;
                         case "Star":
-                            return GetStar(pos);
-                        case "FireBall": return GetFireBall(pos);
-                        default: return new NullCharacter();
+                            list.Add(GetStar(pos));
+                            break;
+                        case "FireBall":
+                            list.Add(GetFireBall(pos));
+                            break;
+                        default: break;
                     }
                 }
             }
-            return new NullCharacter();
+            return list;
+        }
+        public List<ICharacter> FactoryMethod(string namePlusNum, Vector2 pos)
+        {
+            //generating embedded items
+            int startInd = 0;
+            string name = namePlusNum.Substring(startInd, namePlusNum.IndexOf("+{", StringComparison.Ordinal) - startInd);
+            startInd = namePlusNum.IndexOf("+{", StringComparison.Ordinal) + 2;
+            int num = (int)decimal.Parse(namePlusNum.Substring(startInd, namePlusNum.IndexOf("}", StringComparison.Ordinal) - startInd), CultureInfo.CurrentCulture);
+            List<ICharacter> list = new List<ICharacter>();
+            for (int i = 0; i < num; i++)
+            {
+                switch (name)
+                {
+                    case "Coin":
+                        list.Add(GetCoin(pos));
+                        break;
+                    case "Flower":
+                        list.Add(GetFlower(pos));
+                        break;
+                    case "GreenMushroom":
+                        list.Add(GetGreenMushroom(pos));
+                        break;
+                    case "RedMashroom":
+                        list.Add(GetRedMushroom(pos));
+                        break;
+                    case "Star":
+                        list.Add(GetStar(pos));
+                        break;
+                    case "FireBall":
+                        list.Add(GetFireBall(pos));
+                        break;
+                    default: break;
+                }              
+            }
+            foreach (ICharacter character in list)
+            {
+                character.Parameters.IsHidden = true;
+            }
+            return list;
         }
     }
 }

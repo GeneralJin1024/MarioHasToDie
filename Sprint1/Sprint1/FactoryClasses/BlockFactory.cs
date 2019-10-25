@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using Sprint1.BlockClasses;
 using System.Collections;
+using System.Collections.Generic;
 
 namespace Sprint1.FactoryClasses
 {
@@ -69,8 +70,9 @@ namespace Sprint1.FactoryClasses
             return new BlockCharacter(new StairBlockSprite(BlockTextures[4], moveParameters));
         }
 
-        public ICharacter FactoryMethod(string name, Vector2 posS, Vector2 posE)
+        public List<ICharacter> FactoryMethod(string name, Vector2 posS, Vector2 posE)
         {
+            List<ICharacter> list = new List<ICharacter>();
             for (int x = 0; x < (posE.X - posS.X) / 16; x++)
             {
                 for (int y = 0; y < (posE.Y - posS.Y) / 16; y++)
@@ -81,22 +83,34 @@ namespace Sprint1.FactoryClasses
                     switch (name)
                     {
                         case "Brick":
-                            return GetBrickBlock(parameters, new ArrayList());
+                            list.Add(GetBrickBlock(parameters, new ArrayList()));
+                            break;
                         case "QuestionB":
-                            return GetQuestionBlock(parameters, new ArrayList());
+                            list.Add(GetQuestionBlock(parameters, new ArrayList()));
+                            break;
                         case "HiddenB":
-                            return GetHiddenBlock(parameters, new ArrayList());
+                            list.Add(GetHiddenBlock(parameters, new ArrayList()));
+                            break;
                         case "UsedB":
-                            return GetUsedBlock(parameters);
+                            list.Add(GetUsedBlock(parameters));
+                            break;
                         case "FloorB":
-                            return GetFloorBlock(parameters);
+                            list.Add(GetFloorBlock(parameters));
+                            break;
                         case "StairB":
-                            return GetStairBlock(parameters);
-                        default: return new NullCharacter();
+                            list.Add(GetStairBlock(parameters));
+                            break;
+                        default: break;
                     }
                 }
             }
-            return new NullCharacter();
+            return list;
+        }
+
+        public List<ICharacter> FactoryMethod(string name, Vector2 pos)
+        {
+            //won't get called
+            return new List<ICharacter>();
         }
     }
 }

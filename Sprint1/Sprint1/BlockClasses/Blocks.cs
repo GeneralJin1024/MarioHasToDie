@@ -85,8 +85,8 @@ namespace Sprint1.BlockClasses
         #endregion
         public override void Update(float frameTime)
         {
-            foreach (AnimatedSprite sprite in shownItems)
-                sprite.Update(frameTime);
+            //foreach (AnimatedSprite sprite in shownItems)
+            //sprite.Update(frameTime);
             base.Update(frameTime);   
             if (IsBumping)
             {                
@@ -116,15 +116,15 @@ namespace Sprint1.BlockClasses
         }
         public override void Draw(SpriteBatch spriteBatch)
         {
-            foreach (AnimatedSprite sprite in shownItems)
-                sprite.Draw(spriteBatch);
+            //foreach (AnimatedSprite sprite in shownItems)
+            //    sprite.Draw(spriteBatch);
             if (BType != BlockType.Hidden && BType != BlockType.Destroyed)
             {
                 base.Draw(spriteBatch);
             }
         }
         #region Methods Interact Items
-        public void RemoveItem()
+        private void RemoveItem()
         {
             items.RemoveAt(0);
             if (items.Count == 0)

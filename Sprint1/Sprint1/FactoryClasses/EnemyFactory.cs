@@ -59,21 +59,32 @@ namespace Sprint1.FactoryClasses
             return new EnemyCharacter(greenkoopa, rowAndColumn, moveParameters);
         }
 
-        public ICharacter FactoryMethod(string name, Vector2 posS, Vector2 posE)
+        public List<ICharacter> FactoryMethod(string name, Vector2 pos)
         {
-            Vector2 pos = new Vector2(posE.X - posS.X, posE.Y - posS.Y); 
+            //Generating one enemy at a time
+            List<ICharacter> list = new List<ICharacter>();
             MoveParameters parameters = new MoveParameters(true);
             parameters.SetPosition(pos.X, pos.Y);
             switch (name)
             {
                 case "Goomba":
-                    return GetGoomba(parameters);
+                    list.Add(GetGoomba(parameters));
+                    break;
                 case "RedKoopa":
-                    return GetRedKoopa(parameters);
+                    list.Add(GetRedKoopa(parameters));
+                    break;
                 case "GreenKoopa":
-                    return GetGreenKoopa(parameters);
-                default: return new NullCharacter();
+                    list.Add(GetGreenKoopa(parameters));
+                    break;
+                default: break;
             }
+            return list;
+        }
+
+        public List<ICharacter> FactoryMethod(string name, Vector2 posS, Vector2 posE)
+        {
+            //won't get called
+            return new List<ICharacter>();
         }
     }
 }

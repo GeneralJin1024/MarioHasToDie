@@ -11,6 +11,8 @@ namespace Sprint1
 {
     public interface IFactory
     {
-        ICharacter FactoryMethod(String name, Vector2 posS, Vector2 posE);
+        List<ICharacter> FactoryMethod(String name, Vector2 posS, Vector2 posE);    //generating a series of objects at a time
+
+        List<ICharacter> FactoryMethod(String name, Vector2 posS);  //generating one object at a time
     }
 }

@@ -88,27 +88,27 @@ namespace Sprint1.LevelLoader
             {
                 ItemFactory.Instance.Initialize(fireBallList);
                 Game.Scene.Mario = PlayerFactory.FactoryMethod2(myLevelSection.Player[1].SpriteName, 
-                    StringToVecter2(myLevelSection.Player[1].SpriteStartLocation), StringToVecter2(myLevelSection.Player[1].SpriteEndLocation));
+                    StringToVecter2(myLevelSection.Player[1].SpriteStartLocation));
                 for (int i = 1; i < myLevelSection.Backgrounds.Count; i++)
                 {
                     BackgroundFactory.Instance.AddBackground(myLevelSection.Backgrounds[i].SpriteName, 
-                        StringToVecter2(myLevelSection.Backgrounds[i].SpriteStartLocation), StringToVecter2(myLevelSection.Backgrounds[i].SpriteEndLocation), layers);
+                        StringToVecter2(myLevelSection.Backgrounds[i].SpriteStartLocation), layers);
                     //backgroundList.Add(BackgroundFactory.Instance.FactoryMethod2(myLevelSection.Backgrounds[i].SpriteName, StringToVecter2(myLevelSection.Backgrounds[i].SpriteLocation)));
                 }
                 for (int i = 1; i < myLevelSection.Items.Count; i++)
                 {
-                    spriteList.Add(ItemFactory.Instance.FactoryMethod(myLevelSection.Items[i].SpriteName, 
+                    spriteList.AddRange(ItemFactory.Instance.FactoryMethod(myLevelSection.Items[i].SpriteName, 
                         StringToVecter2(myLevelSection.Items[i].SpriteStartLocation), StringToVecter2(myLevelSection.Items[i].SpriteEndLocation)));
                 }
                 for (int i = 1; i < myLevelSection.Blocks.Count; i++)
                 {
-                    spriteList.Add(BlockFactory.Instance.FactoryMethod(myLevelSection.Blocks[i].SpriteName, 
+                    spriteList.AddRange(BlockFactory.Instance.FactoryMethod(myLevelSection.Blocks[i].SpriteName, 
                         StringToVecter2(myLevelSection.Blocks[i].SpriteStartLocation), StringToVecter2(myLevelSection.Blocks[i].SpriteEndLocation)));
                 }
                 for (int i = 1; i < myLevelSection.Enemys.Count; i++)
                 {
-                    spriteList.Add(EnemyFactory.Instance.FactoryMethod(myLevelSection.Enemys[i].SpriteName, 
-                        StringToVecter2(myLevelSection.Enemys[i].SpriteStartLocation), StringToVecter2(myLevelSection.Enemys[i].SpriteEndLocation)));
+                    spriteList.AddRange(EnemyFactory.Instance.FactoryMethod(myLevelSection.Enemys[i].SpriteName, 
+                        StringToVecter2(myLevelSection.Enemys[i].SpriteStartLocation)));
                 }
             }
         }
