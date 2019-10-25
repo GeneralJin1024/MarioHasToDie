@@ -41,9 +41,17 @@ namespace Sprint1.FactoryClasses
         public void Initialize(ArrayList characterList) { CharacterList = characterList; }
         public ICharacter AddNewCharacter(string characterType, Vector2 location)
         {
-            ICharacter newItem = FactoryMethod(characterType, location)[0];
+            ICharacter newItem;
+            if (characterType.Equals("FireBall", StringComparison.Ordinal))
+                newItem = GetFireBall(location);
+            else
+                newItem = FactoryMethod(characterType, location)[0];
             CharacterList.Add(newItem);
             return newItem;
+        }
+        public ICharacter FactoryMethod2(Vector2 location)
+        {
+            return GetFireBall(location);
         }
 
         private void LoadTexture()
