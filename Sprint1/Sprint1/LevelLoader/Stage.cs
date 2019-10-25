@@ -1,5 +1,6 @@
 ﻿using ConfigurationLibrary;
 using Microsoft.Xna.Framework;
+using Sprint1.BlockClasses;
 using Sprint1.CollideDetection;
 using Sprint1.FactoryClasses;
 using Sprint1.MarioClasses;
@@ -77,7 +78,7 @@ namespace Sprint1.LevelLoader
 
         }
 
-        internal void SpriteLocationReader(int levelIndex, ArrayList spriteList, ArrayList backgroundList, ArrayList fireBallList, List<Layer> layers)
+        internal void SpriteLocationReader(int levelIndex, ArrayList spriteList, ArrayList fireBallList, List<Layer> layers)
         {
 
             if (!((LevelSection)ConfigurationManager.GetSection("Level" + levelIndex) is LevelSection myLevelSection))
@@ -102,8 +103,22 @@ namespace Sprint1.LevelLoader
                 }
                 for (int i = 1; i < myLevelSection.Blocks.Count; i++)
                 {
-                    spriteList.AddRange(BlockFactory.Instance.FactoryMethod(myLevelSection.Blocks[i].SpriteName, 
+                    ArrayList blockList = new ArrayList();
+                    ArrayList itemList = new ArrayList();
+                    blockList.AddRange(BlockFactory.Instance.FactoryMethod(myLevelSection.Blocks[i].SpriteName, 
                         StringToVecter2(myLevelSection.Blocks[i].SpriteStartLocation), StringToVecter2(myLevelSection.Blocks[i].SpriteEndLocation)));
+                    if (myLevelSection.Blocks[i].EmbeddedSpriteName.Length > 0)
+                    {
+                        itemList.AddRange(ItemFactory.Instance.FactoryMethod(myLevelSection.Blocks[i].EmbeddedSpriteName + "+{"
+                            + myLevelSection.Blocks[i].EmbeddedSpriteNum + "}", StringToVecter2(myLevelSection.Blocks[i].SpriteStartLocation)));
+                        foreach (BlockCharacter bc in blockList)
+                        {
+                            Console.WriteLine("item load successfully");
+                            bc.LoadItems(itemList);
+                        }
+                        spriteList.AddRange(itemList);
+                    }
+                    spriteList.AddRange(blockList);                  
                 }
                 for (int i = 1; i < myLevelSection.Enemys.Count; i++)
                 {

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -68,6 +69,10 @@ namespace Sprint1.BlockClasses
         {
         }
 
+        public void LoadItems(ArrayList items)
+        {
+            block.LoadItems(items);
+        }
     }
 
 }

@@ -15,7 +15,9 @@ namespace Sprint1.ItemClasses
         public abstract Sprint1Main.CharacterType Type { get; set; }
 
         private bool isBump;
-        private float bumpHeight;
+        private float bumpHigh;
+        private float bumpLow;
+        protected Vector2 spriteSpeed;
         private Point positionOffset;
         protected readonly ItemSprite item;
         public MoveParameters Parameters { get; }
@@ -35,12 +37,21 @@ namespace Sprint1.ItemClasses
             if (isBump)
             {
                 //WARNING:Check next Sprint.
-                Parameters.SetPosition(0, Parameters.Position.Y - (positionOffset.Y != 0 ? Parameters.Velocity.Y * timeOfFrame : 0));
+                Parameters.SetPosition(Parameters.Position.X, Parameters.Position.Y - (positionOffset.Y != 0 ? spriteSpeed.Y * timeOfFrame/10 : 0));
                 //if item is at the height, set bump to false.
-                if (Parameters.Position.Y < bumpHeight)
+                if (Parameters.Position.Y < bumpHigh)
+                {
+                    Parameters.SetPosition(Parameters.Position.X, bumpHigh);
+                    //Parameters.HasGravity = true;
+                    spriteSpeed.Y *= -1;
+                }
+                if (Parameters.Position.Y > bumpLow)
                 {
                     isBump = false;
-                    Parameters.SetPosition(Parameters.Position.X, bumpHeight);
+                    Parameters.SetPosition(Parameters.Position.X, bumpLow);
+                    Parameters.SetVelocity(5, 0);
+                    spriteSpeed.Y = 0;
+                    positionOffset.Y = 0;
                 }
             }
             if (Parameters.Position.Y >= Stage.Boundary.X || Parameters.Position.Y >= Stage.Boundary.Y)
@@ -60,13 +71,15 @@ namespace Sprint1.ItemClasses
             return new Vector2(Parameters.Position.X, Parameters.Position.Y - item.GetHeightAndWidth().X);
         }
 
-        public void Bumping(Vector2 startP, float minY, Vector2 blockSpeed)
+        public void Bumping(Vector2 startP, float minY, float maxY, Vector2 blockSpeed)
         {
             //set the item's position to startP, and set the bump height and speed
             positionOffset = new Point(0, 1);
-            Parameters.SetVelocity(0, blockSpeed.Y * 2);
+            spriteSpeed = new Vector2(0, blockSpeed.Y * 1.2f);
             Parameters.SetPosition(startP.X, startP.Y);
-            bumpHeight = minY;
+            Parameters.IsHidden = false;
+            bumpHigh = minY;
+            bumpLow = maxY;
             isBump = true;
         }
 
