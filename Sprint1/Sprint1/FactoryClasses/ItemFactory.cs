@@ -168,6 +168,9 @@ namespace Sprint1.FactoryClasses
             {
                 character.Parameters.IsHidden = true;
             }
+            //有了这行代码，？block中的物体可以直接被添加进CharacterList里面
+            //CharacterList.AddRange(list);
+            //之后list可以被返回至block中等待被bump。不妨考虑一下。
             return list;
         }
     }
