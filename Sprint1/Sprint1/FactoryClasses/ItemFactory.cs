@@ -41,11 +41,8 @@ namespace Sprint1.FactoryClasses
         public void Initialize(ArrayList characterList) { CharacterList = characterList; }
         public ICharacter AddNewCharacter(string characterType, Vector2 location)
         {
-            ICharacter newItem;
-            if (characterType.Equals("FireBall", StringComparison.Ordinal))
-                newItem = GetFireBall(location);
-            else
-                newItem = FactoryMethod(characterType, location)[0];
+
+            ICharacter newItem = FactoryMethod(characterType, location)[0];
             CharacterList.Add(newItem);
             return newItem;
         }
@@ -171,9 +168,6 @@ namespace Sprint1.FactoryClasses
             {
                 character.Parameters.IsHidden = true;
             }
-            //有了这行代码，？block中的物体可以直接被添加进CharacterList里面
-            //CharacterList.AddRange(list);
-            //之后list可以被返回至block中等待被bump。不妨考虑一下。
             return list;
         }
     }
