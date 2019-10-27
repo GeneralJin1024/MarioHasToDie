@@ -45,7 +45,7 @@ namespace Sprint1
                     ActionFrame = 0;
                 }
             }
-            if (Parameters.InScreen)
+            if (Parameters.InScreen) // objects will not update when it is out of screen
             {
                 Parameters.UpdatePositionAndVelocity(timeOfFrame);
                 //check boundary after each update to make sure the whole object are in the screen.

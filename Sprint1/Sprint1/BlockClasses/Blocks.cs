@@ -95,7 +95,7 @@ namespace Sprint1.BlockClasses
                     bPosition.Y = MinY;
                     if (containItems)
                     {
-                        Console.WriteLine("item bumps");
+                        //Console.WriteLine("item bumps");
                         DiscloseItem();
                         RemoveItem();
                     }
@@ -138,9 +138,9 @@ namespace Sprint1.BlockClasses
             }
         }
 
-        internal void LoadItems(ArrayList items)
+        internal void LoadItems(ArrayList itemsList)
         {            
-            this.items.AddRange(items);
+            items.AddRange(itemsList);
             containItems = items.Count != 0 ? true : false;
         }
 

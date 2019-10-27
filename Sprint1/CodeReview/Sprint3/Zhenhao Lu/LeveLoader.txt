@@ -1,0 +1,33 @@
+Reviewer: Zhenhao Lu
+Date: 10/11/2019
+Sprint2
+Files: LevelLoader/Stage.cs	App.config	FactoryClasses
+Author: Shengyu Jin
+Comment:
+	1. The new items in App.config is great. For blocks, he divided the position  into Start Position
+	and End Position, so that In BlockFactory we can use a for loop to create multiple blocks.
+	2. There is a situation that the block doesn't hide any items, which means that the 
+	items "EmbeddedSpriteName" and "EmbeddedSpriteNum" values are both "". You
+	considered this situation and write corresponding code. Good!
+	3. In the ItemFactory, there are two FactoryMethod() with different number of parameters.
+	I think set their names different is better.
+	4. ItemFactory.FactoryMethod(string namePlusNum, Vector2 pos) is used as soon as a block
+	is created. It will be used to create the items that hide in blocks. Good use of for loop because
+	we may need more than one item in a block. However, for the method
+	ItemFactory.FactoryMethod(string name, Vector2 posS, Vector2 posE), which is used for the
+	items independently exist. I don't think we need to create this items continuously, so you can
+	consider that only use StartPosition and remove the for loop?
+	5. For PlayerFactory and EnemyFactory, the FactoryMethod didn't ask for EndPosition, which 
+	means that the end position of this objects in App.config is useless. However, in App.config, 
+	I noticed that all objects that created only one per time have an 
+	end position = (startPosition.X + 16, startPosition.Y + 16). If the endPosition is useless, we
+	may not care about their values in the future. For example, Set endPositions of objects expect
+	blocks to (0,0)?
+	6. At first, my idea is create hidden items while creating blocks that hide them. To do that, 
+	the block need to create items from ItemFactory. However, I didn't want blocks to access the
+	Sprite list. Your idea is greate that read the items list and generate them as soon as finished 
+	creating blocks in Stage.cs. Congratulations.
+Time: 40 min
+Hypothesis:
+	1. If we need to add more ? block embedded different numbers of different items, we can
+	directly modify the App.config without recompiling.

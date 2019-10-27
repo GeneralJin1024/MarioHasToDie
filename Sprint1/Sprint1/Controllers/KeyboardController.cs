@@ -18,7 +18,7 @@ namespace Sprint1
         private readonly MarioCharacter mario;
         /*private readonly Bricks[] blockList;*/
         private readonly Dictionary<Keys, ICommand> controllerDic;
-        private Dictionary<Keys, ICommand> controllerDicMove;
+        private readonly Dictionary<Keys, ICommand> controllerDicMove;
         private readonly Sprint1Main Game;
         private ICommand ReturnCommand;
 
@@ -72,8 +72,9 @@ namespace Sprint1
                     controllerDic[key].Execute();
                 }
             }
-            if (!hasMoving)
+            if (!hasMoving) // if no key with moving command is pressed, we should execute return command
                 ReturnCommand.Execute();
+            //update keyboard state.
             oldkeyboardState = curr;
         }
        

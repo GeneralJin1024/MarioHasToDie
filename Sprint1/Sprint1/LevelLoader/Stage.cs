@@ -121,7 +121,7 @@ namespace Sprint1.LevelLoader
                         //}
                         foreach (BlockCharacter bc in blockList)
                         {
-                            Console.WriteLine("item load successfully");
+                            //Console.WriteLine("item load successfully");
                             bc.LoadItems(itemList);
                         }
                         spriteList.AddRange(itemList);

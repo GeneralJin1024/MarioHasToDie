@@ -13,7 +13,7 @@ namespace Sprint1.MarioClasses
     public class Mario : ISprite
     {
         public static float XVelocity { get; } = 4;
-        public static float YVelocity{ get;} = -16; // -16为初始值
+        public static float YVelocity{ get;} = -16; // -16 is initial value
         public Texture2D SpriteSheets { get; set; }//useless variable
         public MoveParameters Parameters { get; set; }
         public MarioState MarioState { get; }
@@ -47,9 +47,10 @@ namespace Sprint1.MarioClasses
         #region ISprite Methods
         public void Update(float timeOfFrame)
         {
-            //CurrentActionAndState[0] will locate the current action sprite.
-            // && marioState.GetActionType() != MarioState.ActionType.Jump
-            //Console.WriteLine("Before Mario Velocity = " + Parameters.Velocity + "Current State = " + MarioState.GetActionType);
+            /*
+             * In this Sprint, I cannot make Mario jumpHigher in JumpingState because the system read input per Update, not
+             * read each 100ms (the frequency of collision update)
+             */
             if (JumpHigher)
             {
                 Parameters.SetVelocity(Math.Abs(Parameters.Velocity.X), Parameters.Velocity.Y - 0.5f);
@@ -81,34 +82,6 @@ namespace Sprint1.MarioClasses
             return CurrentSprite.GetHeightAndWidth();
         }
         #endregion ISprite Methods
-
-        #region Action Command Receiver Method
-        /*
-         * All four receivers should check if Mario is Died. If yes, then reject all command.
-         * 
-         * CurrentActionAndState[1] locate the current ActionState
-         * CurrentActionAndState[2] locate the current power state.
-         */
-        public void MoveRight()
-        {
-            MarioState.MoveRight();
-        }
-
-        public void MoveLeft()
-        {
-            MarioState.MoveLeft();
-        }
-
-        public void MoveUp()
-        {
-            MarioState.MoveUp();
-        }
-
-        public void MoveDown()
-        {
-            MarioState.MoveDown();
-        }
-        #endregion Action Command Receiver Method
 
         #region Action Change
         public void ChangeToIdle()

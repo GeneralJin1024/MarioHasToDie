@@ -1,0 +1,27 @@
+Reviewer: Zhenhao Lu
+Date: 10/11/2019
+Sprint2
+Files: Sprint1Main.cs
+Author: Shengyu Jin
+Comment:
+	1. The method you use to reset all entities is destroying current map and objects on it; then 
+	recreate it and set it as current map. I don't like this way. First, We shouldn't reset everything.
+	For example, we only need to reset some block's states but we don't need to reset their
+	position and velocity unless it was destroy by super mario. We only need to reset item's basic
+	parameters (position, velocity, isHidden...) without caring about their state (In fact they don't
+	have states). To save the born data, I write the static method CopyParameterData in Scene.cs.
+	Second, some blocks such as floor blocks, stair blocks don't need to do anything when reset.
+	Hence destroying and recreating is more wasteful than do nothing.
+	Third, recreating current map will cause mario being reset as well. I need to save Mario's
+	Parameters before destroying and rewrite new Mario's parameters with it to make sure that
+	Mario will not be reset.
+	2. For the reset, I recommend to have a Reset() method in Scene.cs and in ICharacter so that
+	it can reset all characters in CharacterList. Furthermore, CharacterList only contains Items, 
+	Enemies and Blocks.
+Time : 20min
+Hypothesis:
+	1. In the future, if we have a longer map that need nearly one thousand floor blocks. Reset all
+	of them will become a big burden to CPU.
+	2. In this Sprint, our work is just reset enetities. However, if we need to add a function that 
+	reset the whole map, current reset method will be useful, for example, when mario died or 
+	users want to replay this map, the program can call this method to reset everything.

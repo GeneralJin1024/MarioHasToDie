@@ -128,11 +128,12 @@ namespace Sprint1.CollideDetection
             }
             else if (Character1.Type == Sprint1Main.CharacterType.Fireball)
             {
-                Character1.Parameters.IsHidden = true;
+                Character1.Parameters.IsHidden = true; // fireball will hide no matter what it hit
+                //only mario has response when collide with fireball
                 if (Character2.Type == Sprint1Main.CharacterType.Enemy)
                     Character2.MarioCollide(true);
             }
-            else
+            else //items and enemies and fireball
             {
                 Character1.BlockCollide((Time == yTime) && (relativeVelocity.Y > 0));
             }

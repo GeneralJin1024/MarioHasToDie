@@ -12,9 +12,6 @@ namespace Sprint1
     {
         public bool IsLeft { get; set; } //whether the object is facing left.
         public bool IsHidden { get; set; } // whether display the object on the screen.
-
-        //当该值为true，则物体每次更新会有一个向下的加速度。反之则没有
-        //注意：初始值取决于生成该类时的参量，但后期也可以修改
         public bool HasGravity { get; set; } //whether the object has grativity(negative y acceleration)
         public bool InScreen { get; set; }
         public Vector2 Velocity { get { return _velocity; } }
@@ -54,7 +51,7 @@ namespace Sprint1
         }
         public void UpdatePositionAndVelocity(float rate)
         {
-            grativity = HasGravity ? 2 : 0; //由于后期修改，需要随时注意HasGrativity的变化
+            grativity = HasGravity ? 2 : 0;
             _position.X += (_velocity.X * rate);
             _position.Y += (_velocity.Y * rate);
             _velocity.Y += grativity * rate;

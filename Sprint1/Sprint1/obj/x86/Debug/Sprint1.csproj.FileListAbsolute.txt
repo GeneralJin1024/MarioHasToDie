@@ -318,5 +318,3 @@ C:\Users\runmi\Source\Repos\SmartMario\Sprint1\Sprint1\obj\x86\Debug\Sprint1.csp
 C:\Users\runmi\Source\Repos\SmartMario\Sprint1\Sprint1\obj\x86\Debug\Sprint1.csproj.CopyComplete
 C:\Users\runmi\Source\Repos\SmartMario\Sprint1\Sprint1\obj\x86\Debug\Sprint1.exe
 C:\Users\runmi\Source\Repos\SmartMario\Sprint1\Sprint1\obj\x86\Debug\Sprint1.pdb
-C:\Users\13667\source\repos\SmartMario\Sprint1\Sprint1\bin\Windows\x86\Debug\Sprint1.exe.CodeAnalysisLog.xml
-C:\Users\13667\source\repos\SmartMario\Sprint1\Sprint1\bin\Windows\x86\Debug\Sprint1.exe.lastcodeanalysissucceeded

@@ -1,0 +1,18 @@
+Reviewer: Zhenhao Lu
+Date: 10/11/2019
+Sprint2
+Files: ItemAndEnemyClasses/*
+Author: Ziye Zhu
+Comment:
+	1. In each classes that implements ItemCharacter, they override the method - 
+	GetHeightAndWidth(). However, each Item do the same thing for this method, so you can
+	implement it in ItemCharacter
+	2. Except Pipe, every item will disappear when collide with mario. That is
+	Parameters.IsHidden = true. You can also move it into ItemCharacter. Only in PipeCharacter,
+	override it and keep the body empty.
+	3. Overall, use Abstract method and implement some same function in it is a good way and
+	it can reduce the amount of code.
+Time: 15min
+Hypothesis:
+	1. In the future, if we need to add a new function to all items, we can direclty implement 
+	a part of the function, which all items should do it, in ItemCharacter.

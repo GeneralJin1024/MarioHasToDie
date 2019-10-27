@@ -158,12 +158,6 @@ namespace Sprint1
             {
                 if (!LoadingMode)
                     currScene.Update(gameTime);
-                //Controller.UpdateInput(...);
-                //foreach (IController controller in controllerList)
-                //    controller.Update();
-                //foreach (ISprite sprite in spriteList)
-                //    sprite.Update(gameTime);
-                //Mario.Update(gameTime);
             }
 
             base.Update(gameTime);
@@ -223,6 +217,7 @@ namespace Sprint1
         public void ResetScene()
         {
             #region Reset
+            //save backup
             MoveParameters tempParameter = new MoveParameters(true);
             Scene.CopyDataOfParameter(currScene.Mario.Parameters, tempParameter);
             MarioState.ActionType actionType = currScene.Mario.GetAction;
@@ -239,6 +234,7 @@ namespace Sprint1
             currScene.LoadContent();          
             LoadingMode = false;
 
+            //use backup to rewrite
             Scene.CopyDataOfParameter(tempParameter, currScene.Mario.Parameters);
             currScene.Mario.RestoreStates(actionType, powerType, isFire);
             currScene.Camera.LookAt(currScene.Mario.Parameters.Position);

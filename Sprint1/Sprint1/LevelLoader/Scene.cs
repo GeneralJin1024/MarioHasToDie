@@ -50,14 +50,15 @@ namespace Sprint1
 
         public void LoadContent()
         {
-            Camera = new Camera(Sprint1Main.Game.GraphicsDevice.Viewport) { Limits = new Rectangle(0, 0, 1000, 500) };
+            Camera = new Camera(Sprint1Main.Game.GraphicsDevice.Viewport) { Limits = new Rectangle(0, 0, 
+                (int)Stage.MapBoundary.X, (int)Stage.MapBoundary.Y) };
             Layers = new List<Layer>
             {
-                new Layer(Camera) { Parallax = new Vector2(0.2f, 1.0f) }, //云
-                new Layer(Camera) { Parallax = new Vector2(0.8f, 1.0f) }, //山
-                new Layer(Camera) { Parallax = new Vector2(1.0f, 1.0f) }, //mario，草
+                new Layer(Camera) { Parallax = new Vector2(0.2f, 1.0f) }, //cloud
+                new Layer(Camera) { Parallax = new Vector2(0.8f, 1.0f) }, //hill
+                new Layer(Camera) { Parallax = new Vector2(1.0f, 1.0f) }, //mario，bush
                 new Layer(Camera) { Parallax = new Vector2(1.0f, 1.0f) }, //item，enemy，block
-                new Layer(Camera) { Parallax = new Vector2(1.0f, 1.0f) } // 火球
+                new Layer(Camera) { Parallax = new Vector2(1.0f, 1.0f) } // fireball
             };
 
             stage.SpriteLocationReader(level, characterList, FireBallList, Layers);
@@ -80,7 +81,7 @@ namespace Sprint1
         public void Update(GameTime gameTime)
         {
             stage.Update(gameTime);
-            Camera.LookAt(Mario.Parameters.Position);
+            Camera.LookAt(Mario.Parameters.Position); // it should always look at mario
 
             //foreach (ICharacter character in characterList)
             //    character.Update(1);
@@ -88,16 +89,6 @@ namespace Sprint1
 
         public void Draw()
         {
-            //spriteBatch.Begin(SpriteSortMode.BackToFront, BlendState.AlphaBlend);
-            ////Console.WriteLine("Length = " + characterList.Count);
-            //foreach (ISprite sprite in BackgroundList)
-            //    sprite.Draw(spriteBatch);
-            //foreach (ICharacter character in characterList)
-            //    character.Draw(spriteBatch);
-            //foreach (ICharacter character in FireBallList)
-            //    character.Draw(spriteBatch);
-            //Mario.Draw(spriteBatch);
-            //spriteBatch.End();
             foreach (Layer layer in Layers)
                 layer.Draw(spriteBatch);
         }

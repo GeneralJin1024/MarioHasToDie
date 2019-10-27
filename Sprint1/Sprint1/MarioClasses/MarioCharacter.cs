@@ -50,7 +50,6 @@ namespace Sprint1.MarioClasses
         public void MoveFire() { Mario.MarioState.ChangeToFire(); }
         public void MoveDestroy() { Mario.MarioState.Destroy(); }
         public void Return() { Mario.MarioState.Return(); }
-        #endregion
         public void ThrowFire()
         {
             if (Mario.MarioState.IsFireMario())
@@ -63,7 +62,7 @@ namespace Sprint1.MarioClasses
                 fireBall.Parameters.SetVelocity(20, -5);
             }
         }
-
+        #endregion
         #region Collide Detection Receivers
         public void CollideWithEnemy(bool isTop)
         {
@@ -80,13 +79,13 @@ namespace Sprint1.MarioClasses
                 Mario.MarioState.ChangeToFire();
         }
         public void CollideWithRedMushRoom() { Mario.MarioState.ChangeToSuper(); }
-        public void CollideWithBlock(bool hitBottom, bool movingUp)
+        public void CollideWithBlock(bool hitBottomOrTop, bool movingUp)
         {
             //Console.WriteLine("Collide1 : hitBottom = " + hitBottom + "    hitLeftOrRight = " + hitLeftOrRight);
-            if (hitBottom && movingUp)
+            if (hitBottomOrTop && movingUp) // hit block's bottom
             {
                 if (Mario.MarioState.GetActionType == MarioState.ActionType.Crouch)
-                    Mario.Parameters.SetVelocity(0, 0); //Mario.ChangeToCrouch();
+                    Mario.Parameters.SetVelocity(0, 0);
                 else if (Mario.MarioState.GetActionType == MarioState.ActionType.Walk)
                 {
                     Mario.Parameters.SetVelocity(Mario.XVelocity, 0);
@@ -96,9 +95,9 @@ namespace Sprint1.MarioClasses
             }
             else
             {
-                if (!hitBottom)
+                if (!hitBottomOrTop) // hit left or right side
                     Parameters.SetVelocity(0, Parameters.Velocity.Y);
-                else if (Parameters.Velocity.Y < 0)
+                else if (Parameters.Velocity.Y < 0) //stand on the block
                 {
                     Mario.ChangeToFalling();
                     Parameters.SetVelocity(Math.Abs(Parameters.Velocity.X), -Parameters.Velocity.Y);
@@ -119,7 +118,6 @@ namespace Sprint1.MarioClasses
                 CollideWithFlower();
             else if (character.Type == Sprint1Main.CharacterType.Enemy)
                 CollideWithEnemy(UpOrDown && movingDown);
-
 
         }
 
@@ -161,7 +159,7 @@ namespace Sprint1.MarioClasses
             
         }
         public void MarioCollide(bool special) { }
-        public void BlockCollide(bool isBottom) { }
+        public void BlockCollide(bool isBottom) { } //combine with CollideWithBlock in next Sprint
 
     }
 }
