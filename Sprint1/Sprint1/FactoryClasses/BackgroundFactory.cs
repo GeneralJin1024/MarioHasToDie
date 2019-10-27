@@ -93,16 +93,16 @@ namespace Sprint1.FactoryClasses
         }
 
         #region UselessMethods
-        public List<ICharacter> FactoryMethod(string name, Vector2 posS, Vector2 posE)
+        public ArrayList FactoryMethod(string name, Vector2 posS, Vector2 posE)
         {
             //no character here
-            return new List<ICharacter>();
+            return new ArrayList();
         }
 
-        public List<ICharacter> FactoryMethod(string name, Vector2 posS)
+        public ArrayList FactoryMethod(string name, Vector2 posS)
         {
             //no character here
-            return new List<ICharacter>();
+            return new ArrayList();
         }
         #endregion
     }

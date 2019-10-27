@@ -59,10 +59,10 @@ namespace Sprint1.FactoryClasses
             return new EnemyCharacter(greenkoopa, rowAndColumn, moveParameters);
         }
 
-        public List<ICharacter> FactoryMethod(string name, Vector2 pos)
+        public ArrayList FactoryMethod(string name, Vector2 pos)
         {
             //Generating one enemy at a time
-            List<ICharacter> list = new List<ICharacter>();
+            ArrayList list = new ArrayList();
             MoveParameters parameters = new MoveParameters(true);
             parameters.SetPosition(pos.X, pos.Y);
             switch (name)
@@ -81,10 +81,10 @@ namespace Sprint1.FactoryClasses
             return list;
         }
 
-        public List<ICharacter> FactoryMethod(string name, Vector2 posS, Vector2 posE)
+        public ArrayList FactoryMethod(string name, Vector2 posS, Vector2 posE)
         {
             //won't get called
-            return new List<ICharacter>();
+            return new ArrayList();
         }
     }
 }

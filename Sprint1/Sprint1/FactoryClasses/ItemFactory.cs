@@ -42,7 +42,7 @@ namespace Sprint1.FactoryClasses
         public ICharacter AddNewCharacter(string characterType, Vector2 location)
         {
 
-            ICharacter newItem = FactoryMethod(characterType, location)[0];
+            ICharacter newItem = (ICharacter)FactoryMethod(characterType, location)[0];
             CharacterList.Add(newItem);
             return newItem;
         }
@@ -87,9 +87,9 @@ namespace Sprint1.FactoryClasses
             return new FireBallCharacter(fireBall, new Point(1, 1), pos);
         }
 
-        public List<ICharacter> FactoryMethod(string name, Vector2 posS, Vector2 posE)
+        public ArrayList FactoryMethod(string name, Vector2 posS, Vector2 posE)
         {
-            List<ICharacter> list = new List<ICharacter>();
+            ArrayList list = new ArrayList();
             for (int x = 0; x < (posE.X - posS.X) / 16; x++)
             {
                 for (int y = 0; y < (posE.Y - posS.Y) / 16; y++)
@@ -124,14 +124,14 @@ namespace Sprint1.FactoryClasses
             }
             return list;
         }
-        public List<ICharacter> FactoryMethod(string namePlusNum, Vector2 pos)
+        public ArrayList FactoryMethod(string namePlusNum, Vector2 pos)
         {
             //generating embedded items
             int startInd = 0;
             string name = namePlusNum.Substring(startInd, namePlusNum.IndexOf("+{", StringComparison.Ordinal) - startInd);
             startInd = namePlusNum.IndexOf("+{", StringComparison.Ordinal) + 2;
             int num = (int)decimal.Parse(namePlusNum.Substring(startInd, namePlusNum.IndexOf("}", StringComparison.Ordinal) - startInd), CultureInfo.CurrentCulture);
-            List<ICharacter> list = new List<ICharacter>();
+            ArrayList list = new ArrayList();
             for (int i = 0; i < num; i++)
             {
                 switch (name)

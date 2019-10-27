@@ -70,9 +70,9 @@ namespace Sprint1.FactoryClasses
             return new BlockCharacter(new StairBlockSprite(BlockTextures[4], moveParameters));
         }
 
-        public List<ICharacter> FactoryMethod(string name, Vector2 posS, Vector2 posE)
+        public ArrayList FactoryMethod(string name, Vector2 posS, Vector2 posE)
         {
-            List<ICharacter> list = new List<ICharacter>();
+            ArrayList list = new ArrayList();
             for (int x = 0; x < (posE.X - posS.X) / 16; x++)
             {
                 for (int y = 0; y < (posE.Y - posS.Y) / 16; y++)
@@ -107,10 +107,10 @@ namespace Sprint1.FactoryClasses
             return list;
         }
 
-        public List<ICharacter> FactoryMethod(string name, Vector2 pos)
+        public ArrayList FactoryMethod(string name, Vector2 pos)
         {
             //won't get called
-            return new List<ICharacter>();
+            return new ArrayList();
         }
     }
 }

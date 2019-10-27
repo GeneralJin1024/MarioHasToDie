@@ -55,14 +55,14 @@ namespace Sprint1.FactoryClasses
             return new MarioCharacter(new Texture2D[][] { StandardSheets, SuperSheets, FireSheets}, location);
         }
         #region UselessMethod
-        public List<ICharacter> FactoryMethod(string name, Vector2 posS, Vector2 posE)
+        public ArrayList FactoryMethod(string name, Vector2 posS, Vector2 posE)
         {
-            return new List<ICharacter>();
+            return new ArrayList();
         }
 
-        public List<ICharacter> FactoryMethod(string name, Vector2 pos)
+        public ArrayList FactoryMethod(string name, Vector2 pos)
         {
-            return new List<ICharacter>();
+            return new ArrayList();
         }
         #endregion
     }

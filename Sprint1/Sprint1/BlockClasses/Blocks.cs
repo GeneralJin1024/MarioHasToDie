@@ -26,7 +26,7 @@ namespace Sprint1.BlockClasses
         protected Vector2 bPosition;
         private bool IsBumping;
         private bool containItems;
-        private ArrayList items;
+        private readonly ArrayList items;
         private float MinY, MaxY;
         protected Point positionOffset = new Point(1, 1);
         protected Vector2 spriteSpeed = new Vector2(50.0f, 60.0f);
