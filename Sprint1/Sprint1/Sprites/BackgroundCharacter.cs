@@ -13,10 +13,10 @@ namespace Sprint1.Background
 {
     class BackgroundCharacter : ICharacter
     {
-        private ISprite Background;
+        private readonly ISprite Background;
         public MoveParameters Parameters { get; set; }
 
-        public Sprint1Main.CharacterType Type { get; set; } = Sprint1Main.CharacterType.Null;
+        public Sprint1Main.CharacterType Type { get;}
 
         //void Update(GameTime gameTime) { }
         public BackgroundCharacter(Texture2D texture, Vector2 pos)

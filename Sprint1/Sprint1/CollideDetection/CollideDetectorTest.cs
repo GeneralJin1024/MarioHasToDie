@@ -14,7 +14,7 @@ namespace Sprint1.CollideDetection
     {
         private readonly ArrayList CharacterList;
         private List<ICharacter> MovingCharacters;
-        private ArrayList FireBallCharacters;
+        private readonly ArrayList FireBallCharacters;
         private readonly List<CollidePair> CollidePairs;
         private readonly MarioCharacter Mario;
         private readonly TileMap Map;
@@ -23,6 +23,7 @@ namespace Sprint1.CollideDetection
             if (characterList is null || fireBallCharacterList is null)
                 throw new ArgumentNullException(nameof(characterList));
             CharacterList = characterList;
+            //Console.WriteLine("Contain the flower" + CharacterList.Contains(Sprint1Main.Flower));
             FireBallCharacters = fireBallCharacterList;
             //Console.WriteLine("At first, has items = " + FireBallCharacters.Count);
             foreach (ICharacter items in FireBallCharacters)
@@ -90,6 +91,8 @@ namespace Sprint1.CollideDetection
                     if (!character.Parameters.IsHidden)
                         CreateCollidePairs(character);
                 CollidePair[] pairs = CollidePairs.ToArray();
+
+
                 float longestTime = timeOfFrame;
                 // find the smallest first contact time.
                 for (int i = 0; i < pairs.Length; i++)
@@ -130,21 +133,6 @@ namespace Sprint1.CollideDetection
             }
         }
 
-        private void UpdateItemPoint()
-        {
-            foreach (ICharacter character in MovingCharacters)
-            {
-                if (character.Type == Sprint1Main.CharacterType.RedMushroom)
-                {
-                    character.Parameters.IsLeft = Mario.Parameters.Position.X < character.Parameters.Position.X;
-                }
-                if (character.Type == Sprint1Main.CharacterType.Star || character.Type == Sprint1Main.CharacterType.GreenMushroom)
-                {
-                    character.Parameters.IsLeft = Mario.Parameters.Position.X >= character.Parameters.Position.X;
-                }
-            }
-        }
-
         private void DivideIntoList()
         {
             MovingCharacters = new List<ICharacter>();
@@ -157,6 +145,7 @@ namespace Sprint1.CollideDetection
                     case Sprint1Main.CharacterType.Star: MovingCharacters.Add(character); break;
                     case Sprint1Main.CharacterType.RedMushroom: MovingCharacters.Add(character); break;
                     case Sprint1Main.CharacterType.GreenMushroom: MovingCharacters.Add(character); break;
+                    case Sprint1Main.CharacterType.Flower: MovingCharacters.Add(character);break;
                     case Sprint1Main.CharacterType.Fireball: FireBallCharacters.Add(character); break;
                     default: break;
                 }
@@ -166,7 +155,6 @@ namespace Sprint1.CollideDetection
         private void CreateCollidePairs(ICharacter character1)
         {
             ArrayList possibleCollideList = new ArrayList();
-                
             if (!character1.Parameters.IsHidden && character1.Parameters.InScreen)
             {
                 Map.GetPossibleCollidedObject(character1, possibleCollideList);

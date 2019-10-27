@@ -13,10 +13,10 @@ namespace Sprint1.MarioClasses
     {
         private readonly Mario Mario;
         public Sprint1Main.CharacterType Type { get; set; } = Sprint1Main.CharacterType.Mario;
-        private bool hasCollision;
+        public MarioState.ActionType GetAction { get { return Mario.MarioState.GetActionType; } }
+        public MarioState.PowerType GetPower { get { return Mario.MarioState.GetPowerType; } }
         public MoveParameters Parameters { get; }
-        private MoveParameters InitialParameters;
-        //private static MarioState.PowerType PowerType = MarioState.PowerType.Standard;
+        private readonly MoveParameters InitialParameters;
         public bool IsSuper {
             get
             {
@@ -27,17 +27,14 @@ namespace Sprint1.MarioClasses
         public MarioCharacter(Texture2D[][] marioSpriteSheets, Vector2 location)
         {
             Mario = new Mario(marioSpriteSheets, location);
-            //if (Sprint1Main.Game.Mario != null)
-            //    Scene.CopyDataOfParameter(Sprint1Main.Game.Mario.Parameters, Mario.Parameters);
             Parameters = Mario.Parameters;
             InitialParameters = new MoveParameters(false);
             Scene.CopyDataOfParameter(Parameters, InitialParameters);
-            hasCollision = false;
         }
         #region ISprite Methods
         public void Update(float timeOfFrame)
         {
-            Mario.Update(timeOfFrame); hasCollision = false;
+            Mario.Update(timeOfFrame);
         }
         public void Draw(SpriteBatch spriteBatch) { Mario.Draw(spriteBatch); }
         #endregion
@@ -74,7 +71,6 @@ namespace Sprint1.MarioClasses
                 Mario.MarioState.Destroy();
             if (Mario.MarioState.GetPowerType != MarioState.PowerType.Died)
                 Mario.ChangeToIdle();
-            hasCollision = true;
         }
         public void CollideWithFlower()
         {
@@ -82,16 +78,13 @@ namespace Sprint1.MarioClasses
                 Mario.MarioState.ChangeToSuper();
             else
                 Mario.MarioState.ChangeToFire();
-            hasCollision = true;
         }
-        public void CollideWithRedMushRoom() { Mario.MarioState.ChangeToSuper(); hasCollision = true; }
+        public void CollideWithRedMushRoom() { Mario.MarioState.ChangeToSuper(); }
         public void CollideWithBlock(bool hitBottom, bool movingUp)
         {
             //Console.WriteLine("Collide1 : hitBottom = " + hitBottom + "    hitLeftOrRight = " + hitLeftOrRight);
             if (hitBottom && movingUp)
             {
-                //Console.WriteLine("Hit bottom, Action = " + Mario.marioState.GetActionType());
-                //Console.WriteLine("Mario Velocity1 = " + Parameters.Velocity);
                 if (Mario.MarioState.GetActionType == MarioState.ActionType.Crouch)
                     Mario.Parameters.SetVelocity(0, 0); //Mario.ChangeToCrouch();
                 else if (Mario.MarioState.GetActionType == MarioState.ActionType.Walk)
@@ -100,7 +93,6 @@ namespace Sprint1.MarioClasses
                 }
                 else
                     Mario.ChangeToIdle();
-                //Console.WriteLine("Mario Velocity2 = " + Parameters.Velocity);
             }
             else
             {
@@ -112,7 +104,6 @@ namespace Sprint1.MarioClasses
                     Parameters.SetVelocity(Math.Abs(Parameters.Velocity.X), -Parameters.Velocity.Y);
                 }
             }
-            hasCollision = true;
         }
 
         public void CollideWith(ICharacter character, bool UpOrDown, bool movingDown)
@@ -144,8 +135,6 @@ namespace Sprint1.MarioClasses
         public Vector2 GetHeightAndWidth() { return Mario.GetHeightAndWidth(); } //get mario's hit and width.
         public bool IsDied() { return Mario.MarioState.GetPowerType == MarioState.PowerType.Died; }
         public bool IsFire() { return Mario.MarioState.IsFireMario(); }
-        public MarioState.ActionType GetAction() { return Mario.MarioState.GetActionType; }
-        public MarioState.PowerType GetPower() { return Mario.MarioState.GetPowerType; }
         public void RestoreStates(MarioState.ActionType actionType, MarioState.PowerType powerType, bool isFire)
         {
             switch (actionType)

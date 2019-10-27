@@ -111,6 +111,14 @@ namespace Sprint1.LevelLoader
                     {
                         itemList.AddRange(ItemFactory.Instance.FactoryMethod(myLevelSection.Blocks[i].EmbeddedSpriteName + "+{"
                             + myLevelSection.Blocks[i].EmbeddedSpriteNum + "}", StringToVecter2(myLevelSection.Blocks[i].SpriteStartLocation)));
+                        //if(itemList.Count == 1)
+                        //{
+                        //    foreach(ICharacter character in itemList)
+                        //    {
+                        //        if (character.Type == Sprint1Main.CharacterType.Flower)
+                        //            Sprint1Main.Flower = character;
+                        //    }
+                        //}
                         foreach (BlockCharacter bc in blockList)
                         {
                             Console.WriteLine("item load successfully");

@@ -46,10 +46,6 @@ namespace Sprint1.FactoryClasses
             CharacterList.Add(newItem);
             return newItem;
         }
-        public ICharacter FactoryMethod2(Vector2 location)
-        {
-            return GetFireBall(location);
-        }
 
         private void LoadTexture()
         {

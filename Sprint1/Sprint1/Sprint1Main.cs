@@ -13,6 +13,7 @@ using Sprint1.CollideDetection;
 using Sprint1.LevelLoader;
 using System.Configuration;
 using ConfigurationLibrary;
+using Sprint1.ItemClasses;
 
 namespace Sprint1
 {
@@ -31,7 +32,7 @@ namespace Sprint1
             Mario, Block, Enemy, DiedEnemy, Flower, GreenMushroom, RedMushroom, Star, Coin, Pipe, Fireball, Null
         }
 
-        
+        public static ICharacter Flower { get; set; }
 
         private GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
@@ -224,8 +225,8 @@ namespace Sprint1
             #region Reset
             MoveParameters tempParameter = new MoveParameters(true);
             Scene.CopyDataOfParameter(currScene.Mario.Parameters, tempParameter);
-            MarioState.ActionType actionType = currScene.Mario.GetAction();
-            MarioState.PowerType powerType = currScene.Mario.GetPower();
+            MarioState.ActionType actionType = currScene.Mario.GetAction;
+            MarioState.PowerType powerType = currScene.Mario.GetPower;
             bool isFire = currScene.Mario.IsFire();
 
             LoadingMode = true;       

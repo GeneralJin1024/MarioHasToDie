@@ -19,7 +19,6 @@ namespace Sprint1
         private int level;
         private ArrayList characterList;
         private ArrayList FireBallList;
-        private ArrayList BackgroundList;
         public Camera Camera { get; private set; }
         private List<Layer> Layers;
         public MarioCharacter Mario { get; internal set; }
@@ -42,7 +41,6 @@ namespace Sprint1
 
 
             characterList = new ArrayList();
-            BackgroundList = new ArrayList();
             FireBallList = new ArrayList();
             this.level = levelIndex;
             //factoryList = new ArrayList();

@@ -50,24 +50,6 @@ namespace Sprint1.MarioClasses
         public void Return(Mario mario) { }
     }
 
-    class RunningJumpState : IActionState
-    {
-        public MarioState.ActionType Type { get; set; } = MarioState.ActionType.Walk;
-        public void Up(Mario mario) { mario.ChangeToJump(Mario.YVelocity); }
-        public void Down(Mario mario) { mario.ChangeToWalk(); } // go back to walk if it has horizontal velocity.
-        public void Left(Mario mario)
-        {
-            mario.Parameters.IsLeft = true;
-            mario.ChangeToRunningJump(mario.Parameters.Velocity.Y);
-        }
-        public void Right(Mario mario)
-        {
-            mario.Parameters.IsLeft = false;
-            mario.ChangeToRunningJump(mario.Parameters.Velocity.Y);
-        }
-        public void Return(Mario mario) { mario.ChangeToIdle(); }
-    }
-
     class WalkState : IActionState
     {
         public MarioState.ActionType Type { get; set; } = MarioState.ActionType.Walk;

@@ -52,7 +52,7 @@ namespace Sprint1
             _position.X = x;
             _position.Y = y;
         }
-        public void UpdatePositionAndVelocity(float acceleration, float rate)
+        public void UpdatePositionAndVelocity(float rate)
         {
             grativity = HasGravity ? 2 : 0; //由于后期修改，需要随时注意HasGrativity的变化
             _position.X += (_velocity.X * rate);

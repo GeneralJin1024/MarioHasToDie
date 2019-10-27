@@ -10,8 +10,8 @@ namespace Sprint1.CollideDetection
 {
     public class CollidePair
     {
-        private ICharacter Character2;
-        private ICharacter Character1;
+        private readonly ICharacter Character2;
+        private readonly ICharacter Character1;
         private float xTime = -2, yTime = -2;
         private Vector2 relativeVelocity;
         public float Time { get; private set; }
@@ -23,9 +23,6 @@ namespace Sprint1.CollideDetection
             Character1 = character1;
             Character2 = character2;
             relativeVelocity = new Vector2();
-            if (Character1.Type == Sprint1Main.CharacterType.Fireball && (Character2.Type != Sprint1Main.CharacterType.Enemy ||
-                Character2.Type != Sprint1Main.CharacterType.Block))
-                Console.WriteLine("Warning!!!Fireball Collide with unknown Thing: " + Character2.Type);
         }
 
         public void GetFirstContactTime()
@@ -42,12 +39,6 @@ namespace Sprint1.CollideDetection
             relativeVelocity.X -= Character2.Parameters.Velocity.X;
             relativeVelocity.Y -= Character2.Parameters.Velocity.Y;
 
-            //if (Character2.Parameters.Position.X == 384)
-            //{
-            //    Console.WriteLine("If it is Block2: " + Character2.Type + "  At this Time, Mario Position = " + Character1.Parameters.Position);
-            //    Console.WriteLine("xTime2 = " + xTime + "    yTime2  = " + yTime);
-            //    Console.WriteLine("relativeVelocity2 = " + Character1.Parameters.Velocity);
-            //}
             #region OverLap Axel
             if (relativeVelocity.X > 0)
             {
@@ -81,19 +72,11 @@ namespace Sprint1.CollideDetection
             //Console.WriteLine("xTime = " + xTime + "    yTime  = " + yTime);
             //Console.WriteLine("relativeVelocity = " + relativeVelocity);
 
-            //if (Character2.Parameters.Position.X == 384)
-            //{
-            //    Console.WriteLine("If it is Block1: " + Character2.Type + "  At this Time, Mario Position = " + Character1.Parameters.Position);
-            //    Console.WriteLine("xTime1 = " + xTime + "    yTime1  = " + yTime);
-            //    Console.WriteLine("relativeVelocity1 = " + relativeVelocity);
-            //}
-
             #region Intersect Time
             if (xTime < 0 && yTime < 0)
                 Time = -2; // if both x, y time are negative, then mario is leaving this object
             else if (yTime >= 0 && yTime >= xTime) //Mario must collide with object from top or bottom.
             {
-                //Console.WriteLine("Velocity = " + relativeVelocity);
                 marioMax.X += yTime * relativeVelocity.X;
                 marioMin.X += yTime * relativeVelocity.X;
                 // check whether the mario still has a part that is between the left and right side of object after yTime.
@@ -129,13 +112,6 @@ namespace Sprint1.CollideDetection
             }
             #endregion
             //Console.WriteLine("Time = " + Time);
-
-            //if (Character2.Parameters.Position.X == 384)
-            //{
-            //    Console.WriteLine("If it is Block: " + Character2.Type + "At this Time, Mario Position = " + Character1.Parameters.Position);
-            //    Console.WriteLine("xTime = " + xTime + "    yTime  = " + yTime);
-            //    Console.WriteLine("relativeVelocity = " + relativeVelocity);
-            //}
         }
 
         public void Collide()
@@ -149,49 +125,12 @@ namespace Sprint1.CollideDetection
                 else
                     Character2.MarioCollide((Time == yTime) && (relativeVelocity.Y < 0));
                 MarioCharacters.CollideWith(Character2, Time == yTime, relativeVelocity.Y > 0);
-                //switch (Character2.Type)
-                //{
-                //    case Sprint1Main.CharacterType.Block:
-                //        Character2.MarioCollide((Time == yTime) && (relativeVelocity.Y < 0));
-                //        MarioCharacters.CollideWithBlock((Time == yTime) && (relativeVelocity.Y > 0), Time == xTime);
-                //        break;
-                //    case Sprint1Main.CharacterType.Enemy:
-                //        //Character2.MarioCollide((Time == yTime) && (relativeVelocity.Y > 0));
-                //        MarioCharacters.CollideWithEnemy((Time == yTime) && (relativeVelocity.Y > 0));
-                //        break;
-                //    case Sprint1Main.CharacterType.DiedEnemy:
-                //        MarioCharacters.CollideWithBlock((Time == yTime) && (relativeVelocity.Y > 0), Time == xTime);
-                //        break;
-                //    case Sprint1Main.CharacterType.Flower:
-                //        //Character2.MarioCollide(true);
-                //        MarioCharacters.CollideWithFlower();
-                //        break;
-                //    case Sprint1Main.CharacterType.RedMushroom:
-                //        //Character2.MarioCollide(true);
-                //        MarioCharacters.CollideWithMushRoom(); break;
-                //    case Sprint1Main.CharacterType.GreenMushroom: MarioCharacters.CollideWithMushRoom();break;
-                //    //case Sprint1.CharacterType.Coin:
-                //    //    //Character2.MarioCollide(true);
-                //    //    break;
-                //    //case Sprint1.CharacterType.Star:
-                //    //    //Character2.MarioCollide(true);
-                //    //    break;
-                //    case Sprint1Main.CharacterType.Pipe:
-                //        MarioCharacters.CollideWithBlock((Time == yTime) && (relativeVelocity.Y > 0), Time == xTime);
-                //        break;
-                //    default: break;
-                //}
             }
             else if (Character1.Type == Sprint1Main.CharacterType.Fireball)
             {
                 Character1.Parameters.IsHidden = true;
                 if (Character2.Type == Sprint1Main.CharacterType.Enemy)
                     Character2.MarioCollide(true);
-                else
-                {
-                    if (Character2.Type != Sprint1Main.CharacterType.Block || Character2.Type != Sprint1Main.CharacterType.Pipe)
-                        Console.WriteLine("Warning, fire ball collide with unexpected thing");
-                }
             }
             else
             {

@@ -19,7 +19,6 @@ namespace Sprint1
          */
         public MoveParameters Parameters { get; set; }
 
-        private readonly float YAcceleration;
         private Point RowsAndColumns;
         private int ActionFrame;
         private readonly int MillisecondsPerFrame;
@@ -28,7 +27,6 @@ namespace Sprint1
             ResizeFrame(spriteSheet, rowAndColumn);
             MillisecondsPerFrame = 1;
             Parameters = parameters;
-            YAcceleration = 0;
         }
 
         public virtual void Update(float timeOfFrame)
@@ -49,7 +47,7 @@ namespace Sprint1
             }
             if (Parameters.InScreen)
             {
-                Parameters.UpdatePositionAndVelocity(YAcceleration, timeOfFrame);
+                Parameters.UpdatePositionAndVelocity(timeOfFrame);
                 //check boundary after each update to make sure the whole object are in the screen.
                 Vector2 checkedPosition = LevelLoader.Stage.CheckBoundary(new Vector2(Parameters.Position.X, Parameters.Position.Y - GetHeightAndWidth().X),
                     GetHeightAndWidth());
