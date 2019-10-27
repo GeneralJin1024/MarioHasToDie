@@ -5,6 +5,7 @@ using Sprint1.MarioClasses;
 using Sprint1.Sprites;
 using System;
 using Sprint1.LevelLoader;
+using Sprint1.ItemEnemyClasses;
 
 namespace Sprint1.ItemClasses
 {
@@ -13,7 +14,6 @@ namespace Sprint1.ItemClasses
 
 
         public abstract Sprint1Main.CharacterType Type { get; set; }
-
         private bool isBump;
         private float bumpHigh;
         private float bumpLow;
@@ -34,7 +34,7 @@ namespace Sprint1.ItemClasses
         public void Update(float timeOfFrame)
         {
             item.Update(timeOfFrame);
-            if (isBump)
+            if (!Parameters.IsHidden && isBump)
             {
                 //WARNING:Check next Sprint.
                 Parameters.SetPosition(Parameters.Position.X, Parameters.Position.Y - (positionOffset.Y != 0 ? spriteSpeed.Y * timeOfFrame/10 : 0));
@@ -44,14 +44,17 @@ namespace Sprint1.ItemClasses
                     Parameters.SetPosition(Parameters.Position.X, bumpHigh);
                     //Parameters.HasGravity = true;
                     spriteSpeed.Y *= -1;
+                    if (this.Type == Sprint1Main.CharacterType.Coin) Parameters.IsHidden = true; //Handle Coins
                 }
                 if (Parameters.Position.Y > bumpLow)
                 {
                     isBump = false;
                     Parameters.SetPosition(Parameters.Position.X, bumpLow);
-                    Parameters.SetVelocity(5, 0);
+                    if (this.Type != Sprint1Main.CharacterType.Flower)
+                        Parameters.SetVelocity(3, 0);
                     spriteSpeed.Y = 0;
                     positionOffset.Y = 0;
+                    Parameters.HasGravity = true;
                 }
             }
             if (Parameters.Position.Y >= Stage.Boundary.X || Parameters.Position.Y >= Stage.Boundary.Y)

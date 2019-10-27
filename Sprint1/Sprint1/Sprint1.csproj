@@ -96,6 +96,7 @@
     <Compile Include="ICommand.cs" />
     <Compile Include="IFactory.cs" />
     <Compile Include="ItemEnemyClasses\EnemyCharacter.cs" />
+    <Compile Include="ItemEnemyClasses\ItemStates.cs" />
     <Compile Include="ItemEnemyClasses\PipeCharacter .cs" />
     <Compile Include="ItemEnemyClasses\GreenMushroomCharacter .cs" />
     <Compile Include="ItemEnemyClasses\RedMushroomCharacter.cs" />

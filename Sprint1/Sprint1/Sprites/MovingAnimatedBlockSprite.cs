@@ -22,20 +22,17 @@ namespace Sprint1.BlockClasses
         }
         public override void Update(float frameTime)
         {
+            base.Update(frameTime);
             if (BType == BlockType.Destroyed)
             {
-                dPos.X += positionOffset.X != 0 ? spriteSpeed.X * frameTime/10 : 0;
-                dPos.Y += positionOffset.Y != 0 ? spriteSpeed.Y * frameTime/10 : 0;
+                dPos.X += positionOffset.X != 0 ? spriteSpeed.X * frameTime/3 : 0;
+                dPos.Y += positionOffset.Y != 0 ? spriteSpeed.Y * frameTime/5 : 0;
 
                 destroyedBrickPosX[0] = bPosition.X - dPos.X; destroyedBrickPosX[1] = bPosition.X - 2 * dPos.X;
                 destroyedBrickPosX[2] = bPosition.X + dPos.X; destroyedBrickPosX[3] = bPosition.X + 2 * dPos.X;
 
                 for (int i = 0; i < 4; i++)
                     destroyedBrickPosY[i] = bPosition.Y + dPos.Y;
-            }
-            else
-            {
-                base.Update(frameTime);
             }
         }
         public override void Draw(SpriteBatch spriteBatch)

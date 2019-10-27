@@ -8,6 +8,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Sprint1.FactoryClasses;
 using Sprint1.ItemClasses;
+using Sprint1.ItemEnemyClasses;
 using Sprint1.Sprites;
 
 namespace Sprint1.BlockClasses
@@ -26,7 +27,6 @@ namespace Sprint1.BlockClasses
         private bool IsBumping;
         private bool containItems;
         private ArrayList items;
-        private ArrayList shownItems;
         private float MinY, MaxY;
         protected Point positionOffset = new Point(1, 1);
         protected Vector2 spriteSpeed = new Vector2(50.0f, 60.0f);
@@ -35,7 +35,6 @@ namespace Sprint1.BlockClasses
         {
             BType = type;
             items = itemList;
-            shownItems = new ArrayList { };
             containItems = itemList.Count != 0 ? true : false;
             bPosition = moveParameters.Position;
             bStates = new IBlockStates[4] { new HiddenState(), new NormalState(), new BumpingState(), new UsedOrDestroyedState() };
@@ -97,9 +96,7 @@ namespace Sprint1.BlockClasses
                     if (containItems)
                     {
                         Console.WriteLine("item bumps");
-                        ItemCharacter item = (ItemCharacter) items[0]; //For now only items in blocks                   
-                        shownItems.Add(item);
-                        item.Bumping(bPosition, bPosition.Y - 8.0f * this.GetHeightAndWidth().X, bPosition.Y, spriteSpeed);
+                        DiscloseItem();
                         RemoveItem();
                     }
                     else if (BType == BlockType.QNormal) ChangeToUsed();
@@ -113,6 +110,11 @@ namespace Sprint1.BlockClasses
                     bPosition.Y = MaxY;
                 }
                 Parameters.SetPosition(Parameters.Position.X, bPosition.Y);
+            }
+            if (BType == BlockType.Destroyed && containItems)
+            {
+                DiscloseItem();
+                RemoveItem();
             }
         }
         public override void Draw(SpriteBatch spriteBatch)
@@ -131,7 +133,8 @@ namespace Sprint1.BlockClasses
             if (items.Count == 0)
             {
                 containItems = false;
-                ChangeToUsed();
+                if (BType != BlockType.Destroyed)
+                    ChangeToUsed();
             }
         }
 
@@ -139,6 +142,32 @@ namespace Sprint1.BlockClasses
         {            
             this.items.AddRange(items);
             containItems = items.Count != 0 ? true : false;
+        }
+
+        private void DiscloseItem()
+        {
+            ItemCharacter item = (ItemCharacter)items[0];
+            ItemStates bumpItem;
+            switch (item.Type)
+            {                
+                case Sprint1Main.CharacterType.Coin:               
+                    bumpItem = new CoinBumping(item, bPosition, bPosition.Y - 3.0f * this.GetHeightAndWidth().X, bPosition.Y, spriteSpeed);
+                    bumpItem.HandleBumping();
+                    break;
+                case Sprint1Main.CharacterType.Flower:
+                    bumpItem = new FlowerBumping(item, bPosition, bPosition.Y, bPosition.Y, spriteSpeed);
+                    bumpItem.HandleBumping();
+                    break;
+                case Sprint1Main.CharacterType.RedMushroom:
+                case Sprint1Main.CharacterType.GreenMushroom:
+                    bumpItem = new MushroomBumping(item, bPosition, bPosition.Y - 1.0f * this.GetHeightAndWidth().X, bPosition.Y, spriteSpeed);
+                    bumpItem.HandleBumping();
+                    break;
+                case Sprint1Main.CharacterType.Star:
+                    bumpItem = new StarBumping(item, bPosition, bPosition.Y - 2.0f * this.GetHeightAndWidth().X, bPosition.Y, spriteSpeed);
+                    bumpItem.HandleBumping();
+                    break;
+            }
         }
         #endregion
 
