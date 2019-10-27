@@ -44,14 +44,28 @@ namespace Sprint1.ItemClasses
                     Parameters.SetPosition(Parameters.Position.X, bumpHigh);
                     //Parameters.HasGravity = true;
                     spriteSpeed.Y *= -1;
-                    if (this.Type == Sprint1Main.CharacterType.Coin) Parameters.IsHidden = true; //Handle Coins
+                    if (Type == Sprint1Main.CharacterType.Coin) Parameters.IsHidden = true; //Handle Coins
                 }
                 if (Parameters.Position.Y > bumpLow)
                 {
                     isBump = false;
                     Parameters.SetPosition(Parameters.Position.X, bumpLow);
-                    if (this.Type != Sprint1Main.CharacterType.Flower)
+                    if(Type == Sprint1Main.CharacterType.GreenMushroom)
+                    {
+                        Parameters.IsLeft = Sprint1Main.Game.Scene.Mario.GetMinPosition().X >= Parameters.Position.X;
                         Parameters.SetVelocity(3, 0);
+                    }else if(Type == Sprint1Main.CharacterType.RedMushroom)
+                    {
+                        Parameters.IsLeft = Sprint1Main.Game.Scene.Mario.GetMinPosition().X <= Parameters.Position.X;
+                        Parameters.SetVelocity(3, 0);
+                    }
+                    else if(Type == Sprint1Main.CharacterType.Star)
+                    {
+                        Parameters.IsLeft = Sprint1Main.Game.Scene.Mario.GetMinPosition().X >= Parameters.Position.X;
+                        Parameters.SetVelocity(3, -5);
+                    }
+                    //if (Type != Sprint1Main.CharacterType.Flower)
+                    //    Parameters.SetVelocity(3, 0);
                     spriteSpeed.Y = 0;
                     positionOffset.Y = 0;
                     Parameters.HasGravity = true;
