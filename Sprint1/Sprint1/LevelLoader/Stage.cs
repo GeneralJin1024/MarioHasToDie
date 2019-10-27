@@ -19,7 +19,7 @@ namespace Sprint1.LevelLoader
     {
         public Sprint1Main Game { get; set; }
         public static Vector2 Boundary { get; private set; }
-        public static Vector2 MapBoundary { get; private set; } = new Vector2(1000, 500);
+        public static Vector2 MapBoundary { get;} = new Vector2(1000, 500);
 
         readonly List<IController> controllerList;
         //private ArrayList factoryList;
