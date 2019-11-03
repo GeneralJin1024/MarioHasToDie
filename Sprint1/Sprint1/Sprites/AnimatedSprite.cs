@@ -8,7 +8,7 @@ using Microsoft.Xna.Framework;
 
 namespace Sprint1
 {
-    class AnimatedSprite : ISprite
+    public class AnimatedSprite : ISprite
     {
         public Texture2D SpriteSheets { get; set; }
 

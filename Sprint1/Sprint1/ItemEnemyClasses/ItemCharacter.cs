@@ -9,11 +9,11 @@ using Sprint1.ItemEnemyClasses;
 
 namespace Sprint1.ItemClasses
 {
-    abstract class ItemCharacter : ICharacter
+    public class ItemCharacter : ICharacter
     {
 
 
-        public abstract Sprint1Main.CharacterType Type { get; set; }
+        public virtual Sprint1Main.CharacterType Type { get; set; }
         private bool isBump;
         private float bumpHigh;
         private float bumpLow;
@@ -100,8 +100,8 @@ namespace Sprint1.ItemClasses
             isBump = true;
         }
 
-        public abstract void MarioCollide(bool specialCase);
-        public abstract Vector2 GetHeightAndWidth();
+        public virtual void MarioCollide(bool specialCase) { }
+        public virtual Vector2 GetHeightAndWidth() { return Vector2.Zero; }
         public virtual void BlockCollide(bool isBottom)
         {
             if (isBottom)

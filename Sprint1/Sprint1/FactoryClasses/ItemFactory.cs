@@ -33,6 +33,8 @@ namespace Sprint1.FactoryClasses
         Texture2D star;
         Texture2D pipe;
         Texture2D fireBall;
+        Texture2D HP1;
+        Texture2D HP2;
         public ItemFactory()
         {
             //when factory initialzed, load the texture
@@ -56,11 +58,22 @@ namespace Sprint1.FactoryClasses
             star = Sprint1Main.Game.Content.Load<Texture2D>("ItemSprite/star");
             pipe = Sprint1Main.Game.Content.Load<Texture2D>("ItemSprite/PipeSpriteSheet");
             fireBall = Sprint1Main.Game.Content.Load<Texture2D>("ItemSprite/redMushroom");
+            HP1 = Sprint1Main.Game.Content.Load<Texture2D>("");
+            HP2 = Sprint1Main.Game.Content.Load<Texture2D>("");
         }
-        
         public ItemCharacter GetPipe(Vector2 pos)
         {
-            return new PipeCharacter(pipe, new Point(1, 1), pos);
+            return new PipeCharacter(pipe, new Point(1, 1), pos, PipeCharacter.PipeType.Pipe);
+        }
+        public ItemCharacter GetVPipe(Vector2 pos)
+        {
+            return new PipeCharacter(pipe, new Point(1, 1), pos, PipeCharacter.PipeType.VPipe);
+        }
+        public ArrayList GetHPipe(Vector2 pos)
+        {
+            Vector2 position = new Vector2(pos.X+HP2.Width,pos.Y);
+            return new ArrayList(){new PipeCharacter(HP1, new Point(1, 1), position, PipeCharacter.PipeType.Pipe),
+                new PipeCharacter(HP2, new Point(1, 1), pos, PipeCharacter.PipeType.HPipe)};
         }
         public ItemCharacter GetCoin(Vector2 pos)
         {
@@ -100,6 +113,10 @@ namespace Sprint1.FactoryClasses
                         case "Pipe":
                             list.Add(GetPipe(posS));
                             return list;    //Due to the special Format of Pipe sheet
+                        case "VPipe":
+                            list.Add(GetVPipe(pos));break;
+                        case "HPipe":
+                            list.AddRange(GetHPipe(pos));break;
                         case "Coin":
                             list.Add(GetCoin(pos));
                             break;
