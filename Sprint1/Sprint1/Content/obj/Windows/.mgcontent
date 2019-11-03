@@ -32,6 +32,9 @@
     <File>C:/Users/13667/source/repos/SmartMario/Sprint1/Sprint1/Content/ItemSprite/coin.png</File>
     <File>C:/Users/13667/source/repos/SmartMario/Sprint1/Sprint1/Content/ItemSprite/flower.png</File>
     <File>C:/Users/13667/source/repos/SmartMario/Sprint1/Sprint1/Content/ItemSprite/greenMushroom.png</File>
+    <File>C:/Users/13667/source/repos/SmartMario/Sprint1/Sprint1/Content/ItemSprite/mario-flagpole.png</File>
+    <File>C:/Users/13667/source/repos/SmartMario/Sprint1/Sprint1/Content/ItemSprite/mario-underground-pipe1.png</File>
+    <File>C:/Users/13667/source/repos/SmartMario/Sprint1/Sprint1/Content/ItemSprite/mario-underground-pipe2.png</File>
     <File>C:/Users/13667/source/repos/SmartMario/Sprint1/Sprint1/Content/ItemSprite/PipeSpriteSheet.png</File>
     <File>C:/Users/13667/source/repos/SmartMario/Sprint1/Sprint1/Content/ItemSprite/redMushroom.png</File>
     <File>C:/Users/13667/source/repos/SmartMario/Sprint1/Sprint1/Content/ItemSprite/star.png</File>
@@ -44,6 +47,9 @@
     <File>C:/Users/13667/source/repos/SmartMario/Sprint1/Sprint1/Content/SuperMario/superMarioRightStand.png</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />

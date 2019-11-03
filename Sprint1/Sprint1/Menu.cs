@@ -62,8 +62,8 @@ namespace Sprint1
                 {
                     if (FirstChoose)
                     {
-                        Game.LoadingMode = false;
-                        Game.MenuMode = false;
+                        Game.LevelControl.LoadingMode = false;
+                        Game.LevelControl.ChangeToNormalMode();
                     }
                     else
                         Game.Exit();
@@ -84,7 +84,7 @@ namespace Sprint1
                 if(CheckPressedButtons(Buttons.X, newPadState))
                 {
                     if (FirstChoose)
-                        Game.MenuMode = false;
+                        Game.LevelControl.ChangeToNormalMode();
                     else
                         Game.Exit();
                 }

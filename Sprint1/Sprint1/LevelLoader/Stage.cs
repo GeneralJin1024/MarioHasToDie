@@ -26,7 +26,8 @@ namespace Sprint1.LevelLoader
         private int TimeSinceLastFrame;
         private int MillisecondsPerFrame;
         private CollisionDetector Collision;
-        private int DiedTime = 0;
+        private int DiedTime = 0; // delete in the future
+        public bool Pulse { get; set; }
         public GraphicsDeviceManager GraphicsDevice
         {
             get { return Game.Graphics; }
@@ -48,8 +49,8 @@ namespace Sprint1.LevelLoader
             //!= -1 ? ConfigurationReaderAndWriter.ReadSetting("WindowHeight") : graphicsDevice.GraphicsDevice.Viewport.Height;   // set this value to the desired height of your window
             GraphicsDevice.ApplyChanges();
             MillisecondsPerFrame = 100;
-            Boundary = new Vector2(GraphicsDevice.PreferredBackBufferWidth, GraphicsDevice.PreferredBackBufferHeight);       
-            
+            Boundary = new Vector2(GraphicsDevice.PreferredBackBufferWidth, GraphicsDevice.PreferredBackBufferHeight);
+            Pulse = false;
         }
 
         public void LoadContent(ArrayList spriteList, ArrayList fireBallList)
@@ -66,15 +67,20 @@ namespace Sprint1.LevelLoader
             foreach (IController controller in controllerList)
                 controller.Update();
             TimeSinceLastFrame += gameTime.ElapsedGameTime.Milliseconds;
-            if (TimeSinceLastFrame > MillisecondsPerFrame)
+            if (!Pulse)
             {
-                TimeSinceLastFrame -= MillisecondsPerFrame;
-                Collision.Update();
+                TimeSinceLastFrame += gameTime.ElapsedGameTime.Milliseconds;
+                if (TimeSinceLastFrame > MillisecondsPerFrame)
+                {
+                    TimeSinceLastFrame -= MillisecondsPerFrame;
+                    Collision.Update();
+                    //Console.WriteLine("Mario Position is = " + Sprint1Main.Game.Scene.Mario.Parameters.Position);
+                }
             }
-            if (Game.Scene.Mario.IsDied())
-                DiedTime++;
-            if (DiedTime >= 50)
-                Game.Exit();
+            //if (Game.Scene.Mario.IsDied())
+            //    DiedTime++;
+            //if (DiedTime >= 50)
+            //    Game.Exit();
 
         }
 

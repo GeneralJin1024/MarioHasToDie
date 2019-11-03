@@ -17,6 +17,7 @@ namespace Sprint1.MarioClasses
         public Texture2D SpriteSheets { get; set; }//useless variable
         public MoveParameters Parameters { get; set; }
         public MarioState MarioState { get; }
+        public bool AutomaticallyMoving { get; private set; }
 
         private ISprite CurrentSprite;
         //{Standard, Super, Fire}
@@ -24,7 +25,13 @@ namespace Sprint1.MarioClasses
         private readonly Texture2D[][] MarioSpriteSheets;
         //{Idle, Jump, Walking, Crouch}
         private readonly ISprite[] ActionSprites;
+        private readonly ISprite FlagSprite;
         private bool JumpHigher;
+        private bool Dive; //下沉
+        private bool Shoot; //弹出
+        private float Top; //弹出界限
+        private bool DiveRight; //左侧进入
+        private float Clock; //钟，目前用途仅限于死亡动画
 
         public Mario(Texture2D[][] marioSpriteSheets, Vector2 location)
         {
@@ -33,7 +40,7 @@ namespace Sprint1.MarioClasses
             Parameters = new MoveParameters(true);
             Parameters.SetPosition(location.X, location.Y);
             Parameters.SetVelocity(0, 0);
-            JumpHigher = false;
+            JumpHigher = false; Dive = false; AutomaticallyMoving = false; Shoot = false; DiveRight = false;
             //store 13 Mario textures
             MarioSpriteSheets = marioSpriteSheets ?? throw new ArgumentNullException(nameof(marioSpriteSheets));
             ActionSprites = new ISprite[6] { new AnimatedSprite(MarioSpriteSheets[0][0], new Point(1, 1), Parameters),
@@ -41,12 +48,22 @@ namespace Sprint1.MarioClasses
                 new AnimatedSprite(MarioSpriteSheets[0][2], new Point(1, 3), Parameters),
                 new AnimatedSprite(MarioSpriteSheets[0][3], new Point(1, 1), Parameters),
                 new AnimatedSprite(MarioSpriteSheets[0][1], new Point(1, 1), Parameters),
-                new AnimatedSprite(MarioSpriteSheets[0][4], new Point(1, 1), Parameters)};
+                new AnimatedSprite(MarioSpriteSheets[0][5], new Point(1, 1), Parameters)};
+            FlagSprite = new AnimatedSprite(MarioSpriteSheets[0][4], new Point(1, 1), Parameters);
             CurrentSprite = ActionSprites[0];
+            Clock = 0;
         }
         #region ISprite Methods
         public void Update(float timeOfFrame)
         {
+            if (MarioState.GetPowerType == MarioState.PowerType.Died && !Parameters.HasGravity)
+            {
+                Clock += timeOfFrame;
+                if (Clock >= 20)
+                {
+                    Parameters.SetVelocity(0, -10); Parameters.HasGravity = true; Clock = 0;
+                }
+            }
             /*
              * In this Sprint, I cannot make Mario jumpHigher in JumpingState because the system read input per Update, not
              * read each 100ms (the frequency of collision update)
@@ -56,13 +73,12 @@ namespace Sprint1.MarioClasses
                 Parameters.SetVelocity(Math.Abs(Parameters.Velocity.X), Parameters.Velocity.Y - 0.5f);
                 JumpHigher = false;
             }
-            if (Parameters.Velocity.Y > 0 && timeOfFrame > 0)
+            if (Parameters.Velocity.Y > 0 && timeOfFrame > 0 && !Dive && MarioState.GetActionType != MarioState.ActionType.Other)
             {
                 ChangeToFalling();//change to falling
             }
             CurrentSprite.Update(timeOfFrame);
-            if (Parameters.Position.Y == Stage.Boundary.Y)
-                MarioState.ChangeToDied();
+            DivingAndShooting();
             //marioState.Return();
             //Console.WriteLine("After Mario Velocity = " + Parameters.Velocity + "Current State = " + MarioState.GetActionType);
         }
@@ -71,9 +87,6 @@ namespace Sprint1.MarioClasses
         {
             //CurrentActionAndState[0] will locate the current action sprite.
             CurrentSprite.Draw(spriteBatch);
-            //The code below will use when the key should be "hold" instead of "pressed".
-            //if (marioState.GetPowerType() != MarioState.PowerType.Died)
-            //    ChangeToIdle();
         }
 
         public Vector2 GetHeightAndWidth()
@@ -119,6 +132,60 @@ namespace Sprint1.MarioClasses
         public void ChangeToFalling() { ChangeActionAndSprite(4); }
         #endregion Action Change
 
+        private void DivingAndShooting()
+        {
+            if (Dive && (Parameters.Position.Y - GetHeightAndWidth().X >= Top))
+            {
+                //MarioState.ChangeToDied();
+                Dive = false; Bump();
+            }
+            else if (DiveRight && (Parameters.Position.X >= Top))
+            {
+                DiveRight = false; MarioState.ChangeToDied();
+            }
+            if (Shoot && Parameters.Position.Y < Top)
+            {
+                Shoot = false;
+                //ChangeToIdle();
+                MarioState.LockOrUnlock(false);
+                Parameters.HasGravity = true;
+            }
+        }
+
+        public void DiveIn(float top)
+        {
+            Dive = true;
+            Top = top;
+            ChangeToIdle();
+            //MarioState.ChangeAction(5);
+            MarioState.LockOrUnlock(true);
+            Parameters.HasGravity = false;
+            Parameters.SetVelocity(0, 1);
+            AutomaticallyMoving = true;
+        }
+
+        public void DiveInRight(float leftSide, float bottom)
+        {
+            DiveRight = true;
+            Top = leftSide;
+            ChangeToWalk();
+            //MarioState.ChangeAction(5);
+            MarioState.LockOrUnlock(true);
+            Parameters.SetVelocity(1, 0);
+            Parameters.HasGravity = false;
+            if (Parameters.Position.Y >= bottom)
+                Parameters.SetPosition(Parameters.Position.X, bottom - 1);
+        }
+        public void Bump()
+        {
+            Shoot = true;
+            Parameters.SetVelocity(0, -1);
+        }
+        public void ChangeToWin()
+        {
+            CurrentSprite = FlagSprite;
+            MarioState.LockOrUnlock(true);
+        }
         public void Jumphigher() { JumpHigher = true; }
         // give Block to justify
         public bool IsSuper()
@@ -132,6 +199,7 @@ namespace Sprint1.MarioClasses
             for (int i = 0; i < 4; i++)
                 ActionSprites[i].SpriteSheets = MarioSpriteSheets[sheetNum][i];
             ActionSprites[4].SpriteSheets = MarioSpriteSheets[sheetNum][1];
+            FlagSprite.SpriteSheets = MarioSpriteSheets[sheetNum][4];
         }
 
         //only change action sprites and action states because they always change together

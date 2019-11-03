@@ -25,7 +25,7 @@ namespace Sprint1
         public AnimatedSprite(Texture2D spriteSheet, Point rowAndColumn, MoveParameters parameters)
         {
             ResizeFrame(spriteSheet, rowAndColumn);
-            MillisecondsPerFrame = 1;
+            MillisecondsPerFrame = 2;
             Parameters = parameters;
         }
 
@@ -52,7 +52,12 @@ namespace Sprint1
                 Vector2 checkedPosition = LevelLoader.Stage.CheckBoundary(new Vector2(Parameters.Position.X, Parameters.Position.Y - GetHeightAndWidth().X),
                     GetHeightAndWidth());
                 //use the checkedPosition as real position.
-                Parameters.SetPosition(checkedPosition.X, checkedPosition.Y + GetHeightAndWidth().X);
+                int x = (int)checkedPosition.X;
+                if (x > checkedPosition.X) { x--; }
+                int y = (int)checkedPosition.Y;
+                if (y > checkedPosition.Y) { y -= 1; }
+                Parameters.SetPosition(x, y + GetHeightAndWidth().X);
+                //Parameters.SetPosition(checkedPosition.X, checkedPosition.Y + GetHeightAndWidth().X);
             }
         }
 

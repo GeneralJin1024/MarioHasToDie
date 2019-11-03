@@ -52,6 +52,7 @@ namespace Sprint1
             controllerDic.Add(Keys.Q, new QuitCommand(Game));
             controllerDic.Add(Keys.J, new ThrowFireCommand(mario));
             controllerDic.Add(Keys.R, new ResetCommand());
+            controllerDic.Add(Keys.P, new PulseCommand(mario));
             /*controllerDic.Add(Keys.B, new BlockCommands(blockList[2]));
             controllerDic.Add(Keys.H, new BlockCommands(blockList[1]));
             controllerDic.Add(Keys.OemQuestion, new BlockCommands(blockList[0]));*/

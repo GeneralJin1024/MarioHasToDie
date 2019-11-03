@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Sprint1.ItemEnemyClasses
+namespace Sprint1.ItemClasses
 {
     class FlagCharacter : ItemCharacter
     {

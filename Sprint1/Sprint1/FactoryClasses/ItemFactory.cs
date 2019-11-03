@@ -35,6 +35,7 @@ namespace Sprint1.FactoryClasses
         Texture2D fireBall;
         Texture2D HP1;
         Texture2D HP2;
+        Texture2D flag;
         public ItemFactory()
         {
             //when factory initialzed, load the texture
@@ -58,8 +59,9 @@ namespace Sprint1.FactoryClasses
             star = Sprint1Main.Game.Content.Load<Texture2D>("ItemSprite/star");
             pipe = Sprint1Main.Game.Content.Load<Texture2D>("ItemSprite/PipeSpriteSheet");
             fireBall = Sprint1Main.Game.Content.Load<Texture2D>("ItemSprite/redMushroom");
-            HP1 = Sprint1Main.Game.Content.Load<Texture2D>("");
-            HP2 = Sprint1Main.Game.Content.Load<Texture2D>("");
+            HP1 = Sprint1Main.Game.Content.Load<Texture2D>("ItemSprite/mario-underground-pipe1");
+            HP2 = Sprint1Main.Game.Content.Load<Texture2D>("ItemSprite/mario-underground-pipe2");
+            flag = Sprint1Main.Game.Content.Load<Texture2D>("ItemSprite/mario-flagpole");
         }
         public ItemCharacter GetPipe(Vector2 pos)
         {
@@ -99,6 +101,7 @@ namespace Sprint1.FactoryClasses
         {
             return new FireBallCharacter(fireBall, new Point(1, 1), pos);
         }
+        public ItemCharacter GetFlag(Vector2 pos) { return new FlagCharacter(flag, new Point(1, 1), pos); }
 
         public ArrayList FactoryMethod(string name, Vector2 posS, Vector2 posE)
         {
@@ -135,6 +138,7 @@ namespace Sprint1.FactoryClasses
                         case "FireBall":
                             list.Add(GetFireBall(pos));
                             break;
+                        case "Flag": list.Add(GetFlag(pos)); break;
                         default: break;
                     }
                 }

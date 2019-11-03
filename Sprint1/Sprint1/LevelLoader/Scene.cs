@@ -82,9 +82,6 @@ namespace Sprint1
         {
             stage.Update(gameTime);
             Camera.LookAt(Mario.Parameters.Position); // it should always look at mario
-
-            //foreach (ICharacter character in characterList)
-            //    character.Update(1);
         }
 
         public void Draw()

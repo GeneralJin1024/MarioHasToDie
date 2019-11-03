@@ -63,9 +63,9 @@ namespace Sprint1.CollideDetection
             while (timeOfFrame > 0)
             {
                 insurance++;
-                if(insurance > 15)
+                if(insurance > 20)
                 {
-                    Console.WriteLine("It looks the loop will not stop. Check!  The rest of Time = " + timeOfFrame); Sprint1Main.Game.Exit();
+                    Console.WriteLine("It looks the loop will not stop. Check!  The rest of Time = " + timeOfFrame); Sprint1Main.Game.Exit(); break;
                 }
 
                 Map.UpdateMovingCharacters();
@@ -74,8 +74,10 @@ namespace Sprint1.CollideDetection
                 /*
                  * Generate collide pair for mario, moving objects and fireball.
                  */
-                if(!Mario.IsDied())
+                if (!Mario.IsDied() && (Mario.GetAction != MarioState.ActionType.Other || Mario.Win))
+                {
                     CreateCollidePairs(Mario);
+                }
                 foreach (ICharacter character in MovingCharacters)
                     if (!character.Parameters.IsHidden)
                         CreateCollidePairs(character);

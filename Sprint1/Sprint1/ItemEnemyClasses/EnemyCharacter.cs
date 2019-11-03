@@ -62,6 +62,8 @@ namespace Sprint1.ItemClasses
         {
             if (specialCase)
             {
+                if (Type == Sprint1Main.CharacterType.Enemy)
+                    Sprint1Main.Point += 100;
                 Parameters.SetVelocity(0, 0); //stop moving.
                 Type = Sprint1Main.CharacterType.DiedEnemy;
                 currentSprite = diedEnemy;

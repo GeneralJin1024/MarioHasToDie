@@ -105,6 +105,8 @@
     <Compile Include="ItemEnemyClasses\StarCharacter.cs" />
     <Compile Include="ItemEnemyClasses\FlowerCharacter.cs" />
     <Compile Include="ItemEnemyClasses\ItemCharacter.cs" />
+    <Compile Include="LevelLoader\LevelManager.cs" />
+    <Compile Include="LevelLoader\SpecialScene.cs" />
     <Compile Include="LevelLoader\Stage.cs" />
     <Compile Include="MarioClasses\MarioCharacter.cs" />
     <Compile Include="MarioClasses\MarioState.cs" />
