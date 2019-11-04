@@ -227,6 +227,7 @@ namespace Sprint1.MarioClasses
         {
             Mario.MarioState.LockOrUnlock(lockOrUnlock);
         }
+        public void Bump() { Mario.Bump(); }
         public void MarioCollide(bool special) { }
         public void BlockCollide(bool isBottom) { } //combine with CollideWithBlock in next Sprint
 

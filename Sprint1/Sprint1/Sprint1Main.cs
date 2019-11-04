@@ -34,6 +34,7 @@ namespace Sprint1
 
         public static int MarioLife { get; set; } = 1;
         public static int Point { get; set; } = 0;
+        public static int Coins { get; set; } = 0;
         public LevelManager LevelControl { get; private set; }
 
         private GraphicsDeviceManager graphics;

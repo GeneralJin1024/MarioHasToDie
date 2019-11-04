@@ -25,6 +25,7 @@ namespace Sprint1.LevelLoader
         private ISprite MarioLife;
         private int Mode;//0: MenuMode, 1: CurrentScene, 2: Game Over
         private Song BackgroundMusic;
+        private float CheckPoint;
         public Stage Stage
         {
             get
@@ -79,6 +80,7 @@ namespace Sprint1.LevelLoader
             MarioLife.Parameters.SetPosition(216, 20);
             GameMenu.LoadContent(instructionFont);
             GameOver.LoadContent(instructionFont);
+            CheckPoint = Scene.Mario.GetMinPosition().X - 100;
             //BackgroundMusic = MusicFactory.Instance.AddBackgroundMusic();
         }
 
@@ -109,6 +111,14 @@ namespace Sprint1.LevelLoader
                 Sprint1Main.Game.GraphicsDevice.Clear(Color.CornflowerBlue);
 
             spriteBatch.Begin(blendState: BlendState.AlphaBlend);
+            Color fontColor = Mode == 1 ? Color.Black : Color.White;
+            MarioLife.Draw(spriteBatch); //加一张贴图
+            spriteBatch.DrawString(instructionFont, ":   " + Sprint1Main.Coins, new Vector2(232, 15), fontColor,
+                0, Vector2.Zero, 1.2f, SpriteEffects.None, 0); //剩余生命
+            spriteBatch.DrawString(instructionFont, "Score : ", new Vector2(20, 0), fontColor,
+                0, Vector2.Zero, 1.2f, SpriteEffects.None, 0); //得分
+            spriteBatch.DrawString(instructionFont, "" + Sprint1Main.Point, new Vector2(20, 20), fontColor,
+                0, Vector2.Zero, 1.2f, SpriteEffects.None, 0);//得分
 
             if (Mode == 0)
                 GameMenu.Draw(spriteBatch);
@@ -116,13 +126,6 @@ namespace Sprint1.LevelLoader
                 GameOver.Draw(spriteBatch);
             else
             {
-                MarioLife.Draw(spriteBatch); //加一张贴图
-                spriteBatch.DrawString(instructionFont, ":   " + Sprint1Main.MarioLife, new Vector2(232, 0), Color.Black,
-                    0, Vector2.Zero, 1.2f, SpriteEffects.None, 0); //剩余生命
-                spriteBatch.DrawString(instructionFont, "Score : ", new Vector2(20, 0), Color.Black,
-                    0, Vector2.Zero, 1.2f, SpriteEffects.None, 0); //得分
-                spriteBatch.DrawString(instructionFont, "" + Sprint1Main.Point, new Vector2(20, 20), Color.Black,
-                    0, Vector2.Zero, 1.2f, SpriteEffects.None, 0);//得分
                 if (!LoadingMode)
                     currScene.Draw();
             }
@@ -133,16 +136,26 @@ namespace Sprint1.LevelLoader
         {
             Sprint1Main.MarioLife--;
             if (Sprint1Main.MarioLife > 0)
-                ResetScene(true);
+                ResetScene(true, true);
             else
                 ChangeToGamoverMode();
+        }
+        public void GoToSecreteArea()
+        {
+            CheckPoint = Scene.Mario.GetMinPosition().X;
+            GoToNormalArea();
+        }
+
+        public void GoToNormalArea()
+        {
+            Scene.Mario.Bump();
         }
 
         public void ChangeToNormalMode() { Mode = 1; /*MediaPlayer.Play(BackgroundMusic);*/ }
         public void ChangeToMenuMode() { Mode = 0; }
-        public void ChangeToGamoverMode() { Mode = 2; /*MediaPlayer.Stop();*/ }
-
-        public void ResetScene(bool resetAll)
+        public void ChangeToGamoverMode() { Mode = 2; ResetScene(true, false);/*MediaPlayer.Stop();*/ }
+        public void ChangeToWinMode() { Mode = 3; ResetScene(true, false); }
+        public void ResetScene(bool resetAll, bool goToCheckPoint)
         {
             #region Reset
             //save backup
@@ -169,6 +182,10 @@ namespace Sprint1.LevelLoader
                 currScene.Mario.Win = Win;
                 currScene.Mario.RestoreStates(actionType, powerType, isFire);
                 currScene.Camera.LookAt(currScene.Mario.Parameters.Position);
+            }
+            else if (goToCheckPoint)
+            {
+                Scene.Mario.Parameters.SetPosition(CheckPoint, Scene.Mario.GetMinPosition().Y);
             }
             #endregion
 

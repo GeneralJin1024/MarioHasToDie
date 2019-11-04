@@ -137,7 +137,7 @@ namespace Sprint1.MarioClasses
             if (Dive && (Parameters.Position.Y - GetHeightAndWidth().X >= Top))
             {
                 //MarioState.ChangeToDied();
-                Dive = false; Bump();
+                Dive = false;
             }
             else if (DiveRight && (Parameters.Position.X >= Top))
             {
