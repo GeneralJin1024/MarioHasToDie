@@ -24,6 +24,7 @@ namespace Sprint1.LevelLoader
         private readonly int totalScene;
         private SpriteFont instructionFont;
         private ISprite Coin;
+        private ISprite Mario;
         private int Mode;//0: MenuMode, 1: CurrentScene, 2: Game Over
         private Song BackgroundMusic;
         private float CheckPoint;
@@ -80,7 +81,10 @@ namespace Sprint1.LevelLoader
             #endregion
             Coin = new AnimatedSprite(
                 Sprint1Main.Game.Content.Load<Texture2D>("ItemSprite/coin"), new Point(1, 4), new MoveParameters(false));
-            Coin.Parameters.SetPosition(216, 36);
+            Coin.Parameters.SetPosition(156, 41);
+            Mario = new AnimatedSprite(Sprint1Main.Game.Content.Load<Texture2D>("MarioSprites/smallMarioRightStand"), 
+                new Point(1, 1), new MoveParameters(false));
+            Mario.Parameters.SetPosition(320, 41);
             GameMenu.LoadContent(instructionFont);
             GameOver.LoadContent(instructionFont);
             GameWin.LoadContent(instructionFont);
@@ -125,15 +129,18 @@ namespace Sprint1.LevelLoader
             spriteBatch.Begin(blendState: BlendState.AlphaBlend);
             Color fontColor = Mode == 1 ? Color.Black : Color.White;
             Coin.Draw(spriteBatch); //加一张贴图
-            spriteBatch.DrawString(instructionFont, ":   " + Sprint1Main.Coins, new Vector2(232, 15), fontColor,
+            Mario.Draw(spriteBatch);
+            spriteBatch.DrawString(instructionFont, ":   " + Sprint1Main.Coins, new Vector2(172, 20), fontColor,
                 0, Vector2.Zero, 1.2f, SpriteEffects.None, 0); //剩余生命
-            spriteBatch.DrawString(instructionFont, "Score", new Vector2(20, 0), fontColor,
+            spriteBatch.DrawString(instructionFont, "MARIO", new Vector2(20, 0), fontColor,
                 0, Vector2.Zero, 1.2f, SpriteEffects.None, 0); //得分
             spriteBatch.DrawString(instructionFont, "" + Sprint1Main.Point, new Vector2(20, 20), fontColor,
                 0, Vector2.Zero, 1.2f, SpriteEffects.None, 0);//得分
-            spriteBatch.DrawString(instructionFont, "TIME", new Vector2(600, 0), fontColor, 0, Vector2.Zero, 1.2f, SpriteEffects.None, 0);
-            spriteBatch.DrawString(instructionFont, "" + (int)RestOfTime, new Vector2(600, 20), fontColor, 0, Vector2.Zero, 1.2f, SpriteEffects.None, 0);
-            spriteBatch.DrawString(instructionFont, "WORLD", new Vector2(400, 0), fontColor, 0, Vector2.Zero, 1.2f, SpriteEffects.None, 0);
+            spriteBatch.DrawString(instructionFont, "TIME", new Vector2(640, 0), fontColor, 0, Vector2.Zero, 1.2f, SpriteEffects.None, 0);
+            spriteBatch.DrawString(instructionFont, "" + (int)RestOfTime, new Vector2(640, 20), fontColor, 0, Vector2.Zero, 1.2f, SpriteEffects.None, 0);
+            spriteBatch.DrawString(instructionFont, "WORLD", new Vector2(480, 0), fontColor, 0, Vector2.Zero, 1.2f, SpriteEffects.None, 0);
+            spriteBatch.DrawString(instructionFont, " : " + Sprint1Main.MarioLife,
+                new Vector2(340, 20), fontColor, 0, Vector2.Zero, 1.2f, SpriteEffects.None, 0);
             if (Mode == 0)
                 GameMenu.Draw(spriteBatch);
             else if (Mode == 2)
@@ -142,7 +149,7 @@ namespace Sprint1.LevelLoader
                 GameWin.Draw(spriteBatch);
             else
             {
-                spriteBatch.DrawString(instructionFont, "1 - " + CurrSceneIndex, new Vector2(400, 20), 
+                spriteBatch.DrawString(instructionFont, "1 - " + CurrSceneIndex, new Vector2(480, 20), 
                     fontColor, 0, Vector2.Zero, 1.2f, SpriteEffects.None, 0);
                 if (!LoadingMode)
                     currScene.Draw();

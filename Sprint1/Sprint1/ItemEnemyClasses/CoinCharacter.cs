@@ -28,15 +28,25 @@ namespace Sprint1.ItemClasses
                 if (Parameters.Position.Y <= bumpHigh)
                 {
                     isBump = false;
+                    GetACoin();
                     Parameters.IsHidden = true; //Handle Coins
                 }
             }
         }
+        private void GetACoin()
+        {
+            Sprint1Main.Coins++;
+            if (Sprint1Main.Coins >= 100)
+            {
+                Sprint1Main.MarioLife++;
+                Sprint1Main.Coins -= 100;
+            }
+            Sprint1Main.Point += 200;
+        }
 
         public override void MarioCollide(bool specialCase)
         {
-
-           
+            GetACoin();
             Parameters.IsHidden = true;
 
         }

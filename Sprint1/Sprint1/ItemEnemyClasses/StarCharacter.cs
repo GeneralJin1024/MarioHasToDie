@@ -31,7 +31,7 @@ namespace Sprint1.ItemClasses
         public override void MarioCollide(bool specialCase)
         {
 
-           
+            Sprint1Main.Point += 1000;
             Parameters.IsHidden = true;
         }
 

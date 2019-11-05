@@ -63,6 +63,10 @@ namespace Sprint1.MarioClasses
         #region Controller Receiver
         // response to controllers.
         public void MoveUp() { Mario.MarioState.MoveUp(); }
+        public void JumpHigher() {
+            if (GetAction == MarioState.ActionType.Jump)
+                Mario.MarioState.MoveUp();
+        }
         public void MoveDown() { Mario.MarioState.MoveDown(); }
         public void MoveLeft() { Mario.MarioState.MoveLeft(); }
         public void MoveRight() { Mario.MarioState.MoveRight(); }
@@ -99,7 +103,7 @@ namespace Sprint1.MarioClasses
             else
                 Mario.MarioState.ChangeToFire();
         }
-        public void CollideWithRedMushRoom() { Mario.MarioState.ChangeToSuper(); Sprint1Main.Point += 50; }
+        public void CollideWithRedMushRoom() { Mario.MarioState.ChangeToSuper(); }
         public void CollideWithBlock(bool hitBottomOrTop, bool movingUp)
         {
             //Console.WriteLine("Collide1 : hitBottom = " + hitBottom + "    hitLeftOrRight = " + hitLeftOrRight);
@@ -196,8 +200,6 @@ namespace Sprint1.MarioClasses
                 CollideWithPipe((PipeCharacter)character, UpOrDown, movingDown);
             else if (character.Type == Sprint1Main.CharacterType.RedMushroom)
                 CollideWithRedMushRoom();
-            else if (character.Type == Sprint1Main.CharacterType.GreenMushroom)
-                Sprint1Main.MarioLife++;
             else if (character.Type == Sprint1Main.CharacterType.Flower)
                 CollideWithFlower();
             else if (character.Type == Sprint1Main.CharacterType.Enemy)

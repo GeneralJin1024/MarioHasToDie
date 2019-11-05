@@ -21,4 +21,19 @@ namespace Sprint1
             mario.MoveUp();
         }
     }
+
+    public class JumpHigherCommand : ICommand
+    {
+        MarioCharacter mario;
+
+        public JumpHigherCommand(MarioCharacter mario)
+        {
+            this.mario = mario;
+        }
+
+        public void Execute()
+        {   // take the receiver method of mario action change
+            mario.JumpHigher();
+        }
+    }
 }

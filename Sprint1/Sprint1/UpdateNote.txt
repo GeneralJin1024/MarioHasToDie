@@ -144,3 +144,6 @@
 			（5）修改Draw（），添加显示剩余时间的文字
 		2. 修改Mario，启用LevelManager的GoToSecreteArea和GoToNormalArea
 		3. 添加当前关卡数：修改LevelManager.Draw（）
+		4. 修改KeyBoardController，当马里奥跳起后按住跳跃键，落地后将不再起跳，但仍可以跳得更高
+		5. 添加新条目：马里奥剩余生命：该条目将显示与屏幕上方
+		6. 修改各个Item和Enemy的马里奥碰撞响应，将会为马里奥加分（加命）
