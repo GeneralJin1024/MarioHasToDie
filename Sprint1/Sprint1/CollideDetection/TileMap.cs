@@ -77,7 +77,7 @@ namespace Sprint1.CollideDetection
             }
             //extend the region(In next sprint, this will obly be called when the object is Mario or fireball because only these two collide with moving object)
             CheckGrids(ref minRegion, ref maxRegion);
-            GetObjectsInRegion(minRegion, maxRegion, possibleCollideList, mario.Type); //get possible collided objects
+            GetObjectsInRegion(minRegion, maxRegion, possibleCollideList, mario); //get possible collided objects
 
         }
 
@@ -98,7 +98,7 @@ namespace Sprint1.CollideDetection
             SetEntities(MovingCharacterList);
         }
 
-        private void GetObjectsInRegion(Point upperLeftGrid, Point lowerRightGrid, ArrayList collideObjects, Sprint1Main.CharacterType type)
+        private void GetObjectsInRegion(Point upperLeftGrid, Point lowerRightGrid, ArrayList collideObjects, ICharacter character)
         {
             //go through each grid
             for (int i = upperLeftGrid.Y; i <= lowerRightGrid.Y; i++)
@@ -107,8 +107,8 @@ namespace Sprint1.CollideDetection
                 {
                     //Save this console command to check values if the grids number exceed the array's length.
                     //Console.WriteLine("grid = " + (i * MapSize.X + k) + "  i = " + i + "   k = " + k);
-                    SearchEntityObjects(collideObjects, type, i, k);
-                    SearchMovingEntityObjects(collideObjects, type, i, k);
+                    SearchEntityObjects(collideObjects, character.Type, i, k);
+                    SearchMovingEntityObjects(collideObjects, character, i, k);
                 }
             }
         }
@@ -137,15 +137,22 @@ namespace Sprint1.CollideDetection
             }
         }
 
-        private void SearchMovingEntityObjects(ArrayList collideObjects, Sprint1Main.CharacterType type, int row, int column)
+        private void SearchMovingEntityObjects(ArrayList collideObjects, ICharacter mainCharacter, int row, int column)
         {
-            if (type == Sprint1Main.CharacterType.Mario)
+            if (mainCharacter.Type == Sprint1Main.CharacterType.Mario)
             {
+                MarioCharacter mario = (MarioCharacter)mainCharacter;
                 foreach (ICharacter character in MovingEntities[row * MapSize.X + column])
-                    if (!collideObjects.Contains(character) && !character.Parameters.IsHidden)
+                {
+                    if (!collideObjects.Contains(character) && !character.Parameters.IsHidden && !mario.Invincible)
                         collideObjects.Add(character);
+                    else if (!collideObjects.Contains(character) && !character.Parameters.IsHidden && character.Type != Sprint1Main.CharacterType.Enemy)
+                    {
+                        collideObjects.Add(character);
+                    }
+                }
             }
-            else if (type == Sprint1Main.CharacterType.Fireball) // fireball only collide with enemy among moving objects.
+            else if (mainCharacter.Type == Sprint1Main.CharacterType.Fireball) // fireball only collide with enemy among moving objects.
             {
                 foreach (ICharacter character in MovingEntities[row * MapSize.X + column])
                     if (character.Type == Sprint1Main.CharacterType.Enemy && !collideObjects.Contains(character) && !character.Parameters.IsHidden)

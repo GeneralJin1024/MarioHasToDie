@@ -63,6 +63,8 @@ namespace Sprint1
 
         public virtual void Draw(SpriteBatch spriteBatch)
         {
+            if (spriteBatch is null)
+                throw new ArgumentNullException(nameof(spriteBatch));
             if (!Parameters.IsHidden)
             {
                 //get frame's height and width
@@ -80,12 +82,12 @@ namespace Sprint1
                 {
                     //flip the frame if the target point to left.
                     spriteBatch.Draw(SpriteSheets, destinationRectangle, sourceRectangle,
-                        Color.White, 0, Vector2.Zero, SpriteEffects.FlipHorizontally, 0);
+                        Parameters.GetColor(), 0, Vector2.Zero, SpriteEffects.FlipHorizontally, 0);
                 }
                 else
                 {
                     spriteBatch.Draw(SpriteSheets, destinationRectangle, sourceRectangle,
-                        Color.White);
+                        Parameters.GetColor());
                 }
             }
         }

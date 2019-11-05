@@ -167,6 +167,7 @@ namespace Sprint1.LevelLoader
             MarioState.ActionType actionType = currScene.Mario.GetAction;
             MarioState.PowerType powerType = currScene.Mario.GetPower;
             bool isFire = currScene.Mario.IsFire(); bool Win = currScene.Mario.Win;
+            bool invincible = Scene.Mario.Invincible;
 
             LoadingMode = true;
             scenes.Remove(currScene);
@@ -182,7 +183,7 @@ namespace Sprint1.LevelLoader
             if (!resetAll)
             {
                 Scene.CopyDataOfParameter(tempParameter, currScene.Mario.Parameters);
-                currScene.Mario.Win = Win;
+                currScene.Mario.Win = Win; Scene.Mario.Invincible = invincible;
                 currScene.Mario.RestoreStates(actionType, powerType, isFire);
                 currScene.Camera.LookAt(currScene.Mario.Parameters.Position);
             }

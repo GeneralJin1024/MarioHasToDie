@@ -22,6 +22,8 @@ namespace Sprint1.MarioClasses
         private readonly MoveParameters InitialParameters;
         private float FlagBottom;
         public bool Win { get; set; } //马里奥进入控制锁定但仍进行碰撞的状态
+        public bool Invincible { get; set; }
+        private float Clock;
         public bool IsSuper {
             get
             {
@@ -41,6 +43,13 @@ namespace Sprint1.MarioClasses
         public void Update(float timeOfFrame)
         {
             Mario.Update(timeOfFrame);
+            if (Invincible)
+            {
+                Clock += timeOfFrame;
+                Invincible = Clock <= 100;
+                if (!Invincible)
+                    Parameters.ChangeColor = false;
+            }
             if (Parameters.Position.Y == Stage.Boundary.Y)
             {
                 if (!IsDied()) //为死亡：悬崖坠落等
@@ -183,6 +192,11 @@ namespace Sprint1.MarioClasses
                 CollideWithEnemy(UpOrDown && movingDown, /*character is FlowerEnemyCharacter*/false);
             else if (character.Type == Sprint1Main.CharacterType.Flag)
                 CollideWithFlag(character);
+            else if(character.Type == Sprint1Main.CharacterType.Star)
+            {
+                Invincible = true; Clock = 0; Parameters.ChangeColor = true;
+            }
+
 
         }
 

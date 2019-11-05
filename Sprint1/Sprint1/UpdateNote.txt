@@ -119,3 +119,10 @@
 		5. 修改马里奥穿透bug
 		6. 修改GameOver界面：使用Menu类来实现，Win也会如此，新写的SpecialScene文件可能会被废弃
 		7. 修复顶部金币图片无动画的bug
+		8. 添加马里奥无敌状态。无敌状态下不会与敌人碰撞，其他照旧
+			（1）MarioCharacter中加入新property Invincible和新field : Clock， 修改Update进行计时，修改CollideWith（）添加Star的碰撞
+			（2）修改TileMap的search两个Entity，改变运算规则。
+			（3）修改Reset方法令无敌状态可以被继承。
+			（4）修改AnimatedSprite，draw的颜色从MoveParameters里拿
+			（5）修改MoveParameter，加入新property ChangeColor， 添加新方法GetColor（），修改Contructor
+			（6）修改MarioCharacter的Update（）和CollideWith，加入颜色变换

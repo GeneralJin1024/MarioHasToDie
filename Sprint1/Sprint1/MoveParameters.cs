@@ -17,7 +17,7 @@ namespace Sprint1
         public Vector2 Velocity { get { return _velocity; } }
         public Vector2 Position { get { return _position; } }
         public float TimeOfFrame { get; set; } // replace game time. change one frame when TimeOfFrame = 1.
-
+        public bool ChangeColor { get; set; }
         private Vector2 _velocity;
         private Vector2 _position;
         private float grativity;
@@ -31,7 +31,7 @@ namespace Sprint1
             IsHidden = false;
             TimeOfFrame = 0; //start time is 0
             HasGravity = hasGravity;
-            InScreen = true;
+            InScreen = true; ChangeColor = false;
         }
 
         public void SetVelocity(float x, float y)
@@ -55,6 +55,11 @@ namespace Sprint1
             _position.X += (_velocity.X * rate);
             _position.Y += (_velocity.Y * rate);
             _velocity.Y += grativity * rate;
+        }
+
+        public Color GetColor()
+        {
+            return ChangeColor ? Color.Yellow : Color.White;
         }
     }
 }
