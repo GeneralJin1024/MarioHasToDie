@@ -36,7 +36,7 @@ namespace Sprint1
              * frame update velocity, we can directly change the value of MillisecondsPerFrame
              */
             Parameters.TimeOfFrame += timeOfFrame;
-            if (Parameters.TimeOfFrame == MillisecondsPerFrame)
+            if (Parameters.TimeOfFrame >= MillisecondsPerFrame)
             {
                 Parameters.TimeOfFrame = 0;
                 ActionFrame += 1;

@@ -108,8 +108,10 @@ namespace Sprint1.ItemClasses
                 Parameters.SetVelocity(Math.Abs(Parameters.Velocity.X), 0);
             else
             {
-                Parameters.SetVelocity(0, 0);
-                Parameters.HasGravity = false;
+                Parameters.IsLeft = !Parameters.IsLeft; //转向
+                Parameters.SetVelocity(Math.Abs(Parameters.Velocity.X), Parameters.Velocity.Y);
+                //Parameters.SetVelocity(0, 0);
+                //Parameters.HasGravity = false;
             }
         }
     }

@@ -21,6 +21,7 @@ namespace Sprint1.ItemClasses
         public EnemyCharacter(Texture2D[] texture, Point[] rowsAndColumns, MoveParameters moveParameters)
         {
             Parameters = moveParameters;
+            Parameters.IsLeft = Parameters.Position.X >= Sprint1Main.Game.Scene.Mario.GetMinPosition().X;
             Parameters.SetVelocity(2, 0);
             liveEnemy = new AnimatedSprite(texture[0], rowsAndColumns[0], Parameters);
             diedEnemy = new AnimatedSprite(texture[1], rowsAndColumns[1], Parameters);

@@ -105,3 +105,17 @@
 		15.修改CollidePair，添加了当被碰撞物为食人花时，食人花的判定，但如果食人花为无敌的话改代码可以删除
 		16.修改CollideDetector，修改了用马里奥创建碰撞对的条件，即，死亡时，锁定控制且未胜利时，以上两种情况不进行碰撞判定
 		17.添加FlagCharacter
+
+更新时间： 2019/11/4		更改人：鲁振皓
+内容：	1. 更新了LevelManager的方法
+			（1）添加float CheckPoint用以定位马里奥重生点
+			（2）修改Reset方法可以使马里奥不重置，马里奥重置于重生点以及全部初始化
+			（3）添加WinMode，可以考虑将win于game over都是用menu写
+			（4）添加GotoSecrete和GotoNormal并同时进行重生点修改，转关（未完成），弹出马里奥以及更改pipe（未完成）
+			（5）修改顶部显示剩余命->金币数
+		2. 主程序：添加新的property ： Coins
+		3. 修改EnemyCharacter中敌人的初始运动方向 ： 马里奥所在方向
+		4. 修改ItemCharacter.BlockCollide（）。物品侧面与Block碰撞后会转向
+		5. 修改马里奥穿透bug
+		6. 修改GameOver界面：使用Menu类来实现，Win也会如此，新写的SpecialScene文件可能会被废弃
+		7. 修复顶部金币图片无动画的bug

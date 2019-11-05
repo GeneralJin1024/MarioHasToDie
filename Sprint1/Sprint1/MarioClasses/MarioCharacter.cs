@@ -124,6 +124,7 @@ namespace Sprint1.MarioClasses
                 else if (Parameters.Velocity.Y < 0) //stand on the block
                 {
                     Mario.ChangeToFalling();
+                    Parameters.SetPosition(Parameters.Position.X, Parameters.Position.Y + 1);
                     Parameters.SetVelocity(Math.Abs(Parameters.Velocity.X), -Parameters.Velocity.Y);
                 }
             }
@@ -169,7 +170,7 @@ namespace Sprint1.MarioClasses
                 throw new ArgumentNullException(nameof(character));
             if (character.Type == Sprint1Main.CharacterType.Block ||
                 character.Type == Sprint1Main.CharacterType.DiedEnemy)
-                CollideWithBlock(UpOrDown, Parameters.Velocity.Y > 0);
+                CollideWithBlock(UpOrDown, movingDown);
             else if (character.Type == Sprint1Main.CharacterType.Pipe && character is PipeCharacter)
                 CollideWithPipe((PipeCharacter)character, UpOrDown, movingDown);
             else if (character.Type == Sprint1Main.CharacterType.RedMushroom)

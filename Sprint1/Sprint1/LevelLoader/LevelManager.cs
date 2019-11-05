@@ -14,7 +14,8 @@ namespace Sprint1.LevelLoader
     public class LevelManager : IDisposable
     {
         private Menu GameMenu;
-        private LiteralOnlyScene GameOver;
+        private Menu GameOver;
+        private Menu GameWin;
         public bool MenuMode { get; set; }
         public bool LoadingMode { get; set; }
         public int CurrSceneIndex { get; private set; }
@@ -22,7 +23,7 @@ namespace Sprint1.LevelLoader
         readonly List<Scene> scenes;
         private readonly int totalScene;
         private SpriteFont instructionFont;
-        private ISprite MarioLife;
+        private ISprite Coin;
         private int Mode;//0: MenuMode, 1: CurrentScene, 2: Game Over
         private Song BackgroundMusic;
         private float CheckPoint;
@@ -59,8 +60,9 @@ namespace Sprint1.LevelLoader
                 scenes.Add(scene);
             }
             currScene = scenes[CurrSceneIndex - 1];
-            GameMenu = new Menu(Sprint1Main.Game);
-            GameOver = new LiteralOnlyScene(new string[] { "You Died", "Game Over" });
+            GameMenu = new Menu(Sprint1Main.Game, new string[] { "Welcome To Mario", "Start", "Quit" });
+            GameOver = new Menu(Sprint1Main.Game, new string[] { "Game Over", "Replay", "Exit" });
+            GameWin = new Menu(Sprint1Main.Game, new string[] { "Congratulations", "Replay", "Exit" });
             MenuMode = true;
             LoadingMode = true;
             //currScene.Dispose();
@@ -75,9 +77,9 @@ namespace Sprint1.LevelLoader
             #region Fonts
             instructionFont = Sprint1Main.Game.Content.Load<SpriteFont>("arial");
             #endregion
-            MarioLife = new AnimatedSprite(
-                Sprint1Main.Game.Content.Load<Texture2D>("MarioSprites/smallMarioRightStand"), new Point(1, 1), new MoveParameters(false));
-            MarioLife.Parameters.SetPosition(216, 20);
+            Coin = new AnimatedSprite(
+                Sprint1Main.Game.Content.Load<Texture2D>("ItemSprite/coin"), new Point(1, 4), new MoveParameters(false));
+            Coin.Parameters.SetPosition(216, 36);
             GameMenu.LoadContent(instructionFont);
             GameOver.LoadContent(instructionFont);
             CheckPoint = Scene.Mario.GetMinPosition().X - 100;
@@ -88,12 +90,13 @@ namespace Sprint1.LevelLoader
         {
             //if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
             //    Exit();
+            Coin.Update(0.6f);
             if (gameTime == null)
                 throw new ArgumentNullException(nameof(gameTime));
             if (Mode == 0)
                 GameMenu.Update(1);
             else if (Mode == 2)
-                GameOver.Update(gameTime);
+                GameOver.Update(1);
             else
             {
                 if (!LoadingMode)
@@ -105,14 +108,14 @@ namespace Sprint1.LevelLoader
         {
             if (spriteBatch is null)
                 throw new ArgumentNullException(nameof(spriteBatch));
-            if (Mode == 0)
+            if (Mode != 1)
                 Sprint1Main.Game.GraphicsDevice.Clear(Color.Black);
-            else if (Mode == 1)
+            else
                 Sprint1Main.Game.GraphicsDevice.Clear(Color.CornflowerBlue);
 
             spriteBatch.Begin(blendState: BlendState.AlphaBlend);
             Color fontColor = Mode == 1 ? Color.Black : Color.White;
-            MarioLife.Draw(spriteBatch); //加一张贴图
+            Coin.Draw(spriteBatch); //加一张贴图
             spriteBatch.DrawString(instructionFont, ":   " + Sprint1Main.Coins, new Vector2(232, 15), fontColor,
                 0, Vector2.Zero, 1.2f, SpriteEffects.None, 0); //剩余生命
             spriteBatch.DrawString(instructionFont, "Score : ", new Vector2(20, 0), fontColor,
