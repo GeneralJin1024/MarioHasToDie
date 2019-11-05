@@ -14,8 +14,8 @@ namespace Sprint1
         public Camera(Viewport viewport)
         {
             _viewport = viewport;
-            Origin = new Vector2(viewport.Width * 3 / 2.0f, viewport.Height / 2.0f);
-            Zoom = 1.0f;
+            Origin = new Vector2(viewport.Width  / 4.0f, viewport.Height / 2.0f);
+            Zoom = 2.0f;
         }
 
         public Rectangle? Limits
@@ -30,7 +30,7 @@ namespace Sprint1
                     {
                         X = value.Value.X,
                         Y = value.Value.Y,
-                        Width = System.Math.Max(_viewport.Width * 3, value.Value.Width),
+                        Width = System.Math.Max(_viewport.Width, value.Value.Width),
                         Height = System.Math.Max(_viewport.Height, value.Value.Height)
                     };
 
@@ -52,7 +52,7 @@ namespace Sprint1
                 _position = value;
 
                 // If there's a limit set and the camera is not transformed clamp position to limits
-                if (Limits != null && Zoom == 1.0f && Rotation == 0.0f)
+                if (Limits != null && Zoom == 2.0f && Rotation == 0.0f)
                 {
                     _position.X = MathHelper.Clamp(_position.X, Limits.Value.X, Limits.Value.X + Limits.Value.Width - _viewport.Width);
                     _position.Y = MathHelper.Clamp(_position.Y, Limits.Value.Y, Limits.Value.Y + Limits.Value.Height - _viewport.Height);
