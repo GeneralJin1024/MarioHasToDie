@@ -20,6 +20,19 @@ namespace Sprint1.ItemClasses
             return item.GetHeightAndWidth();
         }
 
+        public override void Update(float timeOfFrame)
+        {
+            base.Update(timeOfFrame);
+            if (!Parameters.IsHidden && isBump)
+            {              
+                if (Parameters.Position.Y <= bumpHigh)
+                {
+                    isBump = false;
+                    Parameters.IsHidden = true; //Handle Coins
+                }
+            }
+        }
+
         public override void MarioCollide(bool specialCase)
         {
 
