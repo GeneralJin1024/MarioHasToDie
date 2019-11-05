@@ -49,10 +49,11 @@ namespace Sprint1.ItemClasses
                 }
                 if (Parameters.Position.Y > bumpLow)
                 {
-                    Parameters.SetPosition(Parameters.Position.X, bumpLow);                   
+                    isBump = false;
+                    Parameters.HasGravity = true;
+                    Parameters.SetPosition(Parameters.Position.X, bumpLow);
                 }
             }
-            else { Parameters.HasGravity = true; }
             if (Parameters.Position.Y >= Stage.Boundary.X || Parameters.Position.Y >= Stage.Boundary.Y)
                 Parameters.IsHidden = true;
         }

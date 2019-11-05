@@ -14,7 +14,7 @@ namespace Sprint1
         public Camera(Viewport viewport)
         {
             _viewport = viewport;
-            Origin = new Vector2(viewport.Width / 2.0f, viewport.Height / 2.0f);
+            Origin = new Vector2(viewport.Width * 3 / 2.0f, viewport.Height / 2.0f);
             Zoom = 1.0f;
         }
 
@@ -30,7 +30,7 @@ namespace Sprint1
                     {
                         X = value.Value.X,
                         Y = value.Value.Y,
-                        Width = System.Math.Max(_viewport.Width, value.Value.Width),
+                        Width = System.Math.Max(_viewport.Width * 3, value.Value.Width),
                         Height = System.Math.Max(_viewport.Height, value.Value.Height)
                     };
 

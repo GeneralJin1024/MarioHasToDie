@@ -15,14 +15,10 @@ namespace Sprint1.ItemClasses
         public override void Update(float timeOfFrame)
         {
             base.Update(timeOfFrame);
-            if (!Parameters.IsHidden && isBump)
+            if (!Parameters.IsHidden && !isBump && Parameters.Velocity.X == 0)
             {
-                if (Parameters.Position.Y >= bumpLow)
-                {
-                    isBump = false;
-                    Parameters.IsLeft = Sprint1Main.Game.Scene.Mario.GetMinPosition().X >= Parameters.Position.X;
-                    Parameters.SetVelocity(3, -5);
-                }
+                Parameters.IsLeft = Sprint1Main.Game.Scene.Mario.GetMinPosition().X >= Parameters.Position.X;
+                Parameters.SetVelocity(3, -5);
             }
         }
 
