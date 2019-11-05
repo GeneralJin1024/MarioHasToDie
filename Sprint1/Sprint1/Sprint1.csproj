@@ -182,6 +182,10 @@
     <Content Include="Content\BlockSprites\mario-question-blocks.png" />
     <Content Include="Content\BlockSprites\mario-shiny-block.png" />
     <Content Include="Content\DiedMario\deadMario.png" />
+    <Content Include="Content\EnemySprite\deadGoomba.png" />
+    <Content Include="Content\EnemySprite\deadGreenKoopa.png" />
+    <Content Include="Content\EnemySprite\deadRedKoopa.png" />
+    <Content Include="Content\EnemySprite\enemies.png" />
     <Content Include="Content\EnemySprite\goomba.png" />
     <Content Include="Content\EnemySprite\greenkoopa.png" />
     <Content Include="Content\EnemySprite\redkoopa.png" />
