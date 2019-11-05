@@ -20,7 +20,6 @@ namespace Sprint1.MarioClasses
         public bool Auto { get { return Mario.AutomaticallyMoving; } }
         public MoveParameters Parameters { get; }
         private readonly MoveParameters InitialParameters;
-        private float FlagBottom;
         public bool Win { get; set; } //马里奥进入控制锁定但仍进行碰撞的状态
         public bool Invincible { get; set; }
         private float Clock;
@@ -169,7 +168,20 @@ namespace Sprint1.MarioClasses
             Win = true;
             Parameters.SetVelocity(0, 0);
             Parameters.SetPosition(flag.GetMinPosition().X, Parameters.Position.Y);
-            FlagBottom = flag.GetMaxPosition().Y - 16;
+            float bonusHeight = flag.GetMaxPosition().Y - Parameters.Position.Y;
+            if (bonusHeight >= 128)
+                Sprint1Main.Point += 4000;
+            else if (bonusHeight >= 82)
+                Sprint1Main.Point += 2000;
+            else if (bonusHeight >= 58)
+                Sprint1Main.Point += 800;
+            else if (bonusHeight >= 18)
+                Sprint1Main.Point += 400;
+            else
+                Sprint1Main.Point += 100;
+            if (GetMinPosition().Y <= flag.GetMinPosition().Y)
+                Sprint1Main.MarioLife++;
+            Sprint1Main.Game.LevelControl.AddTimeBonus();
             //Console.WriteLine("Flag is touched, Mario Position is = " + Parameters.Position);
         }
 
@@ -248,6 +260,7 @@ namespace Sprint1.MarioClasses
             Mario.MarioState.LockOrUnlock(lockOrUnlock);
         }
         public void Bump() { Mario.Bump(); }
+        public void Suicide() { Mario.MarioState.ChangeToDied(); }
         public void MarioCollide(bool special) { }
         public void BlockCollide(bool isBottom) { } //combine with CollideWithBlock in next Sprint
 

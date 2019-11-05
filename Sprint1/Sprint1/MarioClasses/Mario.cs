@@ -137,11 +137,12 @@ namespace Sprint1.MarioClasses
             if (Dive && (Parameters.Position.Y - GetHeightAndWidth().X >= Top))
             {
                 //MarioState.ChangeToDied();
-                Dive = false;
+                Dive = false; Sprint1Main.Game.LevelControl.GoToSecreteArea();
             }
             else if (DiveRight && (Parameters.Position.X >= Top))
             {
-                DiveRight = false; MarioState.ChangeToDied();
+                //在该条件中的top其实是横管左侧坐标，这里为了节省变量故继续使用top
+                DiveRight = false; Sprint1Main.Game.LevelControl.GoToNormalArea();
             }
             if (Shoot && Parameters.Position.Y < Top)
             {

@@ -27,6 +27,7 @@ namespace Sprint1.LevelLoader
         private int Mode;//0: MenuMode, 1: CurrentScene, 2: Game Over
         private Song BackgroundMusic;
         private float CheckPoint;
+        private float RestOfTime;
         public Stage Stage
         {
             get
@@ -47,7 +48,7 @@ namespace Sprint1.LevelLoader
             scenes = new List<Scene> { };
             totalScene = ConfigurationReaderAndWriter.ReadSetting("Scenes");
             CurrSceneIndex = 1;
-            Mode = 0;
+            Mode = 0; RestOfTime = 0;
         }
 
         public void Initialize()
@@ -102,6 +103,11 @@ namespace Sprint1.LevelLoader
                 GameWin.Update(1);
             else
             {
+                RestOfTime -= (RestOfTime > 0 && !Scene.Mario.Win) ? (float)gameTime.ElapsedGameTime.TotalSeconds : 0;
+                if (RestOfTime < 0)
+                {
+                    Scene.Mario.Suicide(); RestOfTime = 0;
+                }
                 if (!LoadingMode)
                     currScene.Update(gameTime);
             }
@@ -125,7 +131,9 @@ namespace Sprint1.LevelLoader
                 0, Vector2.Zero, 1.2f, SpriteEffects.None, 0); //得分
             spriteBatch.DrawString(instructionFont, "" + Sprint1Main.Point, new Vector2(20, 20), fontColor,
                 0, Vector2.Zero, 1.2f, SpriteEffects.None, 0);//得分
-
+            spriteBatch.DrawString(instructionFont, "TIME", new Vector2(600, 0), fontColor, 0, Vector2.Zero, 1.2f, SpriteEffects.None, 0);
+            spriteBatch.DrawString(instructionFont, "" + (int)RestOfTime, new Vector2(600, 20), fontColor, 0, Vector2.Zero, 1.2f, SpriteEffects.None, 0);
+            spriteBatch.DrawString(instructionFont, "WORLD", new Vector2(400, 0), fontColor, 0, Vector2.Zero, 1.2f, SpriteEffects.None, 0);
             if (Mode == 0)
                 GameMenu.Draw(spriteBatch);
             else if (Mode == 2)
@@ -134,6 +142,8 @@ namespace Sprint1.LevelLoader
                 GameWin.Draw(spriteBatch);
             else
             {
+                spriteBatch.DrawString(instructionFont, "1 - " + CurrSceneIndex, new Vector2(400, 20), 
+                    fontColor, 0, Vector2.Zero, 1.2f, SpriteEffects.None, 0);
                 if (!LoadingMode)
                     currScene.Draw();
             }
@@ -146,23 +156,31 @@ namespace Sprint1.LevelLoader
             if (Sprint1Main.MarioLife > 0)
                 ResetScene(true, true);
             else
-                ChangeToGamoverMode();
+                ChangeToGamoverMode(); Sprint1Main.MarioLife = 3;
         }
         public void GoToSecreteArea()
         {
             CheckPoint = Scene.Mario.GetMinPosition().X;
+            //这里的代码应该是替换currScene。鉴于这门课我们只做一关和一个隐藏关，切换可以直接用数字
             GoToNormalArea();
+            //
         }
 
         public void GoToNormalArea()
         {
+            //这里应该有代码将currScene替换回来
+
+            //
             Scene.Mario.Bump();
         }
 
-        public void ChangeToNormalMode() { Mode = 1; /*MediaPlayer.Play(BackgroundMusic);*/ }
+        public void ChangeToNormalMode() { Mode = 1; RestOfTime = 400; Sprint1Main.Point = 0; Sprint1Main.Coins = 0;
+            /*MediaPlayer.Play(BackgroundMusic);MediaPlayer.IsRepeating = true;*/
+        }
         public void ChangeToMenuMode() { Mode = 0; }
         public void ChangeToGamoverMode() { Mode = 2; ResetScene(true, false);/*MediaPlayer.Stop();*/ }
-        public void ChangeToWinMode() { Mode = 3; ResetScene(true, false); }
+        public void ChangeToWinMode() { Mode = 3; Sprint1Main.MarioLife = 3; ResetScene(true, false); }
+        public void AddTimeBonus() { Sprint1Main.Point += ((int)RestOfTime + 1) * 10; }
         public void ResetScene(bool resetAll, bool goToCheckPoint)
         {
             #region Reset

@@ -126,3 +126,21 @@
 			（4）修改AnimatedSprite，draw的颜色从MoveParameters里拿
 			（5）修改MoveParameter，加入新property ChangeColor， 添加新方法GetColor（），修改Contructor
 			（6）修改MarioCharacter的Update（）和CollideWith，加入颜色变换
+		9. 添加新Item：Castle，仅门参与判定，当马里奥到达门那里时，胜利界面出现
+			（1）管道添加新的素材
+			（2）Item Factory里添加新方法GetCastle（），添加新的Texture2D，修改FactoryMethod识别“Castle”
+			（3）马里奥添加对应响应
+			（4）修改Castle类的getMin，getMax
+			（5）修改LevelManager使其初始化GameWin，添加，在Update和Draw中添加Mode 3 （胜利界面）
+			（6）添加新的类：CastleCharacter，并使ItemCharacter中GetMin，GetMax方法可以被重写。
+
+更新时间： 2019/11/5		更改人：鲁振皓
+内容：	1. 添加新的参数：游戏时间，当马里奥时间超出时，马里奥自杀
+			（1）MarioCharacter添加新方法Suicide（）
+			（2）修改CollideWithFlag（）: 添加功能，根据马里奥与旗杆底的距离加分，根据此时的剩余时间加分，进入胜利动画后停表
+			（2）LevelManager里添加时间，仅当关卡进行时进行计时。归零后马里奥死亡
+			（3）修改ChangeToNormalMode（），ChangeToWinMode（），添加新方法AddTimeBonus（）
+			（4）修改Update（），添加计时功能
+			（5）修改Draw（），添加显示剩余时间的文字
+		2. 修改Mario，启用LevelManager的GoToSecreteArea和GoToNormalArea
+		3. 添加当前关卡数：修改LevelManager.Draw（）
