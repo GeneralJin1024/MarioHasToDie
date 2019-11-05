@@ -81,7 +81,7 @@ namespace Sprint1
 
         public void LookAt(Vector2 position)
         {
-            Position = position - new Vector2(_viewport.Width / 2.0f, _viewport.Height / 2.0f);
+            Position = position - new Vector2(_viewport.Width / 3.0f, _viewport.Height / 2.0f);
         }
     }
 
