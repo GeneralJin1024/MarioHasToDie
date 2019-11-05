@@ -19,14 +19,17 @@ namespace Sprint1.ItemEnemyClasses
             maxHeight = moveParameters.Position.Y-30F;
             minHeight = moveParameters.Position.Y;
             Type = Sprint1Main.CharacterType.PlantEnemy;
-
+            Parameters.HasGravity = false;
 
         }
 
         public override void Update(float timeOfFrame)
         {
                 
-            
+            if(Math.Abs(Sprint1Main.Game.Scene.Mario.GetMinPosition().X - Parameters.Position.X) <= 50 && Parameters.Velocity.Y == 0)
+            {
+                Trigger();
+            }
             if (Parameters.Velocity.Y >0)
             {
                 if (Parameters.Position.Y >= minHeight)

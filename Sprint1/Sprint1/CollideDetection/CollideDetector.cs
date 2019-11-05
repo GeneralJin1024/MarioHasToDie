@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
+using Sprint1.ItemEnemyClasses;
 using Sprint1.LevelLoader;
 using Sprint1.MarioClasses;
 
@@ -142,7 +143,7 @@ namespace Sprint1.CollideDetection
         private void CreateCollidePairs(ICharacter character1)
         {
             ArrayList possibleCollideList = new ArrayList();
-            if (!character1.Parameters.IsHidden && character1.Parameters.InScreen)
+            if (!character1.Parameters.IsHidden && character1.Parameters.InScreen && !(character1 is PlantEnemyCharacter))
             {
                 Map.GetPossibleCollidedObject(character1, possibleCollideList);
                 //Generate collide pairs and get first contact time

@@ -7,6 +7,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Sprint1.FactoryClasses;
 using Sprint1.ItemClasses;
+using Sprint1.ItemEnemyClasses;
 using Sprint1.LevelLoader;
 
 namespace Sprint1.MarioClasses
@@ -203,7 +204,7 @@ namespace Sprint1.MarioClasses
             else if (character.Type == Sprint1Main.CharacterType.Flower)
                 CollideWithFlower();
             else if (character.Type == Sprint1Main.CharacterType.Enemy)
-                CollideWithEnemy(UpOrDown && movingDown, /*character is FlowerEnemyCharacter*/false);
+                CollideWithEnemy(UpOrDown && movingDown, character is PlantEnemyCharacter);
             else if (character.Type == Sprint1Main.CharacterType.Flag)
                 CollideWithFlag(character);
             else if(character.Type == Sprint1Main.CharacterType.Star)
