@@ -79,11 +79,11 @@ namespace Sprint1.ItemClasses
             //Console.WriteLine(item.Parameters.IsHidden + "   Position = " + Parameters.Position);
             item.Draw(spriteBatch);
         }
-        public Vector2 GetMaxPosition()
+        public virtual Vector2 GetMaxPosition()
         {
             return new Vector2(Parameters.Position.X + item.GetHeightAndWidth().Y, Parameters.Position.Y);
         }
-        public Vector2 GetMinPosition()
+        public virtual Vector2 GetMinPosition()
         {
             return new Vector2(Parameters.Position.X, Parameters.Position.Y - item.GetHeightAndWidth().X);
         }

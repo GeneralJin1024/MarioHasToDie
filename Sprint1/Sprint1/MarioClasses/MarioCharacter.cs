@@ -196,6 +196,11 @@ namespace Sprint1.MarioClasses
             {
                 Invincible = true; Clock = 0; Parameters.ChangeColor = true;
             }
+            else if (character.Type == Sprint1Main.CharacterType.Castle)
+            {
+                Parameters.IsHidden = true;
+                Sprint1Main.Game.LevelControl.ChangeToWinMode();
+            }
 
 
         }

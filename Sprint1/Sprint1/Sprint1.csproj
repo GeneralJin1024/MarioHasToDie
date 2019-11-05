@@ -95,6 +95,7 @@
     <Compile Include="ICharacter.cs" />
     <Compile Include="ICommand.cs" />
     <Compile Include="IFactory.cs" />
+    <Compile Include="ItemEnemyClasses\CastleCharacter.cs" />
     <Compile Include="ItemEnemyClasses\FlagCharacter.cs" />
     <Compile Include="ItemEnemyClasses\EnemyCharacter.cs" />
     <Compile Include="ItemEnemyClasses\ItemBumpingCommands.cs" />

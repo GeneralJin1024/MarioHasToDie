@@ -82,6 +82,7 @@ namespace Sprint1.LevelLoader
             Coin.Parameters.SetPosition(216, 36);
             GameMenu.LoadContent(instructionFont);
             GameOver.LoadContent(instructionFont);
+            GameWin.LoadContent(instructionFont);
             CheckPoint = Scene.Mario.GetMinPosition().X - 100;
             //BackgroundMusic = MusicFactory.Instance.AddBackgroundMusic();
         }
@@ -97,6 +98,8 @@ namespace Sprint1.LevelLoader
                 GameMenu.Update(1);
             else if (Mode == 2)
                 GameOver.Update(1);
+            else if (Mode == 3)
+                GameWin.Update(1);
             else
             {
                 if (!LoadingMode)
@@ -118,7 +121,7 @@ namespace Sprint1.LevelLoader
             Coin.Draw(spriteBatch); //加一张贴图
             spriteBatch.DrawString(instructionFont, ":   " + Sprint1Main.Coins, new Vector2(232, 15), fontColor,
                 0, Vector2.Zero, 1.2f, SpriteEffects.None, 0); //剩余生命
-            spriteBatch.DrawString(instructionFont, "Score : ", new Vector2(20, 0), fontColor,
+            spriteBatch.DrawString(instructionFont, "Score", new Vector2(20, 0), fontColor,
                 0, Vector2.Zero, 1.2f, SpriteEffects.None, 0); //得分
             spriteBatch.DrawString(instructionFont, "" + Sprint1Main.Point, new Vector2(20, 20), fontColor,
                 0, Vector2.Zero, 1.2f, SpriteEffects.None, 0);//得分
@@ -127,6 +130,8 @@ namespace Sprint1.LevelLoader
                 GameMenu.Draw(spriteBatch);
             else if (Mode == 2)
                 GameOver.Draw(spriteBatch);
+            else if (Mode == 3)
+                GameWin.Draw(spriteBatch);
             else
             {
                 if (!LoadingMode)

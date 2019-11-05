@@ -321,3 +321,4 @@ C:\Users\runmi\Source\Repos\SmartMario\Sprint1\Sprint1\obj\x86\Debug\Sprint1.pdb
 C:\Users\13667\source\repos\SmartMario\Sprint1\Sprint1\bin\Windows\x86\Debug\Content\ItemSprite\mario-flagpole.xnb
 C:\Users\13667\source\repos\SmartMario\Sprint1\Sprint1\bin\Windows\x86\Debug\Content\ItemSprite\mario-underground-pipe1.xnb
 C:\Users\13667\source\repos\SmartMario\Sprint1\Sprint1\bin\Windows\x86\Debug\Content\ItemSprite\mario-underground-pipe2.xnb
+C:\Users\13667\source\repos\SmartMario\Sprint1\Sprint1\bin\Windows\x86\Debug\Content\ItemSprite\mario-castle.xnb
