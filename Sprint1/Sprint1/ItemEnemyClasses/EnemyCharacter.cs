@@ -17,7 +17,6 @@ namespace Sprint1.ItemClasses
         private int disappear;
         private int disappearTimer;
         protected ISprite currentSprite;
-        private Texture2D[] greenkoopa;
         private Point rowAndColumn;
         private MoveParameters moveParameters;
 
@@ -33,12 +32,6 @@ namespace Sprint1.ItemClasses
             disappear = 100;
         }
 
-        public EnemyCharacter(Texture2D[] greenkoopa, Point rowAndColumn, MoveParameters moveParameters)
-        {
-            this.greenkoopa = greenkoopa;
-            this.rowAndColumn = rowAndColumn;
-            this.moveParameters = moveParameters;
-        }
 
         public virtual void Update(float timeOfFrame) {
             if(Type== Sprint1Main.CharacterType.Enemy) {
@@ -70,7 +63,7 @@ namespace Sprint1.ItemClasses
         }
         
 
-        public void MarioCollide(bool specialCase)
+        public virtual void MarioCollide(bool specialCase)
         {
             if (specialCase)
             {

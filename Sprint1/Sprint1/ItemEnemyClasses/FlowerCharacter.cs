@@ -10,7 +10,7 @@ namespace Sprint1.ItemClasses
 
         public override Sprint1Main.CharacterType Type { get; set; } = Sprint1Main.CharacterType.Flower;
         public FlowerCharacter(Texture2D texture, Point rowsAndColunms, Vector2 location)
-            :base (texture, rowsAndColunms, location)
+            : base(texture, rowsAndColunms, location)
         {
 
         }
@@ -31,10 +31,7 @@ namespace Sprint1.ItemClasses
             Sprint1Main.Point += 1000;
             Parameters.IsHidden = true;
 
-           
+
         }
-
-      
-
     }
 }

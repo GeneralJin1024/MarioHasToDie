@@ -9,14 +9,14 @@ using System.Threading.Tasks;
 
 namespace Sprint1.ItemEnemyClasses
 {
-    class PlantEnemyCharacter:EnemyCharacter
+    class PlantEnemyCharacter : EnemyCharacter
     {
         private float maxHeight;
         private float minHeight;
 
         public PlantEnemyCharacter(Texture2D[] texture, Point[] rowsAndColumns, MoveParameters moveParameters) : base(texture, rowsAndColumns, moveParameters)
         {
-            maxHeight = moveParameters.Position.Y-30F;
+            maxHeight = moveParameters.Position.Y - 30F;
             minHeight = moveParameters.Position.Y;
             Type = Sprint1Main.CharacterType.PlantEnemy;
             Parameters.HasGravity = false;
@@ -26,30 +26,33 @@ namespace Sprint1.ItemEnemyClasses
         public override void Update(float timeOfFrame)
         {
             //Sprint1Main.Game.Scene.Mario
-            if(Math.Abs(Sprint1Main.Game.Scene.Mario.GetMinPosition().X - Parameters.Position.X) <= 50 && Parameters.Velocity.Y == 0)
+            if (Math.Abs(Sprint1Main.Game.Scene.Mario.GetMinPosition().X - Parameters.Position.X) <= 50 && Parameters.Velocity.Y == 0)
             {
-                Trigger();
+                Parameters.SetVelocity(0, -2f);
             }
-            if (Parameters.Velocity.Y >0)
+            if (Parameters.Velocity.Y > 0)
             {
                 if (Parameters.Position.Y >= minHeight)
                 {
                     Parameters.SetVelocity(0, 0);
                 }
             }
-            else if(Parameters.Velocity.Y < 0)
+            else if (Parameters.Velocity.Y < 0)
             {
                 if (Parameters.Position.Y <= maxHeight)
                 {
                     Parameters.SetVelocity(0, 2f);
                 }
             }
-                
-                currentSprite.Update(timeOfFrame);
+            currentSprite.Update(timeOfFrame);
         }
-        public void Trigger()
+        public override void MarioCollide(bool specialCase)
         {
-            Parameters.SetVelocity(0, -2f);
+            base.MarioCollide(specialCase);
+            if (specialCase)
+            {
+                Parameters.IsHidden = true;
+            }
         }
     }
 }
