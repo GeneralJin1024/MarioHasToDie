@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using Sprint1.BlockClasses;
 using Sprint1.ItemClasses;
+using Sprint1.ItemEnemyClasses;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -28,6 +29,7 @@ namespace Sprint1.FactoryClasses
         Texture2D[] goomba;
         Texture2D[] greenkoopa ;
         Texture2D[] redkoopa ;
+        Texture2D[] plant;
         public EnemyFactory()
         {
             //when factory initialzed, load the texture
@@ -42,6 +44,8 @@ namespace Sprint1.FactoryClasses
                 Sprint1Main.Game.Content.Load<Texture2D>("EnemySprite/deadGreenkoopa") };
              redkoopa = new Texture2D[2] { Sprint1Main.Game.Content.Load<Texture2D>("EnemySprite/redkoopa"),
                 Sprint1Main.Game.Content.Load<Texture2D>("EnemySprite/deadRedkoopa")};
+              plant = new Texture2D[2] { Sprint1Main.Game.Content.Load<Texture2D>("EnemySprite/plant"),
+               Sprint1Main.Game.Content.Load<Texture2D>("EnemySprite/deadRedkoopa")};
         }
         public EnemyCharacter GetGoomba(MoveParameters moveParameters)
         {
@@ -58,7 +62,11 @@ namespace Sprint1.FactoryClasses
             Point[] rowAndColumn = new Point[2] { new Point(1, 2), new Point(1, 1) };
             return new EnemyCharacter(greenkoopa, rowAndColumn, moveParameters);
         }
-
+        public EnemyCharacter GetPlant(MoveParameters moveParameters)
+        {
+            Point[] rowAndColumn = new Point[2] { new Point(1, 2), new Point(1, 1) };
+            return new PlantEnemyCharacter(plant, rowAndColumn, moveParameters);
+        }
         public ArrayList FactoryMethod(string name, Vector2 pos)
         {
             //Generating one enemy at a time
@@ -75,6 +83,9 @@ namespace Sprint1.FactoryClasses
                     break;
                 case "GreenKoopa":
                     list.Add(GetGreenKoopa(parameters));
+                    break;
+                case "Plant":
+                    list.Add(GetPlant(parameters));
                     break;
                 default: break;
             }

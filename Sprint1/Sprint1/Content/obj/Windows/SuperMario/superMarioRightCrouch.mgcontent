@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>C:/Users/72957/source/repos/SmartMario/Sprint1/Sprint1/Content/SuperMario/superMarioRightCrouch.png</SourceFile>
-  <SourceTime>2019-09-23T20:43:09.0408676-04:00</SourceTime>
-  <DestFile>C:/Users/72957/source/repos/SmartMario/Sprint1/Sprint1/Content/bin/Windows/SuperMario/superMarioRightCrouch.xnb</DestFile>
-  <DestTime>2019-11-05T14:02:55.1786435-05:00</DestTime>
+  <SourceFile>C:/Users/runmi/source/repos/SmartMario/Sprint1/Sprint1/Content/SuperMario/superMarioRightCrouch.png</SourceFile>
+  <SourceTime>2019-10-29T13:11:44.939963-04:00</SourceTime>
+  <DestFile>C:/Users/runmi/source/repos/SmartMario/Sprint1/Sprint1/Content/bin/Windows/SuperMario/superMarioRightCrouch.xnb</DestFile>
+  <DestTime>2019-11-05T15:52:27.7425668-05:00</DestTime>
   <Importer>TextureImporter</Importer>
-  <ImporterTime>2018-12-08T11:35:54-05:00</ImporterTime>
+  <ImporterTime>2019-08-21T08:16:16-04:00</ImporterTime>
   <Processor>TextureProcessor</Processor>
-  <ProcessorTime>2018-12-08T11:35:54-05:00</ProcessorTime>
+  <ProcessorTime>2019-08-21T08:16:16-04:00</ProcessorTime>
   <Parameters>
     <Key>ColorKeyColor</Key>
     <Value>255,0,255,255</Value>
