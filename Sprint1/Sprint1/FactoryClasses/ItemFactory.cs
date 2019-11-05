@@ -171,7 +171,7 @@ namespace Sprint1.FactoryClasses
                     case "GreenMushroom":
                         list.Add(GetGreenMushroom(pos));
                         break;
-                    case "RedMashroom":
+                    case "RedMushroom":
                         //Console.WriteLine("add RedMushroom");
                         list.Add(GetRedMushroom(pos));
                         break;
