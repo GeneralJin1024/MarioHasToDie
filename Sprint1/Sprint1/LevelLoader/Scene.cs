@@ -37,9 +37,6 @@ namespace Sprint1
         }
         public void Initalize(int levelIndex)
         {
-
-
-
             characterList = new ArrayList();
             FireBallList = new ArrayList();
             this.level = levelIndex;

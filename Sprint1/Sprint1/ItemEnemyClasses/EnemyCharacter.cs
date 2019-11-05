@@ -16,7 +16,11 @@ namespace Sprint1.ItemClasses
         readonly private ISprite diedEnemy;
         private int disappear;
         private int disappearTimer;
-        private ISprite currentSprite;
+        protected ISprite currentSprite;
+        private Texture2D[] greenkoopa;
+        private Point rowAndColumn;
+        private MoveParameters moveParameters;
+
         public MoveParameters Parameters { get; }
         public EnemyCharacter(Texture2D[] texture, Point[] rowsAndColumns, MoveParameters moveParameters)
         {
@@ -29,7 +33,14 @@ namespace Sprint1.ItemClasses
             disappear = 100;
         }
 
-        public void Update(float timeOfFrame) {
+        public EnemyCharacter(Texture2D[] greenkoopa, Point rowAndColumn, MoveParameters moveParameters)
+        {
+            this.greenkoopa = greenkoopa;
+            this.rowAndColumn = rowAndColumn;
+            this.moveParameters = moveParameters;
+        }
+
+        public virtual void Update(float timeOfFrame) {
             if(Type== Sprint1Main.CharacterType.Enemy) {
                 currentSprite.Update(timeOfFrame);
                 if (Parameters.Position.Y >= 500) { Parameters.IsHidden = true; }
