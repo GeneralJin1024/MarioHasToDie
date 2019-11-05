@@ -14,9 +14,21 @@ namespace Sprint1.ItemClasses
         public override Sprint1Main.CharacterType Type { get; set; } = Sprint1Main.CharacterType.GreenMushroom;
         public GreenMushroomCharacter(Texture2D texture, Point rowsAndColunms, Vector2 location)
             : base(texture, rowsAndColunms, location) {  }
-        
 
-     
+
+        public override void Update(float timeOfFrame)
+        {
+            base.Update(timeOfFrame);
+            if (!Parameters.IsHidden && isBump)
+            {
+                if (Parameters.Position.Y >= bumpLow)
+                {
+                    isBump = false;
+                    Parameters.IsLeft = Sprint1Main.Game.Scene.Mario.GetMinPosition().X >= Parameters.Position.X;
+                    Parameters.SetVelocity(3, 0);
+                }
+            }
+        }
 
         public override Vector2 GetHeightAndWidth()
         {

@@ -14,9 +14,9 @@ namespace Sprint1.ItemClasses
 
 
         public virtual Sprint1Main.CharacterType Type { get; set; }
-        private bool isBump;
-        private float bumpHigh;
-        private float bumpLow;
+        protected bool isBump;
+        protected float bumpHigh;
+        protected float bumpLow;
         protected Vector2 spriteSpeed;
         private Point positionOffset;
         protected readonly ItemSprite item;
@@ -29,9 +29,11 @@ namespace Sprint1.ItemClasses
             InitialParameter = new MoveParameters(false);
             Scene.CopyDataOfParameter(Parameters, InitialParameter);
             isBump = false;
+            bumpHigh = 0;
+            bumpLow = Sprint1Main.Game.GraphicsDevice.Viewport.Height;
         }
 
-        public void Update(float timeOfFrame)
+        public virtual void Update(float timeOfFrame)
         {
             item.Update(timeOfFrame);
             if (!Parameters.IsHidden && isBump)
@@ -44,33 +46,13 @@ namespace Sprint1.ItemClasses
                     Parameters.SetPosition(Parameters.Position.X, bumpHigh);
                     //Parameters.HasGravity = true;
                     spriteSpeed.Y *= -1;
-                    if (Type == Sprint1Main.CharacterType.Coin) Parameters.IsHidden = true; //Handle Coins
                 }
                 if (Parameters.Position.Y > bumpLow)
                 {
-                    isBump = false;
-                    Parameters.SetPosition(Parameters.Position.X, bumpLow);
-                    if(Type == Sprint1Main.CharacterType.GreenMushroom)
-                    {
-                        Parameters.IsLeft = Sprint1Main.Game.Scene.Mario.GetMinPosition().X >= Parameters.Position.X;
-                        Parameters.SetVelocity(3, 0);
-                    }else if(Type == Sprint1Main.CharacterType.RedMushroom)
-                    {
-                        Parameters.IsLeft = Sprint1Main.Game.Scene.Mario.GetMinPosition().X <= Parameters.Position.X;
-                        Parameters.SetVelocity(3, 0);
-                    }
-                    else if(Type == Sprint1Main.CharacterType.Star)
-                    {
-                        Parameters.IsLeft = Sprint1Main.Game.Scene.Mario.GetMinPosition().X >= Parameters.Position.X;
-                        Parameters.SetVelocity(3, -5);
-                    }
-                    //if (Type != Sprint1Main.CharacterType.Flower)
-                    //    Parameters.SetVelocity(3, 0);
-                    spriteSpeed.Y = 0;
-                    positionOffset.Y = 0;
-                    Parameters.HasGravity = true;
+                    Parameters.SetPosition(Parameters.Position.X, bumpLow);                   
                 }
             }
+            else { Parameters.HasGravity = true; }
             if (Parameters.Position.Y >= Stage.Boundary.X || Parameters.Position.Y >= Stage.Boundary.Y)
                 Parameters.IsHidden = true;
         }

@@ -25,6 +25,10 @@ namespace Sprint1.ItemClasses
             PType = p;
         }
 
+        public override void Update(float timeOfFrame)
+        {
+        }
+
         public override Vector2 GetHeightAndWidth()
         {
             return item.GetHeightAndWidth();

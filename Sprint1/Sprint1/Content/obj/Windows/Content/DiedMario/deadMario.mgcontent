@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>C:/Users/13667/source/repos/SmartMario/Sprint1/Sprint1/Content/DiedMario/deadMario.png</SourceFile>
-  <SourceTime>2019-10-25T09:49:43.6556816-04:00</SourceTime>
-  <DestFile>C:/Users/13667/source/repos/SmartMario/Sprint1/Sprint1/Content/bin/Windows/Content/DiedMario/deadMario.xnb</DestFile>
-  <DestTime>2019-11-03T15:17:29.633925-05:00</DestTime>
+  <SourceFile>C:/Users/72957/source/repos/SmartMario/Sprint1/Sprint1/Content/DiedMario/deadMario.png</SourceFile>
+  <SourceTime>2019-09-23T20:43:08.9970256-04:00</SourceTime>
+  <DestFile>C:/Users/72957/source/repos/SmartMario/Sprint1/Sprint1/Content/bin/Windows/Content/DiedMario/deadMario.xnb</DestFile>
+  <DestTime>2019-11-05T11:37:28.2951383-05:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2018-12-08T11:35:54-05:00</ImporterTime>
   <Processor>TextureProcessor</Processor>

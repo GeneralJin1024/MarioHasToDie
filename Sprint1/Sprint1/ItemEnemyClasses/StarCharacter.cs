@@ -11,6 +11,21 @@ namespace Sprint1.ItemClasses
         public StarCharacter(Texture2D texture, Point rowsAndColunms, Vector2 location)
             : base(texture, rowsAndColunms, location) { }
 
+
+        public override void Update(float timeOfFrame)
+        {
+            base.Update(timeOfFrame);
+            if (!Parameters.IsHidden && isBump)
+            {
+                if (Parameters.Position.Y >= bumpLow)
+                {
+                    isBump = false;
+                    Parameters.IsLeft = Sprint1Main.Game.Scene.Mario.GetMinPosition().X >= Parameters.Position.X;
+                    Parameters.SetVelocity(3, -5);
+                }
+            }
+        }
+
         public override Vector2 GetHeightAndWidth()
         {
             return item.GetHeightAndWidth();
