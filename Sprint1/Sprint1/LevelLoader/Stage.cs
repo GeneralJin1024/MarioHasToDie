@@ -66,10 +66,10 @@ namespace Sprint1.LevelLoader
                 throw new ArgumentNullException(nameof(gameTime));
             foreach (IController controller in controllerList)
                 controller.Update();
-            TimeSinceLastFrame += gameTime.ElapsedGameTime.Milliseconds;
+            //TimeSinceLastFrame += gameTime.ElapsedGameTime.Milliseconds;
             if (!Pulse)
             {
-                TimeSinceLastFrame += gameTime.ElapsedGameTime.Milliseconds;
+                TimeSinceLastFrame += 2 * gameTime.ElapsedGameTime.Milliseconds;
                 if (TimeSinceLastFrame > MillisecondsPerFrame)
                 {
                     TimeSinceLastFrame -= MillisecondsPerFrame;
