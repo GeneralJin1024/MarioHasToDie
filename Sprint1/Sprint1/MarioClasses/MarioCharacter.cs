@@ -45,8 +45,8 @@ namespace Sprint1.MarioClasses
             Mario.Update(timeOfFrame);
             if (Invincible)
             {
-                Clock += timeOfFrame;
-                Invincible = Clock <= 100;
+                Clock -= timeOfFrame;
+                Invincible = Clock >= 0;
                 if (!Invincible)
                     Parameters.ChangeColor = false;
             }
@@ -93,7 +93,10 @@ namespace Sprint1.MarioClasses
         public void CollideWithEnemy(bool isTop, bool isFlowerEnemy)
         {
             if (!isTop || isFlowerEnemy)
+            {
                 Mario.MarioState.Destroy();
+                Invincible = true; Clock = 15; Parameters.ChangeColor = true;
+            }
             if (Mario.MarioState.GetPowerType != MarioState.PowerType.Died)
                 Mario.ChangeToIdle();
         }
@@ -209,7 +212,7 @@ namespace Sprint1.MarioClasses
                 CollideWithFlag(character);
             else if(character.Type == Sprint1Main.CharacterType.Star)
             {
-                Invincible = true; Clock = 0; Parameters.ChangeColor = true;
+                Invincible = true; Clock = 100; Parameters.ChangeColor = true;
             }
             else if (character.Type == Sprint1Main.CharacterType.Castle)
             {
