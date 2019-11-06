@@ -48,9 +48,10 @@ namespace Sprint1.ItemEnemyClasses
         }
         public override void MarioCollide(bool specialCase)
         {
-            base.MarioCollide(specialCase);
+            //base.MarioCollide(specialCase);
             if (specialCase)
             {
+                Type = Sprint1Main.CharacterType.DiedEnemy;
                 Parameters.IsHidden = true;
             }
         }
