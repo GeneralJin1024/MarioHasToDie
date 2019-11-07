@@ -33,7 +33,7 @@ namespace Sprint1
         {
             ReturnCommand = new ReturnCommand(mario);
             // Map KeyboardController keys and Game commands
-            controllerDicMove.Add(Buttons.A, new MoveUpCommand(mario));
+            controllerDicMove.Add(Buttons.A, new JumpHigherCommand(mario));
             controllerDicMove.Add(Buttons.DPadRight, new MoveRightCommand(mario));
             controllerDicMove.Add(Buttons.DPadLeft, new MoveLeftCommand(mario));
             controllerDicMove.Add(Buttons.DPadDown, new MoveDownCommand(mario));
