@@ -41,18 +41,17 @@ namespace Sprint1
 
         public SoundFactory()
         {
-            Content.RootDirectory = "Content";
-            BackgroundMusic = Content.Load<Song>("Music/Map_BGM");
-            coin = Content.Load<SoundEffect>("Music/smb_coin");
-            HitQuestionBlockBottom = Content.Load<SoundEffect>("Music/QuestionBlock");
-            JumpEffect = Content.Load<SoundEffect>("Music/smb_jump-small");
-            DiedEffect = Content.Load<SoundEffect>("Music/sm64_mario_lost_a_life");
-            Bump = Content.Load<SoundEffect>("Music/smb_bump");
-            Fireball = Content.Load<SoundEffect>("Music/smb_fireball");
-            Pipe = Content.Load<SoundEffect>("Music/sm64_pipe");
-            Pause = Content.Load<SoundEffect>("Music/smb_pause");
-            Gameover = Content.Load<SoundEffect>("Music/sm64_game_over");
-            Powerup = Content.Load<SoundEffect>("Music/smb_powerup");
+            BackgroundMusic = Sprint1Main.Game.Content.Load<Song>("Music/Map_BGM");
+            coin = Sprint1Main.Game.Content.Load<SoundEffect>("Music/smb_coin");
+            HitQuestionBlockBottom = Sprint1Main.Game.Content.Load<SoundEffect>("Music/QuestionBlock");
+            JumpEffect = Sprint1Main.Game.Content.Load<SoundEffect>("Music/smb_jump-small");
+            DiedEffect = Sprint1Main.Game.Content.Load<SoundEffect>("Music/sm64_mario_lost_a_life");
+            Bump = Sprint1Main.Game.Content.Load<SoundEffect>("Music/smb_bump");
+            Fireball = Sprint1Main.Game.Content.Load<SoundEffect>("Music/smb_fireball");
+            Pipe = Sprint1Main.Game.Content.Load<SoundEffect>("Music/sm64_pipe");
+            Pause = Sprint1Main.Game.Content.Load<SoundEffect>("Music/smb_pause");
+            Gameover = Sprint1Main.Game.Content.Load<SoundEffect>("Music/sm64_game_over");
+            Powerup = Sprint1Main.Game.Content.Load<SoundEffect>("Music/smb_powerup");
 
         }
         public void GameTheme()
