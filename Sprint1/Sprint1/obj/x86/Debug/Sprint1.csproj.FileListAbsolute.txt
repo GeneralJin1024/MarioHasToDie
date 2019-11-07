@@ -345,3 +345,15 @@ C:\Users\zhangjian\source\repos\SmartMario\Sprint1\Sprint1\bin\Windows\x86\Debug
 C:\Users\zhangjian\source\repos\SmartMario\Sprint1\Sprint1\bin\Windows\x86\Debug\Content\Music\smb_jump-small.xnb
 C:\Users\zhangjian\source\repos\SmartMario\Sprint1\Sprint1\bin\Windows\x86\Debug\Content\Music\smb_pause.xnb
 C:\Users\zhangjian\source\repos\SmartMario\Sprint1\Sprint1\bin\Windows\x86\Debug\Content\Music\smb_powerup.xnb
+C:\Users\13667\source\repos\SmartMario\Sprint1\Sprint1\bin\Windows\x86\Debug\Content\Music\Map_BGM.wma
+C:\Users\13667\source\repos\SmartMario\Sprint1\Sprint1\bin\Windows\x86\Debug\Content\Music\Map_BGM.xnb
+C:\Users\13667\source\repos\SmartMario\Sprint1\Sprint1\bin\Windows\x86\Debug\Content\Music\QuestionBlock.xnb
+C:\Users\13667\source\repos\SmartMario\Sprint1\Sprint1\bin\Windows\x86\Debug\Content\Music\sm64_game_over.xnb
+C:\Users\13667\source\repos\SmartMario\Sprint1\Sprint1\bin\Windows\x86\Debug\Content\Music\sm64_mario_lost_a_life.xnb
+C:\Users\13667\source\repos\SmartMario\Sprint1\Sprint1\bin\Windows\x86\Debug\Content\Music\sm64_pipe.xnb
+C:\Users\13667\source\repos\SmartMario\Sprint1\Sprint1\bin\Windows\x86\Debug\Content\Music\smb_bump.xnb
+C:\Users\13667\source\repos\SmartMario\Sprint1\Sprint1\bin\Windows\x86\Debug\Content\Music\smb_coin.xnb
+C:\Users\13667\source\repos\SmartMario\Sprint1\Sprint1\bin\Windows\x86\Debug\Content\Music\smb_fireball.xnb
+C:\Users\13667\source\repos\SmartMario\Sprint1\Sprint1\bin\Windows\x86\Debug\Content\Music\smb_jump-small.xnb
+C:\Users\13667\source\repos\SmartMario\Sprint1\Sprint1\bin\Windows\x86\Debug\Content\Music\smb_pause.xnb
+C:\Users\13667\source\repos\SmartMario\Sprint1\Sprint1\bin\Windows\x86\Debug\Content\Music\smb_powerup.xnb

@@ -202,6 +202,17 @@
     <Content Include="Content\MarioSprites\smallMarioRightJump.png" />
     <Content Include="Content\MarioSprites\smallMarioRightMove.png" />
     <Content Include="Content\MarioSprites\smallMarioRightStand.png" />
+    <Content Include="Content\Music\Map_BGM.mp3" />
+    <Content Include="Content\Music\QuestionBlock.wav" />
+    <Content Include="Content\Music\sm64_game_over.wav" />
+    <Content Include="Content\Music\sm64_mario_lost_a_life.wav" />
+    <Content Include="Content\Music\sm64_pipe.wav" />
+    <Content Include="Content\Music\smb_bump.wav" />
+    <Content Include="Content\Music\smb_coin.wav" />
+    <Content Include="Content\Music\smb_fireball.wav" />
+    <Content Include="Content\Music\smb_jump-small.wav" />
+    <Content Include="Content\Music\smb_pause.wav" />
+    <Content Include="Content\Music\smb_powerup.wav" />
     <Content Include="Content\SuperMario\superMarioJumpRight.png" />
     <Content Include="Content\SuperMario\superMarioMoveRight.png" />
     <Content Include="Content\SuperMario\superMarioRightCrouch.png" />

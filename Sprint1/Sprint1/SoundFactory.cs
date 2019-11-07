@@ -25,7 +25,16 @@ namespace Sprint1
 
         }
         private static SoundFactory _instance;
-        private Song BackgroundMusic;
+        public SoundEffect BackgroundMusic { get; set; }
+        //public SoundEffectInstance BackgroundMusic
+        //{
+        //    get
+        //    {
+        //        return _backgroundMusic;
+        //    }
+        //}
+        private SoundEffectInstance _backgroundMusic;
+        //public Song BackgroundMusic { get; private set; }
         /* SoundEffect coin here is GetItemEffect */
         private SoundEffect coin;
         private SoundEffect HitQuestionBlockBottom;
@@ -41,7 +50,11 @@ namespace Sprint1
 
         public SoundFactory()
         {
-            BackgroundMusic = Sprint1Main.Game.Content.Load<Song>("Music/Map_BGM");
+            BackgroundMusic = Sprint1Main.Game.Content.Load<SoundEffect>("Music/Map_BGM");
+            _backgroundMusic = Sprint1Main.Game.Content.Load<SoundEffect>("Music/Map_BGM").CreateInstance();
+            //BackgroundMusic = Sprint1Main.Game.Content.Load<Song>("Music/Map_BGM");
+            //MediaPlayer.Play(BackgroundMusic);
+            BackgroundMusic.Play();
             coin = Sprint1Main.Game.Content.Load<SoundEffect>("Music/smb_coin");
             HitQuestionBlockBottom = Sprint1Main.Game.Content.Load<SoundEffect>("Music/QuestionBlock");
             JumpEffect = Sprint1Main.Game.Content.Load<SoundEffect>("Music/smb_jump-small");
@@ -56,9 +69,10 @@ namespace Sprint1
         }
         public void GameTheme()
         {
-            MediaPlayer.Play(BackgroundMusic);
+            //MediaPlayer.Play(BackgroundMusic);
             MediaPlayer.IsRepeating = true;
         }
+
 
         public void MarioJump()
         {
