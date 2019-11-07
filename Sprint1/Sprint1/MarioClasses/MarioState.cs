@@ -84,6 +84,7 @@ namespace Sprint1.MarioClasses
         {
             Mario.ChangeActionAndSprite(5);
             Mario.Parameters.SetVelocity(0, 0); // stop moving
+            Mario.Parameters.SetPosition(Mario.Parameters.Position.X, Mario.Parameters.Position.Y - 1);
             CurrentState[1] = 3;
             Mario.Parameters.HasGravity = false;
         }

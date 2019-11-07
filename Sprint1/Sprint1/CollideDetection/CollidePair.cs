@@ -127,7 +127,8 @@ namespace Sprint1.CollideDetection
                     Character2.MarioCollide(false);
                 else
                     Character2.MarioCollide((Time == yTime) && (relativeVelocity.Y > 0));
-                MarioCharacters.CollideWith(Character2, Time == yTime, relativeVelocity.Y > 0);
+                if(!MarioCharacters.IsDied())
+                    MarioCharacters.CollideWith(Character2, Time == yTime, relativeVelocity.Y > 0);
             }
             else if (Character1.Type == Sprint1Main.CharacterType.Fireball)
             {
