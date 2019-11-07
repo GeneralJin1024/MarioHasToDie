@@ -1,4 +1,4 @@
-Reviewer: Jian Zhang
+wReviewer: Jian Zhang
 Date: 10/28/2019
 Sprint3
 Files: FactoryClasses/ItemFactory.cs, BackgroundFactory.cs
