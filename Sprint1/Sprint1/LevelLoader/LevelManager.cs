@@ -107,7 +107,7 @@ namespace Sprint1.LevelLoader
                 GameWin.Update(1);
             else
             {
-                RestOfTime -= (RestOfTime > 0 && !Scene.Mario.Win) ? (float)gameTime.ElapsedGameTime.TotalSeconds : 0;
+                RestOfTime -= (RestOfTime > 0 && !Scene.Mario.Win && !Stage.Pulse) ? (float)gameTime.ElapsedGameTime.TotalSeconds : 0;
                 if (RestOfTime < 0)
                 {
                     Scene.Mario.Suicide(); RestOfTime = 0;
