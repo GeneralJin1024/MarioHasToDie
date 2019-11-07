@@ -14,7 +14,7 @@ namespace Sprint1
 {
     public class Scene : IDisposable
     {
-        readonly Stage stage;
+        Stage stage;
         SpriteBatch spriteBatch;
         private int level;
         private ArrayList characterList;
@@ -24,6 +24,7 @@ namespace Sprint1
         public MarioCharacter Mario { get; internal set; }
         public Stage Stage
         {
+            set { stage = value; }
             get { return stage; }
         }
         public Scene(Stage stage)

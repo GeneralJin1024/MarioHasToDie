@@ -16,7 +16,6 @@ namespace Sprint1.LevelLoader
         private Menu GameMenu;
         private Menu GameOver;
         private Menu GameWin;
-        public bool MenuMode { get; set; }
         public bool LoadingMode { get; set; }
         public int CurrSceneIndex { get; private set; }
         private Scene currScene;
@@ -25,7 +24,7 @@ namespace Sprint1.LevelLoader
         private SpriteFont instructionFont;
         private ISprite Coin;
         private ISprite Mario;
-        private int Mode;//0: MenuMode, 1: CurrentScene, 2: Game Over
+        private int Mode;//0: MenuMode, 1: CurrentScene, 2: Game Over, 3: Loading 
         private Song BackgroundMusic;
         private float CheckPoint;
         private float RestOfTime;
@@ -65,8 +64,6 @@ namespace Sprint1.LevelLoader
             GameMenu = new Menu(Sprint1Main.Game, new string[] { "Welcome To Mario", "Start", "Quit" });
             GameOver = new Menu(Sprint1Main.Game, new string[] { "Game Over", "Replay", "Exit" });
             GameWin = new Menu(Sprint1Main.Game, new string[] { "Congratulations", "Replay", "Exit" });
-            MenuMode = true;
-            LoadingMode = true;
             //currScene.Dispose();
         }
 
@@ -105,15 +102,14 @@ namespace Sprint1.LevelLoader
                 GameOver.Update(1);
             else if (Mode == 3)
                 GameWin.Update(1);
-            else
+            else if (Mode == 1)
             {
                 RestOfTime -= (RestOfTime > 0 && !Scene.Mario.Win && !Stage.Pulse) ? (float)gameTime.ElapsedGameTime.TotalSeconds : 0;
                 if (RestOfTime < 0)
                 {
                     Scene.Mario.Suicide(); RestOfTime = 0;
                 }
-                if (!LoadingMode)
-                    currScene.Update(gameTime);
+                currScene.Update(gameTime);
             }
         }
 
@@ -147,12 +143,11 @@ namespace Sprint1.LevelLoader
                 GameOver.Draw(spriteBatch);
             else if (Mode == 3)
                 GameWin.Draw(spriteBatch);
-            else
+            else if (Mode == 1)
             {
                 spriteBatch.DrawString(instructionFont, "1 - " + CurrSceneIndex, new Vector2(480, 20), 
-                    fontColor, 0, Vector2.Zero, 1.2f, SpriteEffects.None, 0);
-                if (!LoadingMode)
-                    currScene.Draw();
+                    fontColor, 0, Vector2.Zero, 1.2f, SpriteEffects.None, 0);               
+                currScene.Draw();
             }
         }
 
@@ -163,7 +158,9 @@ namespace Sprint1.LevelLoader
             if (Sprint1Main.MarioLife > 0)
                 ResetScene(true, true);
             else
+            {
                 ChangeToGamoverMode(); Sprint1Main.MarioLife = 3;
+            }
         }
         public void GoToSecreteArea()
         {
@@ -187,6 +184,7 @@ namespace Sprint1.LevelLoader
         public void ChangeToMenuMode() { Mode = 0; }
         public void ChangeToGamoverMode() { Mode = 2; ResetScene(true, false);/*MediaPlayer.Stop();*/ }
         public void ChangeToWinMode() { Mode = 3; Sprint1Main.MarioLife = 3; ResetScene(true, false); }
+        public void ChangeToLoadingMode() { Mode = 4; }
         public void AddTimeBonus() { Sprint1Main.Point += ((int)RestOfTime + 1) * 10; }
         public void ResetScene(bool resetAll, bool goToCheckPoint)
         {
@@ -197,21 +195,22 @@ namespace Sprint1.LevelLoader
             MarioState.ActionType actionType = currScene.Mario.GetAction;
             MarioState.PowerType powerType = currScene.Mario.GetPower;
             bool isFire = currScene.Mario.IsFire(); bool Win = currScene.Mario.Win;
-            bool invincible = Scene.Mario.Invincible;
+            bool invincible = Scene.Mario.Invincible; int preMode = Mode;
 
-            LoadingMode = true;
+            ChangeToLoadingMode();
             scenes.Remove(currScene);
             //currScene.Dispose();
             Stage stage = new Stage(Sprint1Main.Game);
-            currScene = new Scene(stage);
+            currScene.Stage = stage;
             scenes.Insert(CurrSceneIndex - 1, currScene);
             currScene.Initalize(CurrSceneIndex);
             currScene.LoadContent();
-            LoadingMode = false;
+            Mode = preMode;
 
             //use backup to rewrite
             if (!resetAll)
             {
+                ChangeToNormalMode();
                 Scene.CopyDataOfParameter(tempParameter, currScene.Mario.Parameters);
                 currScene.Mario.Win = Win; Scene.Mario.Invincible = invincible;
                 currScene.Mario.RestoreStates(actionType, powerType, isFire);

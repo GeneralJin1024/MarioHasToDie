@@ -19,7 +19,7 @@ namespace Sprint1.LevelLoader
     {
         public Sprint1Main Game { get; set; }
         public static Vector2 Boundary { get; private set; }
-        public static Vector2 MapBoundary { get;} = new Vector2(2400, 500);
+        public static Vector2 MapBoundary { get; private set; }
 
         readonly List<IController> controllerList;
         //private ArrayList factoryList;
@@ -50,6 +50,7 @@ namespace Sprint1.LevelLoader
             GraphicsDevice.ApplyChanges();
             MillisecondsPerFrame = 100;
             Boundary = new Vector2(GraphicsDevice.PreferredBackBufferWidth, GraphicsDevice.PreferredBackBufferHeight);
+            MapBoundary = new Vector2(ConfigurationReaderAndWriter.ReadSetting("StageWidth"), ConfigurationReaderAndWriter.ReadSetting("StageHeight"));
             Pulse = false;
         }
 

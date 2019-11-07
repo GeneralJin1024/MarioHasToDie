@@ -64,7 +64,6 @@ namespace Sprint1
                 {
                     if (FirstChoose)
                     {
-                        Game.LevelControl.LoadingMode = false;
                         Game.LevelControl.ChangeToNormalMode();
                     }
                     else

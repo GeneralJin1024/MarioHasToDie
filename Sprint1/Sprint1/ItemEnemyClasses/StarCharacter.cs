@@ -18,7 +18,7 @@ namespace Sprint1.ItemClasses
             if (!Parameters.IsHidden && !isBump && Parameters.Velocity.X == 0)
             {
                 Parameters.IsLeft = Sprint1Main.Game.Scene.Mario.GetMinPosition().X >= Parameters.Position.X;
-                Parameters.SetVelocity(3, -5);
+                Parameters.SetVelocity(3, -15);
             }
         }
 
