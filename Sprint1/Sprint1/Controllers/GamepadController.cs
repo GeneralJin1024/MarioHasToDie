@@ -37,6 +37,7 @@ namespace Sprint1
             controllerDicMove.Add(Buttons.DPadRight, new MoveRightCommand(mario));
             controllerDicMove.Add(Buttons.DPadLeft, new MoveLeftCommand(mario));
             controllerDicMove.Add(Buttons.DPadDown, new MoveDownCommand(mario));
+            controllerDic.Add(Buttons.A, new MoveUpCommand(mario));
             controllerDic.Add(Buttons.Start, new QuitCommand(Game));
             controllerDic.Add(Buttons.Back, new ResetCommand());
             controllerDic.Add(Buttons.B, new ThrowFireCommand(mario));
@@ -69,10 +70,10 @@ namespace Sprint1
                             button.Value.Execute();
                         }
                     }
-                    if(!hasMoving)
-                        ReturnCommand.Execute();
-                    prevGamePadState = curr;
                 }
+                if (!hasMoving)
+                    ReturnCommand.Execute();
+                prevGamePadState = curr;
             }
         }
         // method to check the previous pressed buttons 
