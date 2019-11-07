@@ -10,13 +10,23 @@ using Microsoft.Xna.Framework;
 
 namespace Sprint1.ItemClasses
 {
-    class PipeCharacter: ItemCharacter
+    public class PipeCharacter: ItemCharacter
     {
+        public enum PipeType { Pipe, VPipe, HPipe}
+
+        public PipeType PType { get; private set; }
+
+        
         public override Sprint1Main.CharacterType Type { get; set; } = Sprint1Main.CharacterType.Pipe;
-        public PipeCharacter(Texture2D texture, Point rowsAndColunms, Vector2 location)
+
+        public PipeCharacter(Texture2D texture, Point rowsAndColunms, Vector2 location, PipeType p)
             : base(texture, rowsAndColunms, location)
         {
+            PType = p;
+        }
 
+        public override void Update(float timeOfFrame)
+        {
         }
 
         public override Vector2 GetHeightAndWidth()

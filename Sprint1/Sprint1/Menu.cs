@@ -22,8 +22,9 @@ namespace Sprint1
 
         private KeyboardState OldKeyState; //keyboard state of
         private GamePadState OldPadState;
+        private string[] Content;
         readonly ResourceManager stringManager;
-        public Menu(Sprint1Main game)
+        public Menu(Sprint1Main game, string[] content)
         {
             Game = game;
             FirstChoose = true; // mouse stop at first choice first.
@@ -32,6 +33,7 @@ namespace Sprint1
             OldPadState = GamePad.GetState(PlayerIndex.One);
             //set up resource manager for eliminating warning
             stringManager = new ResourceManager("Sprint1.Resource1", Assembly.GetExecutingAssembly());
+            Content = content;
         }
 
 
@@ -62,8 +64,7 @@ namespace Sprint1
                 {
                     if (FirstChoose)
                     {
-                        Game.LoadingMode = false;
-                        Game.MenuMode = false;
+                        Game.LevelControl.ChangeToNormalMode();
                     }
                     else
                         Game.Exit();
@@ -84,7 +85,7 @@ namespace Sprint1
                 if(CheckPressedButtons(Buttons.X, newPadState))
                 {
                     if (FirstChoose)
-                        Game.MenuMode = false;
+                        Game.LevelControl.ChangeToNormalMode();
                     else
                         Game.Exit();
                 }
@@ -103,14 +104,18 @@ namespace Sprint1
         public void Draw(SpriteBatch spriteBatch)
         {
             //Add legend with resource manager.
-            stringManager.GetString("Start", CultureInfo.CurrentCulture);
-            spriteBatch.DrawString(Font, stringManager.GetString("Welcome To Mario", CultureInfo.CurrentCulture), new Vector2(190.0f, 150.0f), 
+            //stringManager.GetString("Start", CultureInfo.CurrentCulture);
+            //spriteBatch.DrawString(Font, stringManager.GetString("Welcome To Mario", CultureInfo.CurrentCulture), new Vector2(190.0f, 150.0f), 
+            //    FontColor, 0, Vector2.Zero, 2.5f, SpriteEffects.None, 0);
+            //spriteBatch.DrawString(Font, stringManager.GetString("Start", CultureInfo.CurrentCulture), new Vector2(370.0f, 300.0f), FontColor);
+            //spriteBatch.DrawString(Font, stringManager.GetString("Quit", CultureInfo.CurrentCulture), new Vector2(370.0f, 350.0f), FontColor);
+            //spriteBatch.DrawString(Font, 
+            //    stringManager.GetString("W/Up Arrow: Up       S/Down Arrow: Down        Z/Button X: choose", CultureInfo.CurrentCulture), 
+            //    new Vector2(0, 450), FontColor);
+            spriteBatch.DrawString(Font, Content[0], new Vector2(400 - Content[0].Length * 13, 150.0f),
                 FontColor, 0, Vector2.Zero, 2.5f, SpriteEffects.None, 0);
-            spriteBatch.DrawString(Font, stringManager.GetString("Start", CultureInfo.CurrentCulture), new Vector2(370.0f, 300.0f), FontColor);
-            spriteBatch.DrawString(Font, stringManager.GetString("Quit", CultureInfo.CurrentCulture), new Vector2(370.0f, 350.0f), FontColor);
-            spriteBatch.DrawString(Font, 
-                stringManager.GetString("W/Up Arrow: Up       S/Down Arrow: Down        Z/Button X: choose", CultureInfo.CurrentCulture), 
-                new Vector2(0, 450), FontColor);
+            spriteBatch.DrawString(Font, Content[1], new Vector2(370.0f, 300.0f), FontColor);
+            spriteBatch.DrawString(Font, Content[2], new Vector2(370.0f, 350.0f), FontColor);
             //Draw "mouse"
             chooseSprite.Draw(spriteBatch);
         }

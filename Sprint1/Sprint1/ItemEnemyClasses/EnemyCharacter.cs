@@ -16,11 +16,15 @@ namespace Sprint1.ItemClasses
         readonly private ISprite diedEnemy;
         private int disappear;
         private int disappearTimer;
-        private ISprite currentSprite;
+        protected ISprite currentSprite;
+        private Point rowAndColumn;
+        private MoveParameters moveParameters;
+
         public MoveParameters Parameters { get; }
         public EnemyCharacter(Texture2D[] texture, Point[] rowsAndColumns, MoveParameters moveParameters)
         {
             Parameters = moveParameters;
+            Parameters.IsLeft = Parameters.Position.X >= Sprint1Main.Game.Scene.Mario.GetMinPosition().X;
             Parameters.SetVelocity(2, 0);
             liveEnemy = new AnimatedSprite(texture[0], rowsAndColumns[0], Parameters);
             diedEnemy = new AnimatedSprite(texture[1], rowsAndColumns[1], Parameters);
@@ -28,7 +32,8 @@ namespace Sprint1.ItemClasses
             disappear = 100;
         }
 
-        public void Update(float timeOfFrame) {
+
+        public virtual void Update(float timeOfFrame) {
             if(Type== Sprint1Main.CharacterType.Enemy) {
                 currentSprite.Update(timeOfFrame);
                 if (Parameters.Position.Y >= 500) { Parameters.IsHidden = true; }
@@ -58,10 +63,12 @@ namespace Sprint1.ItemClasses
         }
         
 
-        public void MarioCollide(bool specialCase)
+        public virtual void MarioCollide(bool specialCase)
         {
             if (specialCase)
             {
+                if (Type == Sprint1Main.CharacterType.Enemy)
+                    Sprint1Main.Point += 100;
                 Parameters.SetVelocity(0, 0); //stop moving.
                 Type = Sprint1Main.CharacterType.DiedEnemy;
                 currentSprite = diedEnemy;

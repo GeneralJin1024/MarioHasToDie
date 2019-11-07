@@ -19,14 +19,15 @@ namespace Sprint1.LevelLoader
     {
         public Sprint1Main Game { get; set; }
         public static Vector2 Boundary { get; private set; }
-        public static Vector2 MapBoundary { get;} = new Vector2(1000, 500);
+        public static Vector2 MapBoundary { get; private set; }
 
         readonly List<IController> controllerList;
         //private ArrayList factoryList;
         private int TimeSinceLastFrame;
         private int MillisecondsPerFrame;
         private CollisionDetector Collision;
-        private int DiedTime = 0;
+        private int DiedTime = 0; // delete in the future
+        public bool Pulse { get; set; }
         public GraphicsDeviceManager GraphicsDevice
         {
             get { return Game.Graphics; }
@@ -48,8 +49,9 @@ namespace Sprint1.LevelLoader
             //!= -1 ? ConfigurationReaderAndWriter.ReadSetting("WindowHeight") : graphicsDevice.GraphicsDevice.Viewport.Height;   // set this value to the desired height of your window
             GraphicsDevice.ApplyChanges();
             MillisecondsPerFrame = 100;
-            Boundary = new Vector2(GraphicsDevice.PreferredBackBufferWidth, GraphicsDevice.PreferredBackBufferHeight);       
-            
+            Boundary = new Vector2(GraphicsDevice.PreferredBackBufferWidth, GraphicsDevice.PreferredBackBufferHeight);
+            MapBoundary = new Vector2(ConfigurationReaderAndWriter.ReadSetting("StageWidth"), ConfigurationReaderAndWriter.ReadSetting("StageHeight"));
+            Pulse = false;
         }
 
         public void LoadContent(ArrayList spriteList, ArrayList fireBallList)
@@ -65,16 +67,21 @@ namespace Sprint1.LevelLoader
                 throw new ArgumentNullException(nameof(gameTime));
             foreach (IController controller in controllerList)
                 controller.Update();
-            TimeSinceLastFrame += gameTime.ElapsedGameTime.Milliseconds;
-            if (TimeSinceLastFrame > MillisecondsPerFrame)
+            //TimeSinceLastFrame += gameTime.ElapsedGameTime.Milliseconds;
+            if (!Pulse)
             {
-                TimeSinceLastFrame -= MillisecondsPerFrame;
-                Collision.Update();
+                TimeSinceLastFrame += 2 * gameTime.ElapsedGameTime.Milliseconds;
+                if (TimeSinceLastFrame > MillisecondsPerFrame)
+                {
+                    TimeSinceLastFrame -= MillisecondsPerFrame;
+                    Collision.Update();
+                    //Console.WriteLine("Mario Position is = " + Sprint1Main.Game.Scene.Mario.Parameters.Position);
+                }
             }
-            if (Game.Scene.Mario.IsDied())
-                DiedTime++;
-            if (DiedTime >= 50)
-                Game.Exit();
+            //if (Game.Scene.Mario.IsDied())
+            //    DiedTime++;
+            //if (DiedTime >= 50)
+            //    Game.Exit();
 
         }
 

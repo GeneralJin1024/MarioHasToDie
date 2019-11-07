@@ -147,7 +147,7 @@ namespace Sprint1.BlockClasses
         private void DiscloseItem()
         {
             ItemCharacter item = (ItemCharacter)items[0];
-            ItemStates bumpItem;
+            ItemBumpingCommands bumpItem;
             switch (item.Type)
             {                
                 case Sprint1Main.CharacterType.Coin:               

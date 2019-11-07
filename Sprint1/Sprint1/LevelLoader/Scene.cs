@@ -14,7 +14,7 @@ namespace Sprint1
 {
     public class Scene : IDisposable
     {
-        readonly Stage stage;
+        Stage stage;
         SpriteBatch spriteBatch;
         private int level;
         private ArrayList characterList;
@@ -24,6 +24,7 @@ namespace Sprint1
         public MarioCharacter Mario { get; internal set; }
         public Stage Stage
         {
+            set { stage = value; }
             get { return stage; }
         }
         public Scene(Stage stage)
@@ -37,9 +38,6 @@ namespace Sprint1
         }
         public void Initalize(int levelIndex)
         {
-
-
-
             characterList = new ArrayList();
             FireBallList = new ArrayList();
             this.level = levelIndex;
@@ -82,9 +80,6 @@ namespace Sprint1
         {
             stage.Update(gameTime);
             Camera.LookAt(Mario.Parameters.Position); // it should always look at mario
-
-            //foreach (ICharacter character in characterList)
-            //    character.Update(1);
         }
 
         public void Draw()

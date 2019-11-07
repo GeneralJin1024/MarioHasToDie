@@ -8,11 +8,11 @@ using System.Threading.Tasks;
 
 namespace Sprint1.ItemEnemyClasses
 {
-    interface ItemStates
+    interface ItemBumpingCommands
     {
         void HandleBumping();
     }
-    class CoinBumping : ItemStates
+    class CoinBumping : ItemBumpingCommands
     {
         private CoinCharacter item;
         private float minY;
@@ -34,7 +34,7 @@ namespace Sprint1.ItemEnemyClasses
         }
     }
 
-    class MushroomBumping : ItemStates
+    class MushroomBumping : ItemBumpingCommands
     {
         private ItemCharacter item;
         private float minY;
@@ -56,7 +56,7 @@ namespace Sprint1.ItemEnemyClasses
         }
     }
 
-    class StarBumping : ItemStates
+    class StarBumping : ItemBumpingCommands
     {
         private StarCharacter item;
         private float minY;
@@ -78,7 +78,7 @@ namespace Sprint1.ItemEnemyClasses
         }
     }
 
-    class FlowerBumping : ItemStates
+    class FlowerBumping : ItemBumpingCommands
     {
         private FlowerCharacter item;
         private float minY;

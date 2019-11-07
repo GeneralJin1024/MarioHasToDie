@@ -41,7 +41,20 @@ namespace Sprint1
     {
         public void Execute()
         {
-            Sprint1Main.Game.ResetScene();
+            Sprint1Main.Game.LevelControl.ResetScene(false, false);
+        }
+    }
+    class PulseCommand : ICommand
+    {
+        private MarioCharacter Mario;
+        public PulseCommand(MarioCharacter mario)
+        {
+            Mario = mario;
+        }
+        public void Execute()
+        {
+            Mario.LockOrUnLock(!Sprint1Main.Game.Scene.Stage.Pulse);
+            Sprint1Main.Game.Scene.Stage.Pulse = !Sprint1Main.Game.Scene.Stage.Pulse;
         }
     }
 }

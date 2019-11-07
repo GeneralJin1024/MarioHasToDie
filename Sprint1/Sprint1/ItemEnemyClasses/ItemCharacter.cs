@@ -9,14 +9,14 @@ using Sprint1.ItemEnemyClasses;
 
 namespace Sprint1.ItemClasses
 {
-    abstract class ItemCharacter : ICharacter
+    public class ItemCharacter : ICharacter
     {
 
 
-        public abstract Sprint1Main.CharacterType Type { get; set; }
-        private bool isBump;
-        private float bumpHigh;
-        private float bumpLow;
+        public virtual Sprint1Main.CharacterType Type { get; set; }
+        protected bool isBump;
+        protected float bumpHigh;
+        protected float bumpLow;
         protected Vector2 spriteSpeed;
         private Point positionOffset;
         protected readonly ItemSprite item;
@@ -29,9 +29,11 @@ namespace Sprint1.ItemClasses
             InitialParameter = new MoveParameters(false);
             Scene.CopyDataOfParameter(Parameters, InitialParameter);
             isBump = false;
+            bumpHigh = 0;
+            bumpLow = Sprint1Main.Game.GraphicsDevice.Viewport.Height;
         }
 
-        public void Update(float timeOfFrame)
+        public virtual void Update(float timeOfFrame)
         {
             item.Update(timeOfFrame);
             if (!Parameters.IsHidden && isBump)
@@ -44,31 +46,12 @@ namespace Sprint1.ItemClasses
                     Parameters.SetPosition(Parameters.Position.X, bumpHigh);
                     //Parameters.HasGravity = true;
                     spriteSpeed.Y *= -1;
-                    if (Type == Sprint1Main.CharacterType.Coin) Parameters.IsHidden = true; //Handle Coins
                 }
                 if (Parameters.Position.Y > bumpLow)
                 {
                     isBump = false;
-                    Parameters.SetPosition(Parameters.Position.X, bumpLow);
-                    if(Type == Sprint1Main.CharacterType.GreenMushroom)
-                    {
-                        Parameters.IsLeft = Sprint1Main.Game.Scene.Mario.GetMinPosition().X >= Parameters.Position.X;
-                        Parameters.SetVelocity(3, 0);
-                    }else if(Type == Sprint1Main.CharacterType.RedMushroom)
-                    {
-                        Parameters.IsLeft = Sprint1Main.Game.Scene.Mario.GetMinPosition().X <= Parameters.Position.X;
-                        Parameters.SetVelocity(3, 0);
-                    }
-                    else if(Type == Sprint1Main.CharacterType.Star)
-                    {
-                        Parameters.IsLeft = Sprint1Main.Game.Scene.Mario.GetMinPosition().X >= Parameters.Position.X;
-                        Parameters.SetVelocity(3, -5);
-                    }
-                    //if (Type != Sprint1Main.CharacterType.Flower)
-                    //    Parameters.SetVelocity(3, 0);
-                    spriteSpeed.Y = 0;
-                    positionOffset.Y = 0;
                     Parameters.HasGravity = true;
+                    Parameters.SetPosition(Parameters.Position.X, bumpLow);
                 }
             }
             if (Parameters.Position.Y >= Stage.Boundary.X || Parameters.Position.Y >= Stage.Boundary.Y)
@@ -79,11 +62,11 @@ namespace Sprint1.ItemClasses
             //Console.WriteLine(item.Parameters.IsHidden + "   Position = " + Parameters.Position);
             item.Draw(spriteBatch);
         }
-        public Vector2 GetMaxPosition()
+        public virtual Vector2 GetMaxPosition()
         {
             return new Vector2(Parameters.Position.X + item.GetHeightAndWidth().Y, Parameters.Position.Y);
         }
-        public Vector2 GetMinPosition()
+        public virtual Vector2 GetMinPosition()
         {
             return new Vector2(Parameters.Position.X, Parameters.Position.Y - item.GetHeightAndWidth().X);
         }
@@ -100,16 +83,18 @@ namespace Sprint1.ItemClasses
             isBump = true;
         }
 
-        public abstract void MarioCollide(bool specialCase);
-        public abstract Vector2 GetHeightAndWidth();
+        public virtual void MarioCollide(bool specialCase) { }
+        public virtual Vector2 GetHeightAndWidth() { return Vector2.Zero; }
         public virtual void BlockCollide(bool isBottom)
         {
             if (isBottom)
                 Parameters.SetVelocity(Math.Abs(Parameters.Velocity.X), 0);
             else
             {
-                Parameters.SetVelocity(0, 0);
-                Parameters.HasGravity = false;
+                Parameters.IsLeft = !Parameters.IsLeft; //转向
+                Parameters.SetVelocity(Math.Abs(Parameters.Velocity.X), Parameters.Velocity.Y);
+                //Parameters.SetVelocity(0, 0);
+                //Parameters.HasGravity = false;
             }
         }
     }

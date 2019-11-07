@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Sprint1.MarioClasses;
+using Sprint1.ItemEnemyClasses;
 
 namespace Sprint1.CollideDetection
 {
@@ -120,11 +121,14 @@ namespace Sprint1.CollideDetection
             if (Character1.Type == Sprint1Main.CharacterType.Mario)
             {
                 MarioCharacter MarioCharacters = (MarioCharacter)Character1;
-                if (Character2.Type != Sprint1Main.CharacterType.Block)
-                    Character2.MarioCollide((Time == yTime) && (relativeVelocity.Y > 0));
-                else
+                if (Character2.Type == Sprint1Main.CharacterType.Block)
                     Character2.MarioCollide((Time == yTime) && (relativeVelocity.Y < 0));
-                MarioCharacters.CollideWith(Character2, Time == yTime, relativeVelocity.Y > 0);
+                else if (Character2 is PlantEnemyCharacter)
+                    Character2.MarioCollide(false);
+                else
+                    Character2.MarioCollide((Time == yTime) && (relativeVelocity.Y > 0));
+                if(!MarioCharacters.IsDied())
+                    MarioCharacters.CollideWith(Character2, Time == yTime, relativeVelocity.Y > 0);
             }
             else if (Character1.Type == Sprint1Main.CharacterType.Fireball)
             {
@@ -133,7 +137,7 @@ namespace Sprint1.CollideDetection
                 if (Character2.Type == Sprint1Main.CharacterType.Enemy)
                     Character2.MarioCollide(true);
             }
-            else //items and enemies and fireball
+            else //items and enemies
             {
                 Character1.BlockCollide((Time == yTime) && (relativeVelocity.Y > 0));
             }

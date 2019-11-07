@@ -11,6 +11,17 @@ namespace Sprint1.ItemClasses
         public StarCharacter(Texture2D texture, Point rowsAndColunms, Vector2 location)
             : base(texture, rowsAndColunms, location) { }
 
+
+        public override void Update(float timeOfFrame)
+        {
+            base.Update(timeOfFrame);
+            if (!Parameters.IsHidden && !isBump && Parameters.Velocity.X == 0)
+            {
+                Parameters.IsLeft = Sprint1Main.Game.Scene.Mario.GetMinPosition().X >= Parameters.Position.X;
+                Parameters.SetVelocity(3, -15);
+            }
+        }
+
         public override Vector2 GetHeightAndWidth()
         {
             return item.GetHeightAndWidth();
@@ -20,7 +31,7 @@ namespace Sprint1.ItemClasses
         public override void MarioCollide(bool specialCase)
         {
 
-           
+            Sprint1Main.Point += 1000;
             Parameters.IsHidden = true;
         }
 

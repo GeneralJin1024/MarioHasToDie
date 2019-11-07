@@ -9,7 +9,7 @@ using Sprint1;
 
 namespace Sprint1.Sprites
 {
-     class ItemSprite : AnimatedSprite
+     public class ItemSprite : AnimatedSprite
     {
         public ItemSprite(Texture2D texture, Vector2 location, Point sheetSize) : base(texture, sheetSize, new MoveParameters(false))
         {

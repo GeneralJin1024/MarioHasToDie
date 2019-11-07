@@ -8,7 +8,7 @@ using Microsoft.Xna.Framework;
 
 namespace Sprint1
 {
-    class AnimatedSprite : ISprite
+    public class AnimatedSprite : ISprite
     {
         public Texture2D SpriteSheets { get; set; }
 
@@ -25,7 +25,7 @@ namespace Sprint1
         public AnimatedSprite(Texture2D spriteSheet, Point rowAndColumn, MoveParameters parameters)
         {
             ResizeFrame(spriteSheet, rowAndColumn);
-            MillisecondsPerFrame = 1;
+            MillisecondsPerFrame = 2;
             Parameters = parameters;
         }
 
@@ -36,7 +36,7 @@ namespace Sprint1
              * frame update velocity, we can directly change the value of MillisecondsPerFrame
              */
             Parameters.TimeOfFrame += timeOfFrame;
-            if (Parameters.TimeOfFrame == MillisecondsPerFrame)
+            if (Parameters.TimeOfFrame >= MillisecondsPerFrame)
             {
                 Parameters.TimeOfFrame = 0;
                 ActionFrame += 1;
@@ -52,12 +52,19 @@ namespace Sprint1
                 Vector2 checkedPosition = LevelLoader.Stage.CheckBoundary(new Vector2(Parameters.Position.X, Parameters.Position.Y - GetHeightAndWidth().X),
                     GetHeightAndWidth());
                 //use the checkedPosition as real position.
-                Parameters.SetPosition(checkedPosition.X, checkedPosition.Y + GetHeightAndWidth().X);
+                int x = (int)checkedPosition.X;
+                if (x > checkedPosition.X) { x--; }
+                int y = (int)checkedPosition.Y;
+                if (y > checkedPosition.Y) { y -= 1; }
+                Parameters.SetPosition(x, y + GetHeightAndWidth().X);
+                //Parameters.SetPosition(checkedPosition.X, checkedPosition.Y + GetHeightAndWidth().X);
             }
         }
 
         public virtual void Draw(SpriteBatch spriteBatch)
         {
+            if (spriteBatch is null)
+                throw new ArgumentNullException(nameof(spriteBatch));
             if (!Parameters.IsHidden)
             {
                 //get frame's height and width
@@ -75,12 +82,12 @@ namespace Sprint1
                 {
                     //flip the frame if the target point to left.
                     spriteBatch.Draw(SpriteSheets, destinationRectangle, sourceRectangle,
-                        Color.White, 0, Vector2.Zero, SpriteEffects.FlipHorizontally, 0);
+                        Parameters.GetColor(), 0, Vector2.Zero, SpriteEffects.FlipHorizontally, 0);
                 }
                 else
                 {
                     spriteBatch.Draw(SpriteSheets, destinationRectangle, sourceRectangle,
-                        Color.White);
+                        Parameters.GetColor());
                 }
             }
         }

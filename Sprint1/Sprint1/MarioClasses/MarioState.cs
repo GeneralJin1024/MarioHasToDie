@@ -27,6 +27,7 @@ namespace Sprint1.MarioClasses
         private readonly IPowerState[] powerStates;
         public Mario Mario { get; }
         private readonly int[] CurrentState;
+        private int PreviousActionState;
 
         public MarioState(Mario mario)
         {
@@ -83,6 +84,7 @@ namespace Sprint1.MarioClasses
         {
             Mario.ChangeActionAndSprite(5);
             Mario.Parameters.SetVelocity(0, 0); // stop moving
+            Mario.Parameters.SetPosition(Mario.Parameters.Position.X, Mario.Parameters.Position.Y - 1);
             CurrentState[1] = 3;
             Mario.Parameters.HasGravity = false;
         }
@@ -98,6 +100,19 @@ namespace Sprint1.MarioClasses
         public bool IsFireMario()
         {
             return CurrentState[1] == 2;
+        }
+
+        public void LockOrUnlock(bool lockOrUnlock)
+        {
+            if (lockOrUnlock)
+            {
+                PreviousActionState = CurrentState[0];
+                ChangeAction(5);
+            }
+            else
+            {
+                CurrentState[0] = PreviousActionState;
+            }
         }
     }
 }

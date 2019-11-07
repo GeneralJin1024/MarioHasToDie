@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
+using Sprint1.ItemEnemyClasses;
 using Sprint1.LevelLoader;
 using Sprint1.MarioClasses;
 
@@ -63,9 +64,9 @@ namespace Sprint1.CollideDetection
             while (timeOfFrame > 0)
             {
                 insurance++;
-                if(insurance > 15)
+                if(insurance > 20)
                 {
-                    Console.WriteLine("It looks the loop will not stop. Check!  The rest of Time = " + timeOfFrame); Sprint1Main.Game.Exit();
+                    Console.WriteLine("It looks the loop will not stop. Check!  The rest of Time = " + timeOfFrame); Sprint1Main.Game.Exit(); break;
                 }
 
                 Map.UpdateMovingCharacters();
@@ -74,8 +75,10 @@ namespace Sprint1.CollideDetection
                 /*
                  * Generate collide pair for mario, moving objects and fireball.
                  */
-                if(!Mario.IsDied())
+                if (!Mario.IsDied() && (Mario.GetAction != MarioState.ActionType.Other || Mario.Win))
+                {
                     CreateCollidePairs(Mario);
+                }
                 foreach (ICharacter character in MovingCharacters)
                     if (!character.Parameters.IsHidden)
                         CreateCollidePairs(character);
@@ -140,7 +143,7 @@ namespace Sprint1.CollideDetection
         private void CreateCollidePairs(ICharacter character1)
         {
             ArrayList possibleCollideList = new ArrayList();
-            if (!character1.Parameters.IsHidden && character1.Parameters.InScreen)
+            if (!character1.Parameters.IsHidden && character1.Parameters.InScreen && !(character1 is PlantEnemyCharacter))
             {
                 Map.GetPossibleCollidedObject(character1, possibleCollideList);
                 //Generate collide pairs and get first contact time

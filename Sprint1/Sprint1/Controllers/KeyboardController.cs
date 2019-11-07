@@ -37,14 +37,16 @@ namespace Sprint1
         {
             ReturnCommand = new ReturnCommand(mario);
             // Map KeyboardController keys and Game commands
-            controllerDicMove.Add(Keys.W, new MoveUpCommand(mario));
-            controllerDicMove.Add(Keys.Up, new MoveUpCommand(mario));
+            controllerDicMove.Add(Keys.W, new JumpHigherCommand(mario));
+            controllerDicMove.Add(Keys.Up, new JumpHigherCommand(mario));
             controllerDicMove.Add(Keys.D, new MoveRightCommand(mario));
             controllerDicMove.Add(Keys.Right, new MoveRightCommand(mario));
             controllerDicMove.Add(Keys.S, new MoveDownCommand(mario));
             controllerDicMove.Add(Keys.Down, new MoveDownCommand(mario));
             controllerDicMove.Add(Keys.A, new MoveLeftCommand(mario));
             controllerDicMove.Add(Keys.Left, new MoveLeftCommand(mario));
+            controllerDic.Add(Keys.W, new MoveUpCommand(mario));
+            controllerDic.Add(Keys.Up, new MoveUpCommand(mario));
             controllerDic.Add(Keys.Y, new MoveStandardCommand(mario));
             controllerDic.Add(Keys.U, new MoveSuperCommand(mario));
             controllerDic.Add(Keys.I, new MoveFireCommand(mario));
@@ -52,6 +54,7 @@ namespace Sprint1
             controllerDic.Add(Keys.Q, new QuitCommand(Game));
             controllerDic.Add(Keys.J, new ThrowFireCommand(mario));
             controllerDic.Add(Keys.R, new ResetCommand());
+            controllerDic.Add(Keys.P, new PulseCommand(mario));
             /*controllerDic.Add(Keys.B, new BlockCommands(blockList[2]));
             controllerDic.Add(Keys.H, new BlockCommands(blockList[1]));
             controllerDic.Add(Keys.OemQuestion, new BlockCommands(blockList[0]));*/
