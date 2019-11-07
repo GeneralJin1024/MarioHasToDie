@@ -26,6 +26,7 @@ namespace Sprint1.LevelLoader
         private ISprite Mario;
         private int Mode;//0: MenuMode, 1: CurrentScene, 2: Game Over, 3: Loading 
         private Song BackgroundMusic;
+        private SoundFactory Sound;
         private float CheckPoint;
         private float RestOfTime;
         public Stage Stage
@@ -180,6 +181,7 @@ namespace Sprint1.LevelLoader
 
         public void ChangeToNormalMode() { Mode = 1; RestOfTime = 400; Sprint1Main.Point = 0; Sprint1Main.Coins = 0;
             /*MediaPlayer.Play(BackgroundMusic);MediaPlayer.IsRepeating = true;*/
+            Sound.GameTheme();
         }
         public void ChangeToMenuMode() { Mode = 0; }
         public void ChangeToGamoverMode() { Mode = 2; ResetScene(true, false);/*MediaPlayer.Stop();*/ }

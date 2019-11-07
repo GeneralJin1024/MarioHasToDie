@@ -476,6 +476,72 @@
 /processorParam:TextureFormat=Color
 /build:MarioSprites/smallMarioRightStand.png
 
+#begin Music/Map_BGM.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:Music/Map_BGM.mp3
+
+#begin Music/QuestionBlock.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Music/QuestionBlock.wav
+
+#begin Music/sm64_game_over.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Music/sm64_game_over.wav
+
+#begin Music/sm64_mario_lost_a_life.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Music/sm64_mario_lost_a_life.wav
+
+#begin Music/sm64_pipe.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Music/sm64_pipe.wav
+
+#begin Music/smb_bump.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Music/smb_bump.wav
+
+#begin Music/smb_coin.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Music/smb_coin.wav
+
+#begin Music/smb_fireball.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Music/smb_fireball.wav
+
+#begin Music/smb_jump-small.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Music/smb_jump-small.wav
+
+#begin Music/smb_pause.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Music/smb_pause.wav
+
+#begin Music/smb_powerup.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Music/smb_powerup.wav
+
 #begin SuperMario/superMarioJumpRight.png
 /importer:TextureImporter
 /processor:TextureProcessor

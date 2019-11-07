@@ -120,6 +120,7 @@
       <DependentUpon>Resource1.resx</DependentUpon>
     </Compile>
     <Compile Include="LevelLoader\Scene.cs" />
+    <Compile Include="SoundFactory.cs" />
     <Compile Include="Sprites\AnimatedSprite.cs" />
     <Compile Include="BlockClasses\Blocks.cs" />
     <Compile Include="Sprites\MovingAnimatedBlockSprite.cs" />
