@@ -41,8 +41,8 @@ namespace Sprint1
 
         public SoundFactory()
         {
-            /*Content.RootDirectory = "Content";*/
-            BackgroundMusic = Sprint1Main.Game.Content.Load<Song>("Music/Map_BGM");
+            Content.RootDirectory = "Content";
+            BackgroundMusic = Content.Load<Song>("Music/Map_BGM");
             coin = Content.Load<SoundEffect>("Music/smb_coin");
             HitQuestionBlockBottom = Content.Load<SoundEffect>("Music/QuestionBlock");
             JumpEffect = Content.Load<SoundEffect>("Music/smb_jump-small");
