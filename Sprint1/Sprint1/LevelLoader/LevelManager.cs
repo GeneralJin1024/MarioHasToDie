@@ -29,11 +29,12 @@ namespace Sprint1.LevelLoader
         private SoundFactory Sound;
         private float CheckPoint;
         private float RestOfTime;
+        private int previousScene;
         public Stage Stage
         {
             get
             {
-                return scenes[CurrSceneIndex - 1].Stage;
+                return scenes[CurrSceneIndex].Stage;
             }
         }
 
@@ -41,27 +42,28 @@ namespace Sprint1.LevelLoader
         {
             get
             {
-                return scenes[CurrSceneIndex - 1];
+                return scenes[CurrSceneIndex];
             }
         }
         public LevelManager()
         {
             scenes = new List<Scene> { };
             totalScene = ConfigurationReaderAndWriter.ReadSetting("Scenes");
+            Console.WriteLine("Scene = " + totalScene);
             CurrSceneIndex = 1;
             Mode = 0; RestOfTime = 0;
         }
 
         public void Initialize()
         {
-            for (int i = 1; i <= totalScene; i++)
+            for (int i = 0; i < totalScene; i++)
             {
                 Stage stage = new Stage(Sprint1Main.Game);
                 Scene scene = new Scene(stage);
                 scene.Initalize(i);
                 scenes.Add(scene);
             }
-            currScene = scenes[CurrSceneIndex - 1];
+            currScene = scenes[CurrSceneIndex];
             GameMenu = new Menu(Sprint1Main.Game, new string[] { "Welcome To Mario", "Start", "Quit" });
             GameOver = new Menu(Sprint1Main.Game, new string[] { "Game Over", "Replay", "Exit" });
             GameWin = new Menu(Sprint1Main.Game, new string[] { "Congratulations", "Replay", "Exit" });
@@ -72,8 +74,10 @@ namespace Sprint1.LevelLoader
         {
             for (int i = 1; i <= totalScene; i++)
             {
+                CurrSceneIndex = i - 1;
                 scenes[i - 1].LoadContent();
             }
+            CurrSceneIndex = 1;
             #region Fonts
             instructionFont = Sprint1Main.Game.Content.Load<SpriteFont>("arial");
             #endregion
@@ -167,15 +171,21 @@ namespace Sprint1.LevelLoader
         {
             CheckPoint = Scene.Mario.GetMinPosition().X;
             //这里的代码应该是替换currScene。鉴于这门课我们只做一关和一个隐藏关，切换可以直接用数字
-            GoToNormalArea();
+            //GoToNormalArea();
+            previousScene = CurrSceneIndex;
+            CurrSceneIndex = 0;
+            currScene = Scene;
             //
         }
 
         public void GoToNormalArea()
         {
             //这里应该有代码将currScene替换回来
-
+            ResetScene(true, false);
+            CurrSceneIndex = previousScene;
+            currScene = Scene;
             //
+            Console.WriteLine(Scene.Mario.GetMaxPosition());
             Scene.Mario.Bump();
         }
 
@@ -206,7 +216,7 @@ namespace Sprint1.LevelLoader
             //currScene.Dispose();
             Stage stage = new Stage(Sprint1Main.Game);
             currScene.Stage = stage;
-            scenes.Insert(CurrSceneIndex - 1, currScene);
+            scenes.Insert(CurrSceneIndex, currScene);
             currScene.Initalize(CurrSceneIndex);
             currScene.LoadContent();
             Mode = preMode;

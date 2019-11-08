@@ -48,8 +48,7 @@ namespace Sprint1
 
         public void LoadContent()
         {
-            Camera = new Camera(Sprint1Main.Game.GraphicsDevice.Viewport) { Limits = new Rectangle(0, 0, 
-                (int)Stage.MapBoundary.X, (int)Stage.MapBoundary.Y) };
+            Camera = new Camera(Sprint1Main.Game.GraphicsDevice.Viewport);
             Layers = new List<Layer>
             {
                 new Layer(Camera) { Parallax = new Vector2(0.2f, 1.0f) }, //cloud
@@ -73,7 +72,11 @@ namespace Sprint1
             //foreach (IFactory factory in factoryList)
             //factory.AddToList(spriteList);
             stage.LoadContent(characterList, FireBallList);
-            
+            //Camera.Limits = new Rectangle(0, 0,
+            //    (int)Stage.MapBoundary.X, (int)Stage.MapBoundary.Y);
+            Camera.Limits = new Rectangle(0, 0, (int)stage.CameraBoundary.X, (int)stage.CameraBoundary.Y);
+
+
         }
 
         public void Update(GameTime gameTime)

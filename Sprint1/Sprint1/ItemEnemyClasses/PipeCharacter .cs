@@ -38,5 +38,6 @@ namespace Sprint1.ItemClasses
         {
           
         }
+        public void MarioGetInside() { PType = PipeType.Pipe; }
     }
 }

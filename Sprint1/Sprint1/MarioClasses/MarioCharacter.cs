@@ -152,8 +152,11 @@ namespace Sprint1.MarioClasses
             {
                 case PipeCharacter.PipeType.Pipe: CollideWithBlock(upOrDown, movingDown); break;
                 case PipeCharacter.PipeType.VPipe:
-                    if (upOrDown && movingDown && Parameters.Position.X >= pipe.GetMinPosition().X + 2 && GetMaxPosition().X <= pipe.GetMaxPosition().X - 2)
-                        Mario.DiveIn(pipe.GetMinPosition().Y);
+                    if (upOrDown && movingDown && 
+                        Parameters.Position.X >= pipe.GetMinPosition().X + 2 && GetMaxPosition().X <= pipe.GetMaxPosition().X - 2)
+                    {
+                        Mario.DiveIn(pipe.GetMinPosition().Y); pipe.MarioGetInside();
+                    }
                     else
                         CollideWithBlock(upOrDown, movingDown);
                     break;
