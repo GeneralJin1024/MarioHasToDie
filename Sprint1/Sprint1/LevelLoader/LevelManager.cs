@@ -182,11 +182,11 @@ namespace Sprint1.LevelLoader
         public void ChangeToNormalMode()
         {
             Mode = 1; RestOfTime = 400; Sprint1Main.Point = 0; Sprint1Main.Coins = 0;
-            bool l = SoundFactory.Instance.BackgroundMusic.IsDisposed;
+            SoundFactory.Instance.BackgroundMusic.Play();
             //MediaPlayer.Play(SoundFactory.Instance.BackgroundMusic);MediaPlayer.IsRepeating = true;
         }
         public void ChangeToMenuMode() { Mode = 0; }
-        public void ChangeToGamoverMode() { Mode = 2; ResetScene(true, false);/*MediaPlayer.Stop();*/ }
+        public void ChangeToGamoverMode() { Mode = 2; ResetScene(true, false); }
         public void ChangeToWinMode() { Mode = 3; Sprint1Main.MarioLife = 3; ResetScene(true, false); }
         public void ChangeToLoadingMode() { Mode = 4; }
         public void AddTimeBonus() { Sprint1Main.Point += ((int)RestOfTime + 1) * 10; }

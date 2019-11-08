@@ -25,14 +25,14 @@ namespace Sprint1
 
         }
         private static SoundFactory _instance;
-        public SoundEffect BackgroundMusic { get; set; }
-        //public SoundEffectInstance BackgroundMusic
-        //{
-        //    get
-        //    {
-        //        return _backgroundMusic;
-        //    }
-        //}
+        //public SoundEffect BackgroundMusic { get; set; }
+        public SoundEffectInstance BackgroundMusic
+        {
+            get
+            {
+                return _backgroundMusic;
+            }
+        }
         private SoundEffectInstance _backgroundMusic;
         //public Song BackgroundMusic { get; private set; }
         /* SoundEffect coin here is GetItemEffect */
@@ -50,11 +50,9 @@ namespace Sprint1
 
         public SoundFactory()
         {
-            BackgroundMusic = Sprint1Main.Game.Content.Load<SoundEffect>("Music/Map_BGM");
             _backgroundMusic = Sprint1Main.Game.Content.Load<SoundEffect>("Music/Map_BGM").CreateInstance();
-            //BackgroundMusic = Sprint1Main.Game.Content.Load<Song>("Music/Map_BGM");
-            //MediaPlayer.Play(BackgroundMusic);
-            BackgroundMusic.Play();
+            _backgroundMusic.IsLooped = true;
+
             coin = Sprint1Main.Game.Content.Load<SoundEffect>("Music/smb_coin");
             HitQuestionBlockBottom = Sprint1Main.Game.Content.Load<SoundEffect>("Music/QuestionBlock");
             JumpEffect = Sprint1Main.Game.Content.Load<SoundEffect>("Music/smb_jump-small");
