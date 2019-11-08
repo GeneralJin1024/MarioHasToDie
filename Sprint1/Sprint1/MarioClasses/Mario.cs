@@ -108,6 +108,7 @@ namespace Sprint1.MarioClasses
         {
             ChangeActionAndSprite(1);
             Parameters.SetVelocity(Math.Abs(Parameters.Velocity.X), yVelocity);
+            SoundFactory.Instance.MarioJump();
         }
 
         public void ChangeToWalk()

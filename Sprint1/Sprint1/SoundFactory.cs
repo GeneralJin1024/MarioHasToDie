@@ -65,11 +65,6 @@ namespace Sprint1
             Powerup = Sprint1Main.Game.Content.Load<SoundEffect>("Music/smb_powerup");
 
         }
-        public void GameTheme()
-        {
-            //MediaPlayer.Play(BackgroundMusic);
-            MediaPlayer.IsRepeating = true;
-        }
 
 
         public void MarioJump()
@@ -86,8 +81,6 @@ namespace Sprint1
         public void MarioDied()
         {
             DiedEffect.Play();
-            MediaPlayer.Stop();
-
         }
         public void HitQuestionBlock()
         {

@@ -88,6 +88,7 @@ namespace Sprint1.MarioClasses
             CurrentState[1] = 3;
             Mario.Parameters.HasGravity = false;
             SoundFactory.Instance.BackgroundMusic.Stop();
+            SoundFactory.Instance.MarioDied();
         }
         #endregion
 
