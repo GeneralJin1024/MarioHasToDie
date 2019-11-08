@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Sprint1.FactoryClasses;
+using Sprint1.ItemClasses;
 using Sprint1.LevelLoader;
 using Sprint1.MarioClasses;
 
@@ -117,6 +118,20 @@ namespace Sprint1
             newParameter.SetPosition(parameter.Position.X, parameter.Position.Y);
             newParameter.SetVelocity(Math.Abs(parameter.Velocity.X), parameter.Velocity.Y);
             newParameter.HasGravity = parameter.HasGravity;
+        }
+
+        public void DisableVPipes(List<float> pipePosition)
+        {
+            if (pipePosition is null)
+                throw new ArgumentNullException(nameof(pipePosition));
+            foreach(ICharacter character in characterList)
+            {
+                if (pipePosition.Contains(character.GetMinPosition().X) && character.Type == Sprint1Main.CharacterType.Pipe)
+                {
+                    PipeCharacter pipe = (PipeCharacter)character;
+                    pipe.MarioGetInside();
+                }
+            }
         }
 
     }

@@ -24,6 +24,7 @@ namespace Sprint1.MarioClasses
         public bool Win { get; set; } //马里奥进入控制锁定但仍进行碰撞的状态
         public bool Invincible { get; set; }
         private float Clock;
+        public List<float> DivedPipe { get; private set; }
         public bool IsSuper {
             get
             {
@@ -38,6 +39,7 @@ namespace Sprint1.MarioClasses
             InitialParameters = new MoveParameters(false);
             Scene.CopyDataOfParameter(Parameters, InitialParameters);
             Win = false;
+            DivedPipe = new List<float>();
         }
         #region ISprite Methods
         public void Update(float timeOfFrame)
@@ -156,6 +158,7 @@ namespace Sprint1.MarioClasses
                         Parameters.Position.X >= pipe.GetMinPosition().X + 2 && GetMaxPosition().X <= pipe.GetMaxPosition().X - 2)
                     {
                         Mario.DiveIn(pipe.GetMinPosition().Y); pipe.MarioGetInside();
+                        DivedPipe.Add(pipe.GetMinPosition().X);
                     }
                     else
                         CollideWithBlock(upOrDown, movingDown);

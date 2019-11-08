@@ -161,7 +161,9 @@ namespace Sprint1.LevelLoader
         {
             Sprint1Main.MarioLife--;
             if (Sprint1Main.MarioLife > 0)
-                ResetScene(true, true);
+            {
+                ResetScene(true, true); SoundFactory.Instance.BackgroundMusic.Play();
+            }
             else
             {
                 ChangeToGamoverMode(); Sprint1Main.MarioLife = 3;
@@ -210,6 +212,7 @@ namespace Sprint1.LevelLoader
             MarioState.PowerType powerType = currScene.Mario.GetPower;
             bool isFire = currScene.Mario.IsFire(); bool Win = currScene.Mario.Win;
             bool invincible = Scene.Mario.Invincible; int preMode = Mode;
+            List<float> pipeList = Scene.Mario.DivedPipe;
 
             ChangeToLoadingMode();
             scenes.Remove(currScene);
@@ -229,10 +232,12 @@ namespace Sprint1.LevelLoader
                 currScene.Mario.Win = Win; Scene.Mario.Invincible = invincible;
                 currScene.Mario.RestoreStates(actionType, powerType, isFire);
                 currScene.Camera.LookAt(currScene.Mario.Parameters.Position);
+                Scene.DisableVPipes(pipeList);
             }
             else if (goToCheckPoint)
             {
-                Scene.Mario.Parameters.SetPosition(CheckPoint, Scene.Mario.GetMinPosition().Y);
+                Scene.DisableVPipes(pipeList);
+                Scene.Mario.Parameters.SetPosition(CheckPoint, Scene.Mario.GetMinPosition().Y - 32);
             }
             #endregion
 
