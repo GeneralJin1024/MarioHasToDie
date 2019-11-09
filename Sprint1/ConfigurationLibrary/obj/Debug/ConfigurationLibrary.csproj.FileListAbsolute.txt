@@ -8,11 +8,6 @@ C:\Users\72957\source\repos\SmartMario\Sprint1\ConfigurationLibrary\bin\Debug\Co
 C:\Users\72957\source\repos\SmartMario\Sprint1\ConfigurationLibrary\obj\Debug\ConfigurationLibrary.csproj.CoreCompileInputs.cache
 C:\Users\72957\source\repos\SmartMario\Sprint1\ConfigurationLibrary\obj\Debug\ConfigurationLibrary.dll
 C:\Users\72957\source\repos\SmartMario\Sprint1\ConfigurationLibrary\obj\Debug\ConfigurationLibrary.pdb
-C:\Users\13667\source\repos\SmartMario\Sprint1\ConfigurationLibrary\bin\Debug\ConfigurationLibrary.dll
-C:\Users\13667\source\repos\SmartMario\Sprint1\ConfigurationLibrary\bin\Debug\ConfigurationLibrary.pdb
-C:\Users\13667\source\repos\SmartMario\Sprint1\ConfigurationLibrary\obj\Debug\ConfigurationLibrary.csproj.CoreCompileInputs.cache
-C:\Users\13667\source\repos\SmartMario\Sprint1\ConfigurationLibrary\obj\Debug\ConfigurationLibrary.dll
-C:\Users\13667\source\repos\SmartMario\Sprint1\ConfigurationLibrary\obj\Debug\ConfigurationLibrary.pdb
 C:\Users\72957\source\repos\SmartMario\Sprint1\ConfigurationLibrary\obj\Debug\ConfigurationLibrary.csprojAssemblyReference.cache
 C:\Users\zhangjian\source\repos\SmartMario\Sprint1\ConfigurationLibrary\bin\Debug\ConfigurationLibrary.dll
 C:\Users\zhangjian\source\repos\SmartMario\Sprint1\ConfigurationLibrary\bin\Debug\ConfigurationLibrary.pdb
@@ -25,4 +20,9 @@ C:\Users\zzy00\Source\Repos\SmartMario\Sprint1\ConfigurationLibrary\bin\Debug\Co
 C:\Users\zzy00\Source\Repos\SmartMario\Sprint1\ConfigurationLibrary\obj\Debug\ConfigurationLibrary.csproj.CoreCompileInputs.cache
 C:\Users\zzy00\Source\Repos\SmartMario\Sprint1\ConfigurationLibrary\obj\Debug\ConfigurationLibrary.dll
 C:\Users\zzy00\Source\Repos\SmartMario\Sprint1\ConfigurationLibrary\obj\Debug\ConfigurationLibrary.pdb
+C:\Users\13667\source\repos\SmartMario\Sprint1\ConfigurationLibrary\bin\Debug\ConfigurationLibrary.dll
+C:\Users\13667\source\repos\SmartMario\Sprint1\ConfigurationLibrary\bin\Debug\ConfigurationLibrary.pdb
 C:\Users\13667\source\repos\SmartMario\Sprint1\ConfigurationLibrary\obj\Debug\ConfigurationLibrary.csprojAssemblyReference.cache
+C:\Users\13667\source\repos\SmartMario\Sprint1\ConfigurationLibrary\obj\Debug\ConfigurationLibrary.csproj.CoreCompileInputs.cache
+C:\Users\13667\source\repos\SmartMario\Sprint1\ConfigurationLibrary\obj\Debug\ConfigurationLibrary.dll
+C:\Users\13667\source\repos\SmartMario\Sprint1\ConfigurationLibrary\obj\Debug\ConfigurationLibrary.pdb

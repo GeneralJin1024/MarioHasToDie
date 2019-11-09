@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Sprint1.FactoryClasses;
+using Sprint1.ItemClasses;
 using Sprint1.LevelLoader;
 using Sprint1.MarioClasses;
 
@@ -48,8 +49,7 @@ namespace Sprint1
 
         public void LoadContent()
         {
-            Camera = new Camera(Sprint1Main.Game.GraphicsDevice.Viewport) { Limits = new Rectangle(0, 0, 
-                (int)Stage.MapBoundary.X, (int)Stage.MapBoundary.Y) };
+            Camera = new Camera(Sprint1Main.Game.GraphicsDevice.Viewport);
             Layers = new List<Layer>
             {
                 new Layer(Camera) { Parallax = new Vector2(0.2f, 1.0f) }, //cloud
@@ -73,7 +73,11 @@ namespace Sprint1
             //foreach (IFactory factory in factoryList)
             //factory.AddToList(spriteList);
             stage.LoadContent(characterList, FireBallList);
-            
+            //Camera.Limits = new Rectangle(0, 0,
+            //    (int)Stage.MapBoundary.X, (int)Stage.MapBoundary.Y);
+            Camera.Limits = new Rectangle(0, 0, (int)stage.CameraBoundary.X, (int)stage.CameraBoundary.Y);
+
+
         }
 
         public void Update(GameTime gameTime)
@@ -84,6 +88,7 @@ namespace Sprint1
 
         public void Draw()
         {
+            Sprint1Main.Game.GraphicsDevice.Clear(stage.BackgroundColor);
             foreach (Layer layer in Layers)
                 layer.Draw(spriteBatch);
         }
@@ -114,6 +119,20 @@ namespace Sprint1
             newParameter.SetPosition(parameter.Position.X, parameter.Position.Y);
             newParameter.SetVelocity(Math.Abs(parameter.Velocity.X), parameter.Velocity.Y);
             newParameter.HasGravity = parameter.HasGravity;
+        }
+
+        public void DisableVPipes(List<float> pipePosition)
+        {
+            if (pipePosition is null)
+                throw new ArgumentNullException(nameof(pipePosition));
+            foreach(ICharacter character in characterList)
+            {
+                if (pipePosition.Contains(character.GetMinPosition().X) && character.Type == Sprint1Main.CharacterType.Pipe)
+                {
+                    PipeCharacter pipe = (PipeCharacter)character;
+                    pipe.MarioGetInside();
+                }
+            }
         }
 
     }

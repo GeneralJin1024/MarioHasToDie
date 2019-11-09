@@ -476,11 +476,11 @@
 /processorParam:TextureFormat=Color
 /build:MarioSprites/smallMarioRightStand.png
 
-#begin Music/BGM.wav
-/importer:WavImporter
+#begin Music/Map_BGM.mp3
+/importer:Mp3Importer
 /processor:SoundEffectProcessor
 /processorParam:Quality=Best
-/build:Music/BGM.wav
+/build:Music/Map_BGM.mp3
 
 #begin Music/QuestionBlock.wav
 /importer:WavImporter

@@ -26,13 +26,15 @@ namespace Sprint1.LevelLoader
         private ISprite Mario;
         private int Mode;//0: MenuMode, 1: CurrentScene, 2: Game Over, 3: Loading 
         private Song BackgroundMusic;
+        private SoundFactory Sound;
         private float CheckPoint;
         private float RestOfTime;
+        private int previousScene;
         public Stage Stage
         {
             get
             {
-                return scenes[CurrSceneIndex - 1].Stage;
+                return scenes[CurrSceneIndex].Stage;
             }
         }
 
@@ -40,27 +42,28 @@ namespace Sprint1.LevelLoader
         {
             get
             {
-                return scenes[CurrSceneIndex - 1];
+                return scenes[CurrSceneIndex];
             }
         }
         public LevelManager()
         {
             scenes = new List<Scene> { };
             totalScene = ConfigurationReaderAndWriter.ReadSetting("Scenes");
+            Console.WriteLine("Scene = " + totalScene);
             CurrSceneIndex = 1;
             Mode = 0; RestOfTime = 0;
         }
 
         public void Initialize()
         {
-            for (int i = 1; i <= totalScene; i++)
+            for (int i = 0; i < totalScene; i++)
             {
                 Stage stage = new Stage(Sprint1Main.Game);
                 Scene scene = new Scene(stage);
                 scene.Initalize(i);
                 scenes.Add(scene);
             }
-            currScene = scenes[CurrSceneIndex - 1];
+            currScene = scenes[CurrSceneIndex];
             GameMenu = new Menu(Sprint1Main.Game, new string[] { "Welcome To Mario", "Start", "Quit" });
             GameOver = new Menu(Sprint1Main.Game, new string[] { "Game Over", "Replay", "Exit" });
             GameWin = new Menu(Sprint1Main.Game, new string[] { "Congratulations", "Replay", "Exit" });
@@ -71,8 +74,10 @@ namespace Sprint1.LevelLoader
         {
             for (int i = 1; i <= totalScene; i++)
             {
+                CurrSceneIndex = i - 1;
                 scenes[i - 1].LoadContent();
             }
+            CurrSceneIndex = 1;
             #region Fonts
             instructionFont = Sprint1Main.Game.Content.Load<SpriteFont>("arial");
             #endregion
@@ -119,11 +124,11 @@ namespace Sprint1.LevelLoader
                 throw new ArgumentNullException(nameof(spriteBatch));
             if (Mode != 1)
                 Sprint1Main.Game.GraphicsDevice.Clear(Color.Black);
-            else
-                Sprint1Main.Game.GraphicsDevice.Clear(Color.CornflowerBlue);
+            //else
+            //    Sprint1Main.Game.GraphicsDevice.Clear(Color.CornflowerBlue);
 
             spriteBatch.Begin(blendState: BlendState.AlphaBlend);
-            Color fontColor = Mode == 1 ? Color.Black : Color.White;
+            Color fontColor = Stage.BackgroundColor != Color.Black ? Color.Black : Color.White;
             Coin.Draw(spriteBatch); //加一张贴图
             Mario.Draw(spriteBatch);
             spriteBatch.DrawString(instructionFont, ":   " + Sprint1Main.Coins, new Vector2(172, 20), fontColor,
@@ -156,7 +161,9 @@ namespace Sprint1.LevelLoader
         {
             Sprint1Main.MarioLife--;
             if (Sprint1Main.MarioLife > 0)
-                ResetScene(true, true);
+            {
+                ResetScene(true, true); SoundFactory.Instance.BackgroundMusic.Play();
+            }
             else
             {
                 ChangeToGamoverMode(); Sprint1Main.MarioLife = 3;
@@ -166,24 +173,32 @@ namespace Sprint1.LevelLoader
         {
             CheckPoint = Scene.Mario.GetMinPosition().X;
             //这里的代码应该是替换currScene。鉴于这门课我们只做一关和一个隐藏关，切换可以直接用数字
-            GoToNormalArea();
+            //GoToNormalArea();
+            previousScene = CurrSceneIndex;
+            CurrSceneIndex = 0;
+            currScene = Scene;
             //
         }
 
         public void GoToNormalArea()
         {
             //这里应该有代码将currScene替换回来
-
+            ResetScene(true, false);
+            CurrSceneIndex = previousScene;
+            currScene = Scene;
             //
+            Console.WriteLine(Scene.Mario.GetMaxPosition());
             Scene.Mario.Bump();
         }
 
-        public void ChangeToNormalMode() { Mode = 1; RestOfTime = 400; Sprint1Main.Point = 0; Sprint1Main.Coins = 0;
-            MediaPlayer.Play(SoundFactory.Instance.BackgroundMusic);MediaPlayer.IsRepeating = true;
-          
+        public void ChangeToNormalMode()
+        {
+            Mode = 1; RestOfTime = 400; Sprint1Main.Point = 0; Sprint1Main.Coins = 0;
+            SoundFactory.Instance.BackgroundMusic.Play();
+            //MediaPlayer.Play(SoundFactory.Instance.BackgroundMusic);MediaPlayer.IsRepeating = true;
         }
         public void ChangeToMenuMode() { Mode = 0; }
-        public void ChangeToGamoverMode() { Mode = 2; ResetScene(true, false);/*MediaPlayer.Stop();*/ }
+        public void ChangeToGamoverMode() { Mode = 2; ResetScene(true, false); }
         public void ChangeToWinMode() { Mode = 3; Sprint1Main.MarioLife = 3; ResetScene(true, false); }
         public void ChangeToLoadingMode() { Mode = 4; }
         public void AddTimeBonus() { Sprint1Main.Point += ((int)RestOfTime + 1) * 10; }
@@ -197,13 +212,14 @@ namespace Sprint1.LevelLoader
             MarioState.PowerType powerType = currScene.Mario.GetPower;
             bool isFire = currScene.Mario.IsFire(); bool Win = currScene.Mario.Win;
             bool invincible = Scene.Mario.Invincible; int preMode = Mode;
+            List<float> pipeList = Scene.Mario.DivedPipe;
 
             ChangeToLoadingMode();
             scenes.Remove(currScene);
             //currScene.Dispose();
             Stage stage = new Stage(Sprint1Main.Game);
             currScene.Stage = stage;
-            scenes.Insert(CurrSceneIndex - 1, currScene);
+            scenes.Insert(CurrSceneIndex, currScene);
             currScene.Initalize(CurrSceneIndex);
             currScene.LoadContent();
             Mode = preMode;
@@ -216,10 +232,12 @@ namespace Sprint1.LevelLoader
                 currScene.Mario.Win = Win; Scene.Mario.Invincible = invincible;
                 currScene.Mario.RestoreStates(actionType, powerType, isFire);
                 currScene.Camera.LookAt(currScene.Mario.Parameters.Position);
+                Scene.DisableVPipes(pipeList);
             }
             else if (goToCheckPoint)
             {
-                Scene.Mario.Parameters.SetPosition(CheckPoint, Scene.Mario.GetMinPosition().Y);
+                Scene.DisableVPipes(pipeList);
+                Scene.Mario.Parameters.SetPosition(CheckPoint, Scene.Mario.GetMinPosition().Y - 32);
             }
             #endregion
 

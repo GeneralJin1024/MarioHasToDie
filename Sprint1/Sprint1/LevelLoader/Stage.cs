@@ -20,7 +20,8 @@ namespace Sprint1.LevelLoader
         public Sprint1Main Game { get; set; }
         public static Vector2 Boundary { get; private set; }
         public static Vector2 MapBoundary { get; private set; }
-
+        public Vector2 CameraBoundary { get; private set; } // 这个property只是用于限制照相机的，不碍其他的事。
+        public Color BackgroundColor { get; private set; }
         readonly List<IController> controllerList;
         //private ArrayList factoryList;
         private int TimeSinceLastFrame;
@@ -94,6 +95,11 @@ namespace Sprint1.LevelLoader
             }
             else
             {
+                CameraBoundary = StringToVecter2(myLevelSection.Stage[1].SpriteStartLocation);
+                if (myLevelSection.Stage[2].SpriteName.Equals("Black", StringComparison.Ordinal))
+                    BackgroundColor = Color.Black;
+                else
+                    BackgroundColor = Color.CornflowerBlue;
                 ItemFactory.Instance.Initialize(fireBallList);
                 Game.Scene.Mario = PlayerFactory.FactoryMethod2(myLevelSection.Player[1].SpriteName, 
                     StringToVecter2(myLevelSection.Player[1].SpriteStartLocation));

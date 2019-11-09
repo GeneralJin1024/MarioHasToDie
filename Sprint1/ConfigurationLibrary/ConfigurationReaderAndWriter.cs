@@ -34,6 +34,18 @@ namespace ConfigurationLibrary
     {
         // Declare a collection element represented 
         // in the configuration file by the sub-section
+        [ConfigurationProperty("Stage",
+            IsDefaultCollection = false)]
+        public NonBlockSpritesCollection Stage
+        {
+            get
+            {
+                NonBlockSpritesCollection stageCollection =
+                (NonBlockSpritesCollection)base[nameof(Stage)];
+                return stageCollection;
+            }
+        }
+
         [ConfigurationProperty("Player",
             IsDefaultCollection = false)]
         public NonBlockSpritesCollection Player

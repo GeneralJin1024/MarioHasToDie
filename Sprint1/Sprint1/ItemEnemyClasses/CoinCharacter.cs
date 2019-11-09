@@ -30,6 +30,7 @@ namespace Sprint1.ItemClasses
                     isBump = false;
                     GetACoin();
                     Parameters.IsHidden = true; //Handle Coins
+                    SoundFactory.Instance.MarioGetItem();
                 }
             }
         }
@@ -48,6 +49,7 @@ namespace Sprint1.ItemClasses
         {
             GetACoin();
             Parameters.IsHidden = true;
+            SoundFactory.Instance.MarioGetItem();
 
         }
     }

@@ -32,7 +32,7 @@ namespace Sprint1.ItemClasses
         {
 
             Sprint1Main.Point += 1000;
-            Parameters.IsHidden = true;
+            Parameters.IsHidden = true; SoundFactory.Instance.MarioGetItem();
         }
 
     }
