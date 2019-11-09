@@ -25,7 +25,7 @@ namespace Sprint1
 
         }
         private static SoundFactory _instance;
-        private Song BackgroundMusic;
+        public Song BackgroundMusic { get; set; }
         /* SoundEffect coin here is GetItemEffect */
         private SoundEffect coin;
         private SoundEffect HitQuestionBlockBottom;

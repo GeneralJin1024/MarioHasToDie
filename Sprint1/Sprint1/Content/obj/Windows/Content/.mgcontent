@@ -43,7 +43,6 @@
     <File>C:/Users/zhangjian/source/repos/SmartMario/Sprint1/Sprint1/Content/MarioSprites/smallMarioRightJump.png</File>
     <File>C:/Users/zhangjian/source/repos/SmartMario/Sprint1/Sprint1/Content/MarioSprites/smallMarioRightMove.png</File>
     <File>C:/Users/zhangjian/source/repos/SmartMario/Sprint1/Sprint1/Content/MarioSprites/smallMarioRightStand.png</File>
-    <File>C:/Users/zhangjian/source/repos/SmartMario/Sprint1/Sprint1/Content/Music/Map_BGM.mp3</File>
     <File>C:/Users/zhangjian/source/repos/SmartMario/Sprint1/Sprint1/Content/Music/QuestionBlock.wav</File>
     <File>C:/Users/zhangjian/source/repos/SmartMario/Sprint1/Sprint1/Content/Music/sm64_game_over.wav</File>
     <File>C:/Users/zhangjian/source/repos/SmartMario/Sprint1/Sprint1/Content/Music/sm64_mario_lost_a_life.wav</File>
@@ -60,7 +59,6 @@
     <File>C:/Users/zhangjian/source/repos/SmartMario/Sprint1/Sprint1/Content/SuperMario/superMarioRightStand.png</File>
   </SourceFiles>
   <DestFiles>
-    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
