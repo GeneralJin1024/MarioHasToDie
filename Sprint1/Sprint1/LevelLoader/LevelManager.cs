@@ -124,11 +124,11 @@ namespace Sprint1.LevelLoader
                 throw new ArgumentNullException(nameof(spriteBatch));
             if (Mode != 1)
                 Sprint1Main.Game.GraphicsDevice.Clear(Color.Black);
-            else
-                Sprint1Main.Game.GraphicsDevice.Clear(Color.CornflowerBlue);
+            //else
+            //    Sprint1Main.Game.GraphicsDevice.Clear(Color.CornflowerBlue);
 
             spriteBatch.Begin(blendState: BlendState.AlphaBlend);
-            Color fontColor = Mode == 1 ? Color.Black : Color.White;
+            Color fontColor = Stage.BackgroundColor != Color.Black ? Color.Black : Color.White;
             Coin.Draw(spriteBatch); //加一张贴图
             Mario.Draw(spriteBatch);
             spriteBatch.DrawString(instructionFont, ":   " + Sprint1Main.Coins, new Vector2(172, 20), fontColor,

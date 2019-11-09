@@ -88,6 +88,7 @@ namespace Sprint1
 
         public void Draw()
         {
+            Sprint1Main.Game.GraphicsDevice.Clear(stage.BackgroundColor);
             foreach (Layer layer in Layers)
                 layer.Draw(spriteBatch);
         }
