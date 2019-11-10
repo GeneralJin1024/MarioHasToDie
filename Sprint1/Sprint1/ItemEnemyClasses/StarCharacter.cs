@@ -7,6 +7,7 @@ namespace Sprint1.ItemClasses
 {
     class StarCharacter : ItemCharacter
     {
+        public override Vector2 GetHeightAndWidth { get { return Item.GetHeightAndWidth; } }
         public override Sprint1Main.CharacterType Type { get; set; } = Sprint1Main.CharacterType.Star;
         public StarCharacter(Texture2D texture, Point rowsAndColunms, Vector2 location)
             : base(texture, rowsAndColunms, location) { }
@@ -15,17 +16,11 @@ namespace Sprint1.ItemClasses
         public override void Update(float timeOfFrame)
         {
             base.Update(timeOfFrame);
-            if (!Parameters.IsHidden && !isBump && Parameters.Velocity.X == 0)
+            if (!Parameters.IsHidden && !IsBump && Parameters.Velocity.X == 0)
             {
-                Parameters.IsLeft = Sprint1Main.Game.Scene.Mario.GetMinPosition().X >= Parameters.Position.X;
+                Parameters.IsLeft = Sprint1Main.Game.Scene.Mario.GetMinPosition.X >= Parameters.Position.X;
                 Parameters.SetVelocity(3, -15);
             }
-        }
-
-        public override Vector2 GetHeightAndWidth()
-        {
-            return item.GetHeightAndWidth;
-         
         }
 
         public override void MarioCollide(bool specialCase)
@@ -39,12 +34,13 @@ namespace Sprint1.ItemClasses
 
     class FireBallCharacter : ItemCharacter
     {
+        public override Vector2 GetHeightAndWidth { get { return Item.GetHeightAndWidth; } }
         public override Sprint1Main.CharacterType Type { get; set; } = Sprint1Main.CharacterType.Fireball;
         public FireBallCharacter(Texture2D texture, Point rowsAndColumns, Vector2 location) : base(texture, rowsAndColumns, location)
         {
             Parameters.HasGravity = true;
         }
-        public override Vector2 GetHeightAndWidth() { return item.GetHeightAndWidth; }
+        //public override Vector2 GetHeightAndWidth() { return Item.GetHeightAndWidth; }
 
         public override void MarioCollide(bool specialCase) {}
         public override void BlockCollide(bool isBottom) { Parameters.IsHidden = true; }

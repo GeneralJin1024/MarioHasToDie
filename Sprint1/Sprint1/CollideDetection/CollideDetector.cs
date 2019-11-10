@@ -50,10 +50,10 @@ namespace Sprint1.CollideDetection
                 if (Mario.Parameters.Position.X <= (Stage.Boundary.X / 2))
                     character.Parameters.InScreen = character.Parameters.Position.X <= Stage.Boundary.X;
                 else if (Mario.Parameters.Position.X >= (Stage.MapBoundary.X - Stage.Boundary.X / 2))
-                    character.Parameters.InScreen = character.GetMaxPosition().X >= Stage.MapBoundary.X - Stage.Boundary.X;
+                    character.Parameters.InScreen = character.GetMaxPosition.X >= Stage.MapBoundary.X - Stage.Boundary.X;
                 else
                 {
-                    character.Parameters.InScreen = character.GetMaxPosition().X >= (Mario.Parameters.Position.X - 800 / 2) &&
+                    character.Parameters.InScreen = character.GetMaxPosition.X >= (Mario.Parameters.Position.X - 800 / 2) &&
                     character.Parameters.Position.X <= Mario.Parameters.Position.X + 800 / 2;
                 }
                 if (Mario.IsDied())

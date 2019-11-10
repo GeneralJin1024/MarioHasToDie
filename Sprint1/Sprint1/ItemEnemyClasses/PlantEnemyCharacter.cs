@@ -26,7 +26,7 @@ namespace Sprint1.ItemEnemyClasses
         public override void Update(float timeOfFrame)
         {
             //Sprint1Main.Game.Scene.Mario
-            if (Math.Abs(Sprint1Main.Game.Scene.Mario.GetMinPosition().X - Parameters.Position.X) <= 50 && Parameters.Velocity.Y == 0)
+            if (Math.Abs(Sprint1Main.Game.Scene.Mario.GetMinPosition.X - Parameters.Position.X) <= 50 && Parameters.Velocity.Y == 0)
             {
                 Parameters.SetVelocity(0, -2f);
             }

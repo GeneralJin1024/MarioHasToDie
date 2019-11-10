@@ -20,6 +20,21 @@ namespace Sprint1.MarioClasses
         public MarioState.PowerType GetPower { get { return Mario.MarioState.GetPowerType; } }
         public bool Auto { get { return Mario.AutomaticallyMoving; } }
         public MoveParameters Parameters { get; }
+        public Vector2 GetMinPosition
+        {
+            get
+            {
+                return new Vector2(Parameters.Position.X, Parameters.Position.Y - Mario.GetHeightAndWidth.X);
+            }
+        }
+        public Vector2 GetMaxPosition
+        {
+            get { return new Vector2(Parameters.Position.X + Mario.GetHeightAndWidth.Y, Parameters.Position.Y); }
+        }
+        public Vector2 GetHeightAndWidth
+        {
+            get { return Mario.GetHeightAndWidth; }
+        }
         private readonly MoveParameters InitialParameters;
         public bool Win { get; set; } //马里奥进入控制锁定但仍进行碰撞的状态
         public bool Invincible { get; set; }
@@ -82,8 +97,8 @@ namespace Sprint1.MarioClasses
         {
             if (Mario.MarioState.IsFireMario())
             {
-                float distance = Parameters.IsLeft ? 0 : GetHeightAndWidth().Y;
-                Vector2 location = new Vector2(Parameters.Position.X + distance, Parameters.Position.Y - GetHeightAndWidth().Y / 2);
+                float distance = Parameters.IsLeft ? 0 : GetHeightAndWidth.Y;
+                Vector2 location = new Vector2(Parameters.Position.X + distance, Parameters.Position.Y - GetHeightAndWidth.Y / 2);
                 ICharacter fireBall = ItemFactory.Instance.AddNewCharacter("FireBall+{1}", location);
                 fireBall.Parameters.IsHidden = false;
                 fireBall.Parameters.IsLeft = Parameters.IsLeft;
@@ -155,18 +170,18 @@ namespace Sprint1.MarioClasses
                 case PipeCharacter.PipeType.Pipe: CollideWithBlock(upOrDown, movingDown); break;
                 case PipeCharacter.PipeType.VPipe:
                     if (upOrDown && movingDown && 
-                        Parameters.Position.X >= pipe.GetMinPosition().X + 2 && GetMaxPosition().X <= pipe.GetMaxPosition().X - 2)
+                        Parameters.Position.X >= pipe.GetMinPosition.X + 2 && GetMaxPosition.X <= pipe.GetMaxPosition.X - 2)
                     {
-                        Mario.DiveIn(pipe.GetMinPosition().Y); pipe.MarioGetInside();
-                        DivedPipe.Add(pipe.GetMinPosition().X);
+                        Mario.DiveIn(pipe.GetMinPosition.Y); pipe.MarioGetInside();
+                        DivedPipe.Add(pipe.GetMinPosition.X);
                     }
                     else
                         CollideWithBlock(upOrDown, movingDown);
                     break;
                 case PipeCharacter.PipeType.HPipe:
-                    if (!upOrDown && Parameters.Velocity.X > 0 && GetMinPosition().Y >= pipe.GetMinPosition().Y + 1 &&
-                        GetMaxPosition().Y <= pipe.GetMaxPosition().X)
-                        Mario.DiveInRight(pipe.GetMinPosition().X, pipe.GetMaxPosition().Y);
+                    if (!upOrDown && Parameters.Velocity.X > 0 && GetMinPosition.Y >= pipe.GetMinPosition.Y &&
+                        GetMaxPosition.Y <= pipe.GetMaxPosition.X)
+                        Mario.DiveInRight(pipe.GetMinPosition.X, pipe.GetMaxPosition.Y);
                     else CollideWithBlock(upOrDown, movingDown);
                     break;
                 default: break;
@@ -181,8 +196,8 @@ namespace Sprint1.MarioClasses
             Mario.ChangeToWin();
             Win = true;
             Parameters.SetVelocity(0, 0);
-            Parameters.SetPosition(flag.GetMinPosition().X, Parameters.Position.Y);
-            float bonusHeight = flag.GetMaxPosition().Y - Parameters.Position.Y;
+            Parameters.SetPosition(flag.GetMinPosition.X, Parameters.Position.Y);
+            float bonusHeight = flag.GetMaxPosition.Y - Parameters.Position.Y;
             if (bonusHeight >= 128)
                 Sprint1Main.Point += 4000;
             else if (bonusHeight >= 82)
@@ -193,7 +208,7 @@ namespace Sprint1.MarioClasses
                 Sprint1Main.Point += 400;
             else
                 Sprint1Main.Point += 100;
-            if (GetMinPosition().Y <= flag.GetMinPosition().Y)
+            if (GetMinPosition.Y <= flag.GetMinPosition.Y)
                 Sprint1Main.MarioLife++;
             Sprint1Main.Game.LevelControl.AddTimeBonus();
             //Console.WriteLine("Flag is touched, Mario Position is = " + Parameters.Position);
@@ -235,10 +250,10 @@ namespace Sprint1.MarioClasses
          */
         #endregion
         //get left up coner position.
-        public Vector2 GetMinPosition() { return new Vector2(Parameters.Position.X, Parameters.Position.Y - Mario.GetHeightAndWidth.X); }
+        //public Vector2 GetMinPosition() { return new Vector2(Parameters.Position.X, Parameters.Position.Y - Mario.GetHeightAndWidth.X); }
         //get right down coner position.
-        public Vector2 GetMaxPosition() { return new Vector2(Parameters.Position.X + Mario.GetHeightAndWidth.Y, Parameters.Position.Y); }
-        public Vector2 GetHeightAndWidth() { return Mario.GetHeightAndWidth; } //get mario's hit and width.
+        //public Vector2 GetMaxPosition() { return new Vector2(Parameters.Position.X + Mario.GetHeightAndWidth.Y, Parameters.Position.Y); }
+        //public Vector2 GetHeightAndWidth() { return Mario.GetHeightAndWidth; } //get mario's hit and width.
         public bool IsDied() { return Mario.MarioState.GetPowerType == MarioState.PowerType.Died; }
         public bool IsFire() { return Mario.MarioState.IsFireMario(); }
         public void RestoreStates(MarioState.ActionType actionType, MarioState.PowerType powerType, bool isFire)

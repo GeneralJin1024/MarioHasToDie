@@ -14,17 +14,17 @@ namespace Sprint1.ItemClasses
         public override Sprint1Main.CharacterType Type { get; set; } = Sprint1Main.CharacterType.Castle;
         public CastleCharacter(Texture2D texture, Point rowsAndColunms, Vector2 location)
             : base(texture, rowsAndColunms, location) { }
-        public override Vector2 GetHeightAndWidth()
+        public override Vector2 GetHeightAndWidth
         {
-            return new Vector2();
+            get { return new Vector2(); }
         }
-        public override Vector2 GetMinPosition()
+        public override Vector2 GetMinPosition
         {
-            return new Vector2(Parameters.Position.X + 33, Parameters.Position.Y - 48);
+            get { return new Vector2(Parameters.Position.X + 33, Parameters.Position.Y - 48); }
         }
-        public override Vector2 GetMaxPosition()
+        public override Vector2 GetMaxPosition
         {
-            return new Vector2(Parameters.Position.X + 48, Parameters.Position.Y);
+            get { return new Vector2(Parameters.Position.X + 48, Parameters.Position.Y); }
         }
     }
 }

@@ -5,7 +5,10 @@ using Microsoft.Xna.Framework.Media;
 using Sprint1.MarioClasses;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
+using System.Reflection;
+using System.Resources;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -27,6 +30,7 @@ namespace Sprint1.LevelLoader
         private float CheckPoint;
         private float RestOfTime;
         private int previousScene;
+        private readonly ResourceManager StringManager;
         public Stage Stage
         {
             get
@@ -49,6 +53,7 @@ namespace Sprint1.LevelLoader
             Console.WriteLine("Scene = " + totalScene);
             CurrSceneIndex = 1;
             Mode = 0; RestOfTime = 0;
+            StringManager = new ResourceManager("Sprint1.Resource1", Assembly.GetExecutingAssembly());
         }
 
         public void Initialize()
@@ -87,7 +92,7 @@ namespace Sprint1.LevelLoader
             GameMenu.LoadContent(instructionFont);
             GameOver.LoadContent(instructionFont);
             GameWin.LoadContent(instructionFont);
-            CheckPoint = Scene.Mario.GetMinPosition().X;
+            CheckPoint = Scene.Mario.GetMinPosition.X;
             //BackgroundMusic = MusicFactory.Instance.AddBackgroundMusic();
         }
 
@@ -128,13 +133,15 @@ namespace Sprint1.LevelLoader
             Color fontColor = Mode == 1 && Stage.BackgroundColor != Color.Black ? Color.Black : Color.White;
             spriteBatch.DrawString(instructionFont, ":   " + Sprint1Main.Coins, new Vector2(172, 20), fontColor,
                 0, Vector2.Zero, 1.2f, SpriteEffects.None, 0); //剩余生命
-            spriteBatch.DrawString(instructionFont, "MARIO", new Vector2(20, 0), fontColor,
+            spriteBatch.DrawString(instructionFont, StringManager.GetString("MARIO", CultureInfo.CurrentCulture), new Vector2(20, 0), fontColor,
                 0, Vector2.Zero, 1.2f, SpriteEffects.None, 0); //得分
             spriteBatch.DrawString(instructionFont, "" + Sprint1Main.Point, new Vector2(20, 20), fontColor,
                 0, Vector2.Zero, 1.2f, SpriteEffects.None, 0);//得分
-            spriteBatch.DrawString(instructionFont, "TIME", new Vector2(640, 0), fontColor, 0, Vector2.Zero, 1.2f, SpriteEffects.None, 0);
+            spriteBatch.DrawString(instructionFont, StringManager.GetString("TIME", CultureInfo.CurrentCulture), new Vector2(640, 0), fontColor,
+                0, Vector2.Zero, 1.2f, SpriteEffects.None, 0);
             spriteBatch.DrawString(instructionFont, "" + (int)RestOfTime, new Vector2(640, 20), fontColor, 0, Vector2.Zero, 1.2f, SpriteEffects.None, 0);
-            spriteBatch.DrawString(instructionFont, "WORLD", new Vector2(480, 0), fontColor, 0, Vector2.Zero, 1.2f, SpriteEffects.None, 0);
+            spriteBatch.DrawString(instructionFont, StringManager.GetString("WORLD", CultureInfo.CurrentCulture), new Vector2(480, 0), fontColor, 
+                0, Vector2.Zero, 1.2f, SpriteEffects.None, 0);
             spriteBatch.DrawString(instructionFont, " : " + Sprint1Main.MarioLife,
                 new Vector2(340, 20), fontColor, 0, Vector2.Zero, 1.2f, SpriteEffects.None, 0);
             Coin.Draw(spriteBatch); //加一张贴图
@@ -235,10 +242,10 @@ namespace Sprint1.LevelLoader
             else if (goToCheckPoint)
             {
                 Scene.DisableVPipes(pipeList);
-                Scene.Mario.Parameters.SetPosition(CheckPoint, Scene.Mario.GetMinPosition().Y - 32);
+                Scene.Mario.Parameters.SetPosition(CheckPoint, Scene.Mario.GetMinPosition.Y - 32);
             }
             else
-                CheckPoint = Scene.Mario.GetMinPosition().X;
+                CheckPoint = Scene.Mario.GetMinPosition.X;
             #endregion
 
         }
@@ -250,13 +257,13 @@ namespace Sprint1.LevelLoader
             CurrSceneIndex = previousScene;
             currScene = Scene;
             //
-            Console.WriteLine(Scene.Mario.GetMaxPosition());
+            Console.WriteLine(Scene.Mario.GetMaxPosition);
             Scene.Mario.Bump();
         }
 
         public void GoToSecretScene(int x)
         {
-            CheckPoint = Scene.Mario.GetMinPosition().X;
+            CheckPoint = Scene.Mario.GetMinPosition.X;
             //这里的代码应该是替换currScene。鉴于这门课我们只做一关和一个隐藏关，切换可以直接用数字
             //GoToNormalArea();
             previousScene = CurrSceneIndex;

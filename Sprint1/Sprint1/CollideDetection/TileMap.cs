@@ -40,16 +40,16 @@ namespace Sprint1.CollideDetection
             if (mario is null || possibleCollideList is null) //check null
                 throw new ArgumentNullException(nameof(mario));
             //Get which grids are mario's left up coner and right down coner occupy
-            Point currentUpperLeftGrid = GetGridPosition(mario.GetMinPosition());
-            Point currentLowerRightGrid = GetGridPosition(mario.GetMaxPosition());
+            Point currentUpperLeftGrid = GetGridPosition(mario.GetMinPosition);
+            Point currentLowerRightGrid = GetGridPosition(mario.GetMaxPosition);
             //Get which grids are mario's left up coner and right down coner will occupy
 
             //Predict the position after an Update with time = 1 frame
-            Vector2 predictMinPosition = PredictNextPosition(mario.GetMinPosition(), mario.Parameters.Velocity, mario.GetHeightAndWidth());
+            Vector2 predictMinPosition = PredictNextPosition(mario.GetMinPosition, mario.Parameters.Velocity, mario.GetHeightAndWidth);
             //Get the grids it occupy after updating
             Point newUpperLeftGrid = GetGridPosition(predictMinPosition);
-            Point newLowerRightGrid = GetGridPosition(new Vector2(predictMinPosition.X + mario.GetHeightAndWidth().Y,
-                predictMinPosition.Y + mario.GetHeightAndWidth().X));
+            Point newLowerRightGrid = GetGridPosition(new Vector2(predictMinPosition.X + mario.GetHeightAndWidth.Y,
+                predictMinPosition.Y + mario.GetHeightAndWidth.X));
 
             Point minRegion = new Point();
             Point maxRegion = new Point();
@@ -189,8 +189,8 @@ namespace Sprint1.CollideDetection
             foreach (ICharacter character in characterList)
             {
                 //get the grid it occupy
-                Point minGridPosition = GetGridPosition(character.GetMinPosition());
-                Point maxGridPosition = GetGridPosition(character.GetMaxPosition());
+                Point minGridPosition = GetGridPosition(character.GetMinPosition);
+                Point maxGridPosition = GetGridPosition(character.GetMaxPosition);
                 for (int row = minGridPosition.Y; row <= maxGridPosition.Y; row++)
                 {
                     for (int column = minGridPosition.X; column <= maxGridPosition.X; column++)

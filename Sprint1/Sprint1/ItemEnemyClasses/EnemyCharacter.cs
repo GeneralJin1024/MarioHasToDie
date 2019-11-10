@@ -11,7 +11,9 @@ namespace Sprint1.ItemClasses
     {
 
         public Sprint1Main.CharacterType Type { get; set; } = Sprint1Main.CharacterType.Enemy;
-        
+        public Vector2 GetHeightAndWidth { get { return currentSprite.GetHeightAndWidth; } }
+        public Vector2 GetMaxPosition { get { return new Vector2(Parameters.Position.X + currentSprite.GetHeightAndWidth.Y, Parameters.Position.Y); } }
+        public Vector2 GetMinPosition { get { return new Vector2(Parameters.Position.X, Parameters.Position.Y - currentSprite.GetHeightAndWidth.X); } }
         readonly private ISprite liveEnemy;
         readonly private ISprite diedEnemy;
         private int disappear;
@@ -21,7 +23,7 @@ namespace Sprint1.ItemClasses
         public EnemyCharacter(Texture2D[] texture, Point[] rowsAndColumns, MoveParameters moveParameters)
         {
             Parameters = moveParameters;
-            Parameters.IsLeft = Parameters.Position.X >= Sprint1Main.Game.Scene.Mario.GetMinPosition().X;
+            Parameters.IsLeft = Parameters.Position.X >= Sprint1Main.Game.Scene.Mario.GetMinPosition.X;
             Parameters.SetVelocity(2, 0);
             liveEnemy = new AnimatedSprite(texture[0], rowsAndColumns[0], Parameters);
             diedEnemy = new AnimatedSprite(texture[1], rowsAndColumns[1], Parameters);
@@ -50,14 +52,14 @@ namespace Sprint1.ItemClasses
 
         }
 
-        public Vector2 GetMaxPosition()
-        {
-            return new Vector2(Parameters.Position.X + currentSprite.GetHeightAndWidth.Y, Parameters.Position.Y);
-        }
-        public Vector2 GetMinPosition()
-        {
-            return new Vector2(Parameters.Position.X, Parameters.Position.Y - currentSprite.GetHeightAndWidth.X);
-        }
+        //public Vector2 GetMaxPosition()
+        //{
+        //    return new Vector2(Parameters.Position.X + currentSprite.GetHeightAndWidth.Y, Parameters.Position.Y);
+        //}
+        //public Vector2 GetMinPosition()
+        //{
+        //    return new Vector2(Parameters.Position.X, Parameters.Position.Y - currentSprite.GetHeightAndWidth.X);
+        //}
         
 
         public virtual void MarioCollide(bool specialCase)
@@ -83,10 +85,10 @@ namespace Sprint1.ItemClasses
                 Parameters.SetVelocity(Math.Abs(Parameters.Velocity.X), Parameters.Velocity.Y); //速度重设
             }
         }
-        public Vector2 GetHeightAndWidth()
-        {
-            return currentSprite.GetHeightAndWidth;
-        }
+        //public Vector2 GetHeightAndWidth()
+        //{
+        //    return currentSprite.GetHeightAndWidth;
+        //}
 
     }
 }

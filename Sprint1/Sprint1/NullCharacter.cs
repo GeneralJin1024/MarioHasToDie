@@ -11,7 +11,9 @@ namespace Sprint1
     class NullCharacter : ICharacter
     {
         public Sprint1Main.CharacterType Type { get; set; }
-
+        public Vector2 GetHeightAndWidth { get { return Vector2.Zero; } }
+        public Vector2 GetMaxPosition { get { return Vector2.Zero; } }
+        public Vector2 GetMinPosition { get { return Vector2.Zero; } }
         public MoveParameters Parameters { get; }
         public NullCharacter()
         {
@@ -24,20 +26,15 @@ namespace Sprint1
             //do nothing
         }
 
-        public Vector2 GetHeightAndWidth()
-        {
-            return new Vector2(0, 0);
-        }
+        //public Vector2 GetMaxPosition()
+        //{
+        //    return new Vector2(0, 0);
+        //}
 
-        public Vector2 GetMaxPosition()
-        {
-            return new Vector2(0, 0);
-        }
-
-        public Vector2 GetMinPosition()
-        {
-            return new Vector2(0, 0);
-        }
+        //public Vector2 GetMinPosition()
+        //{
+        //    return new Vector2(0, 0);
+        //}
 
         public void MarioCollide(bool specialCase)
         {

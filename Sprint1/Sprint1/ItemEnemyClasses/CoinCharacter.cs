@@ -8,26 +8,21 @@ namespace Sprint1.ItemClasses
     class CoinCharacter : ItemCharacter
     {
         public override Sprint1Main.CharacterType Type { get; set; } = Sprint1Main.CharacterType.Coin;
-
+        public override Vector2 GetHeightAndWidth { get { return Item.GetHeightAndWidth; } }
         public CoinCharacter(Texture2D texture, Point rowsAndColunms, Vector2 location)
             : base(texture, rowsAndColunms, location)
         {
 
         }
 
-        public override Vector2 GetHeightAndWidth()
-        {
-            return item.GetHeightAndWidth;
-        }
-
         public override void Update(float timeOfFrame)
         {
             base.Update(timeOfFrame);
-            if (!Parameters.IsHidden && isBump)
+            if (!Parameters.IsHidden && IsBump)
             {              
-                if (Parameters.Position.Y <= bumpHigh)
+                if (Parameters.Position.Y <= BumpHigh)
                 {
-                    isBump = false;
+                    IsBump = false;
                     GetACoin();
                     Parameters.IsHidden = true; //Handle Coins
                     SoundFactory.Instance.MarioGetItem();

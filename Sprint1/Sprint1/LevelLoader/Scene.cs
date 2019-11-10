@@ -127,7 +127,7 @@ namespace Sprint1
                 throw new ArgumentNullException(nameof(pipePosition));
             foreach(ICharacter character in characterList)
             {
-                if (pipePosition.Contains(character.GetMinPosition().X) && character.Type == Sprint1Main.CharacterType.Pipe)
+                if (pipePosition.Contains(character.GetMinPosition.X) && character.Type == Sprint1Main.CharacterType.Pipe)
                 {
                     PipeCharacter pipe = (PipeCharacter)character;
                     pipe.MarioGetInside();

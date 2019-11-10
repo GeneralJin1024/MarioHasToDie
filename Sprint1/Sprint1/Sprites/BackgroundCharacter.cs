@@ -25,9 +25,9 @@ namespace Sprint1.Background
             Parameters.SetPosition(pos.X, pos.Y);
             Background = new AnimatedSprite(texture, new Point(1, 1), Parameters);
         }
-        public Vector2 GetHeightAndWidth()
+        public Vector2 GetHeightAndWidth
         {
-            return Background.GetHeightAndWidth;
+            get{ return Background.GetHeightAndWidth; }
         }
 
         public void Draw(SpriteBatch spriteBatch)
@@ -38,9 +38,9 @@ namespace Sprint1.Background
         public void Update(float timeOfFrame) { }
         public void MarioCollide(bool specialCase) { }
 
-        public Vector2 GetMinPosition() { return new Vector2(); }
+        public Vector2 GetMinPosition { get { return new Vector2(); } }
 
-        public Vector2 GetMaxPosition() { return new Vector2(); }
+        public Vector2 GetMaxPosition { get { return new Vector2(); } }
 
         public void BlockCollide(bool isBottom) { }
 
