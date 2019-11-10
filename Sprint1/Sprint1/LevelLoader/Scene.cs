@@ -121,7 +121,7 @@ namespace Sprint1
             newParameter.HasGravity = parameter.HasGravity;
         }
 
-        public void DisableVPipes(List<float> pipePosition)
+        public void DisableVPipes(ArrayList pipePosition)
         {
             if (pipePosition is null)
                 throw new ArgumentNullException(nameof(pipePosition));

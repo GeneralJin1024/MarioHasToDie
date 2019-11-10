@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Media;
 using Sprint1.MarioClasses;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
@@ -219,7 +220,7 @@ namespace Sprint1.LevelLoader
             Scene.CopyDataOfParameter(currScene.Mario.Parameters, tempParameter);
             bool Win = currScene.Mario.Win;
             int preMode = Mode;
-            List<float> pipeList = Scene.Mario.DivedPipe;
+            ArrayList pipeList = Scene.Mario.DivedPipe;
 
             ChangeToLoadingMode();
             scenes.Remove(currScene);

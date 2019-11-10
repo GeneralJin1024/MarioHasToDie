@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -39,7 +40,7 @@ namespace Sprint1.MarioClasses
         public bool Win { get; set; } //马里奥进入控制锁定但仍进行碰撞的状态
         public bool Invincible { get; set; }
         private float Clock;
-        public List<float> DivedPipe { get; private set; }
+        public ArrayList DivedPipe { get; private set; }
         public bool IsSuper {
             get
             {
@@ -54,7 +55,7 @@ namespace Sprint1.MarioClasses
             InitialParameters = new MoveParameters(false);
             Scene.CopyDataOfParameter(Parameters, InitialParameters);
             Win = false;
-            DivedPipe = new List<float>();
+            DivedPipe = new ArrayList();
         }
         #region ISprite Methods
         public void Update(float timeOfFrame)
