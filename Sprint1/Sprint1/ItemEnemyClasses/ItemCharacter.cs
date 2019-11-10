@@ -64,11 +64,11 @@ namespace Sprint1.ItemClasses
         }
         public virtual Vector2 GetMaxPosition()
         {
-            return new Vector2(Parameters.Position.X + item.GetHeightAndWidth().Y, Parameters.Position.Y);
+            return new Vector2(Parameters.Position.X + item.GetHeightAndWidth.Y, Parameters.Position.Y);
         }
         public virtual Vector2 GetMinPosition()
         {
-            return new Vector2(Parameters.Position.X, Parameters.Position.Y - item.GetHeightAndWidth().X);
+            return new Vector2(Parameters.Position.X, Parameters.Position.Y - item.GetHeightAndWidth.X);
         }
 
         public void Bumping(Vector2 startP, float minY, float maxY, Vector2 blockSpeed)

@@ -33,7 +33,7 @@ namespace Sprint1.BlockClasses
         public Vector2 GetMaxPosition()
         {
             if (block.BType != BlockType.Destroyed)
-                return new Vector2(block.Parameters.Position.X + block.GetHeightAndWidth().Y, block.Parameters.Position.Y);
+                return new Vector2(block.Parameters.Position.X + block.GetHeightAndWidth.Y, block.Parameters.Position.Y);
             else
                 return new Vector2(0, 0);
         }
@@ -41,7 +41,7 @@ namespace Sprint1.BlockClasses
         public Vector2 GetMinPosition()
         {
             if (block.BType != BlockType.Destroyed)
-                return new Vector2(block.Parameters.Position.X, block.Parameters.Position.Y - block.GetHeightAndWidth().X);
+                return new Vector2(block.Parameters.Position.X, block.Parameters.Position.Y - block.GetHeightAndWidth.X);
             else
                 return new Vector2(0, 0);
         }
@@ -62,7 +62,7 @@ namespace Sprint1.BlockClasses
 
         public Vector2 GetHeightAndWidth()
         {
-            return block.GetHeightAndWidth();
+            return block.GetHeightAndWidth;
         }
 
         public void BlockCollide(bool isBottom)

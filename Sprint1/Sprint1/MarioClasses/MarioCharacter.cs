@@ -235,10 +235,10 @@ namespace Sprint1.MarioClasses
          */
         #endregion
         //get left up coner position.
-        public Vector2 GetMinPosition() { return new Vector2(Parameters.Position.X, Parameters.Position.Y - Mario.GetHeightAndWidth().X); }
+        public Vector2 GetMinPosition() { return new Vector2(Parameters.Position.X, Parameters.Position.Y - Mario.GetHeightAndWidth.X); }
         //get right down coner position.
-        public Vector2 GetMaxPosition() { return new Vector2(Parameters.Position.X + Mario.GetHeightAndWidth().Y, Parameters.Position.Y); }
-        public Vector2 GetHeightAndWidth() { return Mario.GetHeightAndWidth(); } //get mario's hit and width.
+        public Vector2 GetMaxPosition() { return new Vector2(Parameters.Position.X + Mario.GetHeightAndWidth.Y, Parameters.Position.Y); }
+        public Vector2 GetHeightAndWidth() { return Mario.GetHeightAndWidth; } //get mario's hit and width.
         public bool IsDied() { return Mario.MarioState.GetPowerType == MarioState.PowerType.Died; }
         public bool IsFire() { return Mario.MarioState.IsFireMario(); }
         public void RestoreStates(MarioState.ActionType actionType, MarioState.PowerType powerType, bool isFire)

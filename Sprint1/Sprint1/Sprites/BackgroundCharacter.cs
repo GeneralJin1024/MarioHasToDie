@@ -27,7 +27,7 @@ namespace Sprint1.Background
         }
         public Vector2 GetHeightAndWidth()
         {
-            return Background.GetHeightAndWidth();
+            return Background.GetHeightAndWidth;
         }
 
         public void Draw(SpriteBatch spriteBatch)

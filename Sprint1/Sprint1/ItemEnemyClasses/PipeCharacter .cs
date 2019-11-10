@@ -31,7 +31,7 @@ namespace Sprint1.ItemClasses
 
         public override Vector2 GetHeightAndWidth()
         {
-            return item.GetHeightAndWidth();
+            return item.GetHeightAndWidth;
         }
 
         public override void MarioCollide(bool specialCase)

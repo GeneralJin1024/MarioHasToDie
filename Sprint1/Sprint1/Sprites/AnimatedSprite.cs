@@ -18,7 +18,9 @@ namespace Sprint1
          * Store all this values in Parameters to keep all Sprites has the same value without using for loop to update each one.
          */
         public MoveParameters Parameters { get; set; }
-
+        public Vector2 GetHeightAndWidth {
+            get { return new Vector2((float)SpriteSheets.Height / RowsAndColumns.X, (float)SpriteSheets.Width / RowsAndColumns.Y); }
+        }
         private Point RowsAndColumns;
         private int ActionFrame;
         private readonly int MillisecondsPerFrame;
@@ -49,14 +51,14 @@ namespace Sprint1
             {
                 Parameters.UpdatePositionAndVelocity(timeOfFrame);
                 //check boundary after each update to make sure the whole object are in the screen.
-                Vector2 checkedPosition = LevelLoader.Stage.CheckBoundary(new Vector2(Parameters.Position.X, Parameters.Position.Y - GetHeightAndWidth().X),
-                    GetHeightAndWidth());
+                Vector2 checkedPosition = LevelLoader.Stage.CheckBoundary(new Vector2(Parameters.Position.X, Parameters.Position.Y - GetHeightAndWidth.X),
+                    GetHeightAndWidth);
                 //use the checkedPosition as real position.
                 int x = (int)checkedPosition.X;
                 if (x > checkedPosition.X) { x--; }
                 int y = (int)checkedPosition.Y;
                 if (y > checkedPosition.Y) { y -= 1; }
-                Parameters.SetPosition(x, y + GetHeightAndWidth().X);
+                Parameters.SetPosition(x, y + GetHeightAndWidth.X);
                 //Parameters.SetPosition(checkedPosition.X, checkedPosition.Y + GetHeightAndWidth().X);
             }
         }
@@ -68,8 +70,8 @@ namespace Sprint1
             if (!Parameters.IsHidden)
             {
                 //get frame's height and width
-                float frameWidth = GetHeightAndWidth().Y;
-                float frameHeight = GetHeightAndWidth().X;
+                float frameWidth = GetHeightAndWidth.Y;
+                float frameHeight = GetHeightAndWidth.X;
 
                 //get the frame that will be drawn in this update.
                 Rectangle sourceRectangle = new Rectangle((int)(ActionFrame * frameWidth), 0,
@@ -82,20 +84,20 @@ namespace Sprint1
                 {
                     //flip the frame if the target point to left.
                     spriteBatch.Draw(SpriteSheets, destinationRectangle, sourceRectangle,
-                        Parameters.GetColor(), 0, Vector2.Zero, SpriteEffects.FlipHorizontally, 0);
+                        Parameters.GetColor, 0, Vector2.Zero, SpriteEffects.FlipHorizontally, 0);
                 }
                 else
                 {
                     spriteBatch.Draw(SpriteSheets, destinationRectangle, sourceRectangle,
-                        Parameters.GetColor());
+                        Parameters.GetColor);
                 }
             }
         }
 
-        public Vector2 GetHeightAndWidth()
-        {
-            return new Vector2((float)SpriteSheets.Height / RowsAndColumns.X, (float)SpriteSheets.Width / RowsAndColumns.Y);
-        }
+        //public Vector2 GetHeightAndWidth()
+        //{
+        //    return new Vector2((float)SpriteSheets.Height / RowsAndColumns.X, (float)SpriteSheets.Width / RowsAndColumns.Y);
+        //}
 
         protected void ResizeFrame(Texture2D spriteSheet, Point rowAndColumn)
         {

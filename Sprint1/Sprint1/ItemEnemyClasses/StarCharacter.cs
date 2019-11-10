@@ -24,7 +24,7 @@ namespace Sprint1.ItemClasses
 
         public override Vector2 GetHeightAndWidth()
         {
-            return item.GetHeightAndWidth();
+            return item.GetHeightAndWidth;
          
         }
 
@@ -44,7 +44,7 @@ namespace Sprint1.ItemClasses
         {
             Parameters.HasGravity = true;
         }
-        public override Vector2 GetHeightAndWidth() { return item.GetHeightAndWidth(); }
+        public override Vector2 GetHeightAndWidth() { return item.GetHeightAndWidth; }
 
         public override void MarioCollide(bool specialCase) {}
         public override void BlockCollide(bool isBottom) { Parameters.IsHidden = true; }

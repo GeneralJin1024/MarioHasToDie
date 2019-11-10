@@ -17,9 +17,6 @@ namespace Sprint1.ItemClasses
         private int disappear;
         private int disappearTimer;
         protected ISprite currentSprite;
-        private Point rowAndColumn;
-        private MoveParameters moveParameters;
-
         public MoveParameters Parameters { get; }
         public EnemyCharacter(Texture2D[] texture, Point[] rowsAndColumns, MoveParameters moveParameters)
         {
@@ -55,11 +52,11 @@ namespace Sprint1.ItemClasses
 
         public Vector2 GetMaxPosition()
         {
-            return new Vector2(Parameters.Position.X + currentSprite.GetHeightAndWidth().Y, Parameters.Position.Y);
+            return new Vector2(Parameters.Position.X + currentSprite.GetHeightAndWidth.Y, Parameters.Position.Y);
         }
         public Vector2 GetMinPosition()
         {
-            return new Vector2(Parameters.Position.X, Parameters.Position.Y - currentSprite.GetHeightAndWidth().X);
+            return new Vector2(Parameters.Position.X, Parameters.Position.Y - currentSprite.GetHeightAndWidth.X);
         }
         
 
@@ -88,7 +85,7 @@ namespace Sprint1.ItemClasses
         }
         public Vector2 GetHeightAndWidth()
         {
-            return currentSprite.GetHeightAndWidth();
+            return currentSprite.GetHeightAndWidth;
         }
 
     }

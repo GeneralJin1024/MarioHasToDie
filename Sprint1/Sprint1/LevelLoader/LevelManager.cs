@@ -24,8 +24,6 @@ namespace Sprint1.LevelLoader
         private ISprite Coin;
         private ISprite Mario;
         private int Mode;//0: MenuMode, 1: CurrentScene, 2: Game Over, 3: Loading 
-        private Song BackgroundMusic;
-        private SoundFactory Sound;
         private float CheckPoint;
         private float RestOfTime;
         private int previousScene;
@@ -127,7 +125,7 @@ namespace Sprint1.LevelLoader
             //    Sprint1Main.Game.GraphicsDevice.Clear(Color.CornflowerBlue);
 
             spriteBatch.Begin(blendState: BlendState.AlphaBlend);
-            Color fontColor = Stage.BackgroundColor != Color.Black ? Color.Black : Color.White;
+            Color fontColor = Mode == 1 && Stage.BackgroundColor != Color.Black ? Color.Black : Color.White;
             spriteBatch.DrawString(instructionFont, ":   " + Sprint1Main.Coins, new Vector2(172, 20), fontColor,
                 0, Vector2.Zero, 1.2f, SpriteEffects.None, 0); //剩余生命
             spriteBatch.DrawString(instructionFont, "MARIO", new Vector2(20, 0), fontColor,
@@ -139,6 +137,8 @@ namespace Sprint1.LevelLoader
             spriteBatch.DrawString(instructionFont, "WORLD", new Vector2(480, 0), fontColor, 0, Vector2.Zero, 1.2f, SpriteEffects.None, 0);
             spriteBatch.DrawString(instructionFont, " : " + Sprint1Main.MarioLife,
                 new Vector2(340, 20), fontColor, 0, Vector2.Zero, 1.2f, SpriteEffects.None, 0);
+            Coin.Draw(spriteBatch); //加一张贴图
+            Mario.Draw(spriteBatch);
             if (Mode == 0)
                 GameMenu.Draw(spriteBatch);
             else if (Mode == 2)
@@ -149,8 +149,8 @@ namespace Sprint1.LevelLoader
             {
                 spriteBatch.DrawString(instructionFont, "1 - " + CurrSceneIndex, new Vector2(480, 20), 
                     fontColor, 0, Vector2.Zero, 1.2f, SpriteEffects.None, 0);
-                Coin.Draw(spriteBatch); //加一张贴图
-                Mario.Draw(spriteBatch);
+                //Coin.Draw(spriteBatch); //加一张贴图
+                //Mario.Draw(spriteBatch);
                 currScene.Draw();
             }
         }
