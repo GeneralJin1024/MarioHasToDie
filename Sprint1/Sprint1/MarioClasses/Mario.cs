@@ -138,7 +138,7 @@ namespace Sprint1.MarioClasses
             if (Dive && (Parameters.Position.Y - GetHeightAndWidth().X >= Top))
             {
                 //MarioState.ChangeToDied();
-                Dive = false; Sprint1Main.Game.LevelControl.GoToSecreteArea();
+                Dive = false; Sprint1Main.Game.LevelControl.SceneFlash(false,false,0);
             }
             else if (DiveRight && (Parameters.Position.X >= Top))
             {

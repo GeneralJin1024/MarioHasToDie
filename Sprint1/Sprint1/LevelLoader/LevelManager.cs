@@ -16,7 +16,6 @@ namespace Sprint1.LevelLoader
         private Menu GameMenu;
         private Menu GameOver;
         private Menu GameWin;
-        public bool LoadingMode { get; set; }
         public int CurrSceneIndex { get; private set; }
         private Scene currScene;
         readonly List<Scene> scenes;
@@ -129,8 +128,6 @@ namespace Sprint1.LevelLoader
 
             spriteBatch.Begin(blendState: BlendState.AlphaBlend);
             Color fontColor = Stage.BackgroundColor != Color.Black ? Color.Black : Color.White;
-            Coin.Draw(spriteBatch); //加一张贴图
-            Mario.Draw(spriteBatch);
             spriteBatch.DrawString(instructionFont, ":   " + Sprint1Main.Coins, new Vector2(172, 20), fontColor,
                 0, Vector2.Zero, 1.2f, SpriteEffects.None, 0); //剩余生命
             spriteBatch.DrawString(instructionFont, "MARIO", new Vector2(20, 0), fontColor,
@@ -151,7 +148,9 @@ namespace Sprint1.LevelLoader
             else if (Mode == 1)
             {
                 spriteBatch.DrawString(instructionFont, "1 - " + CurrSceneIndex, new Vector2(480, 20), 
-                    fontColor, 0, Vector2.Zero, 1.2f, SpriteEffects.None, 0);               
+                    fontColor, 0, Vector2.Zero, 1.2f, SpriteEffects.None, 0);
+                Coin.Draw(spriteBatch); //加一张贴图
+                Mario.Draw(spriteBatch);
                 currScene.Draw();
             }
         }
@@ -162,33 +161,12 @@ namespace Sprint1.LevelLoader
             Sprint1Main.MarioLife--;
             if (Sprint1Main.MarioLife > 0)
             {
-                ResetScene(true, true); SoundFactory.Instance.BackgroundMusic.Play();
+                SceneFlash(true, true, CurrSceneIndex); SoundFactory.Instance.BackgroundMusic.Play();
             }
             else
             {
                 ChangeToGamoverMode(); Sprint1Main.MarioLife = 3;
             }
-        }
-        public void GoToSecreteArea()
-        {
-            CheckPoint = Scene.Mario.GetMinPosition().X;
-            //这里的代码应该是替换currScene。鉴于这门课我们只做一关和一个隐藏关，切换可以直接用数字
-            //GoToNormalArea();
-            previousScene = CurrSceneIndex;
-            CurrSceneIndex = 0;
-            currScene = Scene;
-            //
-        }
-
-        public void GoToNormalArea()
-        {
-            //这里应该有代码将currScene替换回来
-            ResetScene(true, false);
-            CurrSceneIndex = previousScene;
-            currScene = Scene;
-            //
-            Console.WriteLine(Scene.Mario.GetMaxPosition());
-            Scene.Mario.Bump();
         }
 
         public void ChangeToNormalMode()
@@ -198,20 +176,42 @@ namespace Sprint1.LevelLoader
             //MediaPlayer.Play(SoundFactory.Instance.BackgroundMusic);MediaPlayer.IsRepeating = true;
         }
         public void ChangeToMenuMode() { Mode = 0; }
-        public void ChangeToGamoverMode() { Mode = 2; ResetScene(true, false); }
-        public void ChangeToWinMode() { Mode = 3; Sprint1Main.MarioLife = 3; ResetScene(true, false); }
+        public void ChangeToGamoverMode() { Mode = 2; SceneFlash(true, false, CurrSceneIndex); }
+        public void ChangeToWinMode() { Mode = 3; Sprint1Main.MarioLife = 3; SceneFlash(true, false, CurrSceneIndex); }
         public void ChangeToLoadingMode() { Mode = 4; }
         public void AddTimeBonus() { Sprint1Main.Point += ((int)RestOfTime + 1) * 10; }
-        public void ResetScene(bool resetAll, bool goToCheckPoint)
+
+        public void SceneFlash(bool resetAll, bool goToCheckPoint, int changeToSceneIndex)
+        {
+            MarioState.ActionType actionType;
+            MarioState.PowerType powerType = currScene.Mario.GetPower;
+            bool isFire = currScene.Mario.IsFire();
+            bool invincible = Scene.Mario.Invincible;
+            if (changeToSceneIndex == CurrSceneIndex)
+            {
+                actionType = currScene.Mario.GetAction;
+                ResetScene(resetAll, goToCheckPoint);
+            }
+            else
+            {
+                GoToSecretScene(changeToSceneIndex);
+                actionType = currScene.Mario.GetAction;
+            }
+            if (!resetAll)
+            {
+                Scene.Mario.Invincible = invincible;
+                currScene.Mario.RestoreStates(actionType, powerType, isFire);
+            }
+        }
+
+        private void ResetScene(bool resetAll, bool goToCheckPoint)
         {
             #region Reset
             //save backup
             MoveParameters tempParameter = new MoveParameters(true);
             Scene.CopyDataOfParameter(currScene.Mario.Parameters, tempParameter);
-            MarioState.ActionType actionType = currScene.Mario.GetAction;
-            MarioState.PowerType powerType = currScene.Mario.GetPower;
-            bool isFire = currScene.Mario.IsFire(); bool Win = currScene.Mario.Win;
-            bool invincible = Scene.Mario.Invincible; int preMode = Mode;
+            bool Win = currScene.Mario.Win;
+            int preMode = Mode;
             List<float> pipeList = Scene.Mario.DivedPipe;
 
             ChangeToLoadingMode();
@@ -228,9 +228,8 @@ namespace Sprint1.LevelLoader
             if (!resetAll)
             {
                 ChangeToNormalMode();
+                currScene.Mario.Win = Win;
                 Scene.CopyDataOfParameter(tempParameter, currScene.Mario.Parameters);
-                currScene.Mario.Win = Win; Scene.Mario.Invincible = invincible;
-                currScene.Mario.RestoreStates(actionType, powerType, isFire);
                 currScene.Camera.LookAt(currScene.Mario.Parameters.Position);
                 Scene.DisableVPipes(pipeList);
             }
@@ -241,6 +240,28 @@ namespace Sprint1.LevelLoader
             }
             #endregion
 
+        }
+
+        public void GoToNormalArea()
+        {
+            //这里应该有代码将currScene替换回来
+            ResetScene(true, false);
+            CurrSceneIndex = previousScene;
+            currScene = Scene;
+            //
+            Console.WriteLine(Scene.Mario.GetMaxPosition());
+            Scene.Mario.Bump();
+        }
+
+        public void GoToSecretScene(int x)
+        {
+            CheckPoint = Scene.Mario.GetMinPosition().X;
+            //这里的代码应该是替换currScene。鉴于这门课我们只做一关和一个隐藏关，切换可以直接用数字
+            //GoToNormalArea();
+            previousScene = CurrSceneIndex;
+            CurrSceneIndex = x;
+            currScene = Scene;
+            //
         }
 
         /*消除报警*/

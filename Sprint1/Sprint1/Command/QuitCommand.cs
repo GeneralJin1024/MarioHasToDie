@@ -41,7 +41,7 @@ namespace Sprint1
     {
         public void Execute()
         {
-            Sprint1Main.Game.LevelControl.ResetScene(false, false);
+            Sprint1Main.Game.LevelControl.SceneFlash(false, false, Sprint1Main.Game.LevelControl.CurrSceneIndex);
         }
     }
     class PulseCommand : ICommand
