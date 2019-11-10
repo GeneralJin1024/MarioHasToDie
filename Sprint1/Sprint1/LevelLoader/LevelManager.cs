@@ -89,7 +89,7 @@ namespace Sprint1.LevelLoader
             GameMenu.LoadContent(instructionFont);
             GameOver.LoadContent(instructionFont);
             GameWin.LoadContent(instructionFont);
-            CheckPoint = Scene.Mario.GetMinPosition().X - 100;
+            CheckPoint = Scene.Mario.GetMinPosition().X;
             //BackgroundMusic = MusicFactory.Instance.AddBackgroundMusic();
         }
 
@@ -216,7 +216,6 @@ namespace Sprint1.LevelLoader
 
             ChangeToLoadingMode();
             scenes.Remove(currScene);
-            //currScene.Dispose();
             Stage stage = new Stage(Sprint1Main.Game);
             currScene.Stage = stage;
             scenes.Insert(CurrSceneIndex, currScene);
@@ -238,6 +237,8 @@ namespace Sprint1.LevelLoader
                 Scene.DisableVPipes(pipeList);
                 Scene.Mario.Parameters.SetPosition(CheckPoint, Scene.Mario.GetMinPosition().Y - 32);
             }
+            else
+                CheckPoint = Scene.Mario.GetMinPosition().X;
             #endregion
 
         }
