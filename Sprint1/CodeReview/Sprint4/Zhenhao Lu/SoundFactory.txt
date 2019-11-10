@@ -1,0 +1,24 @@
+Reviewer: Zhenhao Lu
+Date: 11/10/2019
+Sprint4
+Files: SoundFactory.cs
+Author: Zhangjian
+Comment:
+	1. Good use of playing sound effect by calling SoundFactory's method, so that other
+	classes that need it didn't need to consider how to play the sound effect. Different from BGM,
+	a sound effect will not use single instance. For example, Mario continuouts get coins.
+	2. However, I still recommend to create an instance when the method is call because we can
+	freely change it's volume and other parameters.
+	3. Except creating instance for sound effect, I suggested to modify the method parameter list
+	so that the classes which will call them can freely determine the parameter of sound effect.
+	4. Since unknow loading error, I used SoundEffect to replace Song for BGM. To make sure
+	there is only one bgm in the game, I used an instance of it and other classes can only get
+	its instance. This can avoid potential bugs that more than one bgm play at the same time.
+Time: 20 min
+Hypothesis:
+	1. In the future, if we need to add more sound effects, just load it when the factory is 
+	instantiated and add new methods. Constructure will not be changed.
+	2. As I said in Comment 2, if we need different sound effects have different volumes, we need
+	to play its instance instead of itself.
+	3. If we need to change BGM volume in different scene (or meeting some events), we can 
+	directly access to BGM's instance and do what we want.
