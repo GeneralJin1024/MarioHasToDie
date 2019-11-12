@@ -16,7 +16,27 @@ namespace Sprint1.BlockClasses
         public MoveParameters Parameters { get; }
         public BlockType BlockType { get; private set; }
         public Sprint1Main.CharacterType Type { get; set; }
-
+        public Vector2 GetHeightAndWidth { get { return block.GetHeightAndWidth; } }
+        public Vector2 GetMaxPosition
+        {
+            get
+            {
+                if (block.BType != BlockType.Destroyed)
+                    return new Vector2(block.Parameters.Position.X + block.GetHeightAndWidth.Y, block.Parameters.Position.Y);
+                else
+                    return new Vector2(0, 0);
+            }
+        }
+        public Vector2 GetMinPosition
+        {
+            get
+            {
+                if (block.BType != BlockType.Destroyed)
+                    return new Vector2(block.Parameters.Position.X, block.Parameters.Position.Y - block.GetHeightAndWidth.X);
+                else
+                    return new Vector2(0, 0);
+            }
+        }
         public BlockCharacter(Blocks block)
         {
             this.block = block;
@@ -30,21 +50,21 @@ namespace Sprint1.BlockClasses
             block.Draw(spriteBatch);
         }
 
-        public Vector2 GetMaxPosition()
-        {
-            if (block.BType != BlockType.Destroyed)
-                return new Vector2(block.Parameters.Position.X + block.GetHeightAndWidth().Y, block.Parameters.Position.Y);
-            else
-                return new Vector2(0, 0);
-        }
+        //public Vector2 GetMaxPosition()
+        //{
+        //    if (block.BType != BlockType.Destroyed)
+        //        return new Vector2(block.Parameters.Position.X + block.GetHeightAndWidth.Y, block.Parameters.Position.Y);
+        //    else
+        //        return new Vector2(0, 0);
+        //}
 
-        public Vector2 GetMinPosition()
-        {
-            if (block.BType != BlockType.Destroyed)
-                return new Vector2(block.Parameters.Position.X, block.Parameters.Position.Y - block.GetHeightAndWidth().X);
-            else
-                return new Vector2(0, 0);
-        }
+        //public Vector2 GetMinPosition()
+        //{
+        //    if (block.BType != BlockType.Destroyed)
+        //        return new Vector2(block.Parameters.Position.X, block.Parameters.Position.Y - block.GetHeightAndWidth.X);
+        //    else
+        //        return new Vector2(0, 0);
+        //}
 
         public void Update(float timeOfFrame)
         {
@@ -60,10 +80,10 @@ namespace Sprint1.BlockClasses
             }
         }
 
-        public Vector2 GetHeightAndWidth()
-        {
-            return block.GetHeightAndWidth();
-        }
+        //public Vector2 GetHeightAndWidth()
+        //{
+        //    return block.GetHeightAndWidth;
+        //}
 
         public void BlockCollide(bool isBottom)
         {

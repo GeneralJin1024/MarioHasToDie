@@ -78,7 +78,7 @@ namespace Sprint1.BlockClasses
         {
             IsBumping = true;
             currentbState = bStates[2];
-            MinY = Parameters.Position.Y - base.GetHeightAndWidth().X;
+            MinY = Parameters.Position.Y - base.GetHeightAndWidth.X;
             MaxY = Parameters.Position.Y;
         }
         #endregion
@@ -151,7 +151,7 @@ namespace Sprint1.BlockClasses
             switch (item.Type)
             {                
                 case Sprint1Main.CharacterType.Coin:               
-                    bumpItem = new CoinBumping(item, bPosition, bPosition.Y - 3.0f * this.GetHeightAndWidth().X, bPosition.Y, spriteSpeed);
+                    bumpItem = new CoinBumping(item, bPosition, bPosition.Y - 3.0f * this.GetHeightAndWidth.X, bPosition.Y, spriteSpeed);
                     bumpItem.HandleBumping();
                     break;
                 case Sprint1Main.CharacterType.Flower:
@@ -160,11 +160,11 @@ namespace Sprint1.BlockClasses
                     break;
                 case Sprint1Main.CharacterType.RedMushroom:
                 case Sprint1Main.CharacterType.GreenMushroom:
-                    bumpItem = new MushroomBumping(item, bPosition, bPosition.Y - 1.0f * this.GetHeightAndWidth().X, bPosition.Y, spriteSpeed);
+                    bumpItem = new MushroomBumping(item, bPosition, bPosition.Y - 1.0f * this.GetHeightAndWidth.X, bPosition.Y, spriteSpeed);
                     bumpItem.HandleBumping();
                     break;
                 case Sprint1Main.CharacterType.Star:
-                    bumpItem = new StarBumping(item, bPosition, bPosition.Y - 2.0f * this.GetHeightAndWidth().X, bPosition.Y, spriteSpeed);
+                    bumpItem = new StarBumping(item, bPosition, bPosition.Y - 2.0f * this.GetHeightAndWidth.X, bPosition.Y, spriteSpeed);
                     bumpItem.HandleBumping();
                     break;
             }

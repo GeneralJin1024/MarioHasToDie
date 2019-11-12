@@ -121,13 +121,13 @@ namespace Sprint1
             newParameter.HasGravity = parameter.HasGravity;
         }
 
-        public void DisableVPipes(List<float> pipePosition)
+        public void DisableVPipes(ArrayList pipePosition)
         {
             if (pipePosition is null)
                 throw new ArgumentNullException(nameof(pipePosition));
             foreach(ICharacter character in characterList)
             {
-                if (pipePosition.Contains(character.GetMinPosition().X) && character.Type == Sprint1Main.CharacterType.Pipe)
+                if (pipePosition.Contains(character.GetMinPosition.X) && character.Type == Sprint1Main.CharacterType.Pipe)
                 {
                     PipeCharacter pipe = (PipeCharacter)character;
                     pipe.MarioGetInside();

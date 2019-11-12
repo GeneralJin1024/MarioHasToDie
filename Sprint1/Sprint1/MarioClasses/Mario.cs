@@ -14,6 +14,7 @@ namespace Sprint1.MarioClasses
     {
         public static float XVelocity { get; } = 4;
         public static float YVelocity{ get;} = -16; // -16 is initial value
+        public Vector2 GetHeightAndWidth { get { return CurrentSprite.GetHeightAndWidth; } }
         public Texture2D SpriteSheets { get; set; }//useless variable
         public MoveParameters Parameters { get; set; }
         public MarioState MarioState { get; }
@@ -89,11 +90,11 @@ namespace Sprint1.MarioClasses
             CurrentSprite.Draw(spriteBatch);
         }
 
-        public Vector2 GetHeightAndWidth()
-        {
-            //CurrentActionAndState[0] will locate the current action sprite.
-            return CurrentSprite.GetHeightAndWidth();
-        }
+        //public Vector2 GetHeightAndWidth()
+        //{
+        //    //CurrentActionAndState[0] will locate the current action sprite.
+        //    return CurrentSprite.GetHeightAndWidth;
+        //}
         #endregion ISprite Methods
 
         #region Action Change
@@ -135,10 +136,10 @@ namespace Sprint1.MarioClasses
 
         private void DivingAndShooting()
         {
-            if (Dive && (Parameters.Position.Y - GetHeightAndWidth().X >= Top))
+            if (Dive && (Parameters.Position.Y - GetHeightAndWidth.X >= Top))
             {
                 //MarioState.ChangeToDied();
-                Dive = false; Sprint1Main.Game.LevelControl.GoToSecreteArea();
+                Dive = false; Sprint1Main.Game.LevelControl.SceneFlash(false,false,0);
             }
             else if (DiveRight && (Parameters.Position.X >= Top))
             {

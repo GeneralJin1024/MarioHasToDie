@@ -29,11 +29,11 @@ namespace Sprint1.CollideDetection
         public void GetFirstContactTime()
         {
             //Get mario's left up coner position and right down coner position.
-            Vector2 marioMin = Character1.GetMinPosition();
-            Vector2 marioMax = Character1.GetMaxPosition();
+            Vector2 marioMin = Character1.GetMinPosition;
+            Vector2 marioMax = Character1.GetMaxPosition;
             //Get object's left up coner position and right down coner position.
-            Vector2 characterMin = Character2.GetMinPosition();
-            Vector2 characterMax = Character2.GetMaxPosition();
+            Vector2 characterMin = Character2.GetMinPosition;
+            Vector2 characterMax = Character2.GetMaxPosition;
             //If both mario and the object are moving, we need to use relative velocity instead of mario's velocity.
             relativeVelocity = Character1.Parameters.Velocity;
             //Console.WriteLine("relative velocity = " + relativeVelocity);

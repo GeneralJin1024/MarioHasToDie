@@ -16,7 +16,7 @@ namespace Sprint1.ItemClasses
 
         public PipeType PType { get; private set; }
 
-        
+        public override Vector2 GetHeightAndWidth { get { return Item.GetHeightAndWidth; } }
         public override Sprint1Main.CharacterType Type { get; set; } = Sprint1Main.CharacterType.Pipe;
 
         public PipeCharacter(Texture2D texture, Point rowsAndColunms, Vector2 location, PipeType p)
@@ -27,11 +27,6 @@ namespace Sprint1.ItemClasses
 
         public override void Update(float timeOfFrame)
         {
-        }
-
-        public override Vector2 GetHeightAndWidth()
-        {
-            return item.GetHeightAndWidth();
         }
 
         public override void MarioCollide(bool specialCase)

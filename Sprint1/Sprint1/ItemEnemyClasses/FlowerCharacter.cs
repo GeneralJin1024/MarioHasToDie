@@ -7,7 +7,7 @@ namespace Sprint1.ItemClasses
 {
     class FlowerCharacter : ItemCharacter
     {
-
+        public override Vector2 GetHeightAndWidth { get { return Item.GetHeightAndWidth; } }
         public override Sprint1Main.CharacterType Type { get; set; } = Sprint1Main.CharacterType.Flower;
         public FlowerCharacter(Texture2D texture, Point rowsAndColunms, Vector2 location)
             : base(texture, rowsAndColunms, location)
@@ -20,10 +20,10 @@ namespace Sprint1.ItemClasses
             base.Update(timeOfFrame);
         }
 
-        public override Vector2 GetHeightAndWidth()
-        {
-            return item.GetHeightAndWidth();
-        }
+        //public override Vector2 GetHeightAndWidth()
+        //{
+        //    return Item.GetHeightAndWidth;
+        //}
 
         public override void MarioCollide(bool specialCase)
         {

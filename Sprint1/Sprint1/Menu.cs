@@ -94,9 +94,9 @@ namespace Sprint1
             #endregion
             //changing mouse position if the user want to choose another choice.
             if (FirstChoose)
-                chooseSprite.Parameters.SetPosition(350, 300 + chooseSprite.GetHeightAndWidth().X);
+                chooseSprite.Parameters.SetPosition(350, 300 + chooseSprite.GetHeightAndWidth.X);
             else
-                chooseSprite.Parameters.SetPosition(350, 350 + chooseSprite.GetHeightAndWidth().X);
+                chooseSprite.Parameters.SetPosition(350, 350 + chooseSprite.GetHeightAndWidth.X);
 
             chooseSprite.Update(timeOfFrame);
         }

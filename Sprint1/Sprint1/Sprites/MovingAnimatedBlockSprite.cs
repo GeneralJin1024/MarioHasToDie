@@ -40,7 +40,7 @@ namespace Sprint1.BlockClasses
             if (BType == BlockType.Destroyed)
             {
                 for (int index = 0; index < 4; index++)
-                    spriteBatch.Draw(SpriteSheets, new Vector2(destroyedBrickPosX[index], destroyedBrickPosY[index]), new Rectangle(0, 0, (int)GetHeightAndWidth().Y / 2, (int)GetHeightAndWidth().X / 2), Color.White);
+                    spriteBatch.Draw(SpriteSheets, new Vector2(destroyedBrickPosX[index], destroyedBrickPosY[index]), new Rectangle(0, 0, (int)GetHeightAndWidth.Y / 2, (int)GetHeightAndWidth.X / 2), Color.White);
             }
             else
             {

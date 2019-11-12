@@ -18,10 +18,10 @@ namespace Sprint1
         void Draw(SpriteBatch spriteBatch);
         //what the object should do when Mario collide with it. For Block, the special case is Mario hit its bottom.
         //For enemy, the special case is Mario hit its top.
-        void MarioCollide(bool specialCase); 
-        Vector2 GetMinPosition(); // get the position of left up corner
-        Vector2 GetMaxPosition(); //get the position of right down corner
-        Vector2 GetHeightAndWidth(); //get the height and width of object
+        void MarioCollide(bool specialCase);
+        Vector2 GetMinPosition { get; } // get the position of left up corner
+        Vector2 GetMaxPosition { get; } //get the position of right down corner
+        Vector2 GetHeightAndWidth { get; } //get the height and width of object
         void BlockCollide(bool isBottom);
 
     }

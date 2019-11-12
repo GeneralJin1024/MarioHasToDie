@@ -27,7 +27,6 @@ namespace Sprint1.LevelLoader
         private int TimeSinceLastFrame;
         private int MillisecondsPerFrame;
         private CollisionDetector Collision;
-        private int DiedTime = 0; // delete in the future
         public bool Pulse { get; set; }
         public GraphicsDeviceManager GraphicsDevice
         {

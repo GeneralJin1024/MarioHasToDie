@@ -117,16 +117,25 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="MARIO" xml:space="preserve">
+    <value>MARIO</value>
+  </data>
   <data name="Quit" xml:space="preserve">
     <value>Quit</value>
   </data>
   <data name="Start" xml:space="preserve">
     <value>Start</value>
   </data>
+  <data name="TIME" xml:space="preserve">
+    <value>TIME</value>
+  </data>
   <data name="W/Up Arrow: Up       S/Down Arrow: Down        Z/Button X: choose" xml:space="preserve">
     <value>W/Up Arrow: Up       S/Down Arrow: Down        Z/Button X: choose</value>
   </data>
   <data name="Welcome To Mario" xml:space="preserve">
     <value>Welcome to Mario</value>
+  </data>
+  <data name="WORLD" xml:space="preserve">
+    <value>WORLD</value>
   </data>
 </root>

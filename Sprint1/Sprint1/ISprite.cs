@@ -11,9 +11,10 @@ namespace Sprint1
     public interface ISprite
     {
         Texture2D SpriteSheets { get; set; }
+        Vector2 GetHeightAndWidth { get; }
         MoveParameters Parameters { get; set; }
         void Update(float timeOfFrame);
         void Draw(SpriteBatch spriteBatch);
-        Vector2 GetHeightAndWidth();   //x = Height, y = Width
+        //Vector2 GetHeightAndWidth();   //x = Height, y = Width
     }
 }
