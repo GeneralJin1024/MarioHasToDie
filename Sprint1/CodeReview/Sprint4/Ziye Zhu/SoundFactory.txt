@@ -2,7 +2,7 @@ Reviewer: Ziye Zhu
 Date: 11/12/2019
 Sprint4
 Files: SoundFactory.cs
-Author: Ziye Zhu
+Author: Jian Zhang Zhenhao Lu
 Comment:
 	1 It is a decent use of Factory, in which we manage all the sound effects together,
     back to sprint 0 or sprint 1, we may use seperated classes to achieve the goal or
