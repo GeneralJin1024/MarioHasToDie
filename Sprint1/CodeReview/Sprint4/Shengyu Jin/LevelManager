@@ -7,5 +7,7 @@ Time: 1hr
 Comment: 
     1. LevelManager extracts the code related to level configration from the Main Game Class, making the Game class more tidy and readable.
     2. Now I wonder whether we still need to have a property gaining access to Scene and Stage Class from the Main Game Class.
-    3. Now it 
-H 
+    3. It appears to be a clear hierarchy that Stage under the Scene and Scene under the LevelManager. We can switch the Scene by LevelManager
+        and reset the Scene by having the Stage rebuilt.
+Hypothesis:
+    1. We can add many new Game Mode or Menus by modifing the LevelManager Class and leave the Main Class as clean as it should be.
