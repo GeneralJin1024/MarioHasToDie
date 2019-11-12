@@ -264,7 +264,6 @@ C:\Users\zhangjian\source\repos\SmartMario\Sprint1\Sprint1\bin\Windows\x86\Debug
 C:\Users\zhangjian\source\repos\SmartMario\Sprint1\Sprint1\bin\Windows\x86\Debug\Content\ItemSprite\mario-underground-pipe1.xnb
 C:\Users\zhangjian\source\repos\SmartMario\Sprint1\Sprint1\bin\Windows\x86\Debug\Content\ItemSprite\mario-underground-pipe2.xnb
 C:\Users\zhangjian\source\repos\SmartMario\Sprint1\Sprint1\bin\Windows\x86\Debug\Content\EnemySprite\enemies.xnb
-C:\Users\zhangjian\source\repos\SmartMario\Sprint1\Sprint1\bin\Windows\x86\Debug\Content\Music\Map_BGM.wma
 C:\Users\zhangjian\source\repos\SmartMario\Sprint1\Sprint1\bin\Windows\x86\Debug\Content\Music\Map_BGM.xnb
 C:\Users\zhangjian\source\repos\SmartMario\Sprint1\Sprint1\bin\Windows\x86\Debug\Content\Music\QuestionBlock.xnb
 C:\Users\zhangjian\source\repos\SmartMario\Sprint1\Sprint1\bin\Windows\x86\Debug\Content\Music\sm64_game_over.xnb
