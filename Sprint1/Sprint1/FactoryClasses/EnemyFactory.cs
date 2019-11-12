@@ -42,10 +42,10 @@ namespace Sprint1.FactoryClasses
 
             greenkoopa = new Texture2D[2] { Sprint1Main.Game.Content.Load<Texture2D>("EnemySprite/greenkoopa"),
                 Sprint1Main.Game.Content.Load<Texture2D>("EnemySprite/deadGreenkoopa") };
-             redkoopa = new Texture2D[2] { Sprint1Main.Game.Content.Load<Texture2D>("EnemySprite/redkoopa"),
+            redkoopa = new Texture2D[2] { Sprint1Main.Game.Content.Load<Texture2D>("EnemySprite/redkoopa"),
                 Sprint1Main.Game.Content.Load<Texture2D>("EnemySprite/deadRedkoopa")};
-              plant = new Texture2D[2] { Sprint1Main.Game.Content.Load<Texture2D>("EnemySprite/enemies"),
-               Sprint1Main.Game.Content.Load<Texture2D>("EnemySprite/enemies")};
+            plant = new Texture2D[2] { Sprint1Main.Game.Content.Load<Texture2D>("EnemySprite/enemyPlant"),
+               Sprint1Main.Game.Content.Load<Texture2D>("EnemySprite/enemyPlant")};
         }
         public EnemyCharacter GetGoomba(MoveParameters moveParameters)
         {

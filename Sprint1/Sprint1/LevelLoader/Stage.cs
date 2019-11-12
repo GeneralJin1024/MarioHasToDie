@@ -108,6 +108,11 @@ namespace Sprint1.LevelLoader
                         StringToVecter2(myLevelSection.Backgrounds[i].SpriteStartLocation), layers);
                     //backgroundList.Add(BackgroundFactory.Instance.FactoryMethod2(myLevelSection.Backgrounds[i].SpriteName, StringToVecter2(myLevelSection.Backgrounds[i].SpriteLocation)));
                 }
+                for (int i = 1; i < myLevelSection.Enemys.Count; i++)
+                {
+                    spriteList.AddRange(EnemyFactory.Instance.FactoryMethod(myLevelSection.Enemys[i].SpriteName,
+                        StringToVecter2(myLevelSection.Enemys[i].SpriteStartLocation)));
+                }
                 for (int i = 1; i < myLevelSection.Items.Count; i++)
                 {
                     spriteList.AddRange(ItemFactory.Instance.FactoryMethod(myLevelSection.Items[i].SpriteName, 
@@ -139,11 +144,6 @@ namespace Sprint1.LevelLoader
                         spriteList.AddRange(itemList);
                     }
                     spriteList.AddRange(blockList);                  
-                }
-                for (int i = 1; i < myLevelSection.Enemys.Count; i++)
-                {
-                    spriteList.AddRange(EnemyFactory.Instance.FactoryMethod(myLevelSection.Enemys[i].SpriteName, 
-                        StringToVecter2(myLevelSection.Enemys[i].SpriteStartLocation)));
                 }
             }
         }

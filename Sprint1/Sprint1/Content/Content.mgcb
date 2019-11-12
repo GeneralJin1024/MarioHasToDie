@@ -224,7 +224,7 @@
 /processorParam:TextureFormat=Color
 /build:EnemySprite/deadRedKoopa.png
 
-#begin EnemySprite/enemies.png
+#begin EnemySprite/enemyPlant.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -234,7 +234,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:EnemySprite/enemies.png
+/build:EnemySprite/enemyPlant.png
 
 #begin EnemySprite/goomba.png
 /importer:TextureImporter

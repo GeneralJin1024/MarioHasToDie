@@ -64,7 +64,7 @@ namespace Sprint1.CollideDetection
             while (timeOfFrame > 0)
             {
                 insurance++;
-                if(insurance > 20)
+                if(insurance > 50)
                 {
                     Console.WriteLine("It looks the loop will not stop. Check!  The rest of Time = " + timeOfFrame); Sprint1Main.Game.Exit(); break;
                 }

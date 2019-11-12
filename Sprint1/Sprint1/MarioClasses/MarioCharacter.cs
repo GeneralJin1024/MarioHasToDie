@@ -103,7 +103,7 @@ namespace Sprint1.MarioClasses
                 ICharacter fireBall = ItemFactory.Instance.AddNewCharacter("FireBall+{1}", location);
                 fireBall.Parameters.IsHidden = false;
                 fireBall.Parameters.IsLeft = Parameters.IsLeft;
-                fireBall.Parameters.SetVelocity(20, -5);
+                fireBall.Parameters.SetVelocity(10, -5);
             }
         }
         #endregion
@@ -113,7 +113,10 @@ namespace Sprint1.MarioClasses
             if (!isTop || isFlowerEnemy)
             {
                 Mario.MarioState.Destroy();
-                Invincible = true; Clock = 15; Parameters.ChangeColor = true;
+                if (Mario.MarioState.GetPowerType != MarioState.PowerType.Died)
+                {
+                    Invincible = true; Clock = 15; Parameters.ChangeColor = true;
+                }       
             }
             if (Mario.MarioState.GetPowerType != MarioState.PowerType.Died)
                 Mario.ChangeToIdle();
