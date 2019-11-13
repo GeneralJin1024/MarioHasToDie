@@ -1,0 +1,13 @@
+Reviewer: Runmin Zhou
+Date: 11/12/2019
+Sprint4
+Files: ItemEnemyClasses/PipeCharacter,	ItemCharacter
+Author: Ziye Zhu
+Time: 30 min
+Comment:
+	1. The way implement pipe makes the logic very easy. Pipe does not hold any thing, so do not need to response to anything. 
+	The type attribute helps the collider to identify its type. 
+	2. There is a same problem existed in the lab 3. There are some functions that holds by all of the characters classes. We can add these functions
+	to the main character class. Then these functions will not need to be written.  
+Hypothesis:
+	1. It's easy for us to add new item. We just need to extends the item class and add some functions, then update the fatcory class. 
