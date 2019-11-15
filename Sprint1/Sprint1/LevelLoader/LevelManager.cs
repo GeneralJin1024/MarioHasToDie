@@ -218,7 +218,7 @@ namespace Sprint1.LevelLoader
             //save backup
             MoveParameters tempParameter = new MoveParameters(true);
             Scene.CopyDataOfParameter(currScene.Mario.Parameters, tempParameter);
-            bool Win = currScene.Mario.Win;
+            bool Win = currScene.Mario.Win; //bool throwBullet = Scene.Mario.ThrowBullet();
             int preMode = Mode;
             ArrayList pipeList = Scene.Mario.DivedPipe;
 
@@ -253,20 +253,18 @@ namespace Sprint1.LevelLoader
 
         public void GoToNormalArea()
         {
-            //这里应该有代码将currScene替换回来
             ResetScene(true, false);
             CurrSceneIndex = previousScene;
             currScene = Scene;
             //
             Console.WriteLine(Scene.Mario.GetMaxPosition);
+            CheckPoint = Scene.Mario.GetMinPosition.X;
             Scene.Mario.Bump();
         }
 
         public void GoToSecretScene(int x)
         {
-            CheckPoint = Scene.Mario.GetMinPosition.X;
-            //这里的代码应该是替换currScene。鉴于这门课我们只做一关和一个隐藏关，切换可以直接用数字
-            //GoToNormalArea();
+            //CheckPoint = Scene.Mario.GetMinPosition.X;
             previousScene = CurrSceneIndex;
             CurrSceneIndex = x;
             currScene = Scene;
