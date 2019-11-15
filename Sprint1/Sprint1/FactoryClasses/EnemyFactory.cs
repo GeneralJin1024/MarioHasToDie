@@ -30,6 +30,9 @@ namespace Sprint1.FactoryClasses
         Texture2D[] greenkoopa ;
         Texture2D[] redkoopa ;
         Texture2D[] plant;
+        Texture2D[] boss;
+        Texture2D[] cloud;
+        Texture2D[] jump;
         public EnemyFactory()
         {
             //when factory initialzed, load the texture
@@ -46,6 +49,14 @@ namespace Sprint1.FactoryClasses
                 Sprint1Main.Game.Content.Load<Texture2D>("EnemySprite/deadRedkoopa")};
             plant = new Texture2D[2] { Sprint1Main.Game.Content.Load<Texture2D>("EnemySprite/enemyPlant"),
                Sprint1Main.Game.Content.Load<Texture2D>("EnemySprite/enemyPlant")};
+            boss = new Texture2D[2] { Sprint1Main.Game.Content.Load<Texture2D>("EnemySprite/boss"),
+                Sprint1Main.Game.Content.Load<Texture2D>("EnemySprite/boss")};
+            cloud = new Texture2D[2] { Sprint1Main.Game.Content.Load<Texture2D>("EnemySprite/cloudEnemy1"),
+                Sprint1Main.Game.Content.Load<Texture2D>("EnemySprite/cloudEnemy2")};
+            jump = new Texture2D[2] { Sprint1Main.Game.Content.Load<Texture2D>("EnemySprite/jump1"),
+                Sprint1Main.Game.Content.Load<Texture2D>("EnemySprite/jump2")};
+            
+
         }
         public EnemyCharacter GetGoomba(MoveParameters moveParameters)
         {
@@ -64,9 +75,26 @@ namespace Sprint1.FactoryClasses
         }
         public EnemyCharacter GetPlant(MoveParameters moveParameters)
         {
-            Point[] rowAndColumn = new Point[2] { new Point(1, 2), new Point(1, 1) };
+            Point[] rowAndColumn = new Point[2] { new Point(1, 2), new Point(1, 2) };
             return new PlantEnemyCharacter(plant, rowAndColumn, moveParameters);
         }
+        public EnemyCharacter GetBoss(MoveParameters moveParameters)
+        {
+            Point[] rowAndColumn = new Point[2] { new Point(1, 3), new Point(1, 3) };
+            return new BossEnemyCharacter(boss, rowAndColumn, moveParameters);
+        }
+        public EnemyCharacter GetCloudEnemy(MoveParameters moveParameters)
+        {
+            Point[] rowAndColumn = new Point[2] { new Point(1, 1), new Point(1, 1) };
+            return new CloudEnemyCharacter(cloud, rowAndColumn, moveParameters);
+        }
+        public EnemyCharacter GetJumpEnemy(MoveParameters moveParameters)
+        {
+            Point[] rowAndColumn = new Point[2] { new Point(1, 2), new Point(1, 2) };
+            return new JumpEnemyCharacter(jump, rowAndColumn, moveParameters);
+        }
+
+
         public ArrayList FactoryMethod(string name, Vector2 pos)
         {
             //Generating one enemy at a time
@@ -87,7 +115,18 @@ namespace Sprint1.FactoryClasses
                 case "Plant":
                     list.Add(GetPlant(parameters));
                     break;
+                case "JumpEnemy":
+                    list.Add(GetJumpEnemy(parameters));
+                    break;
+                case "CloudEnemy":
+                    list.Add(GetCloudEnemy(parameters));
+                    break;
+                case "Boss":
+                    list.Add(GetBoss(parameters));
+                    break;
                 default: break;
+
+
             }
             return list;
         }

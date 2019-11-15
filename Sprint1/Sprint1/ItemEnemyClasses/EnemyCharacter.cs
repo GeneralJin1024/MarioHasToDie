@@ -14,8 +14,8 @@ namespace Sprint1.ItemClasses
         public Vector2 GetHeightAndWidth { get { return currentSprite.GetHeightAndWidth; } }
         public Vector2 GetMaxPosition { get { return new Vector2(Parameters.Position.X + currentSprite.GetHeightAndWidth.Y, Parameters.Position.Y); } }
         public Vector2 GetMinPosition { get { return new Vector2(Parameters.Position.X, Parameters.Position.Y - currentSprite.GetHeightAndWidth.X); } }
-        readonly private ISprite liveEnemy;
-        readonly private ISprite diedEnemy;
+        readonly protected ISprite liveEnemy;
+        readonly protected ISprite diedEnemy;
         private int disappear;
         private int disappearTimer;
         protected ISprite currentSprite;
@@ -73,7 +73,7 @@ namespace Sprint1.ItemClasses
                 currentSprite = diedEnemy;
             }
         }
-        public void BlockCollide(bool isBottom)
+        public virtual void BlockCollide(bool isBottom)
         {
             if (isBottom)
             {

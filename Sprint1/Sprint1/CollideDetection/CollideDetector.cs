@@ -139,7 +139,7 @@ namespace Sprint1.CollideDetection
                 }
             }
         }
-
+        
         private void CreateCollidePairs(ICharacter character1)
         {
             ArrayList possibleCollideList = new ArrayList();

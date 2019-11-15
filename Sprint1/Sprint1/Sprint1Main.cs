@@ -29,7 +29,7 @@ namespace Sprint1
     {
         public enum CharacterType
         {
-            Mario, Block, Enemy, DiedEnemy, Flower, GreenMushroom, RedMushroom, Star, Coin, Pipe, Fireball, Flag,Castle, Null,PlantEnemy
+            Mario, Block, Enemy, DiedEnemy, Flower, GreenMushroom, RedMushroom, Star, Coin, Pipe, Fireball, Flag,Castle, Null
         }
 
         public static int MarioLife { get; set; } = 2;
