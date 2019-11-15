@@ -125,8 +125,6 @@ namespace Sprint1.MarioClasses
         {
             if (Mario.MarioState.GetPowerType == MarioState.PowerType.Standard)
                 Mario.MarioState.ChangeToSuper();
-            else
-                Mario.MarioState.ChangeToFire();
         }
         public void CollideWithRedMushRoom() { Mario.MarioState.ChangeToSuper(); }
         public void CollideWithBlock(bool hitBottomOrTop, bool movingUp)
