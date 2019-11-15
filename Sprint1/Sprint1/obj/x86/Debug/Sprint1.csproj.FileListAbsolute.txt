@@ -368,3 +368,8 @@ C:\Users\13667\source\repos\SmartMario\Sprint1\Sprint1\obj\x86\Debug\Sprint1.csp
 C:\Users\13667\source\repos\SmartMario\Sprint1\Sprint1\obj\x86\Debug\Sprint1.csproj.CopyComplete
 C:\Users\13667\source\repos\SmartMario\Sprint1\Sprint1\obj\x86\Debug\Sprint1.exe
 C:\Users\13667\source\repos\SmartMario\Sprint1\Sprint1\obj\x86\Debug\Sprint1.pdb
+C:\Users\13667\source\repos\SmartMario\Sprint1\Sprint1\bin\Windows\x86\Debug\Content\EnemySprite\boss.xnb
+C:\Users\13667\source\repos\SmartMario\Sprint1\Sprint1\bin\Windows\x86\Debug\Content\EnemySprite\cloudEnemy1.xnb
+C:\Users\13667\source\repos\SmartMario\Sprint1\Sprint1\bin\Windows\x86\Debug\Content\EnemySprite\cloudEnemy2.xnb
+C:\Users\13667\source\repos\SmartMario\Sprint1\Sprint1\bin\Windows\x86\Debug\Content\EnemySprite\jump1.xnb
+C:\Users\13667\source\repos\SmartMario\Sprint1\Sprint1\bin\Windows\x86\Debug\Content\EnemySprite\Jump2.xnb

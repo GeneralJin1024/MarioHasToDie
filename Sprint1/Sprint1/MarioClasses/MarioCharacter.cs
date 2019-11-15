@@ -108,9 +108,9 @@ namespace Sprint1.MarioClasses
         }
         #endregion
         #region Collide Detection Receivers
-        public void CollideWithEnemy(bool isTop, bool isFlowerEnemy)
+        public void CollideWithEnemy(bool isTop, ICharacter character)
         {
-            if (!isTop || isFlowerEnemy)
+            if (!isTop || character is PlantEnemyCharacter || character is CloudEnemyCharacter)
             {
                 Mario.MarioState.Destroy();
                 if (Mario.MarioState.GetPowerType != MarioState.PowerType.Died)
@@ -118,6 +118,8 @@ namespace Sprint1.MarioClasses
                     Invincible = true; Clock = 15; Parameters.ChangeColor = true;
                 }       
             }
+            if (character is BossEnemyCharacter)
+                Mario.MarioState.ChangeToDied();
             if (Mario.MarioState.GetPowerType != MarioState.PowerType.Died)
                 Mario.ChangeToIdle();
         }
@@ -230,7 +232,7 @@ namespace Sprint1.MarioClasses
             else if (character.Type == Sprint1Main.CharacterType.Flower)
                 CollideWithFlower();
             else if (character.Type == Sprint1Main.CharacterType.Enemy)
-                CollideWithEnemy(UpOrDown && movingDown, character is PlantEnemyCharacter);
+                CollideWithEnemy(UpOrDown && movingDown, character);
             else if (character.Type == Sprint1Main.CharacterType.Flag)
                 CollideWithFlag(character);
             else if(character.Type == Sprint1Main.CharacterType.Star)
