@@ -56,7 +56,9 @@ namespace Sprint1.CollideDetection
                     character.Parameters.InScreen = character.GetMaxPosition.X >= (Mario.Parameters.Position.X - 800 / 2) &&
                     character.Parameters.Position.X <= Mario.Parameters.Position.X + 800 / 2;
                 }
-                if (Mario.IsDied())
+                if (character is BossEnemyCharacter)
+                    character.Parameters.InScreen = true;
+                if (Mario.IsDied() || Mario.Win)
                     character.Parameters.InScreen = false;
             }
             int insurance = 0; // an insurance for unstop loop
