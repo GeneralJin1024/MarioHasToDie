@@ -28,7 +28,7 @@ namespace Sprint1.MarioClasses
     {
         public MarioState.PowerType Type { get; set; } = MarioState.PowerType.Super;
         public void Destroy(MarioState marioState) { marioState.ChangeToStandard(); }
-        public void Leave(Mario mario) { }
+        public void Leave(Mario mario) { mario.ThrowBullet = false; }
 
 
     }

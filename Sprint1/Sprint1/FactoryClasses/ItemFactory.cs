@@ -33,10 +33,13 @@ namespace Sprint1.FactoryClasses
         Texture2D star;
         Texture2D pipe;
         Texture2D fireBall;
+        Texture2D bullet;
         Texture2D HP1;
         Texture2D HP2;
         Texture2D flag;
         Texture2D castle;
+        Texture2D bomb;
+        Texture2D randomItem;
         public ItemFactory()
         {
             //when factory initialzed, load the texture
@@ -60,10 +63,13 @@ namespace Sprint1.FactoryClasses
             star = Sprint1Main.Game.Content.Load<Texture2D>("ItemSprite/star");
             pipe = Sprint1Main.Game.Content.Load<Texture2D>("ItemSprite/PipeSpriteSheet");
             fireBall = Sprint1Main.Game.Content.Load<Texture2D>("ItemSprite/redMushroom");
+            bullet = Sprint1Main.Game.Content.Load<Texture2D>("ItemSprite/redMushroom");
             HP1 = Sprint1Main.Game.Content.Load<Texture2D>("ItemSprite/mario-underground-pipe1");
             HP2 = Sprint1Main.Game.Content.Load<Texture2D>("ItemSprite/mario-underground-pipe2");
             flag = Sprint1Main.Game.Content.Load<Texture2D>("ItemSprite/mario-flagpole");
             castle = Sprint1Main.Game.Content.Load<Texture2D>("ItemSprite/mario-castle");
+            bomb = Sprint1Main.Game.Content.Load<Texture2D>("ItemSprite/greenMushroom");
+            randomItem = Sprint1Main.Game.Content.Load<Texture2D>("ItemSprite/redMushroom");
         }
         public ItemCharacter GetPipe(Vector2 pos)
         {
@@ -103,8 +109,11 @@ namespace Sprint1.FactoryClasses
         {
             return new FireBallCharacter(fireBall, new Point(1, 1), pos);
         }
+        public ItemCharacter GetBullet(Vector2 pos) { return new FireBallCharacter(bullet, new Point(1, 1), pos); }
         public ItemCharacter GetFlag(Vector2 pos) { return new FlagCharacter(flag, new Point(1, 1), pos); }
         public ItemCharacter GetCastle(Vector2 pos) { return new CastleCharacter(castle, new Point(1, 1), pos); }
+        public ItemCharacter GetBomb(Vector2 pos) { return new BombCharacter(bomb, new Point(1, 1), pos); }
+        public ItemCharacter GetRandomItem(Vector2 pos) { return new RandomItemCharacter(randomItem, new Point(1, 1), pos); }
         public ArrayList FactoryMethod(string name, Vector2 posS, Vector2 posE)
         {
             ArrayList list = new ArrayList();
@@ -140,8 +149,11 @@ namespace Sprint1.FactoryClasses
                         case "FireBall":
                             list.Add(GetFireBall(pos));
                             break;
+                        case "Bullet": list.Add(GetBullet(pos)); break;
                         case "Flag": list.Add(GetFlag(pos)); break;
                         case "Castle": list.Add(GetCastle(pos)); break;
+                        case "Bomb": list.Add(GetBomb(pos)); break;
+                        case "Random": list.Add(GetRandomItem(pos)); break;
                         default: break;
                     }
                 }
@@ -181,6 +193,8 @@ namespace Sprint1.FactoryClasses
                     case "FireBall":
                         list.Add(GetFireBall(pos));
                         break;
+                    case "Bullet": list.Add(GetBullet(pos)); break;
+                    case "Random": list.Add(GetRandomItem(pos)); break;
                     default: break;
                 }              
             }

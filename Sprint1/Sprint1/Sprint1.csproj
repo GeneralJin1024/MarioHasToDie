@@ -95,6 +95,7 @@
     <Compile Include="ICharacter.cs" />
     <Compile Include="ICommand.cs" />
     <Compile Include="IFactory.cs" />
+    <Compile Include="ItemEnemyClasses\BombCharacter.cs" />
     <Compile Include="ItemEnemyClasses\CastleCharacter.cs" />
     <Compile Include="ItemEnemyClasses\BossEnemyCharacter.cs" />
     <Compile Include="ItemEnemyClasses\JumpEnemyCharacter.cs" />
@@ -105,6 +106,7 @@
     <Compile Include="ItemEnemyClasses\GreenMushroomCharacter .cs" />
     <Compile Include="ItemEnemyClasses\CloudEnemyCharacter.cs" />
     <Compile Include="ItemEnemyClasses\PlantEnemyCharacter.cs" />
+    <Compile Include="ItemEnemyClasses\RandomItemCharacter.cs" />
     <Compile Include="ItemEnemyClasses\RedMushroomCharacter.cs" />
     <Compile Include="ItemEnemyClasses\CoinCharacter.cs" />
     <Compile Include="ItemEnemyClasses\StarCharacter.cs" />

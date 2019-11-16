@@ -193,8 +193,8 @@ namespace Sprint1.LevelLoader
         {
             MarioState.ActionType actionType;
             MarioState.PowerType powerType = currScene.Mario.GetPower;
-            bool isFire = currScene.Mario.IsFire();
-            bool invincible = Scene.Mario.Invincible;
+            bool isFire = currScene.Mario.IsFire(); bool throwBullet = Scene.Mario.ThrowBullet;
+            bool invincible = Scene.Mario.Invincible; bool jumpTwice = Scene.Mario.JumpTwice;
             if (changeToSceneIndex == CurrSceneIndex)
             {
                 actionType = currScene.Mario.GetAction;
@@ -208,7 +208,7 @@ namespace Sprint1.LevelLoader
             if (!resetAll)
             {
                 Scene.Mario.Invincible = invincible;
-                currScene.Mario.RestoreStates(actionType, powerType, isFire);
+                currScene.Mario.RestoreStates(actionType, powerType, isFire, throwBullet, jumpTwice);
             }
         }
 

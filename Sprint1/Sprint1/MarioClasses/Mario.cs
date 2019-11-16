@@ -18,6 +18,8 @@ namespace Sprint1.MarioClasses
         public Texture2D SpriteSheets { get; set; }//useless variable
         public MoveParameters Parameters { get; set; }
         public MarioState MarioState { get; }
+        public bool ThrowBullet { get; set; }
+        public bool JumpTwice { get; set; }
         public bool AutomaticallyMoving { get; private set; }
 
         private ISprite CurrentSprite;
@@ -108,7 +110,7 @@ namespace Sprint1.MarioClasses
         public void ChangeToJump(float yVelocity)
         {
             ChangeActionAndSprite(1);
-            Parameters.SetVelocity(Math.Abs(Parameters.Velocity.X), yVelocity);
+            Parameters.SetVelocity(Math.Abs(Parameters.Velocity.X), JumpTwice ? yVelocity * 2 : yVelocity);
             SoundFactory.Instance.MarioJump();
         }
 

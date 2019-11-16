@@ -143,7 +143,10 @@ namespace Sprint1.CollideDetection
             }
             else //items and enemies
             {
-                Character1.BlockCollide((Time == yTime) && (relativeVelocity.Y > 0));
+                if (Character1.Parameters.Velocity.X * relativeVelocity.X >= 0)
+                {
+                    Character1.BlockCollide((Time == yTime) && (relativeVelocity.Y > 0));
+                }
             }
         }
     }

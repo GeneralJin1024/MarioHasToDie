@@ -21,6 +21,8 @@ namespace Sprint1.MarioClasses
         public MarioState.PowerType GetPower { get { return Mario.MarioState.GetPowerType; } }
         public bool Auto { get { return Mario.AutomaticallyMoving; } }
         public MoveParameters Parameters { get; }
+        public bool ThrowBullet { get { return Mario.ThrowBullet; } }
+        public bool JumpTwice { get { return Mario.JumpTwice; } }
         public Vector2 GetMinPosition
         {
             get
@@ -39,7 +41,8 @@ namespace Sprint1.MarioClasses
         private readonly MoveParameters InitialParameters;
         public bool Win { get; set; } //马里奥进入控制锁定但仍进行碰撞的状态
         public bool Invincible { get; set; }
-        private float Clock;
+        private float JumpClock;
+        private float InvincibleClock;
         public ArrayList DivedPipe { get; private set; }
         public bool IsSuper {
             get
@@ -63,16 +66,21 @@ namespace Sprint1.MarioClasses
             Mario.Update(timeOfFrame);
             if (Invincible)
             {
-                Clock -= timeOfFrame;
-                Invincible = Clock >= 0;
-                if (!Invincible)
-                    Parameters.ChangeColor = false;
+                InvincibleClock -= timeOfFrame;
+                Invincible = InvincibleClock >= 0;
+                Parameters.ChangeColor = Invincible;
+            }
+            if (Mario.JumpTwice)
+            {
+                JumpClock -= timeOfFrame;
+                Mario.JumpTwice = JumpClock >= 0;
+                JumpClock = Mario.JumpTwice ? JumpClock : 0;
             }
             if (Parameters.Position.Y == Stage.Boundary.Y)
             {
-                if (!IsDied()) //为死亡：悬崖坠落等
+                if (!IsDied()) //falling cliff
                     Mario.MarioState.ChangeToDied();
-                else //死亡：即将脱离屏幕
+                else //Mario is died and the died animation reach the bottom of screen
                     Sprint1Main.Game.LevelControl.MarioDied();
             }
         }
@@ -100,22 +108,35 @@ namespace Sprint1.MarioClasses
             {
                 float distance = Parameters.IsLeft ? 0 : GetHeightAndWidth.Y;
                 Vector2 location = new Vector2(Parameters.Position.X + distance, Parameters.Position.Y - GetHeightAndWidth.Y / 2);
-                ICharacter fireBall = ItemFactory.Instance.AddNewCharacter("FireBall+{1}", location);
-                fireBall.Parameters.IsHidden = false;
-                fireBall.Parameters.IsLeft = Parameters.IsLeft;
-                fireBall.Parameters.SetVelocity(10, -5);
+                if (Mario.ThrowBullet)
+                {
+                    ICharacter bullet = ItemFactory.Instance.AddNewCharacter("Bullet+{1}", location);
+                    bullet.Parameters.IsHidden = false; bullet.Parameters.IsLeft = Parameters.IsLeft;
+                    bullet.Parameters.SetVelocity(15, 0); bullet.Parameters.HasGravity = false;
+                }
+                else
+                {
+                    ICharacter fireBall = ItemFactory.Instance.AddNewCharacter("FireBall+{1}", location);
+                    fireBall.Parameters.IsHidden = false;
+                    fireBall.Parameters.IsLeft = Parameters.IsLeft;
+                    fireBall.Parameters.SetVelocity(10, -5);
+                }
             }
         }
         #endregion
         #region Collide Detection Receivers
         public void CollideWithEnemy(bool isTop, ICharacter character)
         {
+            /*
+             * if Mario collide enemy from left, right or hit enemy's bottom, Mario is destroyed
+             * If the enemy is a plant enemy, no matter which point Mario collides with, Mario is destroyed
+             */
             if (!isTop || character is PlantEnemyCharacter || character is CloudEnemyCharacter)
             {
                 Mario.MarioState.Destroy();
-                if (Mario.MarioState.GetPowerType != MarioState.PowerType.Died)
+                if (Mario.MarioState.GetPowerType != MarioState.PowerType.Died)// if Mario is still alive
                 {
-                    Invincible = true; Clock = 15; Parameters.ChangeColor = true;
+                    Invincible = true; InvincibleClock = 15; Parameters.ChangeColor = true;
                 }       
             }
             if (character is BossEnemyCharacter)
@@ -125,13 +146,20 @@ namespace Sprint1.MarioClasses
         }
         public void CollideWithFlower()
         {
-            if (Mario.MarioState.GetPowerType == MarioState.PowerType.Standard)
+            if (Mario.MarioState.GetPowerType == MarioState.PowerType.Standard) // Mario is standard
+                Mario.MarioState.ChangeToSuper();
+            else if (!IsFire()) // Mario is Super
+                Mario.MarioState.ChangeToFire();
+            else // Mario is already fire Mario.
+                Mario.ThrowBullet = true;
+        }
+        public void CollideWithRedMushRoom()
+        {
+            if (GetPower == MarioState.PowerType.Standard)
                 Mario.MarioState.ChangeToSuper();
         }
-        public void CollideWithRedMushRoom() { Mario.MarioState.ChangeToSuper(); }
         public void CollideWithBlock(bool hitBottomOrTop, bool movingUp)
         {
-            //Console.WriteLine("Collide1 : hitBottom = " + hitBottom + "    hitLeftOrRight = " + hitLeftOrRight);
             if (hitBottomOrTop && movingUp) // hit block's bottom
             {
                 if (Mario.MarioState.GetActionType == MarioState.ActionType.Crouch)
@@ -144,7 +172,7 @@ namespace Sprint1.MarioClasses
                 {
                     Mario.ChangeToWalk();
                     Mario.MarioState.LockOrUnlock(true);
-                    Parameters.SetVelocity(4, 0);
+                    Parameters.SetVelocity(Mario.XVelocity, 0);
                 }
                 else
                     Mario.ChangeToIdle();
@@ -222,27 +250,26 @@ namespace Sprint1.MarioClasses
         {
             if (character is null)
                 throw new ArgumentNullException(nameof(character));
-            if (character.Type == Sprint1Main.CharacterType.Block ||
-                character.Type == Sprint1Main.CharacterType.DiedEnemy)
-                CollideWithBlock(UpOrDown, movingDown);
-            else if (character.Type == Sprint1Main.CharacterType.Pipe && character is PipeCharacter)
-                CollideWithPipe((PipeCharacter)character, UpOrDown, movingDown);
-            else if (character.Type == Sprint1Main.CharacterType.RedMushroom)
-                CollideWithRedMushRoom();
-            else if (character.Type == Sprint1Main.CharacterType.Flower)
-                CollideWithFlower();
-            else if (character.Type == Sprint1Main.CharacterType.Enemy)
-                CollideWithEnemy(UpOrDown && movingDown, character);
-            else if (character.Type == Sprint1Main.CharacterType.Flag)
-                CollideWithFlag(character);
-            else if(character.Type == Sprint1Main.CharacterType.Star)
+            switch (character.Type)
             {
-                Invincible = true; Clock = 100; Parameters.ChangeColor = true;
-            }
-            else if (character.Type == Sprint1Main.CharacterType.Castle)
-            {
-                Parameters.IsHidden = true;
-                Sprint1Main.Game.LevelControl.ChangeToWinMode();
+                case Sprint1Main.CharacterType.Block: CollideWithBlock(UpOrDown, movingDown); break;
+                case Sprint1Main.CharacterType.DiedEnemy: CollideWithBlock(UpOrDown, movingDown); break;
+                case Sprint1Main.CharacterType.Pipe: CollideWithPipe((PipeCharacter)character, UpOrDown, movingDown); break;
+                case Sprint1Main.CharacterType.RedMushroom: CollideWithRedMushRoom(); break;
+                case Sprint1Main.CharacterType.Flower: CollideWithFlower(); break;
+                case Sprint1Main.CharacterType.Enemy: CollideWithEnemy(UpOrDown && movingDown, character); break;
+                case Sprint1Main.CharacterType.Flag: CollideWithFlag(character); break;
+                case Sprint1Main.CharacterType.Star: Invincible = true; InvincibleClock = 100; Parameters.ChangeColor = true; break;
+                case Sprint1Main.CharacterType.GreenMushroom: Sprint1Main.MarioLife++; break;
+                case Sprint1Main.CharacterType.Castle:
+                    Parameters.IsHidden = true;
+                    Sprint1Main.Game.LevelControl.ChangeToWinMode();
+                    break;
+                case Sprint1Main.CharacterType.JumpMedicine: Mario.JumpTwice = true; JumpClock = 100; break;
+                case Sprint1Main.CharacterType.Bomb:
+                    Mario.MarioState.Destroy(); Invincible = true; InvincibleClock = 15; Parameters.ChangeColor = true;
+                    break;
+                default: break;
             }
 
 
@@ -260,8 +287,10 @@ namespace Sprint1.MarioClasses
         //public Vector2 GetHeightAndWidth() { return Mario.GetHeightAndWidth; } //get mario's hit and width.
         public bool IsDied() { return Mario.MarioState.GetPowerType == MarioState.PowerType.Died; }
         public bool IsFire() { return Mario.MarioState.IsFireMario(); }
-        public void RestoreStates(MarioState.ActionType actionType, MarioState.PowerType powerType, bool isFire)
+        public void RestoreStates(MarioState.ActionType actionType, MarioState.PowerType powerType, bool isFire, bool thorwBullet, bool jumpTwice)
         {
+            Mario.ThrowBullet = thorwBullet;
+            Mario.JumpTwice = jumpTwice;
             switch (actionType)
             {
                 case MarioState.ActionType.Crouch: Mario.ChangeToCrouch(); break;
@@ -291,9 +320,9 @@ namespace Sprint1.MarioClasses
             Mario.MarioState.LockOrUnlock(lockOrUnlock);
         }
         public void Bump() { Mario.Bump(); }
-        public void Suicide() { Mario.MarioState.ChangeToDied(); }
+        public void Suicide() { Mario.MarioState.ChangeToDied(); }// will be used when time out
         public void MarioCollide(bool special) { }
-        public void BlockCollide(bool isBottom) { } //combine with CollideWithBlock in next Sprint
+        public void BlockCollide(bool isBottom) { }
 
     }
 }

@@ -28,7 +28,6 @@ namespace Sprint1.ItemClasses
 
         public override void MarioCollide(bool specialCase)
         {
-            Sprint1Main.MarioLife++;
             Parameters.IsHidden = true; SoundFactory.Instance.MarioGetItem();
         }
 

@@ -17,6 +17,11 @@ namespace Sprint1
         public Vector2 Velocity { get { return _velocity; } }
         public Vector2 Position { get { return _position; } }
         public Color GetColor { get { return ChangeColor ? Color.Yellow : Color.White; } }
+        public bool Flash
+        {
+            get { _flash = ChangeColor ? !_flash : false; return _flash; }
+        }
+        private bool _flash;
         public float TimeOfFrame { get; set; } // replace game time. change one frame when TimeOfFrame = 1.
         public bool ChangeColor { get; set; }
         private Vector2 _velocity;
