@@ -32,6 +32,10 @@ namespace Sprint1.LevelLoader
         private float RestOfTime;
         private int previousScene;
         private readonly ResourceManager StringManager;
+        public bool IsLastLevel
+        {
+            get { return CurrSceneIndex == 1; }
+        }
         public Stage Stage
         {
             get
@@ -69,7 +73,7 @@ namespace Sprint1.LevelLoader
             currScene = scenes[CurrSceneIndex];
             GameMenu = new Menu(Sprint1Main.Game, new string[] { "Welcome To Mario", "Start", "Quit" });
             GameOver = new Menu(Sprint1Main.Game, new string[] { "Game Over", "Replay", "Exit" });
-            GameWin = new Menu(Sprint1Main.Game, new string[] { "Congratulations", "Replay", "Exit" });
+            GameWin = new Menu(Sprint1Main.Game, new string[] { "Congratulations", "Replay", "Exit", "Next Level"});
             //currScene.Dispose();
         }
 
@@ -185,7 +189,7 @@ namespace Sprint1.LevelLoader
         }
         public void ChangeToMenuMode() { Mode = 0; }
         public void ChangeToGamoverMode() { Mode = 2; SceneFlash(true, false, CurrSceneIndex); }
-        public void ChangeToWinMode() { Mode = 3; Sprint1Main.MarioLife = 3; SceneFlash(true, false, CurrSceneIndex); }
+        public void ChangeToWinMode() { Mode = 3; Sprint1Main.MarioLife = 3; SceneFlash(true, false, CurrSceneIndex); GotoNextScene(); }
         public void ChangeToLoadingMode() { Mode = 4; }
         public void AddTimeBonus() { Sprint1Main.Point += ((int)RestOfTime + 1) * 10; }
 
@@ -269,6 +273,16 @@ namespace Sprint1.LevelLoader
             CurrSceneIndex = x;
             currScene = Scene;
             //
+        }
+        public void GotoNextScene()
+        {
+            //ResetScene(true, false);
+            if (CurrSceneIndex < scenes.Count - 1)
+                CurrSceneIndex++;
+            else
+                CurrSceneIndex = 1;
+            currScene = Scene;
+            CheckPoint = Scene.Mario.GetMinPosition.X;
         }
 
         /*消除报警*/

@@ -112,9 +112,11 @@ namespace Sprint1
             //spriteBatch.DrawString(Font, 
             //    stringManager.GetString("W/Up Arrow: Up       S/Down Arrow: Down        Z/Button X: choose", CultureInfo.CurrentCulture), 
             //    new Vector2(0, 450), FontColor);
+            //int win = (Sprint1Main.Game.LevelControl.IsLastLevel && Content.Length == 4) ? 1 : 3;
             spriteBatch.DrawString(Font, Content[0], new Vector2(400 - Content[0].Length * 13, 150.0f),
                 FontColor, 0, Vector2.Zero, 2.5f, SpriteEffects.None, 0);
-            spriteBatch.DrawString(Font, Content[1], new Vector2(370.0f, 300.0f), FontColor);
+            spriteBatch.DrawString(Font, Content[(!Sprint1Main.Game.LevelControl.IsLastLevel && Content.Length == 4) ? 3 : 1], 
+                new Vector2(370.0f, 300.0f), FontColor);
             spriteBatch.DrawString(Font, Content[2], new Vector2(370.0f, 350.0f), FontColor);
             //Draw "mouse"
             chooseSprite.Draw(spriteBatch);
