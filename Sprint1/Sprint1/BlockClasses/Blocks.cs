@@ -148,7 +148,7 @@ namespace Sprint1.BlockClasses
         {
             ItemCharacter item = (ItemCharacter)items[0];
             ItemBumpingCommands bumpItem;
-            if (item is RandomItemCharacter)
+            if (item is RandomItemCharacter || item is JumpMedicineCharacter)
             {
                 item.Bumping(bPosition, bPosition.Y, bPosition.Y, spriteSpeed);
             }

@@ -40,6 +40,7 @@ namespace Sprint1.FactoryClasses
         Texture2D castle;
         Texture2D bomb;
         Texture2D randomItem;
+        Texture2D medicine;
         public ItemFactory()
         {
             //when factory initialzed, load the texture
@@ -70,6 +71,7 @@ namespace Sprint1.FactoryClasses
             castle = Sprint1Main.Game.Content.Load<Texture2D>("ItemSprite/mario-castle");
             bomb = Sprint1Main.Game.Content.Load<Texture2D>("ItemSprite/greenMushroom");
             randomItem = Sprint1Main.Game.Content.Load<Texture2D>("ItemSprite/redMushroom");
+            medicine = Sprint1Main.Game.Content.Load<Texture2D>("ItemSprite/greenMushroom");
         }
         public ItemCharacter GetPipe(Vector2 pos)
         {
@@ -114,6 +116,7 @@ namespace Sprint1.FactoryClasses
         public ItemCharacter GetCastle(Vector2 pos) { return new CastleCharacter(castle, new Point(1, 1), pos); }
         public ItemCharacter GetBomb(Vector2 pos) { return new BombCharacter(bomb, new Point(1, 1), pos); }
         public ItemCharacter GetRandomItem(Vector2 pos) { return new RandomItemCharacter(randomItem, new Point(1, 1), pos); }
+        public ItemCharacter GetJumpMedicine(Vector2 pos) { return new JumpMedicineCharacter(medicine, new Point(1, 1), pos); }
         public ArrayList FactoryMethod(string name, Vector2 posS, Vector2 posE)
         {
             ArrayList list = new ArrayList();
@@ -154,6 +157,7 @@ namespace Sprint1.FactoryClasses
                         case "Castle": list.Add(GetCastle(pos)); break;
                         case "Bomb": list.Add(GetBomb(pos)); break;
                         case "Random": list.Add(GetRandomItem(pos)); break;
+                        case "JumpMedicine": list.Add(GetJumpMedicine(pos)); break;
                         default: break;
                     }
                 }
@@ -195,6 +199,7 @@ namespace Sprint1.FactoryClasses
                         break;
                     case "Bullet": list.Add(GetBullet(pos)); break;
                     case "Random": list.Add(GetRandomItem(pos)); break;
+                    case "JumpMedicine": list.Add(GetJumpMedicine(pos)); break;
                     default: break;
                 }              
             }

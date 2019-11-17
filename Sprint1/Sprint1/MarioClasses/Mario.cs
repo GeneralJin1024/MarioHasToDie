@@ -110,7 +110,7 @@ namespace Sprint1.MarioClasses
         public void ChangeToJump(float yVelocity)
         {
             ChangeActionAndSprite(1);
-            Parameters.SetVelocity(Math.Abs(Parameters.Velocity.X), JumpTwice ? yVelocity * 2 : yVelocity);
+            Parameters.SetVelocity(Math.Abs(Parameters.Velocity.X), JumpTwice ? yVelocity * 1.5f : yVelocity);
             SoundFactory.Instance.MarioJump();
         }
 

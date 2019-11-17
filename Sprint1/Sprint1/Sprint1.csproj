@@ -102,6 +102,7 @@
     <Compile Include="ItemEnemyClasses\FlagCharacter.cs" />
     <Compile Include="ItemEnemyClasses\EnemyCharacter.cs" />
     <Compile Include="ItemEnemyClasses\ItemBumpingCommands.cs" />
+    <Compile Include="ItemEnemyClasses\JumpMedicineCharacter.cs" />
     <Compile Include="ItemEnemyClasses\PipeCharacter .cs" />
     <Compile Include="ItemEnemyClasses\GreenMushroomCharacter .cs" />
     <Compile Include="ItemEnemyClasses\CloudEnemyCharacter.cs" />

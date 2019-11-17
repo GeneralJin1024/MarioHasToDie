@@ -267,7 +267,11 @@ namespace Sprint1.MarioClasses
                     break;
                 case Sprint1Main.CharacterType.JumpMedicine: Mario.JumpTwice = true; JumpClock = 100; break;
                 case Sprint1Main.CharacterType.Bomb:
-                    Mario.MarioState.Destroy(); Invincible = true; InvincibleClock = 15; Parameters.ChangeColor = true;
+                    Mario.MarioState.Destroy();
+                    if (!IsDied())
+                    {
+                        Invincible = true; InvincibleClock = 15; Parameters.ChangeColor = true;
+                    }
                     break;
                 default: break;
             }

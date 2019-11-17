@@ -138,6 +138,7 @@ namespace Sprint1.CollideDetection
                     case Sprint1Main.CharacterType.Flower: MovingCharacters.Add(character);break;
                     case Sprint1Main.CharacterType.Bomb: MovingCharacters.Add(character); break;
                     case Sprint1Main.CharacterType.Fireball: FireBallCharacters.Add(character); break;
+                    case Sprint1Main.CharacterType.JumpMedicine: MovingCharacters.Add(character);break;
                     default: break;
                 }
             }
