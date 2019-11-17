@@ -135,9 +135,7 @@ namespace Sprint1.MarioClasses
             {
                 Mario.MarioState.Destroy();
                 if (Mario.MarioState.GetPowerType != MarioState.PowerType.Died)// if Mario is still alive
-                {
-                    Invincible = true; InvincibleClock = 15; Parameters.ChangeColor = true;
-                }       
+                    ChangeToStarState(15);
             }
             if (character is BossEnemyCharacter)
                 Mario.MarioState.ChangeToDied();
@@ -259,7 +257,7 @@ namespace Sprint1.MarioClasses
                 case Sprint1Main.CharacterType.Flower: CollideWithFlower(); break;
                 case Sprint1Main.CharacterType.Enemy: CollideWithEnemy(UpOrDown && movingDown, character); break;
                 case Sprint1Main.CharacterType.Flag: CollideWithFlag(character); break;
-                case Sprint1Main.CharacterType.Star: Invincible = true; InvincibleClock = 100; Parameters.ChangeColor = true; break;
+                case Sprint1Main.CharacterType.Star: ChangeToStarState(100); break;
                 case Sprint1Main.CharacterType.GreenMushroom: Sprint1Main.MarioLife++; break;
                 case Sprint1Main.CharacterType.Castle:
                     Parameters.IsHidden = true;
@@ -270,7 +268,7 @@ namespace Sprint1.MarioClasses
                     Mario.MarioState.Destroy();
                     if (!IsDied())
                     {
-                        Invincible = true; InvincibleClock = 15; Parameters.ChangeColor = true;
+                        ChangeToStarState(15);
                     }
                     break;
                 default: break;
@@ -284,11 +282,10 @@ namespace Sprint1.MarioClasses
          * In this Sprint, mario hit pipe doing the same thing as hitting a block.
          */
         #endregion
-        //get left up coner position.
-        //public Vector2 GetMinPosition() { return new Vector2(Parameters.Position.X, Parameters.Position.Y - Mario.GetHeightAndWidth.X); }
-        //get right down coner position.
-        //public Vector2 GetMaxPosition() { return new Vector2(Parameters.Position.X + Mario.GetHeightAndWidth.Y, Parameters.Position.Y); }
-        //public Vector2 GetHeightAndWidth() { return Mario.GetHeightAndWidth; } //get mario's hit and width.
+        public void ChangeToStarState(float time)
+        {
+            Invincible = true; Parameters.ChangeColor = true; InvincibleClock = time;
+        }
         public bool IsDied() { return Mario.MarioState.GetPowerType == MarioState.PowerType.Died; }
         public bool IsFire() { return Mario.MarioState.IsFireMario(); }
         public void RestoreStates(MarioState.ActionType actionType, MarioState.PowerType powerType, bool isFire, bool thorwBullet, bool jumpTwice)
