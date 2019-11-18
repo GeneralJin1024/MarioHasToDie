@@ -73,6 +73,7 @@ namespace Sprint1.FactoryClasses
             randomItem = Sprint1Main.Game.Content.Load<Texture2D>("ItemSprite/redMushroom");
             medicine = Sprint1Main.Game.Content.Load<Texture2D>("ItemSprite/greenMushroom");
         }
+
         public ItemCharacter GetPipe(Vector2 pos)
         {
             return new PipeCharacter(pipe, new Point(1, 1), pos, PipeCharacter.PipeType.Pipe);
