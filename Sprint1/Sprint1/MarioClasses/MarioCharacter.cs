@@ -106,6 +106,7 @@ namespace Sprint1.MarioClasses
         {
             if (Mario.MarioState.IsFireMario())
             {
+                SoundFactory.Instance.ThrowFireBall();
                 float distance = Parameters.IsLeft ? 0 : GetHeightAndWidth.Y;
                 Vector2 location = new Vector2(Parameters.Position.X + distance, Parameters.Position.Y - GetHeightAndWidth.Y / 2);
                 if (Mario.ThrowBullet)
@@ -119,7 +120,7 @@ namespace Sprint1.MarioClasses
                     ICharacter fireBall = ItemFactory.Instance.AddNewCharacter("FireBall+{1}", location);
                     fireBall.Parameters.IsHidden = false;
                     fireBall.Parameters.IsLeft = Parameters.IsLeft;
-                    fireBall.Parameters.SetVelocity(10, -5);
+                    fireBall.Parameters.SetVelocity(15, -5);
                 }
             }
         }
@@ -135,9 +136,7 @@ namespace Sprint1.MarioClasses
             {
                 Mario.MarioState.Destroy();
                 if (Mario.MarioState.GetPowerType != MarioState.PowerType.Died)// if Mario is still alive
-                {
-                    Invincible = true; InvincibleClock = 15; Parameters.ChangeColor = true;
-                }       
+                    ChangeToStarState(15);
             }
             if (character is BossEnemyCharacter)
                 Mario.MarioState.ChangeToDied();
@@ -146,17 +145,24 @@ namespace Sprint1.MarioClasses
         }
         public void CollideWithFlower()
         {
-            if (Mario.MarioState.GetPowerType == MarioState.PowerType.Standard) // Mario is standard
-                Mario.MarioState.ChangeToSuper();
-            else if (!IsFire()) // Mario is Super
+            if (Mario.MarioState.GetPowerType == MarioState.PowerType.Standard)// Mario is standard
+            {
+                Mario.MarioState.ChangeToSuper(); SoundFactory.Instance.PowerUp();
+            }
+            else if (!IsFire())// Mario is Super
+            {
+                SoundFactory.Instance.PowerUp();
                 Mario.MarioState.ChangeToFire();
+            }
             else // Mario is already fire Mario.
                 Mario.ThrowBullet = true;
         }
         public void CollideWithRedMushRoom()
         {
             if (GetPower == MarioState.PowerType.Standard)
-                Mario.MarioState.ChangeToSuper();
+            {
+                Mario.MarioState.ChangeToSuper(); SoundFactory.Instance.PowerUp();
+            }
         }
         public void CollideWithBlock(bool hitBottomOrTop, bool movingUp)
         {
@@ -205,7 +211,7 @@ namespace Sprint1.MarioClasses
                         Parameters.Position.X >= pipe.GetMinPosition.X + 2 && GetMaxPosition.X <= pipe.GetMaxPosition.X - 2)
                     {
                         Mario.DiveIn(pipe.GetMinPosition.Y); pipe.MarioGetInside();
-                        DivedPipe.Add(pipe.GetMinPosition.X);
+                        DivedPipe.Add(pipe.GetMinPosition.X); SoundFactory.Instance.GetIntoPipe();
                     }
                     else
                         CollideWithBlock(upOrDown, movingDown);
@@ -213,7 +219,10 @@ namespace Sprint1.MarioClasses
                 case PipeCharacter.PipeType.HPipe:
                     if (!upOrDown && Parameters.Velocity.X > 0 && GetMinPosition.Y >= pipe.GetMinPosition.Y &&
                         GetMaxPosition.Y <= pipe.GetMaxPosition.X)
+                    {
                         Mario.DiveInRight(pipe.GetMinPosition.X, pipe.GetMaxPosition.Y);
+                        SoundFactory.Instance.GetIntoPipe();
+                    }
                     else CollideWithBlock(upOrDown, movingDown);
                     break;
                 default: break;
@@ -259,7 +268,7 @@ namespace Sprint1.MarioClasses
                 case Sprint1Main.CharacterType.Flower: CollideWithFlower(); break;
                 case Sprint1Main.CharacterType.Enemy: CollideWithEnemy(UpOrDown && movingDown, character); break;
                 case Sprint1Main.CharacterType.Flag: CollideWithFlag(character); break;
-                case Sprint1Main.CharacterType.Star: Invincible = true; InvincibleClock = 100; Parameters.ChangeColor = true; break;
+                case Sprint1Main.CharacterType.Star: ChangeToStarState(100); break;
                 case Sprint1Main.CharacterType.GreenMushroom: Sprint1Main.MarioLife++; break;
                 case Sprint1Main.CharacterType.Castle:
                     Parameters.IsHidden = true;
@@ -270,7 +279,7 @@ namespace Sprint1.MarioClasses
                     Mario.MarioState.Destroy();
                     if (!IsDied())
                     {
-                        Invincible = true; InvincibleClock = 15; Parameters.ChangeColor = true;
+                        ChangeToStarState(15);
                     }
                     break;
                 default: break;
@@ -284,11 +293,10 @@ namespace Sprint1.MarioClasses
          * In this Sprint, mario hit pipe doing the same thing as hitting a block.
          */
         #endregion
-        //get left up coner position.
-        //public Vector2 GetMinPosition() { return new Vector2(Parameters.Position.X, Parameters.Position.Y - Mario.GetHeightAndWidth.X); }
-        //get right down coner position.
-        //public Vector2 GetMaxPosition() { return new Vector2(Parameters.Position.X + Mario.GetHeightAndWidth.Y, Parameters.Position.Y); }
-        //public Vector2 GetHeightAndWidth() { return Mario.GetHeightAndWidth; } //get mario's hit and width.
+        public void ChangeToStarState(float time)
+        {
+            Invincible = true; Parameters.ChangeColor = true; InvincibleClock = time;
+        }
         public bool IsDied() { return Mario.MarioState.GetPowerType == MarioState.PowerType.Died; }
         public bool IsFire() { return Mario.MarioState.IsFireMario(); }
         public void RestoreStates(MarioState.ActionType actionType, MarioState.PowerType powerType, bool isFire, bool thorwBullet, bool jumpTwice)

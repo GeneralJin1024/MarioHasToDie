@@ -79,7 +79,7 @@ namespace Sprint1.BlockClasses
             IsBumping = true;
             currentbState = bStates[2];
             MinY = Parameters.Position.Y - base.GetHeightAndWidth.X;
-            MaxY = Parameters.Position.Y;
+            MaxY = Parameters.Position.Y; SoundFactory.Instance.HitQuestionBlock();
         }
         #endregion
         public override void Update(float frameTime)
@@ -148,6 +148,7 @@ namespace Sprint1.BlockClasses
         {
             ItemCharacter item = (ItemCharacter)items[0];
             ItemBumpingCommands bumpItem;
+            SoundFactory.Instance.BumpItems();
             if (item is RandomItemCharacter || item is JumpMedicineCharacter)
             {
                 item.Bumping(bPosition, bPosition.Y, bPosition.Y, spriteSpeed);
