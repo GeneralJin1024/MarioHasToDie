@@ -25,7 +25,6 @@ namespace Sprint1.FactoryClasses
                 return _instance;
             }
         }
-        private ArrayList CharacterList;
         Texture2D coin;
         Texture2D flower;
         Texture2D greenMushroom;
@@ -46,12 +45,11 @@ namespace Sprint1.FactoryClasses
             //when factory initialzed, load the texture
             LoadTexture();
         }
-        public void Initialize(ArrayList characterList) { CharacterList = characterList; }
         public ICharacter AddNewCharacter(string characterType, Vector2 location)
         {
 
             ICharacter newItem = (ICharacter)FactoryMethod(characterType, location)[0];
-            CharacterList.Add(newItem);
+            Sprint1Main.Game.Scene.FireBallList.Add(newItem);
             return newItem;
         }
 

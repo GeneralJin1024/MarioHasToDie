@@ -60,7 +60,7 @@ namespace Sprint1
                     if (key == Keys.W || key == Keys.Up || key == Keys.Down || key == Keys.S)
                         FirstChoose = !FirstChoose;
                 }
-                else if ( key == Keys.Z )
+                else if ( key == Keys.Enter )
                 {
                     if (FirstChoose)
                     {

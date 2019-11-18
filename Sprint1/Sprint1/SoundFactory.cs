@@ -25,67 +25,40 @@ namespace Sprint1
 
         }
         private static SoundFactory _instance;
-        //public SoundEffect BackgroundMusic { get; set; }
-        public SoundEffectInstance BackgroundMusic
-        {
-            get
-            {
-                return _backgroundMusic;
-            }
-        }
-        private SoundEffectInstance _backgroundMusic;
-        //public Song BackgroundMusic { get; private set; }
-        /* SoundEffect coin here is GetItemEffect */
-        private SoundEffect coin;
-        private SoundEffect HitQuestionBlockBottom;
-        private SoundEffect JumpEffect;
-        private SoundEffect DiedEffect;
-        /* for the further sound effect implement use */
-        private SoundEffect Bump;
-        private SoundEffect Fireball;
-        private SoundEffect Pipe;
-        private SoundEffect Pause;
-        private SoundEffect Gameover;
-        private SoundEffect Powerup;
+        public SoundEffectInstance BackgroundMusic { get; }
+        public Dictionary<string, SoundEffect> SoundEffectList { get; }
 
         public SoundFactory()
         {
-            _backgroundMusic = Sprint1Main.Game.Content.Load<SoundEffect>("Music/Map_BGM").CreateInstance();
-            _backgroundMusic.IsLooped = true;
-
-            coin = Sprint1Main.Game.Content.Load<SoundEffect>("Music/smb_coin");
-            HitQuestionBlockBottom = Sprint1Main.Game.Content.Load<SoundEffect>("Music/QuestionBlock");
-            JumpEffect = Sprint1Main.Game.Content.Load<SoundEffect>("Music/smb_jump-small");
-            DiedEffect = Sprint1Main.Game.Content.Load<SoundEffect>("Music/sm64_mario_lost_a_life");
-            Bump = Sprint1Main.Game.Content.Load<SoundEffect>("Music/smb_bump");
-            Fireball = Sprint1Main.Game.Content.Load<SoundEffect>("Music/smb_fireball");
-            Pipe = Sprint1Main.Game.Content.Load<SoundEffect>("Music/sm64_pipe");
-            Pause = Sprint1Main.Game.Content.Load<SoundEffect>("Music/smb_pause");
-            Gameover = Sprint1Main.Game.Content.Load<SoundEffect>("Music/sm64_game_over");
-            Powerup = Sprint1Main.Game.Content.Load<SoundEffect>("Music/smb_powerup");
-
-        }
-
-
-        public void MarioJump()
-        {
-            JumpEffect.Play();
+            BackgroundMusic = Sprint1Main.Game.Content.Load<SoundEffect>("Music/Map_BGM").CreateInstance();
+            BackgroundMusic.IsLooped = true;
+            SoundEffectList = new Dictionary<string, SoundEffect>
+            {
+                { "getCoin", Sprint1Main.Game.Content.Load<SoundEffect>("Music/smb_coin") },
+                { "hit?BlockBottom", Sprint1Main.Game.Content.Load<SoundEffect>("Music/QuestionBlock") },
+                { "jump", Sprint1Main.Game.Content.Load<SoundEffect>("Music/smb_jump-small") },
+                { "die", Sprint1Main.Game.Content.Load<SoundEffect>("Music/sm64_mario_lost_a_life") },
+                { "bump", Sprint1Main.Game.Content.Load<SoundEffect>("Music/smb_bump") },
+                { "throwFireball", Sprint1Main.Game.Content.Load<SoundEffect>("Music/smb_fireball") },
+                { "getIntoPipe", Sprint1Main.Game.Content.Load<SoundEffect>("Music/sm64_pipe") },
+                { "pause", Sprint1Main.Game.Content.Load<SoundEffect>("Music/smb_pause") },
+                { "gameover", Sprint1Main.Game.Content.Load<SoundEffect>("Music/sm64_game_over") },
+                { "powerUp", Sprint1Main.Game.Content.Load<SoundEffect>("Music/smb_powerup") }
+            };
 
         }
 
-        public void MarioGetItem()
-        {
-            coin.Play();
 
-        }
-        public void MarioDied()
-        {
-            DiedEffect.Play();
-        }
-        public void HitQuestionBlock()
-        {
-            HitQuestionBlockBottom.Play();
-        }
+        public void MarioJump() { SoundEffectList["jump"].Play(); }
+        public void MarioGetItem() { SoundEffectList["getCoin"].Play(); }
+        public void MarioDied() { SoundEffectList["die"].Play(); }
+        public void HitQuestionBlock() { SoundEffectList["hit?BlockBottom"].Play(); }
+        public void BumpItems() { SoundEffectList["bump"].Play(); }
+        public void ThrowFireBall() { SoundEffectList["throwFireball"].Play(); }
+        public void GetIntoPipe() { SoundEffectList["getIntoPipe"].Play(); }
+        public void Pause() { SoundEffectList["pause"].Play(); }
+        public void GameOver() { SoundEffectList["gameover"].Play(); }
+        public void PowerUp() { SoundEffectList["powerUp"].Play(); }
 
     }
 

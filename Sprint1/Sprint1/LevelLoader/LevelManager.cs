@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Media;
+using Sprint1.FactoryClasses;
 using Sprint1.MarioClasses;
 using System;
 using System.Collections;
@@ -188,7 +189,7 @@ namespace Sprint1.LevelLoader
             //MediaPlayer.Play(SoundFactory.Instance.BackgroundMusic);MediaPlayer.IsRepeating = true;
         }
         public void ChangeToMenuMode() { Mode = 0; }
-        public void ChangeToGamoverMode() { Mode = 2; SceneFlash(true, false, CurrSceneIndex); }
+        public void ChangeToGamoverMode() { Mode = 2; SceneFlash(true, false, CurrSceneIndex); SoundFactory.Instance.GameOver(); }
         public void ChangeToWinMode() { Mode = 3; Sprint1Main.MarioLife = 3; SceneFlash(true, false, CurrSceneIndex); GotoNextScene(); }
         public void ChangeToLoadingMode() { Mode = 4; }
         public void AddTimeBonus() { Sprint1Main.Point += ((int)RestOfTime + 1) * 10; }

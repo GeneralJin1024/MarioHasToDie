@@ -99,7 +99,6 @@ namespace Sprint1.LevelLoader
                     BackgroundColor = Color.Black;
                 else
                     BackgroundColor = Color.CornflowerBlue;
-                ItemFactory.Instance.Initialize(fireBallList);
                 Game.Scene.Mario = PlayerFactory.FactoryMethod2(myLevelSection.Player[1].SpriteName, 
                     StringToVecter2(myLevelSection.Player[1].SpriteStartLocation));
                 for (int i = 1; i < myLevelSection.Backgrounds.Count; i++)
