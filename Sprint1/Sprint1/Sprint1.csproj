@@ -84,6 +84,7 @@
     <Compile Include="Command\MoveSuperCommand.cs" />
     <Compile Include="Command\MoveUpCommand.cs" />
     <Compile Include="Command\QuitCommand.cs" />
+    <Compile Include="Command\StoreCommands.cs" />
     <Compile Include="Controllers\GamepadController.cs" />
     <Compile Include="Controllers\KeyboardController.cs" />
     <Compile Include="FactoryClasses\ItemFactory.cs" />

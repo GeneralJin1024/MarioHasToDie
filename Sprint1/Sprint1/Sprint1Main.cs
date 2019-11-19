@@ -33,7 +33,7 @@ namespace Sprint1
             Flag, Castle, Null, JumpMedicine, Bomb
         }
 
-        public static int MarioLife { get; set; } = 2;
+        public static int MarioLife { get; set; } = 3;
         public static int Point { get; set; } = 0;
         public static int Coins { get; set; } = 0;
         public LevelManager LevelControl { get; private set; }
