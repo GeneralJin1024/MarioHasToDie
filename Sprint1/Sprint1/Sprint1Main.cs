@@ -17,7 +17,7 @@ using Sprint1.ItemClasses;
 
 namespace Sprint1
 {
-   //Teammate: Runmin Zhou
+    //Teammate: Runmin Zhou
     //Teammate : Zhenhao Lu
     // teammate: Ziye Zhu
     // Teammate: Shengyu Jin
@@ -33,9 +33,12 @@ namespace Sprint1
             Flag, Castle, Null, JumpMedicine, Bomb
         }
 
-        public static int MarioLife { get; set; } = 3;
-        public static int Point { get; set; } = 0;
-        public static int Coins { get; set; } = 0;
+        public static int MarioLife { get; set; } = 3; // The rest of lives of Mario.
+        public static int Point { get; set; } = 0; // The point Mario get in all level, will be reset when he died and no life left.
+        public static int Coins { get; set; } = 0; // THe coins Mario get in all level, will be reset when he died and no life left.
+        /**
+         * Main Controller of the whole game.
+         **/
         public LevelManager LevelControl { get; private set; }
 
         private GraphicsDeviceManager graphics;
@@ -44,11 +47,7 @@ namespace Sprint1
         public Color FontColor { get; set; } = Color.DarkBlue;
         //private SpriteFont instructionFont;
         #endregion
-
-        //private Menu GameMenu;
-        //public bool MenuMode { get; set; }
-        //public bool LoadingMode { get; set; }
-        public MarioCharacter Mario { get; set; }
+        public MarioCharacter Mario { get{ return Scene.Mario; } set { } }
         public static Sprint1Main Game { get; private set; }
         public GraphicsDeviceManager Graphics
         {
@@ -116,7 +115,7 @@ namespace Sprint1
             //GameMenu = new Menu(this);
             //MenuMode = true;
             //LoadingMode = true;
-            LevelControl.Initialize();//仅仅移动代码，并未修改，若需要还原，删除本行并取消上面11行的注释即可
+            LevelControl.Initialize();
             base.Initialize();
         }
 
@@ -127,17 +126,7 @@ namespace Sprint1
         protected override void LoadContent()
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
-
-            //for (int i = 1; i <= totalScene; i++)
-            //{
-            //    scenes[i - 1].LoadContent();
-            //}
-            //#region Fonts
-            //instructionFont = Content.Load<SpriteFont>("arial");
-            //#endregion
-            
-            //GameMenu.LoadContent(instructionFont);
-            LevelControl.LoadContent();//仅仅移动代码，并未修改，若需要还原，删除本行并取消上面8行的注释即可
+            LevelControl.LoadContent();
             // TODO: use this.Content to load your game content here
         }
 
@@ -157,19 +146,7 @@ namespace Sprint1
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
-            //if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
-            //    Exit();
-            //if (gameTime == null)
-            //    throw new ArgumentNullException(nameof(gameTime));
-            //if (MenuMode)
-            //    GameMenu.Update(1);
-            //else
-            //{
-            //    if (!LoadingMode)
-            //        currScene.Update(gameTime);
-            //}
-            LevelControl.Update(gameTime); //仅仅移动代码，并未修改，若需要还原，删除本行并取消上面160-168行的注释即可
-
+            LevelControl.Update(gameTime);
             base.Update(gameTime);
         }
 
@@ -179,57 +156,10 @@ namespace Sprint1
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            //change background when change from menu to game.
-            //if (MenuMode)
-            //    GraphicsDevice.Clear(Color.Black);
-            //else
-            //    GraphicsDevice.Clear(Color.CornflowerBlue);
-
-            //spriteBatch.Begin(blendState: BlendState.AlphaBlend);
-            
-            //if (MenuMode)
-            //    GameMenu.Draw(spriteBatch);
-            //else
-            //{
-            //    if (!LoadingMode)
-            //        currScene.Draw();
-            //}
             LevelControl.Draw(spriteBatch);
-            #region Fonts
-            //DrawFonts();
-            #endregion
-
             spriteBatch.End();
 
             base.Draw(gameTime);
         }
-        //public void ResetScene()
-        //{
-        //    #region Reset
-        //    //save backup
-        //    MoveParameters tempParameter = new MoveParameters(true);
-        //    Scene.CopyDataOfParameter(currScene.Mario.Parameters, tempParameter);
-        //    MarioState.ActionType actionType = currScene.Mario.GetAction;
-        //    MarioState.PowerType powerType = currScene.Mario.GetPower;
-        //    bool isFire = currScene.Mario.IsFire();
-
-        //    LoadingMode = true;       
-        //    scenes.Remove(currScene);
-        //    currScene.Dispose();
-        //    Stage stage = new Stage(this);
-        //    currScene = new Scene(stage);
-        //    scenes.Insert(CurrSceneIndex-1, currScene);
-        //    currScene.Initalize(CurrSceneIndex);
-        //    currScene.LoadContent();          
-        //    LoadingMode = false;
-
-        //    //use backup to rewrite
-        //    Scene.CopyDataOfParameter(tempParameter, currScene.Mario.Parameters);
-        //    currScene.Mario.RestoreStates(actionType, powerType, isFire);
-        //    currScene.Camera.LookAt(currScene.Mario.Parameters.Position);
-        //    #endregion
-
-        //}
-
     }
 }
