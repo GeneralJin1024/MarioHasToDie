@@ -75,6 +75,9 @@
     <Compile Include="CollideDetection\CollideDetector.cs" />
     <Compile Include="CollideDetection\CollidePair.cs" />
     <Compile Include="CollideDetection\TileMap.cs" />
+    <Compile Include="Command\BuyExtralifeCommand.cs" />
+    <Compile Include="Command\BuyFireStateCommand.cs" />
+    <Compile Include="Command\BuyStarStateCommand.cs" />
     <Compile Include="Command\BuySuperStateCommand.cs" />
     <Compile Include="Command\MoveDestroyCommand.cs" />
     <Compile Include="Command\MoveDownCommand.cs" />
