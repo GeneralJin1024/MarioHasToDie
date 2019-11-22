@@ -411,3 +411,13 @@ C:\Users\72957\source\repos\SmartMario\Sprint1\Sprint1\bin\Windows\x86\Debug\Con
 C:\Users\13667\source\repos\SmartMario\Sprint1\Sprint1\bin\Windows\x86\Debug\Content\ItemSprite\fireball.xnb
 C:\Users\13667\source\repos\SmartMario\Sprint1\Sprint1\bin\Windows\x86\Debug\Content\ItemSprite\medicine.xnb
 C:\Users\13667\source\repos\SmartMario\Sprint1\Sprint1\bin\Windows\x86\Debug\Content\ItemSprite\randomItem.xnb
+C:\Users\zhangjian\Source\Repos\SmartMario\Sprint1\Sprint1\bin\Windows\x86\Debug\Content\ItemSprite\bomb.xnb
+C:\Users\zhangjian\Source\Repos\SmartMario\Sprint1\Sprint1\bin\Windows\x86\Debug\Content\ItemSprite\fireball.xnb
+C:\Users\zhangjian\Source\Repos\SmartMario\Sprint1\Sprint1\bin\Windows\x86\Debug\Content\ItemSprite\medicine.xnb
+C:\Users\zhangjian\Source\Repos\SmartMario\Sprint1\Sprint1\bin\Windows\x86\Debug\Content\ItemSprite\randomItem.xnb
+C:\Users\zhangjian\Source\Repos\SmartMario\Sprint1\Sprint1\bin\Windows\x86\Debug\Content\EnemySprite\boss.xnb
+C:\Users\zhangjian\Source\Repos\SmartMario\Sprint1\Sprint1\bin\Windows\x86\Debug\Content\EnemySprite\cloudEnemy1.xnb
+C:\Users\zhangjian\Source\Repos\SmartMario\Sprint1\Sprint1\bin\Windows\x86\Debug\Content\EnemySprite\cloudEnemy2.xnb
+C:\Users\zhangjian\Source\Repos\SmartMario\Sprint1\Sprint1\bin\Windows\x86\Debug\Content\EnemySprite\enemyPlant.xnb
+C:\Users\zhangjian\Source\Repos\SmartMario\Sprint1\Sprint1\bin\Windows\x86\Debug\Content\EnemySprite\jump1.xnb
+C:\Users\zhangjian\Source\Repos\SmartMario\Sprint1\Sprint1\bin\Windows\x86\Debug\Content\EnemySprite\Jump2.xnb
