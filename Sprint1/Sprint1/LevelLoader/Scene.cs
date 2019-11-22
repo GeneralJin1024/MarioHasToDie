@@ -126,11 +126,11 @@ namespace Sprint1
                 throw new ArgumentNullException(nameof(pipePosition));
             foreach(ICharacter character in characterList)
             {
-                Console.WriteLine("Mario Position = " + Mario.GetMinPosition.X);
-                foreach(float X in pipePosition)
-                {
-                    Console.WriteLine("pipe Positions = " + X);
-                }
+                //Console.WriteLine("Mario Position = " + Mario.GetMinPosition.X);
+                //foreach(float X in pipePosition)
+                //{
+                //    Console.WriteLine("pipe Positions = " + X);
+                //}
                 if (pipePosition.Contains(character.GetMinPosition.X) && character.Type == Sprint1Main.CharacterType.Pipe)
                 {
                     PipeCharacter pipe = (PipeCharacter)character;

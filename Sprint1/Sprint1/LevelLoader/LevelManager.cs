@@ -261,6 +261,7 @@ namespace Sprint1.LevelLoader
             CurrSceneIndex = previousScene;
             currScene = Scene;
             CheckPoint = Scene.Mario.GetMinPosition.X;
+            Scene.DisableVPipes(Scene.Mario.DivedPipe);
             Scene.Mario.Bump();
         }
 
