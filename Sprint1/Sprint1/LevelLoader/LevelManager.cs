@@ -23,17 +23,17 @@ namespace Sprint1.LevelLoader
         private Menu GameWin;
         public int CurrSceneIndex { get; private set; }
         private Scene currScene;
-        readonly List<Scene> scenes;
-        private readonly int totalScene;
-        private SpriteFont instructionFont;
-        private ISprite Coin;
-        private ISprite Mario;
+        readonly List<Scene> scenes; //level list.
+        private readonly int totalScene; //number of Scenes (included Secrete area)
+        private SpriteFont instructionFont; //HUD font.
+        private ISprite Coin; //HUD picture
+        private ISprite Mario; //HUD picture.
         private int Mode;//0: MenuMode, 1: CurrentScene, 2: Game Over, 3: Loading 
-        private float CheckPoint;
-        private float RestOfTime;
+        private float CheckPoint; //Check Point in the game.
+        private float RestOfTime; //HUD: Time, when time goes to 0, Mario will suicide.
         private int previousScene;
-        private readonly ResourceManager StringManager;
-        public bool IsLastLevel
+        private readonly ResourceManager StringManager; //used to read strings from resource file.
+        public bool IsLastLevel //help the Win Page present different sentences.
         {
             get { return CurrSceneIndex == 1; }
         }
@@ -72,6 +72,7 @@ namespace Sprint1.LevelLoader
                 scenes.Add(scene);
             }
             currScene = scenes[CurrSceneIndex];
+            //set the three special Pages.
             GameMenu = new Menu(Sprint1Main.Game, new string[] { "Welcome To Mario", "Start", "Quit" });
             GameOver = new Menu(Sprint1Main.Game, new string[] { "Game Over", "Replay", "Exit" });
             GameWin = new Menu(Sprint1Main.Game, new string[] { "Congratulations", "Replay", "Exit", "Next Level"});
@@ -82,6 +83,7 @@ namespace Sprint1.LevelLoader
         {
             for (int i = 1; i <= totalScene; i++)
             {
+                // some code Called Current Scene's Mario to do something. Hence change CurrSceneIndex synchronously
                 CurrSceneIndex = i - 1;
                 scenes[i - 1].LoadContent();
             }
@@ -89,15 +91,19 @@ namespace Sprint1.LevelLoader
             #region Fonts
             instructionFont = Sprint1Main.Game.Content.Load<SpriteFont>("arial");
             #endregion
+            //create HUD pictures.
             Coin = new AnimatedSprite(
                 Sprint1Main.Game.Content.Load<Texture2D>("ItemSprite/coin"), new Point(1, 4), new MoveParameters(false));
             Coin.Parameters.SetPosition(156, 41);
             Mario = new AnimatedSprite(Sprint1Main.Game.Content.Load<Texture2D>("MarioSprites/smallMarioRightStand"), 
                 new Point(1, 1), new MoveParameters(false));
             Mario.Parameters.SetPosition(320, 41);
+            
+            //Load fonts.
             GameMenu.LoadContent(instructionFont);
             GameOver.LoadContent(instructionFont);
             GameWin.LoadContent(instructionFont);
+            //initialize CheckPoint (reborn place)
             CheckPoint = Scene.Mario.GetMinPosition.X;
         }
 
@@ -116,6 +122,7 @@ namespace Sprint1.LevelLoader
                 GameWin.Update(1);
             else if (Mode == 1)
             {
+                //will not change when arrives 0, or pulse the game, or Mario wins (touch the flag)
                 RestOfTime -= (RestOfTime > 0 && !Scene.Mario.Win && !Stage.Pulse) ? (float)gameTime.ElapsedGameTime.TotalSeconds : 0;
                 if (RestOfTime < 0)
                 {
@@ -129,7 +136,7 @@ namespace Sprint1.LevelLoader
         {
             if (spriteBatch is null)
                 throw new ArgumentNullException(nameof(spriteBatch));
-            if (Mode != 1)
+            if (Mode != 1) // only in normal level (not secrete area), the background is Blue.
                 Sprint1Main.Game.GraphicsDevice.Clear(Color.Black);
 
             spriteBatch.Begin(blendState: BlendState.AlphaBlend);
@@ -147,8 +154,10 @@ namespace Sprint1.LevelLoader
                 0, Vector2.Zero, 1.2f, SpriteEffects.None, 0);
             spriteBatch.DrawString(instructionFont, " : " + Sprint1Main.MarioLife,
                 new Vector2(340, 20), fontColor, 0, Vector2.Zero, 1.2f, SpriteEffects.None, 0);
+            //draw HUD pictures.
             Coin.Draw(spriteBatch); 
             Mario.Draw(spriteBatch);
+
             if (Mode == 0)
                 GameMenu.Draw(spriteBatch);
             else if (Mode == 2)
@@ -157,8 +166,10 @@ namespace Sprint1.LevelLoader
                 GameWin.Draw(spriteBatch);
             else if (Mode == 1)
             {
+                //print Level number in HUD.
                 spriteBatch.DrawString(instructionFont, "1 - " + CurrSceneIndex, new Vector2(480, 20), 
                     fontColor, 0, Vector2.Zero, 1.2f, SpriteEffects.None, 0);
+                //draw entites.
                 currScene.Draw();
             }
         }
@@ -166,11 +177,11 @@ namespace Sprint1.LevelLoader
         public void MarioDied()
         {
             Sprint1Main.MarioLife--;
-            if (Sprint1Main.MarioLife > 0)
+            if (Sprint1Main.MarioLife > 0) //reborn at check point.
             {
                 SceneFlash(true, true, CurrSceneIndex); SoundFactory.Instance.BackgroundMusic.Play();
             }
-            else
+            else //game over.
             {
                 ChangeToGamoverMode(); Sprint1Main.MarioLife = 3;
             }
@@ -178,18 +189,23 @@ namespace Sprint1.LevelLoader
 
         public void ChangeToNormalMode()
         {
+            //go from Menu/GameOver/Win, reset the time and play the BGM.
             Mode = 1; RestOfTime = 400;
             SoundFactory.Instance.BackgroundMusic.Play();
         }
         public void ChangeToMenuMode() { Mode = 0; }
         public void ChangeToGamoverMode()
         {
+            //reset Point and Coins, reset current level, play game over sound effect.
             Mode = 2; Sprint1Main.Point = 0; Sprint1Main.Coins = 0;
             SceneFlash(true, false, CurrSceneIndex);
             SoundFactory.Instance.GameOver();
         }
+        //will not reset Point and Coin, Mario can extend them in next level.
         public void ChangeToWinMode() { Mode = 3; Sprint1Main.MarioLife = 3; SceneFlash(true, false, CurrSceneIndex); GotoNextScene(); }
         public void ChangeToLoadingMode() { Mode = 4; }
+
+        // Add Points based on the rest of time when Mario wins the current level.
         public void AddTimeBonus() { Sprint1Main.Point += ((int)RestOfTime + 1) * 10; }
 
         public void SceneFlash(bool resetAll, bool goToCheckPoint, int changeToSceneIndex)
@@ -200,11 +216,13 @@ namespace Sprint1.LevelLoader
             bool invincible = Scene.Mario.Invincible; bool jumpTwice = Scene.Mario.JumpTwice;
             if (changeToSceneIndex == CurrSceneIndex)
             {
+                //need reset
                 actionType = currScene.Mario.GetAction;
                 ResetScene(resetAll, goToCheckPoint);
             }
             else
             {
+                // Go to Secre Area, keep the current level.
                 GoToSecretScene(changeToSceneIndex);
                 actionType = currScene.Mario.GetAction;
             }
@@ -220,36 +238,35 @@ namespace Sprint1.LevelLoader
             #region Reset
             //save backup
             MoveParameters tempParameter = new MoveParameters(true);
-            Scene.CopyDataOfParameter(currScene.Mario.Parameters, tempParameter);
-            bool Win = currScene.Mario.Win; //bool throwBullet = Scene.Mario.ThrowBullet();
+            Scene.CopyDataOfParameter(currScene.Mario.Parameters, tempParameter); //copy all state from Parameters
+            //back up some special state which not included in Parameters
+            bool Win = currScene.Mario.Win;
+            //record the current Mode
             int preMode = Mode;
-            ArrayList pipeList = Scene.Mario.DivedPipe;
-            Console.WriteLine("Num1 = " + pipeList.Count);
 
             ChangeToLoadingMode();
-            scenes.Remove(currScene);
+            scenes.Remove(currScene); //delete current level and remove it from level's list.
+            //recreate a stage with initial state and connect it with current Scene.
             Stage stage = new Stage(Sprint1Main.Game);
             currScene.Stage = stage;
             scenes.Insert(CurrSceneIndex, currScene);
+            //Initialize the scene and reload content.
             currScene.Initalize(CurrSceneIndex);
             currScene.LoadContent();
             Mode = preMode;
-            Console.WriteLine("Num2 = " + pipeList.Count);
             //use backup to rewrite
-            if (!resetAll)
+            if (!resetAll) //Press [Rr] to reset all entities.
             {
                 ChangeToNormalMode();
                 currScene.Mario.Win = Win;
                 Scene.CopyDataOfParameter(tempParameter, currScene.Mario.Parameters);
                 currScene.Camera.LookAt(currScene.Mario.Parameters.Position);
-                Scene.DisableVPipes(pipeList);
             }
-            else if (goToCheckPoint)
+            else if (goToCheckPoint) //Mario died (with rest life > 1)
             {
-                Scene.DisableVPipes(pipeList);
                 Scene.Mario.Parameters.SetPosition(CheckPoint, Scene.Mario.GetMinPosition.Y - 32);
             }
-            else
+            else //Game Over or Win the game.
                 CheckPoint = Scene.Mario.GetMinPosition.X;
             #endregion
 
@@ -257,34 +274,31 @@ namespace Sprint1.LevelLoader
 
         public void GoToNormalArea()
         {
-            ResetScene(true, false);
-            CurrSceneIndex = previousScene;
+            ResetScene(true, false); // Reset Secrete Area
+            CurrSceneIndex = previousScene; // return to the normal level
             currScene = Scene;
-            CheckPoint = Scene.Mario.GetMinPosition.X;
-            Scene.DisableVPipes(Scene.Mario.DivedPipe);
-            Scene.Mario.Bump();
+            CheckPoint = Scene.Mario.GetMinPosition.X; //Update Check Point
+            Scene.DisableVPipes(Scene.Mario.DivedPipe); //Disable all Vpipe that Mario get inside or get out.
+            Scene.Mario.Bump(); // Make Mario Get Out.
         }
 
         public void GoToSecretScene(int x)
         {
-            //CheckPoint = Scene.Mario.GetMinPosition.X;
-            previousScene = CurrSceneIndex;
+            previousScene = CurrSceneIndex; //store the current scene position to get back to.
             CurrSceneIndex = x;
-            currScene = Scene;
-            //
+            currScene = Scene; //Change current scene to secrete level scene.
         }
         public void GotoNextScene()
         {
-            //ResetScene(true, false);
             if (CurrSceneIndex < scenes.Count - 1)
-                CurrSceneIndex++;
+                CurrSceneIndex++; // not the final level
             else
-                CurrSceneIndex = 1;
+                CurrSceneIndex = 1; //final level, if players want to continue, he will replay the first level.
             currScene = Scene;
-            CheckPoint = Scene.Mario.GetMinPosition.X;
+            CheckPoint = Scene.Mario.GetMinPosition.X; //reset CheckPoint.
         }
 
-        /*消除报警*/
+        /*Eliminate Warning*/
         public void Dispose()
         {
             Dispose(true);
