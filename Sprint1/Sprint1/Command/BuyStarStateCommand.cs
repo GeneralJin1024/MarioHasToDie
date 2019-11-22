@@ -9,17 +9,17 @@ namespace Sprint1
 {   // Command Class for the Avatar to fire state
     public class BuyStarStateCommand : ICommand
     {
-        MarioCharacter mario;
+        private readonly MarioCharacter Mario;
         public BuyStarStateCommand(MarioCharacter mario)
         {
-            this.mario = mario;
+            Mario = mario;
         }
 
         public void Execute()
         {   // take the receiver method of Star state change
-            if (Sprint1Main.Coins >= 50)
+            if (Sprint1Main.Coins >= 50 && !Sprint1Main.Game.Scene.Mario.IsDied())
             {
-                mario.ChangeToStarState(700);
+                Mario.ChangeToStarState(100);
                 Sprint1Main.Coins -= 50;
             }
         }
