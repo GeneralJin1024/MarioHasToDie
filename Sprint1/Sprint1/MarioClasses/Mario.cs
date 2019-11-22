@@ -141,11 +141,10 @@ namespace Sprint1.MarioClasses
             if (Dive && (Parameters.Position.Y - GetHeightAndWidth.X >= Top))
             {
                 //MarioState.ChangeToDied();
-                Dive = false; Sprint1Main.Game.LevelControl.SceneFlash(false,false,0);
+                Dive = false; Sprint1Main.Game.Scene.ByPassMario(); Sprint1Main.Game.LevelControl.SceneFlash(false,false,0);
             }
             else if (DiveRight && (Parameters.Position.X >= Top))
             {
-                //在该条件中的top其实是横管左侧坐标，这里为了节省变量故继续使用top
                 DiveRight = false; Sprint1Main.Game.LevelControl.GoToNormalArea();
             }
             if (Shoot && Parameters.Position.Y < Top)

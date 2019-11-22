@@ -163,7 +163,6 @@ namespace Sprint1.LevelLoader
             }
         }
 
-        //马里奥死亡，场景切换
         public void MarioDied()
         {
             Sprint1Main.MarioLife--;
@@ -225,6 +224,7 @@ namespace Sprint1.LevelLoader
             bool Win = currScene.Mario.Win; //bool throwBullet = Scene.Mario.ThrowBullet();
             int preMode = Mode;
             ArrayList pipeList = Scene.Mario.DivedPipe;
+            Console.WriteLine("Num1 = " + pipeList.Count);
 
             ChangeToLoadingMode();
             scenes.Remove(currScene);
@@ -234,7 +234,7 @@ namespace Sprint1.LevelLoader
             currScene.Initalize(CurrSceneIndex);
             currScene.LoadContent();
             Mode = preMode;
-
+            Console.WriteLine("Num2 = " + pipeList.Count);
             //use backup to rewrite
             if (!resetAll)
             {

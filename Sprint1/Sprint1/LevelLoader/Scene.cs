@@ -126,12 +126,31 @@ namespace Sprint1
                 throw new ArgumentNullException(nameof(pipePosition));
             foreach(ICharacter character in characterList)
             {
+                Console.WriteLine("Mario Position = " + Mario.GetMinPosition.X);
+                foreach(float X in pipePosition)
+                {
+                    Console.WriteLine("pipe Positions = " + X);
+                }
                 if (pipePosition.Contains(character.GetMinPosition.X) && character.Type == Sprint1Main.CharacterType.Pipe)
                 {
                     PipeCharacter pipe = (PipeCharacter)character;
                     pipe.MarioGetInside();
                 }
             }
+        }
+
+        public void ByPassMario()
+        {
+            foreach(ICharacter character in characterList)
+            {
+                if(character.Type == Sprint1Main.CharacterType.Pipe)
+                {
+                    PipeCharacter pipe = (PipeCharacter)character;
+                    if (pipe.PType == PipeCharacter.PipeType.VPipe && Mario.GetMaxPosition.X < pipe.GetMinPosition.X)
+                        Mario.Parameters.SetPosition(pipe.GetMinPosition.X + 2, Mario.Parameters.Position.Y);
+                }
+            }
+            Mario.DivedPipe.Add(Mario.GetMinPosition.X - 2);
         }
 
     }

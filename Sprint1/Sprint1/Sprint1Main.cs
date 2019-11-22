@@ -84,7 +84,7 @@ namespace Sprint1
             
             Content.RootDirectory = "Content";
 
-            LevelControl = new LevelManager();//仅仅移动代码，并未修改，若需要还原，删除本行并取消上面3行的注释即可
+            LevelControl = new LevelManager();
         }
 
         protected override void Initialize()
