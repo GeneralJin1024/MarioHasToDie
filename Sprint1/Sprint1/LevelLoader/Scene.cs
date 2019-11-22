@@ -126,11 +126,6 @@ namespace Sprint1
                 throw new ArgumentNullException(nameof(pipePosition));
             foreach(ICharacter character in characterList)
             {
-                //Console.WriteLine("Mario Position = " + Mario.GetMinPosition.X);
-                //foreach(float X in pipePosition)
-                //{
-                //    Console.WriteLine("pipe Positions = " + X);
-                //}
                 if (pipePosition.Contains(character.GetMinPosition.X) && character.Type == Sprint1Main.CharacterType.Pipe)
                 {
                     PipeCharacter pipe = (PipeCharacter)character;
@@ -141,16 +136,22 @@ namespace Sprint1
 
         public void ByPassMario()
         {
+            float XPosition = stage.CameraBoundary.X;
+            //select the nearest VPipe which are on the right of Mario.
             foreach(ICharacter character in characterList)
             {
                 if(character.Type == Sprint1Main.CharacterType.Pipe)
                 {
                     PipeCharacter pipe = (PipeCharacter)character;
-                    if (pipe.PType == PipeCharacter.PipeType.VPipe && Mario.GetMaxPosition.X < pipe.GetMinPosition.X)
-                        Mario.Parameters.SetPosition(pipe.GetMinPosition.X + 2, Mario.Parameters.Position.Y);
+                    if ((pipe.PType == PipeCharacter.PipeType.VPipe) &&
+                        (Mario.GetMaxPosition.X < pipe.GetMinPosition.X) && (pipe.GetMinPosition.X < XPosition))
+                        XPosition = pipe.GetMinPosition.X;
                 }
             }
-            Mario.DivedPipe.Add(Mario.GetMinPosition.X - 2);
+            //Move Mario to the next VPipe
+            Mario.Parameters.SetPosition(XPosition + 2, Mario.Parameters.Position.Y);
+            //Add this pipe into list to disable later.
+            Mario.DivedPipe.Add(XPosition);
         }
 
     }
