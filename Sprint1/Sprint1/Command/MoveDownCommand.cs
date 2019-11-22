@@ -17,6 +17,8 @@ namespace Sprint1
 
         public void Execute()
         {   // take the receiver method of mario action change
+            if (mario.OnPipe)
+                mario.OnPipePressDown = true;
             mario.MoveDown();
         }
     }

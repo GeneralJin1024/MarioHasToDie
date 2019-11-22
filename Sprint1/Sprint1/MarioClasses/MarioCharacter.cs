@@ -23,6 +23,8 @@ namespace Sprint1.MarioClasses
         public MoveParameters Parameters { get; }
         public bool ThrowBullet { get { return Mario.ThrowBullet; } }
         public bool JumpTwice { get { return Mario.JumpTwice; } }
+        public bool OnPipe { get; set; }
+        public bool OnPipePressDown { get; set; }
         public Vector2 GetMinPosition
         {
             get
@@ -203,12 +205,13 @@ namespace Sprint1.MarioClasses
 
         public void CollideWithPipe(PipeCharacter pipe, bool upOrDown, bool movingDown)
         {
+            if (Parameters.Position.X >= pipe.GetMinPosition.X + 2 && GetMaxPosition.X <= pipe.GetMaxPosition.X - 2)
+                OnPipe = true;
             switch (pipe?.PType)
             {
                 case PipeCharacter.PipeType.Pipe: CollideWithBlock(upOrDown, movingDown); break;
                 case PipeCharacter.PipeType.VPipe:
-                    if (upOrDown && movingDown && 
-                        Parameters.Position.X >= pipe.GetMinPosition.X + 2 && GetMaxPosition.X <= pipe.GetMaxPosition.X - 2)
+                    if (upOrDown && OnPipePressDown && OnPipe)
                     {
                         Mario.DiveIn(pipe.GetMinPosition.Y); pipe.MarioGetInside();
                         DivedPipe.Add(pipe.GetMinPosition.X); SoundFactory.Instance.GetIntoPipe();

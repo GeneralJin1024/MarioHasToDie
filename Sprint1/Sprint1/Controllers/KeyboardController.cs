@@ -85,7 +85,7 @@ namespace Sprint1
             //update keyboard state.
             oldkeyboardState = curr;
         }
-       
+
     }
 }
 
