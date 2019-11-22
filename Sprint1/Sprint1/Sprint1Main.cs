@@ -65,7 +65,6 @@ namespace Sprint1
         {
             get
             {
-                //scenes[CurrSceneIndex-1].Stage
                 return LevelControl.Stage;
             }
         }
@@ -74,14 +73,9 @@ namespace Sprint1
         {
             get
             {
-                //scenes[CurrSceneIndex - 1]
                 return LevelControl.Scene;
             }
         }
-        //public int CurrSceneIndex { get; private set; }
-        //private Scene currScene;
-        //readonly List<Scene> scenes;        
-        //private readonly int totalScene;
 
         public Sprint1Main()
         {
@@ -90,31 +84,11 @@ namespace Sprint1
             
             Content.RootDirectory = "Content";
 
-            //scenes = new List<Scene>{};
-            //totalScene = ConfigurationReaderAndWriter.ReadSetting("Scenes");
-            //CurrSceneIndex = 1;
             LevelControl = new LevelManager();//仅仅移动代码，并未修改，若需要还原，删除本行并取消上面3行的注释即可
         }
 
-        /// <summary>
-        /// Allows the game to perform any initialization it needs to before starting to run.
-        /// This is where it can query for any required services and load any non-graphic
-        /// related content.  Calling base.Initialize will enumerate through any components
-        /// and initialize them as well.
-        /// </summary>
         protected override void Initialize()
         {
-            //for (int i = 1; i <= totalScene; i++)
-            //{
-            //    Stage stage = new Stage(this);
-            //    Scene scene = new Scene(stage);
-            //    scene.Initalize(i);
-            //    scenes.Add(scene);
-            //}
-            //currScene = scenes[CurrSceneIndex-1];
-            //GameMenu = new Menu(this);
-            //MenuMode = true;
-            //LoadingMode = true;
             LevelControl.Initialize();
             base.Initialize();
         }

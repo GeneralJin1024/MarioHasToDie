@@ -61,7 +61,7 @@ namespace Sprint1.FactoryClasses
             redMushroom = Sprint1Main.Game.Content.Load<Texture2D>("ItemSprite/redMushroom");
             star = Sprint1Main.Game.Content.Load<Texture2D>("ItemSprite/star");
             pipe = Sprint1Main.Game.Content.Load<Texture2D>("ItemSprite/PipeSpriteSheet");
-            fireBall = Sprint1Main.Game.Content.Load<Texture2D>("ItemSprite/redMushroom");
+            fireBall = Sprint1Main.Game.Content.Load<Texture2D>("ItemSprite/fireball");
             bullet = Sprint1Main.Game.Content.Load<Texture2D>("ItemSprite/redMushroom");
             HP1 = Sprint1Main.Game.Content.Load<Texture2D>("ItemSprite/mario-underground-pipe1");
             HP2 = Sprint1Main.Game.Content.Load<Texture2D>("ItemSprite/mario-underground-pipe2");
@@ -108,9 +108,9 @@ namespace Sprint1.FactoryClasses
         }
         public ItemCharacter GetFireBall(Vector2 pos)
         {
-            return new FireBallCharacter(fireBall, new Point(1, 1), pos);
+            return new FireBallCharacter(fireBall, new Point(1, 4), pos);
         }
-        public ItemCharacter GetBullet(Vector2 pos) { return new FireBallCharacter(bullet, new Point(1, 1), pos); }
+        public ItemCharacter GetBullet(Vector2 pos) { return new FireBallCharacter(bullet, new Point(1, 4), pos); }
         public ItemCharacter GetFlag(Vector2 pos) { return new FlagCharacter(flag, new Point(1, 1), pos); }
         public ItemCharacter GetCastle(Vector2 pos) { return new CastleCharacter(castle, new Point(1, 1), pos); }
         public ItemCharacter GetBomb(Vector2 pos) { return new BombCharacter(bomb, new Point(1, 1), pos); }

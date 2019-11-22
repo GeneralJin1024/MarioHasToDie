@@ -405,3 +405,6 @@ C:\Users\72957\source\repos\SmartMario\Sprint1\Sprint1\bin\Windows\x86\Debug\Con
 C:\Users\zzy00\source\repos\SmartMario\Sprint1\Sprint1\bin\Windows\x86\Debug\Content\ItemSprite\bomb.xnb
 C:\Users\zzy00\source\repos\SmartMario\Sprint1\Sprint1\bin\Windows\x86\Debug\Content\ItemSprite\medicine.xnb
 C:\Users\zzy00\source\repos\SmartMario\Sprint1\Sprint1\bin\Windows\x86\Debug\Content\ItemSprite\randomItem.xnb
+C:\Users\72957\source\repos\SmartMario\Sprint1\Sprint1\bin\Windows\x86\Debug\Content\ItemSprite\fireball.xnb
+C:\Users\72957\source\repos\SmartMario\Sprint1\Sprint1\bin\Windows\x86\Debug\Content\ItemSprite\medicine.xnb
+C:\Users\72957\source\repos\SmartMario\Sprint1\Sprint1\bin\Windows\x86\Debug\Content\ItemSprite\randomItem.xnb

@@ -71,17 +71,8 @@ namespace Sprint1.ItemClasses
         }
         public void Draw(SpriteBatch spriteBatch)
         {
-            //Console.WriteLine(item.Parameters.IsHidden + "   Position = " + Parameters.Position);
             Item.Draw(spriteBatch);
         }
-        //public virtual Vector2 GetMaxPosition()
-        //{
-        //    return new Vector2(Parameters.Position.X + Item.GetHeightAndWidth.Y, Parameters.Position.Y);
-        //}
-        //public virtual Vector2 GetMinPosition()
-        //{
-        //    return new Vector2(Parameters.Position.X, Parameters.Position.Y - Item.GetHeightAndWidth.X);
-        //}
 
         public void Bumping(Vector2 startP, float minY, float maxY, Vector2 blockSpeed)
         {

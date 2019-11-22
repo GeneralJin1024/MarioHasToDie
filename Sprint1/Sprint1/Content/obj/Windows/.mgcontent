@@ -37,6 +37,7 @@
     <File>C:/Users/72957/source/repos/SmartMario/Sprint1/Sprint1/Content/FireMario/fireMarioRightStand.png</File>
     <File>C:/Users/72957/source/repos/SmartMario/Sprint1/Sprint1/Content/ItemSprite/bomb.png</File>
     <File>C:/Users/72957/source/repos/SmartMario/Sprint1/Sprint1/Content/ItemSprite/coin.png</File>
+    <File>C:/Users/72957/source/repos/SmartMario/Sprint1/Sprint1/Content/ItemSprite/fireball.png</File>
     <File>C:/Users/72957/source/repos/SmartMario/Sprint1/Sprint1/Content/ItemSprite/flower.png</File>
     <File>C:/Users/72957/source/repos/SmartMario/Sprint1/Sprint1/Content/ItemSprite/greenMushroom.png</File>
     <File>C:/Users/72957/source/repos/SmartMario/Sprint1/Sprint1/Content/ItemSprite/mario-castle.png</File>
@@ -68,6 +69,7 @@
     <File>C:/Users/72957/source/repos/SmartMario/Sprint1/Sprint1/Content/SuperMario/superMarioRightStand.png</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
