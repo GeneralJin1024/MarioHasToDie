@@ -19,7 +19,7 @@ namespace Sprint1
         SpriteBatch spriteBatch;
         private int level;
         private ArrayList characterList;
-        private ArrayList FireBallList;
+        public ArrayList FireBallList { get; private set; }
         public Camera Camera { get; private set; }
         private List<Layer> Layers;
         public MarioCharacter Mario { get; internal set; }
@@ -64,7 +64,6 @@ namespace Sprint1
             Layers[2].Sprites.Add(Mario);
             Layers[3].Sprites = characterList;
             Layers[4].Sprites = FireBallList;
-
             //factoryList.Add(BlockFactory.Instance);
             //factoryList.Add(EnemyFactory.Instance);
             //BackgroundFactory.Instance.AddToList(BackgroundList);

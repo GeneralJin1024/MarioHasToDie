@@ -25,7 +25,6 @@ namespace Sprint1.FactoryClasses
                 return _instance;
             }
         }
-        private ArrayList CharacterList;
         Texture2D coin;
         Texture2D flower;
         Texture2D greenMushroom;
@@ -33,21 +32,24 @@ namespace Sprint1.FactoryClasses
         Texture2D star;
         Texture2D pipe;
         Texture2D fireBall;
+        Texture2D bullet;
         Texture2D HP1;
         Texture2D HP2;
         Texture2D flag;
         Texture2D castle;
+        Texture2D bomb;
+        Texture2D randomItem;
+        Texture2D medicine;
         public ItemFactory()
         {
             //when factory initialzed, load the texture
             LoadTexture();
         }
-        public void Initialize(ArrayList characterList) { CharacterList = characterList; }
         public ICharacter AddNewCharacter(string characterType, Vector2 location)
         {
 
             ICharacter newItem = (ICharacter)FactoryMethod(characterType, location)[0];
-            CharacterList.Add(newItem);
+            Sprint1Main.Game.Scene.FireBallList.Add(newItem);
             return newItem;
         }
 
@@ -59,12 +61,17 @@ namespace Sprint1.FactoryClasses
             redMushroom = Sprint1Main.Game.Content.Load<Texture2D>("ItemSprite/redMushroom");
             star = Sprint1Main.Game.Content.Load<Texture2D>("ItemSprite/star");
             pipe = Sprint1Main.Game.Content.Load<Texture2D>("ItemSprite/PipeSpriteSheet");
-            fireBall = Sprint1Main.Game.Content.Load<Texture2D>("ItemSprite/redMushroom");
+            fireBall = Sprint1Main.Game.Content.Load<Texture2D>("ItemSprite/fireball");
+            bullet = Sprint1Main.Game.Content.Load<Texture2D>("ItemSprite/fireball");
             HP1 = Sprint1Main.Game.Content.Load<Texture2D>("ItemSprite/mario-underground-pipe1");
             HP2 = Sprint1Main.Game.Content.Load<Texture2D>("ItemSprite/mario-underground-pipe2");
             flag = Sprint1Main.Game.Content.Load<Texture2D>("ItemSprite/mario-flagpole");
             castle = Sprint1Main.Game.Content.Load<Texture2D>("ItemSprite/mario-castle");
+            bomb = Sprint1Main.Game.Content.Load<Texture2D>("ItemSprite/bomb");
+            randomItem = Sprint1Main.Game.Content.Load<Texture2D>("ItemSprite/randomItem");
+            medicine = Sprint1Main.Game.Content.Load<Texture2D>("ItemSprite/medicine");
         }
+
         public ItemCharacter GetPipe(Vector2 pos)
         {
             return new PipeCharacter(pipe, new Point(1, 1), pos, PipeCharacter.PipeType.Pipe);
@@ -101,10 +108,14 @@ namespace Sprint1.FactoryClasses
         }
         public ItemCharacter GetFireBall(Vector2 pos)
         {
-            return new FireBallCharacter(fireBall, new Point(1, 1), pos);
+            return new FireBallCharacter(fireBall, new Point(1, 4), pos);
         }
+        public ItemCharacter GetBullet(Vector2 pos) { return new FireBallCharacter(bullet, new Point(1, 4), pos); }
         public ItemCharacter GetFlag(Vector2 pos) { return new FlagCharacter(flag, new Point(1, 1), pos); }
         public ItemCharacter GetCastle(Vector2 pos) { return new CastleCharacter(castle, new Point(1, 1), pos); }
+        public ItemCharacter GetBomb(Vector2 pos) { return new BombCharacter(bomb, new Point(1, 1), pos); }
+        public ItemCharacter GetRandomItem(Vector2 pos) { return new RandomItemCharacter(randomItem, new Point(1, 1), pos); }
+        public ItemCharacter GetJumpMedicine(Vector2 pos) { return new JumpMedicineCharacter(medicine, new Point(1, 1), pos); }
         public ArrayList FactoryMethod(string name, Vector2 posS, Vector2 posE)
         {
             ArrayList list = new ArrayList();
@@ -140,8 +151,12 @@ namespace Sprint1.FactoryClasses
                         case "FireBall":
                             list.Add(GetFireBall(pos));
                             break;
+                        case "Bullet": list.Add(GetBullet(pos)); break;
                         case "Flag": list.Add(GetFlag(pos)); break;
                         case "Castle": list.Add(GetCastle(pos)); break;
+                        case "Bomb": list.Add(GetBomb(pos)); break;
+                        case "Random": list.Add(GetRandomItem(pos)); break;
+                        case "JumpMedicine": list.Add(GetJumpMedicine(pos)); break;
                         default: break;
                     }
                 }
@@ -181,6 +196,9 @@ namespace Sprint1.FactoryClasses
                     case "FireBall":
                         list.Add(GetFireBall(pos));
                         break;
+                    case "Bullet": list.Add(GetBullet(pos)); break;
+                    case "Random": list.Add(GetRandomItem(pos)); break;
+                    case "JumpMedicine": list.Add(GetJumpMedicine(pos)); break;
                     default: break;
                 }              
             }

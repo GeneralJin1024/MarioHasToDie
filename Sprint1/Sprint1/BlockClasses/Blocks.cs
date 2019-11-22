@@ -79,7 +79,7 @@ namespace Sprint1.BlockClasses
             IsBumping = true;
             currentbState = bStates[2];
             MinY = Parameters.Position.Y - base.GetHeightAndWidth.X;
-            MaxY = Parameters.Position.Y;
+            MaxY = Parameters.Position.Y; SoundFactory.Instance.HitQuestionBlock();
         }
         #endregion
         public override void Update(float frameTime)
@@ -148,25 +148,33 @@ namespace Sprint1.BlockClasses
         {
             ItemCharacter item = (ItemCharacter)items[0];
             ItemBumpingCommands bumpItem;
-            switch (item.Type)
-            {                
-                case Sprint1Main.CharacterType.Coin:               
-                    bumpItem = new CoinBumping(item, bPosition, bPosition.Y - 3.0f * this.GetHeightAndWidth.X, bPosition.Y, spriteSpeed);
-                    bumpItem.HandleBumping();
-                    break;
-                case Sprint1Main.CharacterType.Flower:
-                    bumpItem = new FlowerBumping(item, bPosition, bPosition.Y, bPosition.Y, spriteSpeed);
-                    bumpItem.HandleBumping();
-                    break;
-                case Sprint1Main.CharacterType.RedMushroom:
-                case Sprint1Main.CharacterType.GreenMushroom:
-                    bumpItem = new MushroomBumping(item, bPosition, bPosition.Y - 1.0f * this.GetHeightAndWidth.X, bPosition.Y, spriteSpeed);
-                    bumpItem.HandleBumping();
-                    break;
-                case Sprint1Main.CharacterType.Star:
-                    bumpItem = new StarBumping(item, bPosition, bPosition.Y - 2.0f * this.GetHeightAndWidth.X, bPosition.Y, spriteSpeed);
-                    bumpItem.HandleBumping();
-                    break;
+            SoundFactory.Instance.BumpItems();
+            if (item is RandomItemCharacter || item is JumpMedicineCharacter)
+            {
+                item.Bumping(bPosition, bPosition.Y, bPosition.Y, spriteSpeed);
+            }
+            else
+            {
+                switch (item.Type)
+                {
+                    case Sprint1Main.CharacterType.Coin:
+                        bumpItem = new CoinBumping(item, bPosition, bPosition.Y - 3.0f * this.GetHeightAndWidth.X, bPosition.Y, spriteSpeed);
+                        bumpItem.HandleBumping();
+                        break;
+                    case Sprint1Main.CharacterType.Flower:
+                        bumpItem = new FlowerBumping(item, bPosition, bPosition.Y, bPosition.Y, spriteSpeed);
+                        bumpItem.HandleBumping();
+                        break;
+                    case Sprint1Main.CharacterType.RedMushroom:
+                    case Sprint1Main.CharacterType.GreenMushroom:
+                        bumpItem = new MushroomBumping(item, bPosition, bPosition.Y - 1.0f * this.GetHeightAndWidth.X, bPosition.Y, spriteSpeed);
+                        bumpItem.HandleBumping();
+                        break;
+                    case Sprint1Main.CharacterType.Star:
+                        bumpItem = new StarBumping(item, bPosition, bPosition.Y - 2.0f * this.GetHeightAndWidth.X, bPosition.Y, spriteSpeed);
+                        bumpItem.HandleBumping();
+                        break;
+                }
             }
         }
         #endregion

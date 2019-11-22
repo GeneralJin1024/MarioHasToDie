@@ -67,7 +67,7 @@ namespace Sprint1
         {
             if (spriteBatch is null)
                 throw new ArgumentNullException(nameof(spriteBatch));
-            if (!Parameters.IsHidden)
+            if (!Parameters.IsHidden && !Parameters.Flash)
             {
                 //get frame's height and width
                 float frameWidth = GetHeightAndWidth.Y;

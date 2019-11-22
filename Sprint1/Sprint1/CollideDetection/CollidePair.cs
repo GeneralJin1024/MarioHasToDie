@@ -120,15 +120,22 @@ namespace Sprint1.CollideDetection
             // tell mario what he collide with by check object's type and tell the object mario collide with it.
             if (Character1.Type == Sprint1Main.CharacterType.Mario)
             {
+                if(Character2 is CloudEnemyCharacter)
+                {
+                    Console.WriteLine();
+                }
                 MarioCharacter MarioCharacters = (MarioCharacter)Character1;
                 if (Character2.Type == Sprint1Main.CharacterType.Block)
                     Character2.MarioCollide((Time == yTime) && (relativeVelocity.Y < 0));
-                else if (Character2 is PlantEnemyCharacter)
+                else if (Character2 is PlantEnemyCharacter || Character2 is CloudEnemyCharacter)
                     Character2.MarioCollide(false);
                 else
                     Character2.MarioCollide((Time == yTime) && (relativeVelocity.Y > 0));
-                if(!MarioCharacters.IsDied())
+                if (!MarioCharacters.IsDied())
+                {
+                    MarioCharacters.OnPipe = false;
                     MarioCharacters.CollideWith(Character2, Time == yTime, relativeVelocity.Y > 0);
+                }
             }
             else if (Character1.Type == Sprint1Main.CharacterType.Fireball)
             {
@@ -139,7 +146,10 @@ namespace Sprint1.CollideDetection
             }
             else //items and enemies
             {
-                Character1.BlockCollide((Time == yTime) && (relativeVelocity.Y > 0));
+                if (Character1.Parameters.Velocity.X * relativeVelocity.X >= 0)
+                {
+                    Character1.BlockCollide((Time == yTime) && (relativeVelocity.Y > 0));
+                }
             }
         }
     }

@@ -1,4 +1,5 @@
-﻿using Sprint1.MarioClasses;
+﻿using Microsoft.Xna.Framework.Audio;
+using Sprint1.MarioClasses;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -55,6 +56,17 @@ namespace Sprint1
         {
             Mario.LockOrUnLock(!Sprint1Main.Game.Scene.Stage.Pulse);
             Sprint1Main.Game.Scene.Stage.Pulse = !Sprint1Main.Game.Scene.Stage.Pulse;
+            SoundFactory.Instance.Pause();
+        }
+    }
+    class MuteBGMCommand : ICommand
+    {
+        public void Execute()
+        {
+            if (SoundFactory.Instance.BackgroundMusic.State == SoundState.Playing)
+                SoundFactory.Instance.BackgroundMusic.Pause();
+            else if(SoundFactory.Instance.BackgroundMusic.State == SoundState.Paused)
+                SoundFactory.Instance.BackgroundMusic.Resume();
         }
     }
 }

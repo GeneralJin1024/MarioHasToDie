@@ -13,37 +13,54 @@ namespace Sprint1.ItemEnemyClasses
     {
         private float maxHeight;
         private float minHeight;
+        private float ClockToWait;
+        private bool Appear;
+        private bool ReadyToTrigger;
 
         public PlantEnemyCharacter(Texture2D[] texture, Point[] rowsAndColumns, MoveParameters moveParameters) : base(texture, rowsAndColumns, moveParameters)
         {
             maxHeight = moveParameters.Position.Y - 30F;
             minHeight = moveParameters.Position.Y;
-            Type = Sprint1Main.CharacterType.PlantEnemy;
+            Parameters.SetVelocity(0, 0);
+            Type = Sprint1Main.CharacterType.Enemy;
             Parameters.HasGravity = false;
-
+            ClockToWait = 0;
+            Appear = false; ReadyToTrigger = true;
         }
 
         public override void Update(float timeOfFrame)
         {
             //Sprint1Main.Game.Scene.Mario
-            if (Math.Abs(Sprint1Main.Game.Scene.Mario.GetMinPosition.X - Parameters.Position.X) <= 50 && Parameters.Velocity.Y == 0)
+            if (Parameters.Velocity.Y == 0)
             {
-                Parameters.SetVelocity(0, -2f);
+                ClockToWait += timeOfFrame;
+                if(Math.Abs(Sprint1Main.Game.Scene.Mario.GetMinPosition.X - Parameters.Position.X) <= 100 
+                    && ClockToWait >= 20 && !Appear && ReadyToTrigger)
+                {
+                    ClockToWait = 0; ReadyToTrigger = false;
+                    Parameters.SetVelocity(0, -2f); Appear = true;
+                }else if(Appear && ClockToWait >= 20)
+                {
+                    ClockToWait = 0; Parameters.SetVelocity(0, 2);
+                }
             }
-            if (Parameters.Velocity.Y > 0)
+            else if (Parameters.Velocity.Y > 0)
             {
                 if (Parameters.Position.Y >= minHeight)
                 {
-                    Parameters.SetVelocity(0, 0);
+                    Parameters.SetVelocity(0, 0); Appear = false;
                 }
             }
             else if (Parameters.Velocity.Y < 0)
             {
+                if (Sprint1Main.Game.Scene.Mario.IsDied())
+                    Parameters.SetVelocity(0, 2);
                 if (Parameters.Position.Y <= maxHeight)
                 {
-                    Parameters.SetVelocity(0, 2f);
+                    Parameters.SetVelocity(0, 0);
                 }
             }
+            ReadyToTrigger = Math.Abs(Sprint1Main.Game.Scene.Mario.GetMinPosition.X - Parameters.Position.X) > 100 || ReadyToTrigger;
             currentSprite.Update(timeOfFrame);
         }
         public override void MarioCollide(bool specialCase)

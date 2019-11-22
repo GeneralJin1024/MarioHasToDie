@@ -6,6 +6,8 @@ using System.Text;
 using System.Threading.Tasks;
 using Sprint1.MarioClasses;
 using System.Collections;
+using Sprint1.ItemEnemyClasses;
+using Sprint1.ItemClasses;
 
 namespace Sprint1.CollideDetection
 {
@@ -146,7 +148,8 @@ namespace Sprint1.CollideDetection
                 {
                     if (!collideObjects.Contains(character) && !character.Parameters.IsHidden && !mario.Invincible)
                         collideObjects.Add(character);
-                    else if (!collideObjects.Contains(character) && !character.Parameters.IsHidden && character.Type != Sprint1Main.CharacterType.Enemy)
+                    else if (!collideObjects.Contains(character) && !character.Parameters.IsHidden &&
+                        (character.Type != Sprint1Main.CharacterType.Enemy || character is BossEnemyCharacter) && !(character is BombCharacter))
                     {
                         collideObjects.Add(character);
                     }

@@ -56,7 +56,9 @@ namespace Sprint1.CollideDetection
                     character.Parameters.InScreen = character.GetMaxPosition.X >= (Mario.Parameters.Position.X - 800 / 2) &&
                     character.Parameters.Position.X <= Mario.Parameters.Position.X + 800 / 2;
                 }
-                if (Mario.IsDied())
+                if (character is BossEnemyCharacter)
+                    character.Parameters.InScreen = true;
+                if (Mario.IsDied() || Mario.Win)
                     character.Parameters.InScreen = false;
             }
             int insurance = 0; // an insurance for unstop loop
@@ -64,7 +66,7 @@ namespace Sprint1.CollideDetection
             while (timeOfFrame > 0)
             {
                 insurance++;
-                if(insurance > 20)
+                if(insurance > 50)
                 {
                     Console.WriteLine("It looks the loop will not stop. Check!  The rest of Time = " + timeOfFrame); Sprint1Main.Game.Exit(); break;
                 }
@@ -134,12 +136,14 @@ namespace Sprint1.CollideDetection
                     case Sprint1Main.CharacterType.RedMushroom: MovingCharacters.Add(character); break;
                     case Sprint1Main.CharacterType.GreenMushroom: MovingCharacters.Add(character); break;
                     case Sprint1Main.CharacterType.Flower: MovingCharacters.Add(character);break;
+                    case Sprint1Main.CharacterType.Bomb: MovingCharacters.Add(character); break;
                     case Sprint1Main.CharacterType.Fireball: FireBallCharacters.Add(character); break;
+                    case Sprint1Main.CharacterType.JumpMedicine: MovingCharacters.Add(character);break;
                     default: break;
                 }
             }
         }
-
+        
         private void CreateCollidePairs(ICharacter character1)
         {
             ArrayList possibleCollideList = new ArrayList();
@@ -149,9 +153,12 @@ namespace Sprint1.CollideDetection
                 //Generate collide pairs and get first contact time
                 foreach (ICharacter character in possibleCollideList)
                 {
-                    CollidePair collidePair = new CollidePair(character1, character);
-                    collidePair.GetFirstContactTime();
-                    CollidePairs.Add(collidePair);
+                    if (!(character1 is BossEnemyCharacter) || (character1.GetMaxPosition.Y < character.GetMaxPosition.Y))
+                    {
+                        CollidePair collidePair = new CollidePair(character1, character);
+                        collidePair.GetFirstContactTime();
+                        CollidePairs.Add(collidePair);
+                    }
                 }
             }
         }
