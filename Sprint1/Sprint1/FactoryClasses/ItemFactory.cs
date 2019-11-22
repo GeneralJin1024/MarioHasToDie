@@ -62,7 +62,7 @@ namespace Sprint1.FactoryClasses
             star = Sprint1Main.Game.Content.Load<Texture2D>("ItemSprite/star");
             pipe = Sprint1Main.Game.Content.Load<Texture2D>("ItemSprite/PipeSpriteSheet");
             fireBall = Sprint1Main.Game.Content.Load<Texture2D>("ItemSprite/fireball");
-            bullet = Sprint1Main.Game.Content.Load<Texture2D>("ItemSprite/redMushroom");
+            bullet = Sprint1Main.Game.Content.Load<Texture2D>("ItemSprite/fireball");
             HP1 = Sprint1Main.Game.Content.Load<Texture2D>("ItemSprite/mario-underground-pipe1");
             HP2 = Sprint1Main.Game.Content.Load<Texture2D>("ItemSprite/mario-underground-pipe2");
             flag = Sprint1Main.Game.Content.Load<Texture2D>("ItemSprite/mario-flagpole");
