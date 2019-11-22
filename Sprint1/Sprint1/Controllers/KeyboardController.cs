@@ -53,16 +53,16 @@ namespace Sprint1
             controllerDic.Add(Keys.U, new MoveSuperCommand(mario));
             controllerDic.Add(Keys.I, new MoveFireCommand(mario));
             controllerDic.Add(Keys.O, new MoveDestroyCommand(mario));
-            //controllerDic.Add(Keys.J, new BuySuperStateCommand(mario));
-            //controllerDic.Add(Keys.K, new BuyFireStateCommand(mario));
-            //controllerDic.Add(Keys.L, new BuyStarStateCommand(mario));
+            controllerDic.Add(Keys.J, new BuySuperStateCommand(mario));
+            controllerDic.Add(Keys.K, new BuyFireStateCommand(mario));
+            controllerDic.Add(Keys.L, new BuyStarStateCommand(mario));
             controllerDic.Add(Keys.Q, new QuitCommand(Game));
             controllerDic.Add(Keys.X, new ThrowFireCommand(mario));
             controllerDic.Add(Keys.R, new ResetCommand());
             controllerDic.Add(Keys.P, new PulseCommand(mario));
             controllerDic.Add(Keys.M, new MuteBGMCommand());
-            controllerDic.Add(Keys.J, new BuySuperPowerUpCommand(mario));
-            controllerDic.Add(Keys.K, new BuyFirePowerUpCommand(mario));
+           // controllerDic.Add(Keys.J, new BuySuperPowerUpCommand(mario));
+           // controllerDic.Add(Keys.K, new BuyFirePowerUpCommand(mario));
             /*controllerDic.Add(Keys.B, new BlockCommands(blockList[2]));
             controllerDic.Add(Keys.H, new BlockCommands(blockList[1]));
             controllerDic.Add(Keys.OemQuestion, new BlockCommands(blockList[0]));*/

@@ -19,7 +19,7 @@ namespace Sprint1
         {   // take the receiver method of Star state change
             if (Sprint1Main.Coins >= 50)
             {
-                mario.ChangeToStarState(50);
+                mario.ChangeToStarState(700);
                 Sprint1Main.Coins -= 50;
             }
         }
