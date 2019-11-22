@@ -68,8 +68,8 @@ namespace Sprint1.FactoryClasses
             flag = Sprint1Main.Game.Content.Load<Texture2D>("ItemSprite/mario-flagpole");
             castle = Sprint1Main.Game.Content.Load<Texture2D>("ItemSprite/mario-castle");
             bomb = Sprint1Main.Game.Content.Load<Texture2D>("ItemSprite/bomb");
-            randomItem = Sprint1Main.Game.Content.Load<Texture2D>("ItemSprite/redMushroom");
-            medicine = Sprint1Main.Game.Content.Load<Texture2D>("ItemSprite/greenMushroom");
+            randomItem = Sprint1Main.Game.Content.Load<Texture2D>("ItemSprite/randomItem");
+            medicine = Sprint1Main.Game.Content.Load<Texture2D>("ItemSprite/medicine");
         }
 
         public ItemCharacter GetPipe(Vector2 pos)

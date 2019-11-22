@@ -32,3 +32,4 @@ C:\Users\runmi\Source\Repos\SmartMario\Sprint1\ConfigurationLibrary\obj\Debug\Co
 C:\Users\runmi\Source\Repos\SmartMario\Sprint1\ConfigurationLibrary\obj\Debug\ConfigurationLibrary.csproj.CoreCompileInputs.cache
 C:\Users\runmi\Source\Repos\SmartMario\Sprint1\ConfigurationLibrary\obj\Debug\ConfigurationLibrary.dll
 C:\Users\runmi\Source\Repos\SmartMario\Sprint1\ConfigurationLibrary\obj\Debug\ConfigurationLibrary.pdb
+C:\Users\zzy00\source\repos\SmartMario\Sprint1\ConfigurationLibrary\obj\Debug\ConfigurationLibrary.csprojAssemblyReference.cache
