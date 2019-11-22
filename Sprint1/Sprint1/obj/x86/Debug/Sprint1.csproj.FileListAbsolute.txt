@@ -275,7 +275,6 @@ C:\Users\zhangjian\source\repos\SmartMario\Sprint1\Sprint1\bin\Windows\x86\Debug
 C:\Users\zhangjian\source\repos\SmartMario\Sprint1\Sprint1\bin\Windows\x86\Debug\Content\Music\smb_jump-small.xnb
 C:\Users\zhangjian\source\repos\SmartMario\Sprint1\Sprint1\bin\Windows\x86\Debug\Content\Music\smb_pause.xnb
 C:\Users\zhangjian\source\repos\SmartMario\Sprint1\Sprint1\bin\Windows\x86\Debug\Content\Music\smb_powerup.xnb
-C:\Users\72957\source\repos\SmartMario\Sprint1\Sprint1\bin\Windows\x86\Debug\Content\Music\Map_BGM.wma
 C:\Users\72957\source\repos\SmartMario\Sprint1\Sprint1\bin\Windows\x86\Debug\Content\Music\Map_BGM.xnb
 C:\Users\72957\source\repos\SmartMario\Sprint1\Sprint1\bin\Windows\x86\Debug\Content\Music\QuestionBlock.xnb
 C:\Users\72957\source\repos\SmartMario\Sprint1\Sprint1\bin\Windows\x86\Debug\Content\Music\sm64_game_over.xnb
@@ -396,3 +395,10 @@ C:\Users\zzy00\source\repos\SmartMario\Sprint1\Sprint1\bin\Windows\x86\Debug\Con
 C:\Users\zzy00\source\repos\SmartMario\Sprint1\Sprint1\bin\Windows\x86\Debug\Content\EnemySprite\jump1.xnb
 C:\Users\zzy00\source\repos\SmartMario\Sprint1\Sprint1\bin\Windows\x86\Debug\Content\EnemySprite\Jump2.xnb
 C:\Users\13667\source\repos\SmartMario\Sprint1\Sprint1\bin\Windows\x86\Debug\Content\ItemSprite\bomb.xnb
+C:\Users\72957\source\repos\SmartMario\Sprint1\Sprint1\bin\Windows\x86\Debug\Content\EnemySprite\boss.xnb
+C:\Users\72957\source\repos\SmartMario\Sprint1\Sprint1\bin\Windows\x86\Debug\Content\EnemySprite\cloudEnemy1.xnb
+C:\Users\72957\source\repos\SmartMario\Sprint1\Sprint1\bin\Windows\x86\Debug\Content\EnemySprite\cloudEnemy2.xnb
+C:\Users\72957\source\repos\SmartMario\Sprint1\Sprint1\bin\Windows\x86\Debug\Content\EnemySprite\enemyPlant.xnb
+C:\Users\72957\source\repos\SmartMario\Sprint1\Sprint1\bin\Windows\x86\Debug\Content\EnemySprite\jump1.xnb
+C:\Users\72957\source\repos\SmartMario\Sprint1\Sprint1\bin\Windows\x86\Debug\Content\EnemySprite\Jump2.xnb
+C:\Users\72957\source\repos\SmartMario\Sprint1\Sprint1\bin\Windows\x86\Debug\Content\ItemSprite\bomb.xnb

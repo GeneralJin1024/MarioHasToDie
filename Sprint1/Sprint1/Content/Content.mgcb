@@ -476,6 +476,18 @@
 /processorParam:TextureFormat=Color
 /build:ItemSprite/mario-underground-pipe2.png
 
+#begin ItemSprite/medicine.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:ItemSprite/medicine.png
+
 #begin ItemSprite/PipeSpriteSheet.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -487,6 +499,18 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:ItemSprite/PipeSpriteSheet.png
+
+#begin ItemSprite/randomItem.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:ItemSprite/randomItem.png
 
 #begin ItemSprite/redMushroom.png
 /importer:TextureImporter
