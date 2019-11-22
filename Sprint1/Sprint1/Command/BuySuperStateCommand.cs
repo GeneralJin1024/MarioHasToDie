@@ -17,7 +17,11 @@ namespace Sprint1
 
         public void Execute()
         {   // take the receiver method of Super state change
-            mario.MoveSuper();
+            if (Sprint1Main.Coins >= 50 && mario.GetPower == MarioState.PowerType.Standard)
+            {
+                mario.MoveSuper();
+                Sprint1Main.Coins -= 50;
+            }
         }
     }
 }

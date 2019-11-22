@@ -17,7 +17,11 @@ namespace Sprint1
 
         public void Execute()
         {   // take the receiver method of Fire state change
-            mario.MoveFire();
+            if (mario.IsSuper && !mario.IsFire() && Sprint1Main.Coins >= 70)
+            {
+                mario.MoveFire();
+                Sprint1Main.Coins -= 70;
+            }
         }
     }
 }
