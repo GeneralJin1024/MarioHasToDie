@@ -16,7 +16,7 @@ namespace Sprint1
         }
 
         public void Execute()
-        {   // take the receiver method of power state change
+        {   // take the receiver method of Fire state change
             mario.MoveFire();
         }
     }

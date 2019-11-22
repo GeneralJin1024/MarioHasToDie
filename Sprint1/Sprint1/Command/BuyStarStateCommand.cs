@@ -16,8 +16,8 @@ namespace Sprint1
         }
 
         public void Execute()
-        {   // take the receiver method of power state change
-            mario.ChangeToStarState();
+        {   // take the receiver method of Star state change
+            mario.ChangeToStarState(50);
         }
     }
 }
