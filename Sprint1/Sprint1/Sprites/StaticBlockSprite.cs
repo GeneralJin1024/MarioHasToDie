@@ -11,7 +11,7 @@ namespace Sprint1.BlockClasses
 {
     class FloorBlockSprite : Blocks
     {
-        public FloorBlockSprite(Texture2D texture, MoveParameters moveParameters) : base(texture, moveParameters, new Point(4, 1), BlockType.Used, new ArrayList())
+        public FloorBlockSprite(Texture2D texture, MoveParameters moveParameters) : base(texture, moveParameters, new Point(4, 1), BlockType.Indestructible, new ArrayList())
         {
             // nothing to do
         }

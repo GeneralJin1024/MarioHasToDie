@@ -153,7 +153,7 @@ namespace Sprint1.CollideDetection
                 //Generate collide pairs and get first contact time
                 foreach (ICharacter character in possibleCollideList)
                 {
-                    if (!(character1 is BossEnemyCharacter) || (character1.GetMaxPosition.Y < character.GetMaxPosition.Y))
+                    if (!(character1 is BossEnemyCharacter) || (character1.GetMaxPosition.Y < character.GetMaxPosition.Y) || character is BlockClasses.BlockCharacter)
                     {
                         CollidePair collidePair = new CollidePair(character1, character);
                         collidePair.GetFirstContactTime();

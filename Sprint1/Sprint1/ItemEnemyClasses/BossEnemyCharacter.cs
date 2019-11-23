@@ -33,10 +33,6 @@ namespace Sprint1.ItemEnemyClasses
             {
                 Parameters.SetVelocity(Math.Abs(Parameters.Velocity.X), 0);
             }
-            else
-            {
-
-            }
         }
     }
 }

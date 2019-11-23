@@ -66,7 +66,8 @@ namespace Sprint1.BlockClasses
 
         public void BossEnemyCollide()
         {
-            block.ChangeToDestroyed();
+            if (block.BType != BlockType.Indestructible)
+                block.ChangeToDestroyed();
         }
 
         public void BlockCollide(bool isBottom)

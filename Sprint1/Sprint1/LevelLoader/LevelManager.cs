@@ -57,7 +57,7 @@ namespace Sprint1.LevelLoader
             scenes = new List<Scene> { };
             totalScene = ConfigurationReaderAndWriter.ReadSetting("Scenes");
             Console.WriteLine("Scene = " + totalScene);
-            CurrSceneIndex = 1;
+            CurrSceneIndex = 2;
             Mode = 0; RestOfTime = 0;
             StringManager = new ResourceManager("Sprint1.Resource1", Assembly.GetExecutingAssembly());
         }

@@ -56,7 +56,24 @@ namespace Sprint1.BlockClasses
         {
 
         }
-
+        public override void Update(float frameTime)
+        {
+            base.Update(frameTime);
+            if (BType == BlockType.Destroyed && bPosition.Y < LevelLoader.Stage.MapBoundary.Y)
+            {
+                bPosition.X += positionOffset.X != 0 ? spriteSpeed.X * frameTime / 9 : 0;
+                bPosition.Y += positionOffset.Y != 0 ? spriteSpeed.Y * frameTime / 5 : 0;
+            }
+        }
+        public override void Draw(SpriteBatch spriteBatch)
+        {
+            if (bPosition.Y < LevelLoader.Stage.MapBoundary.Y)
+            {
+                if (BType == BlockType.Destroyed)
+                    spriteBatch.Draw(SpriteSheets, bPosition, new Rectangle(0, 0, (int)GetHeightAndWidth.Y, (int)GetHeightAndWidth.X), Color.White);
+                base.Draw(spriteBatch);   
+            }
+        }
     }
 
     class UsedBlockSprite : Blocks
