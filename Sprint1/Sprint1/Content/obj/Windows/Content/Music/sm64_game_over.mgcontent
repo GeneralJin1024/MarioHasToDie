@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>C:/Users/72957/source/repos/SmartMario/Sprint1/Sprint1/Content/Music/sm64_game_over.wav</SourceFile>
-  <SourceTime>2019-11-10T13:10:49.5656875-05:00</SourceTime>
-  <DestFile>C:/Users/72957/source/repos/SmartMario/Sprint1/Sprint1/Content/bin/Windows/Content/Music/sm64_game_over.xnb</DestFile>
-  <DestTime>2019-11-23T15:10:18.1980701-05:00</DestTime>
+  <SourceFile>C:/Users/13667/source/repos/SmartMario/Sprint1/Sprint1/Content/Music/sm64_game_over.wav</SourceFile>
+  <SourceTime>2019-11-07T17:47:14.4302525-05:00</SourceTime>
+  <DestFile>C:/Users/13667/source/repos/SmartMario/Sprint1/Sprint1/Content/bin/Windows/Content/Music/sm64_game_over.xnb</DestFile>
+  <DestTime>2019-11-23T16:56:05.3323002-05:00</DestTime>
   <Importer>WavImporter</Importer>
   <ImporterTime>2018-12-08T11:35:54-05:00</ImporterTime>
   <Processor>SoundEffectProcessor</Processor>

@@ -99,9 +99,9 @@ namespace Sprint1.MarioClasses
         public void MoveDown() { Mario.MarioState.MoveDown(); }
         public void MoveLeft() { Mario.MarioState.MoveLeft(); }
         public void MoveRight() { Mario.MarioState.MoveRight(); }
-        public void MoveStandard() { Mario.MarioState.ChangeToStandard(); }
-        public void MoveSuper() { Mario.MarioState.ChangeToSuper(); }
-        public void MoveFire() { Mario.MarioState.ChangeToFire(); }
+        public void MoveStandard() { if (!IsDied()) { Mario.MarioState.ChangeToStandard(); } }
+        public void MoveSuper() { if (!IsDied()) { Mario.MarioState.ChangeToSuper(); } }
+        public void MoveFire() { if (!IsDied()) { Mario.MarioState.ChangeToFire(); } }
         public void MoveDestroy() { Mario.MarioState.Destroy(); }
         public void Return() { Mario.MarioState.Return(); }
         public void ThrowFire()
