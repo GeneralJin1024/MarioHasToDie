@@ -92,6 +92,7 @@
     <Compile Include="FactoryClasses\BackgroundFactory.cs" />
     <Compile Include="FactoryClasses\BlockFactory.cs" />
     <Compile Include="FactoryClasses\PlayerFactory.cs" />
+    <Compile Include="FactoryClasses\RandomNumberGenerator.cs" />
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="ICharacter.cs" />
     <Compile Include="ICommand.cs" />

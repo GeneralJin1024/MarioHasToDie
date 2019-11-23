@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Sprint1.BlockClasses;
 using Sprint1.ItemClasses;
 using Sprint1.ItemEnemyClasses;
+using Sprint1.LevelLoader;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -119,7 +120,15 @@ namespace Sprint1.FactoryClasses
                     list.Add(GetJumpEnemy(parameters));
                     break;
                 case "CloudEnemy":
-                    list.Add(GetCloudEnemy(parameters));
+                    RandomNumberGenerator rand = new RandomNumberGenerator();
+                    int maxQuantity = rand.RandomEntityNumber((int)Stage.MapBoundary.X / 500, (int)Stage.MapBoundary.X / 300);
+                    for (int i = 0; i < maxQuantity; ++i)
+                    {
+                        parameters = new MoveParameters(false);
+                        Vector2 tempPos = rand.RandomEntityLocation(pos, new Vector2(Stage.MapBoundary.X, pos.Y+50));
+                        parameters.SetPosition(tempPos.X, tempPos.Y);
+                        list.Add(GetCloudEnemy(parameters));
+                    }
                     break;
                 case "Boss":
                     list.Add(GetBoss(parameters));

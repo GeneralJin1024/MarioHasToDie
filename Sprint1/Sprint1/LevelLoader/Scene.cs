@@ -18,7 +18,7 @@ namespace Sprint1
         Stage stage;
         SpriteBatch spriteBatch;
         private int level;
-        private ArrayList characterList;
+        public ArrayList characterList { get; private set; }
         public ArrayList FireBallList { get; private set; }
         public Camera Camera { get; private set; }
         private List<Layer> Layers;

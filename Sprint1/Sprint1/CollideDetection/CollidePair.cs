@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Sprint1.MarioClasses;
 using Sprint1.ItemEnemyClasses;
+using Sprint1.BlockClasses;
 
 namespace Sprint1.CollideDetection
 {
@@ -149,6 +150,11 @@ namespace Sprint1.CollideDetection
                 if (Character1.Parameters.Velocity.X * relativeVelocity.X >= 0)
                 {
                     Character1.BlockCollide((Time == yTime) && (relativeVelocity.Y > 0));
+                }
+                if (Character1 is BossEnemyCharacter && Character2 is BlockCharacter)
+                {
+                    BlockCharacter block = (BlockCharacter)Character2;
+                    block.BossEnemyCollide();
                 }
             }
         }

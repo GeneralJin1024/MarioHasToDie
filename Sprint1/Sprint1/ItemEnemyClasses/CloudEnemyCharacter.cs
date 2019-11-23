@@ -16,6 +16,7 @@ namespace Sprint1.ItemEnemyClasses
         public CloudEnemyCharacter(Texture2D[] texture, Point[] rowsAndColumns, MoveParameters moveParameters) : base(texture, rowsAndColumns, moveParameters)
         {
             Parameters.SetVelocity(0, 0);
+            Parameters.HasGravity = false;
             //Type = Sprint1Main.CharacterType.DiedEnemy;
             Type = Sprint1Main.CharacterType.Enemy;
             attackTime = 0;

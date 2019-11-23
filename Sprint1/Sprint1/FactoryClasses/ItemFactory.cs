@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using Sprint1.BlockClasses;
 using Sprint1.ItemClasses;
+using Sprint1.LevelLoader;
 using Sprint1.Sprites;
 using System;
 using System.Collections;
@@ -116,7 +117,7 @@ namespace Sprint1.FactoryClasses
         public ItemCharacter GetBomb(Vector2 pos) { return new BombCharacter(bomb, new Point(1, 1), pos); }
         public ItemCharacter GetRandomItem(Vector2 pos) { return new RandomItemCharacter(randomItem, new Point(1, 1), pos); }
         public ItemCharacter GetJumpMedicine(Vector2 pos) { return new JumpMedicineCharacter(medicine, new Point(1, 1), pos); }
-        public ArrayList FactoryMethod(string name, Vector2 posS, Vector2 posE)
+        public ArrayList FactoryMethod(string name, Vector2 posS, Vector2 posE) //speical factory method to generating multi-items at a time
         {
             ArrayList list = new ArrayList();
             for (int x = 0; x < (posE.X - posS.X) / 16; x++)
@@ -154,7 +155,12 @@ namespace Sprint1.FactoryClasses
                         case "Bullet": list.Add(GetBullet(pos)); break;
                         case "Flag": list.Add(GetFlag(pos)); break;
                         case "Castle": list.Add(GetCastle(pos)); break;
-                        case "Bomb": list.Add(GetBomb(pos)); break;
+                        case "Bomb":
+                            RandomNumberGenerator rand = new RandomNumberGenerator();
+                            int maxQuantity = rand.RandomEntityNumber((int)Stage.MapBoundary.X / 200, (int)Stage.MapBoundary.X / 100);
+                            for (int i = 0; i < maxQuantity; ++i)
+                                list.Add(GetBomb(rand.RandomEntityLocation(pos, Stage.MapBoundary)));
+                            break;
                         case "Random": list.Add(GetRandomItem(pos)); break;
                         case "JumpMedicine": list.Add(GetJumpMedicine(pos)); break;
                         default: break;
@@ -163,7 +169,7 @@ namespace Sprint1.FactoryClasses
             }
             return list;
         }
-        public ArrayList FactoryMethod(string namePlusNum, Vector2 pos)
+        public ArrayList FactoryMethod(string namePlusNum, Vector2 pos) //standard factory method for embedded items
         {
             //generating embedded items
             int startInd = 0;
@@ -208,6 +214,7 @@ namespace Sprint1.FactoryClasses
             }
             return list;
         }
+
     }
 }
 
