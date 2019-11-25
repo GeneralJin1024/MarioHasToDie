@@ -20,6 +20,7 @@
     <File>C:/Users/72957/source/repos/SmartMario/Sprint1/Sprint1/Content/BlockSprites/mario-shiny-block.png</File>
     <File>C:/Users/72957/source/repos/SmartMario/Sprint1/Sprint1/Content/DiedMario/deadMario.png</File>
     <File>C:/Users/72957/source/repos/SmartMario/Sprint1/Sprint1/Content/EnemySprite/boss.png</File>
+    <File>C:/Users/72957/source/repos/SmartMario/Sprint1/Sprint1/Content/EnemySprite/boss2.png</File>
     <File>C:/Users/72957/source/repos/SmartMario/Sprint1/Sprint1/Content/EnemySprite/cloudEnemy1.png</File>
     <File>C:/Users/72957/source/repos/SmartMario/Sprint1/Sprint1/Content/EnemySprite/cloudEnemy2.png</File>
     <File>C:/Users/72957/source/repos/SmartMario/Sprint1/Sprint1/Content/EnemySprite/deadGoomba.png</File>
@@ -71,6 +72,7 @@
     <File>C:/Users/72957/source/repos/SmartMario/Sprint1/Sprint1/Content/SuperMario/superMarioRightStand.png</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />

@@ -69,7 +69,10 @@ namespace Sprint1.FactoryClasses
         {
             return new BlockCharacter(new StairBlockSprite(BlockTextures[4], moveParameters));
         }
-
+        public BlockCharacter GetDestructibleStairBlock(MoveParameters moveParameters)
+        {
+            return new BlockCharacter(new BrickBlockSprite(BlockTextures[4], moveParameters, new ArrayList(), BlockType.Used));
+        }
         public ArrayList FactoryMethod(string name, Vector2 posS, Vector2 posE)
         {
             ArrayList list = new ArrayList();
@@ -99,6 +102,9 @@ namespace Sprint1.FactoryClasses
                             break;
                         case "StairB":
                             list.Add(GetStairBlock(parameters));
+                            break;
+                        case "DestructibleStairB":
+                            list.Add(GetDestructibleStairBlock(parameters));
                             break;
                         default: break;
                     }
