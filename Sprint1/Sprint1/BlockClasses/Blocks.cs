@@ -67,7 +67,7 @@ namespace Sprint1.BlockClasses
         private void ChangeToUsed()
         {
             BType = BlockType.Used;
-            base.ResizeFrame(BlockFactory.BlockTextures[2], new Point(4, 1));          
+            base.ResizeFrame(BlockFactory.BlockTextures[2], new Point(4, 1), 0);          
             currentbState = GenerateCurrentState();
         }
         public void ChangeToDestroyed()

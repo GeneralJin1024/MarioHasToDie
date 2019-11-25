@@ -159,7 +159,7 @@ namespace Sprint1.FactoryClasses
                             RandomNumberGenerator rand = new RandomNumberGenerator();
                             int maxQuantity = rand.RandomEntityNumber((int)Stage.MapBoundary.X / 200, (int)Stage.MapBoundary.X / 100);
                             for (int i = 0; i < maxQuantity; ++i)
-                                list.Add(GetBomb(rand.RandomEntityLocation(pos, Stage.MapBoundary)));
+                                list.Add(GetBomb(rand.RandomEntityLocation(pos, new Vector2 (Stage.MapBoundary.X-300, Stage.MapBoundary.Y)))); //will not generate bombs after passing the flag
                             break;
                         case "Random": list.Add(GetRandomItem(pos)); break;
                         case "JumpMedicine": list.Add(GetJumpMedicine(pos)); break;

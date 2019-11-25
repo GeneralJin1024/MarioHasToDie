@@ -69,7 +69,7 @@ namespace Sprint1.ItemClasses
             if (Parameters.Position.Y >= Stage.Boundary.X || Parameters.Position.Y >= Stage.Boundary.Y)
                 Parameters.IsHidden = true;
         }
-        public void Draw(SpriteBatch spriteBatch)
+        public virtual void Draw(SpriteBatch spriteBatch)
         {
             Item.Draw(spriteBatch);
         }
