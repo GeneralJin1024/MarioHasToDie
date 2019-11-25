@@ -50,7 +50,7 @@ namespace Sprint1.FactoryClasses
                 Sprint1Main.Game.Content.Load<Texture2D>("EnemySprite/deadRedkoopa")};
             plant = new Texture2D[2] { Sprint1Main.Game.Content.Load<Texture2D>("EnemySprite/enemyPlant"),
                Sprint1Main.Game.Content.Load<Texture2D>("EnemySprite/enemyPlant")};
-            boss = new Texture2D[2] { Sprint1Main.Game.Content.Load<Texture2D>("EnemySprite/boss"),
+            boss = new Texture2D[2] { Sprint1Main.Game.Content.Load<Texture2D>("EnemySprite/boss2"),
                 Sprint1Main.Game.Content.Load<Texture2D>("EnemySprite/boss")};
             cloud = new Texture2D[2] { Sprint1Main.Game.Content.Load<Texture2D>("EnemySprite/cloudEnemy1"),
                 Sprint1Main.Game.Content.Load<Texture2D>("EnemySprite/cloudEnemy2")};
@@ -81,7 +81,7 @@ namespace Sprint1.FactoryClasses
         }
         public EnemyCharacter GetBoss(MoveParameters moveParameters)
         {
-            Point[] rowAndColumn = new Point[2] { new Point(1, 3), new Point(1, 3) };
+            Point[] rowAndColumn = new Point[2] { new Point(1, 3), new Point(1, 2) };
             return new BossEnemyCharacter(boss, rowAndColumn, moveParameters);
         }
         public EnemyCharacter GetCloudEnemy(MoveParameters moveParameters)
