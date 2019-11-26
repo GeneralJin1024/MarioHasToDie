@@ -183,17 +183,14 @@ namespace Sprint1.FactoryClasses
                 {
                     case "Coin":
                         list.Add(GetCoin(pos));
-                        //Console.WriteLine("add Coins");
                         break;
                     case "Flower":
-                        //Console.WriteLine("add Flower");
                         list.Add(GetFlower(pos));
                         break;
                     case "GreenMushroom":
                         list.Add(GetGreenMushroom(pos));
                         break;
                     case "RedMushroom":
-                        //Console.WriteLine("add RedMushroom");
                         list.Add(GetRedMushroom(pos));
                         break;
                     case "Star":

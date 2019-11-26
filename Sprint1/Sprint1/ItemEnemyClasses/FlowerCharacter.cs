@@ -20,10 +20,6 @@ namespace Sprint1.ItemClasses
             base.Update(timeOfFrame);
         }
 
-        //public override Vector2 GetHeightAndWidth()
-        //{
-        //    return Item.GetHeightAndWidth;
-        //}
 
         public override void MarioCollide(bool specialCase)
         {

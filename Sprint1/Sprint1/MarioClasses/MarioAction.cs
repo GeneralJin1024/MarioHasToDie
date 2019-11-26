@@ -42,9 +42,7 @@ namespace Sprint1.MarioClasses
         }
         public void Right(Mario mario)
         {
-            //if (mario.Parameters.IsLeft)
             mario.Parameters.IsLeft = false;
-            //else
             mario.Parameters.SetVelocity(Mario.XVelocity, mario.Parameters.Velocity.Y);
         }
         public void Return(Mario mario) { }

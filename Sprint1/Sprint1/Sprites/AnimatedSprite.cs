@@ -62,7 +62,6 @@ namespace Sprint1
                 int y = (int)checkedPosition.Y;
                 if (y > checkedPosition.Y) { y -= 1; }
                 Parameters.SetPosition(x, y + GetHeightAndWidth.X);
-                //Parameters.SetPosition(checkedPosition.X, checkedPosition.Y + GetHeightAndWidth().X);
             }
         }
 
@@ -96,11 +95,6 @@ namespace Sprint1
                 }
             }
         }
-
-        //public Vector2 GetHeightAndWidth()
-        //{
-        //    return new Vector2((float)SpriteSheets.Height / RowsAndColumns.X, (float)SpriteSheets.Width / RowsAndColumns.Y);
-        //}
 
         public void ResizeFrame(Texture2D spriteSheet, Point rowAndColumn, int actionFrame)
         {

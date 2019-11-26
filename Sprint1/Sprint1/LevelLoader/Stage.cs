@@ -19,11 +19,10 @@ namespace Sprint1.LevelLoader
     {
         public Sprint1Main Game { get; set; }
         public static Vector2 Boundary { get; private set; }
-        public static Vector2 MapBoundary { get; private set; }
-        public Vector2 CameraBoundary { get; private set; } // 这个property只是用于限制照相机的，不碍其他的事。
+        public static Vector2 MapBoundary { get; private set; } // In the whole game, The Tile Map Size are the same
+        public Vector2 CameraBoundary { get; private set; } //The Boundary to limit cameras
         public Color BackgroundColor { get; private set; }
         readonly List<IController> controllerList;
-        //private ArrayList factoryList;
         private int TimeSinceLastFrame;
         private int MillisecondsPerFrame;
         private CollisionDetector Collision;
@@ -67,7 +66,6 @@ namespace Sprint1.LevelLoader
                 throw new ArgumentNullException(nameof(gameTime));
             foreach (IController controller in controllerList)
                 controller.Update();
-            //TimeSinceLastFrame += gameTime.ElapsedGameTime.Milliseconds;
             if (!Pulse)
             {
                 TimeSinceLastFrame += 2 * gameTime.ElapsedGameTime.Milliseconds;
@@ -75,17 +73,12 @@ namespace Sprint1.LevelLoader
                 {
                     TimeSinceLastFrame -= MillisecondsPerFrame;
                     Collision.Update();
-                    //Console.WriteLine("Mario Position is = " + Sprint1Main.Game.Scene.Mario.Parameters.Position);
                 }
             }
-            //if (Game.Scene.Mario.IsDied())
-            //    DiedTime++;
-            //if (DiedTime >= 50)
-            //    Game.Exit();
 
         }
 
-        internal void SpriteLocationReader(int levelIndex, ArrayList spriteList, ArrayList fireBallList, List<Layer> layers)
+        internal void SpriteLocationReader(int levelIndex, ArrayList spriteList, List<Layer> layers)
         {
 
             if (!((LevelSection)ConfigurationManager.GetSection("Level" + levelIndex) is LevelSection myLevelSection))
@@ -127,17 +120,8 @@ namespace Sprint1.LevelLoader
                     {
                         itemList.AddRange(ItemFactory.Instance.FactoryMethod(myLevelSection.Blocks[i].EmbeddedSpriteName + "+{"
                             + myLevelSection.Blocks[i].EmbeddedSpriteNum + "}", StringToVecter2(myLevelSection.Blocks[i].SpriteStartLocation)));
-                        //if(itemList.Count == 1)
-                        //{
-                        //    foreach(ICharacter character in itemList)
-                        //    {
-                        //        if (character.Type == Sprint1Main.CharacterType.Flower)
-                        //            Sprint1Main.Flower = character;
-                        //    }
-                        //}
                         foreach (BlockCharacter bc in blockList)
                         {
-                            //Console.WriteLine("item load successfully");
                             bc.LoadItems(itemList);
                         }
                         spriteList.AddRange(itemList);

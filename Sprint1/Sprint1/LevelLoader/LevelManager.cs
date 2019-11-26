@@ -109,8 +109,6 @@ namespace Sprint1.LevelLoader
 
         public void Update(GameTime gameTime)
         {
-            //if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
-            //    Exit();
             Coin.Update(0.6f);
             if (gameTime == null)
                 throw new ArgumentNullException(nameof(gameTime));

@@ -14,7 +14,7 @@ namespace Sprint1.ItemEnemyClasses
 
         public BossEnemyCharacter(Texture2D[] texture, Point[] rowsAndColumns, MoveParameters moveParameters) : base(texture, rowsAndColumns, moveParameters)
         {
-            moveParameters.SetVelocity(4.0f,0);
+            moveParameters.SetVelocity(2.0f,0);
             currentSprite.FrameFreeze = true;
         }
 

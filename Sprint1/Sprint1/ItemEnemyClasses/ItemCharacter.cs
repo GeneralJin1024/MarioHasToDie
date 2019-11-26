@@ -57,7 +57,6 @@ namespace Sprint1.ItemClasses
                 {
                     Parameters.SetPosition(Parameters.Position.X, BumpHigh);
                     SpriteSpeed = new Vector2(SpriteSpeed.X, SpriteSpeed.Y * -1);
-                    //SpriteSpeed.Y *= -1;
                 }
                 if (Parameters.Position.Y > BumpLow)
                 {
@@ -87,17 +86,14 @@ namespace Sprint1.ItemClasses
         }
 
         public virtual void MarioCollide(bool specialCase) { }
-       // public virtual Vector2 GetHeightAndWidth() { return Vector2.Zero; }
         public virtual void BlockCollide(bool isBottom)
         {
             if (isBottom)
                 Parameters.SetVelocity(Math.Abs(Parameters.Velocity.X), 0);
             else
             {
-                Parameters.IsLeft = !Parameters.IsLeft; //转向
+                Parameters.IsLeft = !Parameters.IsLeft; //turn around
                 Parameters.SetVelocity(Math.Abs(Parameters.Velocity.X), Parameters.Velocity.Y);
-                //Parameters.SetVelocity(0, 0);
-                //Parameters.HasGravity = false;
             }
         }
     }

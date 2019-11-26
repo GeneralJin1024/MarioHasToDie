@@ -41,7 +41,7 @@ namespace Sprint1.MarioClasses
             get { return Mario.GetHeightAndWidth; }
         }
         private readonly MoveParameters InitialParameters;
-        public bool Win { get; set; } //马里奥进入控制锁定但仍进行碰撞的状态
+        public bool Win { get; set; } //When win is true, Mario will lock control but still generate collide pairs as usual
         public bool Invincible { get; set; }
         private float JumpClock;
         private float InvincibleClock;
@@ -205,7 +205,7 @@ namespace Sprint1.MarioClasses
 
         public void CollideWithPipe(PipeCharacter pipe, bool upOrDown, bool movingDown)
         {
-            if (Parameters.Position.X >= pipe.GetMinPosition.X + 2 && GetMaxPosition.X <= pipe.GetMaxPosition.X - 2)
+            if (Parameters.Position.X >= pipe?.GetMinPosition.X + 2 && GetMaxPosition.X <= pipe.GetMaxPosition.X - 2)
                 OnPipe = true;
             switch (pipe?.PType)
             {

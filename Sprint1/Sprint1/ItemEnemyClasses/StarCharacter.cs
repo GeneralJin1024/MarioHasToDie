@@ -40,7 +40,6 @@ namespace Sprint1.ItemClasses
         {
             Parameters.HasGravity = true;
         }
-        //public override Vector2 GetHeightAndWidth() { return Item.GetHeightAndWidth; }
 
         public override void MarioCollide(bool specialCase) {}
         public override void BlockCollide(bool isBottom) { Parameters.IsHidden = true; }

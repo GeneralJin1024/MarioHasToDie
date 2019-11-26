@@ -24,19 +24,7 @@ namespace Sprint1.CollideDetection
             if (characterList is null || fireBallCharacterList is null)
                 throw new ArgumentNullException(nameof(characterList));
             CharacterList = characterList;
-            //Console.WriteLine("Contain the flower" + CharacterList.Contains(Sprint1Main.Flower));
             FireBallCharacters = fireBallCharacterList;
-            //Console.WriteLine("At first, has items = " + FireBallCharacters.Count);
-            //foreach (ICharacter items in FireBallCharacters)
-            //{
-            //    CharacterList.Add(items);
-            //    if (!items.Parameters.IsHidden)
-            //    {
-            //        Console.WriteLine("This item is added by block and it is not hidden, please check again.  Its type is " + items.Type);
-            //        Sprint1Main.Game.Exit();
-            //    }
-            //}
-            //FireBallCharacters.Clear(); // FIreBall list should not have anything.
             DivideIntoList(); //divide all objects into two lists
             Mario = mario;
             CollidePairs = new List<CollidePair>();
@@ -72,7 +60,6 @@ namespace Sprint1.CollideDetection
                 }
 
                 Map.UpdateMovingCharacters();
-                //Console.WriteLine("Mario Velocity Before Collide1 = " + Mario.Parameters.Velocity);
                 List<CollidePair> firstContactPairs = new List<CollidePair>();
                 /*
                  * Generate collide pair for mario, moving objects and fireball.
@@ -111,15 +98,9 @@ namespace Sprint1.CollideDetection
                 CollidePair[] cp = firstContactPairs.ToArray();
                 for (int i = 0; i < cp.Length && cp[i].Time == shortestTime; i++)
                     cp[i].Collide();
-                //foreach (CollidePair pair in firstContactPairs)
-                //{
-                //    if (pair.Time == shortestTime)
-                //        pair.Collide();
-                //}
                 CollidePairs.Clear(); // clear collide pairs
                 firstContactPairs.Clear(); //clear sorted collide pairs
                 timeOfFrame -= shortestTime; // change the rest of time.
-                //Console.WriteLine("Mario Velocity Before Collide3 = " + Mario.Parameters.Velocity);
             }
         }
 

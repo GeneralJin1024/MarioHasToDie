@@ -22,8 +22,7 @@ namespace Sprint1
 
         private KeyboardState OldKeyState; //keyboard state of
         private GamePadState OldPadState;
-        private string[] Content;
-        readonly ResourceManager stringManager;
+        private readonly string[] Content;
         public Menu(Sprint1Main game, string[] content)
         {
             Game = game;
@@ -32,7 +31,6 @@ namespace Sprint1
             OldKeyState = Keyboard.GetState();
             OldPadState = GamePad.GetState(PlayerIndex.One);
             //set up resource manager for eliminating warning
-            stringManager = new ResourceManager("Sprint1.Resource1", Assembly.GetExecutingAssembly());
             Content = content;
         }
 
@@ -103,16 +101,6 @@ namespace Sprint1
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            //Add legend with resource manager.
-            //stringManager.GetString("Start", CultureInfo.CurrentCulture);
-            //spriteBatch.DrawString(Font, stringManager.GetString("Welcome To Mario", CultureInfo.CurrentCulture), new Vector2(190.0f, 150.0f), 
-            //    FontColor, 0, Vector2.Zero, 2.5f, SpriteEffects.None, 0);
-            //spriteBatch.DrawString(Font, stringManager.GetString("Start", CultureInfo.CurrentCulture), new Vector2(370.0f, 300.0f), FontColor);
-            //spriteBatch.DrawString(Font, stringManager.GetString("Quit", CultureInfo.CurrentCulture), new Vector2(370.0f, 350.0f), FontColor);
-            //spriteBatch.DrawString(Font, 
-            //    stringManager.GetString("W/Up Arrow: Up       S/Down Arrow: Down        Z/Button X: choose", CultureInfo.CurrentCulture), 
-            //    new Vector2(0, 450), FontColor);
-            //int win = (Sprint1Main.Game.LevelControl.IsLastLevel && Content.Length == 4) ? 1 : 3;
             spriteBatch.DrawString(Font, Content[0], new Vector2(400 - Content[0].Length * 13, 150.0f),
                 FontColor, 0, Vector2.Zero, 2.5f, SpriteEffects.None, 0);
             spriteBatch.DrawString(Font, Content[(!Sprint1Main.Game.LevelControl.IsLastLevel && Content.Length == 4) ? 3 : 1], 
