@@ -61,6 +61,7 @@ namespace Sprint1
             controllerDic.Add(Keys.R, new ResetCommand());
             controllerDic.Add(Keys.P, new PulseCommand(mario));
             controllerDic.Add(Keys.M, new MuteBGMCommand());
+            controllerDic.Add(Keys.T, new GetCoins());
 
         }
         public void Update()

@@ -25,4 +25,9 @@ namespace Sprint1
             }
         }
     }
+
+    public class GetCoins: ICommand
+    {
+        public void Execute() { Sprint1Main.Coins += 100; }
+    }
 }
