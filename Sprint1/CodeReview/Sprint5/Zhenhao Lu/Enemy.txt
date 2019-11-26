@@ -1,0 +1,20 @@
+Reviewer: Zhenhao Lu
+Date: 11/25/2019
+Sprint5
+Files: FactoryClasses/ EnemyFactory.cs, RandomNumberGenerators.cs, ItemFactory.cs
+Author: Shengyu Jin
+Comment:
+	1. It's really a good idea to randomly generate cloud enemy and bomb. It can make players meet
+	different dangers and increase the their interests. It can also product multiple objects with one line
+	of code in configuration file.
+	2. We should add some limits to the lowest place they can be generated. When I tested the game.
+	I met a problem that sometimes a bomb will occur on Mario's top and very close to Mario, that
+	makes that Player (I) will not have enough time to avoid the bomb.
+	3. The cloud has the same problem. In the game, the cloud is big and wide. Sometimes when Mario
+	arrive the highest place on stairs, there will always be a cloud enemy near him which stop him to
+	go. I recommand that we only allow bomb to be generated randomly, and the cloud enemy should
+	be set by ourselves.
+Time: 20 minues
+Hypothesis: 
+	1. In the configuration file, the bomb's EndLocation is useless, in the future, we can use it as the limit
+	bound to randomly generate Bombs.

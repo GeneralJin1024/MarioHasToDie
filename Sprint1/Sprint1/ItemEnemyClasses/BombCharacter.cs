@@ -20,7 +20,7 @@ namespace Sprint1.ItemClasses
             : base(texture, rowsAndColunms, location)
         {
             Parameters.IsHidden = true;
-            
+            Parameters.SetPosition(Parameters.Position.X, 200);
         }
 
         public override void Update(float timeOfFrame)
