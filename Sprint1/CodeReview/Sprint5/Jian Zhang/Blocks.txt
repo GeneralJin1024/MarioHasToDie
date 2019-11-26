@@ -1,0 +1,15 @@
+Reviewer: Jian Zhang
+Date: 11/26/2019
+Sprint5
+Files: BlockClasses/ BlockCharacter.cs, Blocks.cs
+Author: Shengyu Jin
+Comment:
+	1. In the BlockCharacter.cs, the author make a good use of BossEnemyCollide() function to make Blocks 
+	to destoryed. When the big Boss Enemy hide the blocks, the blocks can be destoryed by the collision from
+	the boss enemy. While we may add the item hidden inside of those blocks keep hidden instead of making them 
+	appearing and falling. Also, some visualization applied to the blocks explosion will be better.
+Time: 20 minutes
+Hypothesis
+	1. In the Blocks.cs file, we can add some more command receiver functions for blocks to call based on
+	different situations that blocks may occur. More block states can be extended, we don't need just 
+	limit on the previous sprites' requirements. More textures of animation and visualizations can be displayed better.
