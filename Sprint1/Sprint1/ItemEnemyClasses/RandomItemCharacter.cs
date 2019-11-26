@@ -16,7 +16,7 @@ namespace Sprint1.ItemClasses
             get { return TypeList[CurrentType]; }
             set { }
         }
-        private Sprint1Main.CharacterType[] TypeList;
+        private readonly Sprint1Main.CharacterType[] TypeList;
         private int CurrentType;
         private float Time;
         public RandomItemCharacter(Texture2D texture, Point rowsAndColunms, Vector2 location)
@@ -31,7 +31,6 @@ namespace Sprint1.ItemClasses
 
         public override void Update(float timeOfFrame)
         {
-          // Time += timeOfFrame;
             base.Update(timeOfFrame);
 
             Time += timeOfFrame;

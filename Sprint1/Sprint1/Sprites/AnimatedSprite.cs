@@ -24,11 +24,13 @@ namespace Sprint1
         private Point RowsAndColumns;
         private int ActionFrame;
         private readonly int MillisecondsPerFrame;
+        public Boolean FrameFreeze { get; set; }
         public AnimatedSprite(Texture2D spriteSheet, Point rowAndColumn, MoveParameters parameters)
         {
-            ResizeFrame(spriteSheet, rowAndColumn);
+            ResizeFrame(spriteSheet, rowAndColumn, 0);
             MillisecondsPerFrame = 2;
             Parameters = parameters;
+            FrameFreeze = false; //default value
         }
 
         public virtual void Update(float timeOfFrame)
@@ -37,7 +39,8 @@ namespace Sprint1
              * One frame is a standard time for frame update. If we want the collision update velocity be different from 
              * frame update velocity, we can directly change the value of MillisecondsPerFrame
              */
-            Parameters.TimeOfFrame += timeOfFrame;
+            if (!FrameFreeze)
+                Parameters.TimeOfFrame += timeOfFrame;
             if (Parameters.TimeOfFrame >= MillisecondsPerFrame)
             {
                 Parameters.TimeOfFrame = 0;
@@ -59,7 +62,6 @@ namespace Sprint1
                 int y = (int)checkedPosition.Y;
                 if (y > checkedPosition.Y) { y -= 1; }
                 Parameters.SetPosition(x, y + GetHeightAndWidth.X);
-                //Parameters.SetPosition(checkedPosition.X, checkedPosition.Y + GetHeightAndWidth().X);
             }
         }
 
@@ -94,19 +96,14 @@ namespace Sprint1
             }
         }
 
-        //public Vector2 GetHeightAndWidth()
-        //{
-        //    return new Vector2((float)SpriteSheets.Height / RowsAndColumns.X, (float)SpriteSheets.Width / RowsAndColumns.Y);
-        //}
-
-        protected void ResizeFrame(Texture2D spriteSheet, Point rowAndColumn)
+        public void ResizeFrame(Texture2D spriteSheet, Point rowAndColumn, int actionFrame)
         {
             //set sprite sheets which can be changed from outside.
             SpriteSheets = spriteSheet;
             //let program know how many frames this sheet has
             RowsAndColumns = rowAndColumn;
             //start from the first frame
-            ActionFrame = 0;
+            ActionFrame = actionFrame;
         }
     }
 }

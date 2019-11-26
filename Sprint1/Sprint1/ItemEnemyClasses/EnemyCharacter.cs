@@ -14,11 +14,11 @@ namespace Sprint1.ItemClasses
         public Vector2 GetHeightAndWidth { get { return currentSprite.GetHeightAndWidth; } }
         public Vector2 GetMaxPosition { get { return new Vector2(Parameters.Position.X + currentSprite.GetHeightAndWidth.Y, Parameters.Position.Y); } }
         public Vector2 GetMinPosition { get { return new Vector2(Parameters.Position.X, Parameters.Position.Y - currentSprite.GetHeightAndWidth.X); } }
-        readonly protected ISprite liveEnemy;
-        readonly protected ISprite diedEnemy;
+        readonly protected AnimatedSprite liveEnemy;
+        readonly protected AnimatedSprite diedEnemy;
         private int disappear;
         private int disappearTimer;
-        protected ISprite currentSprite;
+        protected AnimatedSprite currentSprite;
         public MoveParameters Parameters { get; }
         public EnemyCharacter(Texture2D[] texture, Point[] rowsAndColumns, MoveParameters moveParameters)
         {
@@ -51,15 +51,6 @@ namespace Sprint1.ItemClasses
             currentSprite.Draw(spriteBatch);
 
         }
-
-        //public Vector2 GetMaxPosition()
-        //{
-        //    return new Vector2(Parameters.Position.X + currentSprite.GetHeightAndWidth.Y, Parameters.Position.Y);
-        //}
-        //public Vector2 GetMinPosition()
-        //{
-        //    return new Vector2(Parameters.Position.X, Parameters.Position.Y - currentSprite.GetHeightAndWidth.X);
-        //}
         
 
         public virtual void MarioCollide(bool specialCase)
@@ -81,14 +72,10 @@ namespace Sprint1.ItemClasses
             }
             else
             {
-                Parameters.IsLeft = !Parameters.IsLeft; //转向
-                Parameters.SetVelocity(Math.Abs(Parameters.Velocity.X), Parameters.Velocity.Y); //速度重设
+                Parameters.IsLeft = !Parameters.IsLeft; //turn around
+                Parameters.SetVelocity(Math.Abs(Parameters.Velocity.X), Parameters.Velocity.Y); //reset velocity
             }
         }
-        //public Vector2 GetHeightAndWidth()
-        //{
-        //    return currentSprite.GetHeightAndWidth;
-        //}
 
     }
 }

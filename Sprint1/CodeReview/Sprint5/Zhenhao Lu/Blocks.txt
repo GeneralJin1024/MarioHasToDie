@@ -1,0 +1,15 @@
+Reviewer: Zhenhao Lu
+Date: 11/25/2019
+Sprint5
+Files: BlockClasses/ BlockCharacter.cs, Blocks.cs
+Author: Shengyu Jin
+Comment:
+	1. Good designing for the collision response to Boss Enemy. However, even if Mario cannot go
+	to the place of blocks which are destroyed by Boss Enemy, we can make the item hidden inside
+	of those blocks keep hidden instead make them appear and fall. That will add additional 
+	computation to CollideDetector.
+Time: 10 minutes
+Hypothesis
+	1. If we change the Block to make it keeps hiding items when destroyed by Boss Enemy, we may
+	need to add a boolean variable as a parameter passed into the destroying method. Or we can
+	seperate the destroy method and releasing method.

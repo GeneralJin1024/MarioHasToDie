@@ -18,7 +18,7 @@ namespace Sprint1
         Stage stage;
         SpriteBatch spriteBatch;
         private int level;
-        private ArrayList characterList;
+        public ArrayList CharacterList { get; private set; }
         public ArrayList FireBallList { get; private set; }
         public Camera Camera { get; private set; }
         private List<Layer> Layers;
@@ -35,14 +35,13 @@ namespace Sprint1
 
         public void Add(ICharacter character)
         {
-            characterList.Add(character);
+            CharacterList.Add(character);
         }
         public void Initalize(int levelIndex)
         {
-            characterList = new ArrayList();
+            CharacterList = new ArrayList();
             FireBallList = new ArrayList();
-            this.level = levelIndex;
-            //factoryList = new ArrayList();
+            level = levelIndex;
             stage.Initialize();
 
         }
@@ -59,21 +58,12 @@ namespace Sprint1
                 new Layer(Camera) { Parallax = new Vector2(1.0f, 1.0f) } // fireball
             };
 
-            stage.SpriteLocationReader(level, characterList, FireBallList, Layers);
+            stage.SpriteLocationReader(level, CharacterList, Layers);
             spriteBatch = new SpriteBatch(stage.Game.GraphicsDevice);
             Layers[2].Sprites.Add(Mario);
-            Layers[3].Sprites = characterList;
+            Layers[3].Sprites = CharacterList;
             Layers[4].Sprites = FireBallList;
-            //factoryList.Add(BlockFactory.Instance);
-            //factoryList.Add(EnemyFactory.Instance);
-            //BackgroundFactory.Instance.AddToList(BackgroundList);
-            //factoryList.Add(ItemFactory.Instance);
-
-            //foreach (IFactory factory in factoryList)
-            //factory.AddToList(spriteList);
-            stage.LoadContent(characterList, FireBallList);
-            //Camera.Limits = new Rectangle(0, 0,
-            //    (int)Stage.MapBoundary.X, (int)Stage.MapBoundary.Y);
+            stage.LoadContent(CharacterList, FireBallList);
             Camera.Limits = new Rectangle(0, 0, (int)stage.CameraBoundary.X, (int)stage.CameraBoundary.Y);
 
 
@@ -124,7 +114,7 @@ namespace Sprint1
         {
             if (pipePosition is null)
                 throw new ArgumentNullException(nameof(pipePosition));
-            foreach(ICharacter character in characterList)
+            foreach(ICharacter character in CharacterList)
             {
                 if (pipePosition.Contains(character.GetMinPosition.X) && character.Type == Sprint1Main.CharacterType.Pipe)
                 {
@@ -132,6 +122,26 @@ namespace Sprint1
                     pipe.MarioGetInside();
                 }
             }
+        }
+
+        public void ByPassMario()
+        {
+            float XPosition = stage.CameraBoundary.X;
+            //select the nearest VPipe which are on the right of Mario.
+            foreach(ICharacter character in CharacterList)
+            {
+                if(character.Type == Sprint1Main.CharacterType.Pipe)
+                {
+                    PipeCharacter pipe = (PipeCharacter)character;
+                    if ((pipe.PType == PipeCharacter.PipeType.VPipe) &&
+                        (Mario.GetMaxPosition.X < pipe.GetMinPosition.X) && (pipe.GetMinPosition.X < XPosition))
+                        XPosition = pipe.GetMinPosition.X;
+                }
+            }
+            //Move Mario to the next VPipe
+            Mario.Parameters.SetPosition(XPosition + 2, Mario.Parameters.Position.Y);
+            //Add this pipe into list to disable later.
+            Mario.DivedPipe.Add(XPosition);
         }
 
     }

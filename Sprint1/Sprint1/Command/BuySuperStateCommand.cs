@@ -9,18 +9,19 @@ namespace Sprint1
 {   // Command Class for the Avatar to Super state
     public class BuySuperStateCommand : ICommand
     {
-        MarioCharacter mario;
+        private readonly MarioCharacter Mario;
         public BuySuperStateCommand(MarioCharacter mario)
         {
-            this.mario = mario;
+            Mario = mario;
         }
 
         public void Execute()
         {   // take the receiver method of Super state change
-            if (Sprint1Main.Coins >= 50 && mario.GetPower == MarioState.PowerType.Standard)
+            if (Sprint1Main.Coins >= 50 && Mario.GetPower == MarioState.PowerType.Standard)
             {
-                mario.MoveSuper();
+                Mario.MoveSuper();
                 Sprint1Main.Coins -= 50;
+                SoundFactory.Instance.PowerUp();
             }
         }
     }

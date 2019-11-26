@@ -127,14 +127,6 @@ namespace Sprint1.CollideDetection
                         collideObjects.Add(character);
                     else if(character.Type == Sprint1Main.CharacterType.Block || character.Type == Sprint1Main.CharacterType.Pipe)
                         collideObjects.Add(character);
-                    //else if ((type == Sprint1Main.CharacterType.Enemy || type == Sprint1Main.CharacterType.RedMushroom || 
-                    //    type == Sprint1Main.CharacterType.Flower || type == Sprint1Main.CharacterType.GreenMushroom || 
-                    //    type == Sprint1Main.CharacterType.DiedEnemy || type == Sprint1Main.CharacterType.Star) && 
-                    //    (character.Type == Sprint1Main.CharacterType.Block || character.Type == Sprint1Main.CharacterType.Pipe))
-                    //    collideObjects.Add(character);
-                    //else if (type == Sprint1Main.CharacterType.Fireball && (character.Type == Sprint1Main.CharacterType.Block ||
-                    //    character.Type == Sprint1Main.CharacterType.Pipe || character.Type == Sprint1Main.CharacterType.Enemy))
-                    //    collideObjects.Add(character);
                 }
             }
         }

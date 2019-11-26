@@ -421,3 +421,9 @@ C:\Users\zhangjian\Source\Repos\SmartMario\Sprint1\Sprint1\bin\Windows\x86\Debug
 C:\Users\zhangjian\Source\Repos\SmartMario\Sprint1\Sprint1\bin\Windows\x86\Debug\Content\EnemySprite\enemyPlant.xnb
 C:\Users\zhangjian\Source\Repos\SmartMario\Sprint1\Sprint1\bin\Windows\x86\Debug\Content\EnemySprite\jump1.xnb
 C:\Users\zhangjian\Source\Repos\SmartMario\Sprint1\Sprint1\bin\Windows\x86\Debug\Content\EnemySprite\Jump2.xnb
+C:\Users\72957\source\repos\SmartMario\Sprint1\Sprint1\bin\Windows\x86\Debug\Content\ItemSprite\flagpole.xnb
+C:\Users\72957\source\repos\SmartMario\Sprint1\Sprint1\bin\Windows\x86\Debug\Content\ItemSprite\flag.xnb
+C:\Users\72957\source\repos\SmartMario\Sprint1\Sprint1\bin\Windows\x86\Debug\Content\EnemySprite\boss2.xnb
+C:\Users\13667\source\repos\SmartMario\Sprint1\Sprint1\bin\Windows\x86\Debug\Content\ItemSprite\flag.xnb
+C:\Users\13667\source\repos\SmartMario\Sprint1\Sprint1\bin\Windows\x86\Debug\Content\ItemSprite\flagpole.xnb
+C:\Users\13667\source\repos\SmartMario\Sprint1\Sprint1\bin\Windows\x86\Debug\Content\EnemySprite\boss2.xnb

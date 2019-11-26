@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Sprint1.MarioClasses;
 using Sprint1.ItemEnemyClasses;
+using Sprint1.BlockClasses;
 
 namespace Sprint1.CollideDetection
 {
@@ -87,12 +88,10 @@ namespace Sprint1.CollideDetection
                     Time = -2; // no, the mario didn't collide
                 if (Character2.Type == Sprint1Main.CharacterType.Block)
                 {
-                    BlockClasses.BlockCharacter blockCharacter = (BlockClasses.BlockCharacter)Character2;
-                    if (blockCharacter.BlockType == BlockClasses.BlockType.Hidden && relativeVelocity.Y > 0)
-                    {
+                    BlockCharacter blockCharacter = (BlockCharacter)Character2;
+                    if (blockCharacter.BlockType == BlockType.Hidden && relativeVelocity.Y > 0)
                         Time = -2;
-                    }
-                        
+
                 }
             }
             else if (xTime >= 0 && xTime > yTime) //Mario must collide with object from left or right.
@@ -106,13 +105,12 @@ namespace Sprint1.CollideDetection
                     Time = -2;// no, the mario didn't collide
                 if (Character2.Type == Sprint1Main.CharacterType.Block)
                 {
-                    BlockClasses.BlockCharacter blockCharacter = (BlockClasses.BlockCharacter)Character2;
-                    if (blockCharacter.BlockType == BlockClasses.BlockType.Hidden)
+                    BlockCharacter blockCharacter = (BlockCharacter)Character2;
+                    if (blockCharacter.BlockType == BlockType.Hidden)
                         Time = -2;
                 }
             }
             #endregion
-            //Console.WriteLine("Time = " + Time);
         }
 
         public void Collide()
@@ -120,10 +118,6 @@ namespace Sprint1.CollideDetection
             // tell mario what he collide with by check object's type and tell the object mario collide with it.
             if (Character1.Type == Sprint1Main.CharacterType.Mario)
             {
-                if(Character2 is CloudEnemyCharacter)
-                {
-                    Console.WriteLine();
-                }
                 MarioCharacter MarioCharacters = (MarioCharacter)Character1;
                 if (Character2.Type == Sprint1Main.CharacterType.Block)
                     Character2.MarioCollide((Time == yTime) && (relativeVelocity.Y < 0));
@@ -149,6 +143,11 @@ namespace Sprint1.CollideDetection
                 if (Character1.Parameters.Velocity.X * relativeVelocity.X >= 0)
                 {
                     Character1.BlockCollide((Time == yTime) && (relativeVelocity.Y > 0));
+                }
+                if (Character1 is BossEnemyCharacter && Character2 is BlockCharacter)
+                {
+                    BlockCharacter block = (BlockCharacter)Character2;
+                    block.BossEnemyCollide();
                 }
             }
         }

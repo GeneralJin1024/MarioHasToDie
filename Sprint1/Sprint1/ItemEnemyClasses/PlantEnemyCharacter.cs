@@ -11,8 +11,8 @@ namespace Sprint1.ItemEnemyClasses
 {
     class PlantEnemyCharacter : EnemyCharacter
     {
-        private float maxHeight;
-        private float minHeight;
+        private readonly float maxHeight;
+        private readonly float minHeight;
         private float ClockToWait;
         private bool Appear;
         private bool ReadyToTrigger;
@@ -30,7 +30,6 @@ namespace Sprint1.ItemEnemyClasses
 
         public override void Update(float timeOfFrame)
         {
-            //Sprint1Main.Game.Scene.Mario
             if (Parameters.Velocity.Y == 0)
             {
                 ClockToWait += timeOfFrame;
@@ -65,7 +64,6 @@ namespace Sprint1.ItemEnemyClasses
         }
         public override void MarioCollide(bool specialCase)
         {
-            //base.MarioCollide(specialCase);
             if (specialCase)
             {
                 Type = Sprint1Main.CharacterType.DiedEnemy;

@@ -15,7 +15,7 @@ namespace Sprint1.BlockClasses
 {
     public enum BlockType
     {
-        Hidden, BNormal, QNormal, Used, Destroyed // stairs and floors are counted as used blocks
+        Hidden, BNormal, QNormal, Used, Destroyed, Indestructible // stairs and floors are counted as used blocks
     }
     //public for genernate blocks
     class Blocks : AnimatedSprite
@@ -49,6 +49,7 @@ namespace Sprint1.BlockClasses
                 case BlockType.Hidden:
                     return bStates[0];
                 case BlockType.Used:
+                case BlockType.Indestructible:
                 case BlockType.Destroyed:
                     return bStates[3];
                 default:
@@ -66,7 +67,7 @@ namespace Sprint1.BlockClasses
         private void ChangeToUsed()
         {
             BType = BlockType.Used;
-            base.ResizeFrame(BlockFactory.BlockTextures[2], new Point(4, 1));          
+            base.ResizeFrame(BlockFactory.BlockTextures[2], new Point(4, 1), 0);          
             currentbState = GenerateCurrentState();
         }
         public void ChangeToDestroyed()

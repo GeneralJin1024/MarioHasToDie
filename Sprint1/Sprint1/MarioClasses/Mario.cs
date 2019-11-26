@@ -30,11 +30,11 @@ namespace Sprint1.MarioClasses
         private readonly ISprite[] ActionSprites;
         private readonly ISprite FlagSprite;
         private bool JumpHigher;
-        private bool Dive; //下沉
-        private bool Shoot; //弹出
-        private float Top; //弹出界限
-        private bool DiveRight; //左侧进入
-        private float Clock; //钟，目前用途仅限于死亡动画
+        private bool Dive; //Mario dive into VPipe
+        private bool Shoot; //Bump Mario
+        private float Top; //If Mario's max Y-Position > Top when Bumping, then the whole Mario has left the pipe.
+        private bool DiveRight; //When its true, Mario should has already collide with L Pipe and start entering.
+        private float Clock; // The Clock used for Died Animation
 
         public Mario(Texture2D[][] marioSpriteSheets, Vector2 location)
         {
@@ -82,8 +82,6 @@ namespace Sprint1.MarioClasses
             }
             CurrentSprite.Update(timeOfFrame);
             DivingAndShooting();
-            //marioState.Return();
-            //Console.WriteLine("After Mario Velocity = " + Parameters.Velocity + "Current State = " + MarioState.GetActionType);
         }
 
         public void Draw(SpriteBatch spriteBatch)
@@ -91,12 +89,6 @@ namespace Sprint1.MarioClasses
             //CurrentActionAndState[0] will locate the current action sprite.
             CurrentSprite.Draw(spriteBatch);
         }
-
-        //public Vector2 GetHeightAndWidth()
-        //{
-        //    //CurrentActionAndState[0] will locate the current action sprite.
-        //    return CurrentSprite.GetHeightAndWidth;
-        //}
         #endregion ISprite Methods
 
         #region Action Change
@@ -140,18 +132,15 @@ namespace Sprint1.MarioClasses
         {
             if (Dive && (Parameters.Position.Y - GetHeightAndWidth.X >= Top))
             {
-                //MarioState.ChangeToDied();
-                Dive = false; Sprint1Main.Game.LevelControl.SceneFlash(false,false,0);
+                Dive = false; Sprint1Main.Game.Scene.ByPassMario(); Sprint1Main.Game.LevelControl.SceneFlash(false,false,0);
             }
             else if (DiveRight && (Parameters.Position.X >= Top))
             {
-                //在该条件中的top其实是横管左侧坐标，这里为了节省变量故继续使用top
                 DiveRight = false; Sprint1Main.Game.LevelControl.GoToNormalArea();
             }
             if (Shoot && Parameters.Position.Y < Top)
             {
                 Shoot = false;
-                //ChangeToIdle();
                 MarioState.LockOrUnlock(false);
                 Parameters.HasGravity = true;
             }
@@ -162,7 +151,6 @@ namespace Sprint1.MarioClasses
             Dive = true;
             Top = top;
             ChangeToIdle();
-            //MarioState.ChangeAction(5);
             MarioState.LockOrUnlock(true);
             Parameters.HasGravity = false;
             Parameters.SetVelocity(0, 1);
@@ -174,7 +162,6 @@ namespace Sprint1.MarioClasses
             DiveRight = true;
             Top = leftSide;
             ChangeToWalk();
-            //MarioState.ChangeAction(5);
             MarioState.LockOrUnlock(true);
             Parameters.SetVelocity(1, 0);
             Parameters.HasGravity = false;

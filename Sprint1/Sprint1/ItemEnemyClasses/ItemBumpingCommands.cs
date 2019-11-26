@@ -14,9 +14,9 @@ namespace Sprint1.ItemEnemyClasses
     }
     class CoinBumping : ItemBumpingCommands
     {
-        private CoinCharacter item;
-        private float minY;
-        private float startHeight;
+        private readonly CoinCharacter item;
+        private readonly float minY;
+        private readonly float startHeight;
         private Vector2 speed;
         private Vector2 startPos;
         public CoinBumping(ItemCharacter item, Vector2 startPos, float minY, float startHeight, Vector2 speed)
@@ -36,9 +36,9 @@ namespace Sprint1.ItemEnemyClasses
 
     class MushroomBumping : ItemBumpingCommands
     {
-        private ItemCharacter item;
-        private float minY;
-        private float startHeight;
+        private readonly ItemCharacter item;
+        private readonly float minY;
+        private readonly float startHeight;
         private Vector2 speed;
         private Vector2 startPos;
         public MushroomBumping(ItemCharacter item, Vector2 startPos, float minY, float startHeight, Vector2 speed)
@@ -58,9 +58,9 @@ namespace Sprint1.ItemEnemyClasses
 
     class StarBumping : ItemBumpingCommands
     {
-        private StarCharacter item;
-        private float minY;
-        private float startHeight;
+        private readonly StarCharacter item;
+        private readonly float minY;
+        private readonly float startHeight;
         private Vector2 speed;
         private Vector2 startPos;
         public StarBumping(ItemCharacter item, Vector2 startPos, float minY, float startHeight, Vector2 speed)
@@ -80,9 +80,9 @@ namespace Sprint1.ItemEnemyClasses
 
     class FlowerBumping : ItemBumpingCommands
     {
-        private FlowerCharacter item;
-        private float minY;
-        private float startHeight;
+        private readonly FlowerCharacter item;
+        private readonly float minY;
+        private readonly float startHeight;
         private Vector2 speed;
         private Vector2 startPos;
         public FlowerBumping(ItemCharacter item, Vector2 startPos, float minY, float startHeight, Vector2 speed)
