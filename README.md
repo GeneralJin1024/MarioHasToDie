@@ -5,7 +5,7 @@
 
 **Implemented the object-oriented, event-based programming and design patterns (i.e. command, state, singleton, factory, etc.) to control the behavior of objects in the project.**
 
-##Features:
+## Features:
 1. Players connection to the environment
 2. Effects when Avatar “collides” with entities
 3. Heads Up Display (HUD)
