@@ -69,7 +69,6 @@ C:\Users\jin13\source\repos\GeneralJin1024\MarioHasToDie\FinalSprint\FinalSprint
 C:\Users\jin13\source\repos\GeneralJin1024\MarioHasToDie\FinalSprint\FinalSprint\bin\Windows\x86\Debug\FinalSprint.exe
 C:\Users\jin13\source\repos\GeneralJin1024\MarioHasToDie\FinalSprint\FinalSprint\bin\Windows\x86\Debug\FinalSprint.pdb
 C:\Users\jin13\source\repos\GeneralJin1024\MarioHasToDie\FinalSprint\FinalSprint\bin\Windows\x86\Debug\ConfigurationLibrary.dll
-C:\Users\jin13\source\repos\GeneralJin1024\MarioHasToDie\FinalSprint\FinalSprint\bin\Windows\x86\Debug\MonoGame.Framework.dll
 C:\Users\jin13\source\repos\GeneralJin1024\MarioHasToDie\FinalSprint\FinalSprint\bin\Windows\x86\Debug\SharpDX.MediaFoundation.dll
 C:\Users\jin13\source\repos\GeneralJin1024\MarioHasToDie\FinalSprint\FinalSprint\bin\Windows\x86\Debug\SharpDX.dll
 C:\Users\jin13\source\repos\GeneralJin1024\MarioHasToDie\FinalSprint\FinalSprint\bin\Windows\x86\Debug\SharpDX.XAudio2.dll
@@ -92,3 +91,4 @@ C:\Users\jin13\source\repos\GeneralJin1024\MarioHasToDie\FinalSprint\FinalSprint
 C:\Users\jin13\source\repos\GeneralJin1024\MarioHasToDie\FinalSprint\FinalSprint\obj\x86\Debug\FinalSprint.csproj.CopyComplete
 C:\Users\jin13\source\repos\GeneralJin1024\MarioHasToDie\FinalSprint\FinalSprint\obj\x86\Debug\FinalSprint.exe
 C:\Users\jin13\source\repos\GeneralJin1024\MarioHasToDie\FinalSprint\FinalSprint\obj\x86\Debug\FinalSprint.pdb
+C:\Users\jin13\source\repos\GeneralJin1024\MarioHasToDie\FinalSprint\FinalSprint\obj\x86\Debug\FinalSprint.exe.manifest
