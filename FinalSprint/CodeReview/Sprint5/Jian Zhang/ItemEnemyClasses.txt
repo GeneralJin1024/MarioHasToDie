@@ -1,0 +1,16 @@
+Reviewer: Jian Zhang
+Date: 11/26/2019
+Sprint5
+Files: ItemEnemyClasses/ BombCharacter.cs, BossEnemyCharacter.cs, CloudEnemyCharacter.cs
+Author: Runmin Zhou, shengyu Jin
+Comment:
+	1. In the ItemEnemyClasses, good adding some new interesting enemies like (cloud, Boss and Bomb),
+	which makes the mario level one more challenging and abundant. Good use of two collide respond functions
+	MarioCollide and BlockCollide, those two functions separate the different cases of bomb collision.
+	2. For the bomb and cloud generating position, good applying the RandomNumberGenerator.cs to set 
+	the bomb releasing positions.
+Time: 20 minues
+Hypothesis: 
+	1. The velocity of Bomb can be changed to slower. The current releaseing speed is too fast for player
+	to make a reaction. Also, the range and scope of bomb can be better setting to control the difficult level
+	of game.

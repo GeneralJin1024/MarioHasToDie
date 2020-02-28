@@ -1,0 +1,16 @@
+Reviewer: Shengyu Jin
+Date: 10/28/2019
+Sprint3
+Files: ItemAndEnemyClasses/*
+Author: Shengyu Jin, Runmin Zhou, Ziye Zhu
+Comment:
+	1. Bumping was considered as a behavior of each item character to realize respectively. 
+	We were planning to use State Design Pattern but it turns out that it is unnecessary for the ItemCharacter Class to record different types of items as well as identify them. 
+	As a result, the Command pattern is being used to package all the information needed to execute the bumping behavior then provoke the bumping method in each subclass which is responsible to call the base method passing its unique values.
+
+	2.Requesting to many parameters from the Block Class to do the bumping calculation. The process is also a little bit long which 
+	seems to do some redundant works. More refactoring is needed. 
+Time: 50 min
+Hypothesis:
+	1. When adding another item has the bumping behavior, it requires the modification of Block and ItemCharacter class. And also need to add
+	new command and new independent character class. The coupling level of the codes for this part is the hightest against other codes related to items.

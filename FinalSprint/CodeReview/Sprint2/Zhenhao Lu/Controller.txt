@@ -1,0 +1,16 @@
+Reviewer: Zhenhao Lu
+Date: 10/11/2019
+Sprint2
+Files: Controller/GamepadController.cs	KeyboardController.cs
+Author: Jian Zhang
+Comment:
+	1. Modify the Mario type from Mario to MarioCharacter is good
+	2. Also modify the Commands
+	3. Try to set two key-value maps for distinguishing "pressed" and "hold"?
+	So that we just need to do one more check with the new map.
+Time: 10min
+Hypothesis: 
+	1. Only need to change a little part when we add some command that need holding keys
+	2. Need to change the parameter's type(Mario->MarioCharacter) when We change Mario's
+	type. Maybe we should create an abstract Mario class and let Mario Character(s) inherit it
+	to prevent Controllers always changing because of Mario.

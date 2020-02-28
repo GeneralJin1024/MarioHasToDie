@@ -1,0 +1,14 @@
+Reviewer: Zhenhao Lu
+Date: 10/11/2019
+Sprint2
+Files: Controller/GamePadController.cs
+Author: Zhang Jian
+Comment:
+	1. Line 72-74 should move
+	Line 72-73: calling ReturnCommand.Execute() should be moved outside of 
+	if(curr != emptyInput) but inside of if(curr.IsConnected)
+	Line74: update previous gamePad state should be done no matter a gamePad is connected.
+Time: 10min
+Hypothesis:
+	1. If we need to add more command, just add the command and corresponding button into
+	Key-Map.

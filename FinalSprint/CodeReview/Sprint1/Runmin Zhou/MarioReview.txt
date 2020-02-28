@@ -1,0 +1,12 @@
+Reviewer: Runmin Zhou
+Date: 9/24/2019
+Sprint1
+Files: MarioClasses
+Author: Zhenhao Lu
+Comment:
+	1. Good use of state. The state can determine the sprite mario need to show and change to another state.
+	2. Good use of isprite in isprite to show the sprite.
+Time: 30 min
+Hypothesis: 
+	1. It's good for future use. If we need more state. We just need to create more state variable in the mario class.
+	2. If the game is just single player, we can make the mario singleton. So, in some classes, we do not need to pass the parameter. 

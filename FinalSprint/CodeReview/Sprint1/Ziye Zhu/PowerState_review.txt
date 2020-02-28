@@ -1,0 +1,13 @@
+Reviewer: Ziye Zhu
+Date: 9/24/2019
+Sprint1
+Files: MarioClasses/PowerState.cs
+
+Author: Zhenhao Lu Ziye Zhu
+Comment:
+	1. Define behaviors Destroy and Leave upon which we change the Power States of Mario
+	
+Time: 20 min
+
+Hypothesis:
+	1. even if we will have more changes among different marios. we will not change the Interface, we will only extend it.

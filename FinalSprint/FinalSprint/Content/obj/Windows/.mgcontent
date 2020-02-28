@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SourceFileCollection xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Profile>Reach</Profile>
+  <Platform>Windows</Platform>
+  <Config />
+  <SourceFiles>
+    <File>C:/Users/72957/source/repos/SmartMario/FinalSprint/FinalSprint/Content/arial.spritefont</File>
+    <File>C:/Users/72957/source/repos/SmartMario/FinalSprint/FinalSprint/Content/BackgroundSprite/bigBush.png</File>
+    <File>C:/Users/72957/source/repos/SmartMario/FinalSprint/FinalSprint/Content/BackgroundSprite/bigCloud.png</File>
+    <File>C:/Users/72957/source/repos/SmartMario/FinalSprint/FinalSprint/Content/BackgroundSprite/bigHill.png</File>
+    <File>C:/Users/72957/source/repos/SmartMario/FinalSprint/FinalSprint/Content/BackgroundSprite/mediumBush.png</File>
+    <File>C:/Users/72957/source/repos/SmartMario/FinalSprint/FinalSprint/Content/BackgroundSprite/mediumCloud.png</File>
+    <File>C:/Users/72957/source/repos/SmartMario/FinalSprint/FinalSprint/Content/BackgroundSprite/smallBush.png</File>
+    <File>C:/Users/72957/source/repos/SmartMario/FinalSprint/FinalSprint/Content/BackgroundSprite/smallCloud.png</File>
+    <File>C:/Users/72957/source/repos/SmartMario/FinalSprint/FinalSprint/Content/BackgroundSprite/smallHill.png</File>
+    <File>C:/Users/72957/source/repos/SmartMario/FinalSprint/FinalSprint/Content/BlockSprites/mario-brick-blocks.png</File>
+    <File>C:/Users/72957/source/repos/SmartMario/FinalSprint/FinalSprint/Content/BlockSprites/mario-gravel-blocks.png</File>
+    <File>C:/Users/72957/source/repos/SmartMario/FinalSprint/FinalSprint/Content/BlockSprites/mario-hit-block.png</File>
+    <File>C:/Users/72957/source/repos/SmartMario/FinalSprint/FinalSprint/Content/BlockSprites/mario-question-blocks.png</File>
+    <File>C:/Users/72957/source/repos/SmartMario/FinalSprint/FinalSprint/Content/BlockSprites/mario-shiny-block.png</File>
+    <File>C:/Users/72957/source/repos/SmartMario/FinalSprint/FinalSprint/Content/DiedMario/deadMario.png</File>
+    <File>C:/Users/72957/source/repos/SmartMario/FinalSprint/FinalSprint/Content/EnemySprite/boss.png</File>
+    <File>C:/Users/72957/source/repos/SmartMario/FinalSprint/FinalSprint/Content/EnemySprite/boss2.png</File>
+    <File>C:/Users/72957/source/repos/SmartMario/FinalSprint/FinalSprint/Content/EnemySprite/cloudEnemy1.png</File>
+    <File>C:/Users/72957/source/repos/SmartMario/FinalSprint/FinalSprint/Content/EnemySprite/cloudEnemy2.png</File>
+    <File>C:/Users/72957/source/repos/SmartMario/FinalSprint/FinalSprint/Content/EnemySprite/deadGoomba.png</File>
+    <File>C:/Users/72957/source/repos/SmartMario/FinalSprint/FinalSprint/Content/EnemySprite/deadGreenKoopa.png</File>
+    <File>C:/Users/72957/source/repos/SmartMario/FinalSprint/FinalSprint/Content/EnemySprite/deadRedKoopa.png</File>
+    <File>C:/Users/72957/source/repos/SmartMario/FinalSprint/FinalSprint/Content/EnemySprite/enemyPlant.png</File>
+    <File>C:/Users/72957/source/repos/SmartMario/FinalSprint/FinalSprint/Content/EnemySprite/goomba.png</File>
+    <File>C:/Users/72957/source/repos/SmartMario/FinalSprint/FinalSprint/Content/EnemySprite/greenkoopa.png</File>
+    <File>C:/Users/72957/source/repos/SmartMario/FinalSprint/FinalSprint/Content/EnemySprite/jump1.png</File>
+    <File>C:/Users/72957/source/repos/SmartMario/FinalSprint/FinalSprint/Content/EnemySprite/Jump2.png</File>
+    <File>C:/Users/72957/source/repos/SmartMario/FinalSprint/FinalSprint/Content/EnemySprite/redkoopa.png</File>
+    <File>C:/Users/72957/source/repos/SmartMario/FinalSprint/FinalSprint/Content/FireMario/fireMarioJumpRight.png</File>
+    <File>C:/Users/72957/source/repos/SmartMario/FinalSprint/FinalSprint/Content/FireMario/fireMarioRightCrouch.png</File>
+    <File>C:/Users/72957/source/repos/SmartMario/FinalSprint/FinalSprint/Content/FireMario/fireMarioRightMove.png</File>
+    <File>C:/Users/72957/source/repos/SmartMario/FinalSprint/FinalSprint/Content/FireMario/fireMarioRightStand.png</File>
+    <File>C:/Users/72957/source/repos/SmartMario/FinalSprint/FinalSprint/Content/ItemSprite/bomb.png</File>
+    <File>C:/Users/72957/source/repos/SmartMario/FinalSprint/FinalSprint/Content/ItemSprite/coin.png</File>
+    <File>C:/Users/72957/source/repos/SmartMario/FinalSprint/FinalSprint/Content/ItemSprite/fireball.png</File>
+    <File>C:/Users/72957/source/repos/SmartMario/FinalSprint/FinalSprint/Content/ItemSprite/flag.png</File>
+    <File>C:/Users/72957/source/repos/SmartMario/FinalSprint/FinalSprint/Content/ItemSprite/flagpole.png</File>
+    <File>C:/Users/72957/source/repos/SmartMario/FinalSprint/FinalSprint/Content/ItemSprite/flower.png</File>
+    <File>C:/Users/72957/source/repos/SmartMario/FinalSprint/FinalSprint/Content/ItemSprite/greenMushroom.png</File>
+    <File>C:/Users/72957/source/repos/SmartMario/FinalSprint/FinalSprint/Content/ItemSprite/mario-castle.png</File>
+    <File>C:/Users/72957/source/repos/SmartMario/FinalSprint/FinalSprint/Content/ItemSprite/mario-flagpole.png</File>
+    <File>C:/Users/72957/source/repos/SmartMario/FinalSprint/FinalSprint/Content/ItemSprite/mario-underground-pipe1.png</File>
+    <File>C:/Users/72957/source/repos/SmartMario/FinalSprint/FinalSprint/Content/ItemSprite/mario-underground-pipe2.png</File>
+    <File>C:/Users/72957/source/repos/SmartMario/FinalSprint/FinalSprint/Content/ItemSprite/medicine.png</File>
+    <File>C:/Users/72957/source/repos/SmartMario/FinalSprint/FinalSprint/Content/ItemSprite/PipeSpriteSheet.png</File>
+    <File>C:/Users/72957/source/repos/SmartMario/FinalSprint/FinalSprint/Content/ItemSprite/randomItem.png</File>
+    <File>C:/Users/72957/source/repos/SmartMario/FinalSprint/FinalSprint/Content/ItemSprite/redMushroom.png</File>
+    <File>C:/Users/72957/source/repos/SmartMario/FinalSprint/FinalSprint/Content/ItemSprite/star.png</File>
+    <File>C:/Users/72957/source/repos/SmartMario/FinalSprint/FinalSprint/Content/MarioSprites/smallMarioRightJump.png</File>
+    <File>C:/Users/72957/source/repos/SmartMario/FinalSprint/FinalSprint/Content/MarioSprites/smallMarioRightMove.png</File>
+    <File>C:/Users/72957/source/repos/SmartMario/FinalSprint/FinalSprint/Content/MarioSprites/smallMarioRightStand.png</File>
+    <File>C:/Users/72957/source/repos/SmartMario/FinalSprint/FinalSprint/Content/Music/Map_BGM.mp3</File>
+    <File>C:/Users/72957/source/repos/SmartMario/FinalSprint/FinalSprint/Content/Music/QuestionBlock.wav</File>
+    <File>C:/Users/72957/source/repos/SmartMario/FinalSprint/FinalSprint/Content/Music/sm64_game_over.wav</File>
+    <File>C:/Users/72957/source/repos/SmartMario/FinalSprint/FinalSprint/Content/Music/sm64_mario_lost_a_life.wav</File>
+    <File>C:/Users/72957/source/repos/SmartMario/FinalSprint/FinalSprint/Content/Music/sm64_pipe.wav</File>
+    <File>C:/Users/72957/source/repos/SmartMario/FinalSprint/FinalSprint/Content/Music/smb_bump.wav</File>
+    <File>C:/Users/72957/source/repos/SmartMario/FinalSprint/FinalSprint/Content/Music/smb_coin.wav</File>
+    <File>C:/Users/72957/source/repos/SmartMario/FinalSprint/FinalSprint/Content/Music/smb_fireball.wav</File>
+    <File>C:/Users/72957/source/repos/SmartMario/FinalSprint/FinalSprint/Content/Music/smb_jump-small.wav</File>
+    <File>C:/Users/72957/source/repos/SmartMario/FinalSprint/FinalSprint/Content/Music/smb_pause.wav</File>
+    <File>C:/Users/72957/source/repos/SmartMario/FinalSprint/FinalSprint/Content/Music/smb_powerup.wav</File>
+    <File>C:/Users/72957/source/repos/SmartMario/FinalSprint/FinalSprint/Content/SuperMario/superMarioJumpRight.png</File>
+    <File>C:/Users/72957/source/repos/SmartMario/FinalSprint/FinalSprint/Content/SuperMario/superMarioMoveRight.png</File>
+    <File>C:/Users/72957/source/repos/SmartMario/FinalSprint/FinalSprint/Content/SuperMario/superMarioRightCrouch.png</File>
+    <File>C:/Users/72957/source/repos/SmartMario/FinalSprint/FinalSprint/Content/SuperMario/superMarioRightStand.png</File>
+  </SourceFiles>
+  <DestFiles>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+  </DestFiles>
+</SourceFileCollection>

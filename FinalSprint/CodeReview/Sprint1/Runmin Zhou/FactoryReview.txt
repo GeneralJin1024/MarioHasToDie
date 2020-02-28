@@ -1,0 +1,17 @@
+Reviewer: Runmin Zhou
+Date: 9/22/2019
+Sprint1
+Files: FactoryClasses/BackgroundFactory.cs
+	BlockFactory.cs
+	EnemyFactory.cs
+	ItemFactory.cs
+	MarioFactory.cs
+Author: Runmin Zhou，Shengyu Jin, Jian Zhang, Zhenhao Lu
+Comment: 
+	1. These factories uses singleto structure. So, we do not need to pass the parameter to get the data. It's very convinent.
+	2. These all the factories inherit isprite, so they can be in the same arraylist and uses for loop and add all the sprite in the 
+	sprint1, which is very neat.
+
+Time: 30 min
+Hypothesis:
+	1. This is good for the future use. If we want to add more sprite to sprite list, we just need to add it in the factory.

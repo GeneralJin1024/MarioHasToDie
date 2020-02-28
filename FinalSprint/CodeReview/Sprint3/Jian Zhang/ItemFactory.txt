@@ -1,0 +1,16 @@
+wReviewer: Jian Zhang
+Date: 10/28/2019
+Sprint3
+Files: FactoryClasses/ItemFactory.cs, BackgroundFactory.cs
+Author: Shengyu Jin
+Comment:
+	1. For the FactoryMethod in the ItemFactory.cs, good passing the parameters Vector2 posS and Vector2 posE.
+	By determinining the final position and Starting position of one item, FactoryMethod can make a mass produce of regular
+	and repeated items like bricks or coins.
+	2. For the BackgroundFactory.cs, good use of switch cases to divides different background items into different layers.
+	In the default case, using the Nullcharacter to meet the speical case conditions.
+Time: 20min
+Hypothesis:
+	1. The FacotoryMethod efficiently increase items setting in our stage. When we meet the regular size or repeated items
+	like horizontal roads and coins arranged in one lines. We can call FacotoryMethod to generate them in a simplier way.
+	2. If we need to add more background items like clouds and hills, we just call AddBackground to divide items into separate layers.

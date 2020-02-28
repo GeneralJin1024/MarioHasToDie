@@ -1,0 +1,19 @@
+Reviewer: Zhenhao Lu
+Date: 9/22/2019
+Sprint1
+Files: BlockClasses/BlockCommands.cs	Blocks.cs	BrickBlockSprite.cs	Bricks.cs BrickStates.cs
+	FloorAndStairBlocks.cs	HiddenBlock.cs	IBlockStates.cs	QuestionBlockSprite.cs
+	UsedBlockSprite.cs
+Author: Shengyu Jin
+Comment: 
+	1. Do not need to use "this" in BlockCommand.Execute() 
+	2. Good parameterization in BrickBlockSprite.cs
+	3. FloorAndStairBlocks, HiddenBlockSprite, QuestionBlockSprite, UsedBlockSprite looks 
+	similar, try to combine them into one class
+	4. Good writing in BrickStates.cs
+	5. Good use of enum type in Bricks, but it looks that integer minY and maxY can change
+	to an integer array or Point?
+Time: 40 min
+Hypothesis:
+	If we need to add new State to block, we can directly add a new class that implement 
+	IBlockState as well as add a new BrickType. This changes little existing code.
