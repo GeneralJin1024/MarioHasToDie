@@ -4,7 +4,7 @@
 
 **Managed the project using the Scrum Framework on the Azure DevOps platform.**
 
-![Azure project](https://github.com/GeneralJin1024/MarioHasToDie/edit/master/Azure.png)
+![Azure project](https://github.com/GeneralJin1024/MarioHasToDie/edit/master/Source/Azure.png)
 
 **Implemented the object-oriented, event-based programming and design patterns (i.e. command, state, singleton, factory, etc.) to control the behavior of objects in the project.**
 
